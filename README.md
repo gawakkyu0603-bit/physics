@@ -38,7 +38,7 @@ Add future papers under their field and retain explicit version directories. Kee
 
 Follow the [paper addition, revision, and publication guide](ADDING_PAPERS.ja.md) (Japanese) for the complete maintenance workflow, including the three English reading guides, source coverage, verification, versioned releases, and Pages publication. The [site source reference](site-src/README.md) documents the catalog and content formats.
 
-After all repository, Release, asset, and Pages publication work has finished and the public URLs have been verified, request discovery and indexing through Google Search Console and Bing Webmaster Tools, and notify Bing with IndexNow. Follow the relevant Google and Bing routes for Yahoo! JAPAN and international Yahoo Search. Record submission, receipt, crawling, and indexing separately. The [search submission and update guide](SEARCH_INDEXING.ja.md) (Japanese) documents these steps and their evidence.
+For this initial publication, after all repository, Release, asset, and Pages publication work has finished and the public URLs have been verified, make the one-time initial submission through Google Search Console and Bing Webmaster Tools, and notify Bing with IndexNow. Follow the relevant Google and Bing routes for Yahoo! JAPAN and international Yahoo Search. A submission receipt does not establish search indexing. This request does not include periodic monitoring or repeated submission.
 
 No repository-wide license is newly assigned to the original research. Consult the version’s [rights statement](quantum-gravity/correlation-actualization-theory/v4/RIGHTS.md) and [third-party notices](quantum-gravity/correlation-actualization-theory/v4/THIRD_PARTY_NOTICES.md). No DOI or journal acceptance is asserted.
 

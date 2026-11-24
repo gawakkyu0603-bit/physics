@@ -20,9 +20,9 @@
 
 `build_site.py`はHTMLと`docs/sitemap.xml`を生成します。PDFやCSS・JavaScript・フォントを自動的に配置する処理は含まないため、必要な配信ファイルは別途、正しい場所へ置きます。
 
-検索用のURLは`catalog.json`の`public_base_url`（末尾に`/`を付けた公開先）から作ります。サイトマップには生成したHTMLと登録済みの主論文・補足PDFを列挙し、英語ページのheadには自己参照の絶対URLを設定します。英語一覧と共通入口は`en`と`x-default`の一組です。リポジトリ・タグ・Release添付・Pagesのすべての公開と実URLの確認が完了した後、Google Search Consoleでサイトマップを送信し、必要なURLのインデックス登録をリクエストします。Bing Webmaster ToolsとIndexNow、Yahoo向けの関連経路も同じ順序で申請し、送信・受付・収録を別々に記録します。ビルドだけでは検索エンジンへの送信は行われません。
+検索用のURLは`catalog.json`の`public_base_url`（末尾に`/`を付けた公開先）から作ります。サイトマップには生成したHTMLと登録済みの主論文・補足PDFを列挙し、英語ページのheadには自己参照の絶対URLを設定します。英語一覧と共通入口は`en`と`x-default`の一組です。今回の初回公開では、リポジトリ・タグ・Release添付・Pagesのすべての公開と実URLの確認が完了した後、Google・Bing・Yahoo向けの初回申請を行います。受付と検索への収録は別の段階です。ビルドだけでは検索エンジンへの送信は行われず、定期監視や繰り返しの再申請は行いません。
 
-`indexnow.json`にはBing向けの継続利用する公開確認キーを保存し、ビルド時に同じキーのテキストファイルを`docs/`へ書き出します。送信はビルドから分離した手動操作です。Google・Bing・Yahooの経路と、ローカル検証・実送信・受付結果の記録方法は[SEARCH_INDEXING.ja.md](../SEARCH_INDEXING.ja.md)を参照してください。
+`indexnow.json`にはBing向けの公開確認キーを保存し、ビルド時に同じキーのテキストファイルを`docs/`へ書き出します。初回申請の送信はビルドから分離した手動操作です。
 
 ## 2. 原論文を版付きで配置する
 
