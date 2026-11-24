@@ -1,37 +1,17 @@
 # Physics
 
-Versioned research manuscripts, reproducible evidence, and English reading guides for three audiences.
+Research manuscripts, supporting evidence, and English reading guides across physics.
 
-## Research library
+The collection is organized as **field → paper → version**. Field indexes lead to individual papers; each paper's page brings together its published versions, original materials, verification records, downloads, and reading guides.
 
-The hierarchy is **field → paper → version**. Each version keeps its original research material separate from the explanatory website.
+## Research index
 
-| Field | Paper | Version and evidence |
+| Field | Paper | Published version |
 | --- | --- | --- |
-| [Quantum gravity](quantum-gravity/README.md) | [Correlation Actualization Theory (CAT)](quantum-gravity/correlation-actualization-theory/README.md) | [Version 4](quantum-gravity/correlation-actualization-theory/v4/README.md) · [Verification](quantum-gravity/correlation-actualization-theory/v4/VERIFICATION.md) |
+| [Quantum gravity](quantum-gravity/README.md) | [Correlation Actualization Theory (CAT)](quantum-gravity/correlation-actualization-theory/README.md) | [Version 4](quantum-gravity/correlation-actualization-theory/v4/README.md) |
 
-## Read CAT at your preferred level
+## Published reading site
 
-Read the [English Pages home](https://gawakkyu0603-bit.github.io/physics/en/index.html). The public introductions are in English for all three audiences.
-
-| Audience | English introduction |
-| --- | --- |
-| Research specialists | [Expert guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/expert.html) |
-| STEM students and graduates | [Student guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/student.html) |
-| General readers | [General guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/general.html) |
-
-All three guides cover the paper's research themes and conclusions at the chosen level. The pages begin with a TL;DR, develop the full paper, and link to the original evidence and the other reading levels. They include eight figures for specialists, nine for students, and nine for general readers.
-
-## Manuscript and distribution
-
-CAT v4 is an **unrefereed research preprint** by Yohtaro Soga, dated 25 November 2026. It proposes irreversible gravitational receipts and changes of physical output domains. Its explicit results concern specified ranks, clocks, preparations, and ports. A theory connecting sectors, generic natural collapse, and endpoint recovery remain open.
-
-The version directory retains **709 unchanged original files** under `paper/`. The full publication ZIP for the `cat-v4.0.0` [Release](https://github.com/gawakkyu0603-bit/physics/releases/tag/cat-v4.0.0) preserves all **742 original files**, including 33 bundled runtime/dependency files omitted from Git. Its distribution notices are outside the original `CAT-review/` payload. GitHub’s automatic source archives contain only the Git tree.
-
-[Original article](quantum-gravity/correlation-actualization-theory/v4/paper/main.pdf) · [Supplement](quantum-gravity/correlation-actualization-theory/v4/paper/supplement.pdf) · [Reproduction instructions](quantum-gravity/correlation-actualization-theory/v4/README.md) · [Publication scope](docs/PUBLICATION_SCOPE.md)
-
-The [verification record](quantum-gravity/correlation-actualization-theory/v4/VERIFICATION.md) separates v3 full-suite executions from v4 identity checks and limited reruns. The manuscript discloses the human author’s concepts and research direction, Codex assistance, and AI-generated technical reviews. Those reviews are not journal peer review.
-
-No repository-wide license is newly assigned to the original research. Consult the version’s [rights statement](quantum-gravity/correlation-actualization-theory/v4/RIGHTS.md) and [third-party notices](quantum-gravity/correlation-actualization-theory/v4/THIRD_PARTY_NOTICES.md). No DOI or journal acceptance is asserted.
+Browse the [Physics research site](https://gawakkyu0603-bit.github.io/physics/). Each paper is presented through English introductions for general readers, STEM students and graduates, and specialists, with links to its original materials.
 
 Repository: [gawakkyu0603-bit/physics](https://github.com/gawakkyu0603-bit/physics).
