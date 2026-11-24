@@ -1,14 +1,16 @@
-# CAT 第四版：6つの解説ページの内容対応表
+# CAT 第四版：英語3記事の内容対応表
 
-この文書は、専門家・理工系学生・一般読者向けの各日本語／英語ページを、原論文と照合するための内容索引です。対象は **Yohtaro Soga, Correlation Actualization Theory, Version 4, 25 November 2026**。原論文・計算・証拠ファイルを改訂する文書ではありません。
+この文書は、専門家・理工系学生・一般読者向けの英語3記事を、原論文と照合するための内容索引です。対象は **Yohtaro Soga, Correlation Actualization Theory, Version 4, 25 November 2026**。原論文・計算・証拠ファイルを改訂する文書ではありません。
 
-## 6ページの役割
+2026年11月25日の著者の指示により、日本語3記事は公開対象から除外し、本文素材と生成HTMLを削除しました。今後も英語の3読者水準を追加します。この変更で英語本文の科学的内容は改訂していません。
 
-| 読者 | 日本語／英語の本文素材 | 説明の重点 |
+## 英語3記事の役割
+
+| 読者 | 英語の本文素材 | 説明の重点 |
 | --- | --- | --- |
-| 専門家 | [日本語素材](content/expert-ja.html) / [English source](content/expert-en.html) | 作用と符号、instrument、核・定義域、回復条件、時計・計量、全プロトコルと適用仮定 |
-| 理工系学生 | [日本語素材](content/student-ja.html) / [English source](content/student-en.html) | 状態とチャネル、線形代数、空間モードと内部コード、準備から観測までの段階的な説明 |
-| 一般読者 | [日本語素材](content/general-ja.html) / [English source](content/general-en.html) | 観測者の記録、道の有無、位相と情報、時計と幾何を図と具体例で説明し、比喩の適用範囲を保つ |
+| 専門家 | [English source](content/expert-en.html) | 作用と符号、instrument、核・定義域、回復条件、時計・計量、全プロトコルと適用仮定 |
+| 理工系学生 | [English source](content/student-en.html) | 状態とチャネル、線形代数、空間モードと内部コード、準備から観測までの段階的な説明 |
+| 一般読者 | [English source](content/general-en.html) | 観測者の記録、道の有無、位相と情報、時計と幾何を図と具体例で説明し、比喩の適用範囲を保つ |
 
 三つの読者水準は同じ研究の仮定・結果・未解決事項を扱います。原論文の全節と補足の中心テーマを横断して説明していますが、逐語的な全文転載、全証明の書き直し、91件の研究記録すべての個別再掲ではありません。数式や事例の詳細度は読者に合わせて変え、一般向けで省いた演算子の詳細を、実証済みの普遍法則に置き換えることはしていません。
 
@@ -16,7 +18,7 @@
 
 ## 主論文から各解説への対応
 
-表のセルは各ページ内の実在するアンカーです。同じ読者水準では日英とも同じIDを使います。主論文のソースは `quantum-gravity/correlation-actualization-theory/v4/paper/` にあります。
+表のセルは各ページ内の実在するアンカーです。現在公開する英語記事のIDを示します。主論文のソースは `quantum-gravity/correlation-actualization-theory/v4/paper/` にあります。
 
 | 原論文の節・主要テーマ | 原ソース | 専門家 | 理工系学生 | 一般向け |
 | --- | --- | --- | --- | --- |
@@ -52,7 +54,7 @@
 | 物理的出力空間、同時複製でないこと、共有記録、結果付き順序 | `supp-domains.tex` | `expert-question`, `expert-law` | `student-history`, `student-domain`, `student-example` | `actions`, `recovery` |
 | 正負参照、Pauli X、全状態誤差上限、900試行 | `supp-calibration.tex` | `expert-readout` | `student-test` | `return` |
 | 何が同じ準備で同時に実現したか | `supp-calibration.tex` の比較表 | `expert-geometry`, `expert-vacua`, `expert-evidence` | `student-vacua`, `student-verification` | `vacua`, `evidence`, `next` |
-| 局所11種類と天体12種類のプロトコル | `supp-tests.tex` | `expert-tests`：[日本語](content/expert-ja.html#expert-tests)／[English](content/expert-en.html#expert-tests)に全23件と数式・条件を列挙 | `student-test-reference`：[日本語付録](content/student-ja.html#student-test-reference)／[English appendix](content/student-en.html#student-test-reference)に全23件を掲載し、本文の原理説明へ接続 | `tests-reference`：[日本語付録](content/general-ja.html#tests-reference)／[English appendix](content/general-en.html#tests-reference)に全23件の比較対象と必要条件を掲載 |
+| 局所11種類と天体12種類のプロトコル | `supp-tests.tex` | `expert-tests`：[English](content/expert-en.html#expert-tests)に全23件と数式・条件を列挙 | `student-test-reference`：[English appendix](content/student-en.html#student-test-reference)に全23件を掲載し、本文の原理説明へ接続 | `tests-reference`：[English appendix](content/general-en.html#tests-reference)に全23件の比較対象と必要条件を掲載 |
 | 作用の選択、双対性、既存観測、任意の暗黒成分 | `supp-constraints.tex` | `expert-comparisons`, `expert-tests` | `student-theories`, `student-cosmology` | `matrices`, `sky` |
 | 近い先行研究と独自性の限界 | `supp-scope.tex` | `expert-comparisons` | `student-theories` | `matrices`, `next` |
 | 証拠の分類・91件の個別要約・否定的結果 | `supp-scope.tex`, `supp-results.tex` | `expert-evidence` | `student-verification` | `evidence`, `sources-heading` |
@@ -75,13 +77,12 @@
 | 115 flux軌道、49の線形固定、41のO3飽和 | 固定coupling/tadpoleの特定orientifold、primitive条件と有限商 | CAT全体の真空数や、現実的な完全安定真空の数 |
 | 59グループ・1,195浮動小数点値、365宣言 | v3で選択9driver／10moduleの再実行報告。v4は同一性継承と限定check | 85ファイル全体の新規独立再実行、物理的前提の実証 |
 
-## 日英同等性の方針と確認範囲
+## 英語3記事の範囲と保持方針
 
-- 各読者水準で、日英は同じ主題順序、節ID、図ID、出典リンクを使用する。日本語から英語への翻訳で、仮定・失敗例・未解決事項を落とさない。
-- 専門家版の表示式12個、理工系版の表示式8個について、日英のTeX列が同一であることを確認した。一般向けの独立した表示式は0個で、同じ例の数値・限定条件を文章と表で説明する。図は専門家8点・理工系9点・一般9点を実装し、日英で同じ図IDを使う。
-- 読者水準間では説明の量と語彙を変える。全ての表行・全ての数値が6ページすべてに重複する、という意味の同一性は主張しない。
-- 全6本文素材について、日英ごとの節ID・図ID・出典リンク列が一致することをHTML parserで確認。入れ子、閉じタグ、重複IDにも問題は見つからなかった。
-- 原稿の数学・数値・観測について新たな全面再査読や観測再解析を行ったという表示はしない。各説明の根拠は第四版の明示した範囲である。
+- 専門家・理工系学生・一般読者の各記事で、同じ研究の仮定・結果・未解決事項を扱います。説明量・語彙・式の詳細度は読者に合わせます。
+- 専門家版の表示式は12個、理工系版は8個、一般向けの独立した表示式は0個です。図は専門家8点・理工系9点・一般9点です。
+- 日本語記事を除外する変更では、英語の本文素材と生成HTML内のarticle部分が変更前と同一であることをハッシュで照合します。言語切替などの共通ナビゲーションは変更対象です。
+- 原稿の数学・数値・観測について新たな全面再査読や観測再解析を行ったとは表示しません。各説明の根拠は第四版の明示した範囲です。
 
 ## 原ソースへのリンク検査
 
@@ -89,13 +90,10 @@
 
 | 本文 | SOURCE_ROOTリンク出現数 | 異なる参照先 | 存在しない参照先 |
 | --- | ---: | ---: | ---: |
-| expert-ja.html | 3 | 3 | 0 |
 | expert-en.html | 3 | 3 | 0 |
-| student-ja.html | 27 | 13 | 0 |
 | student-en.html | 27 | 13 | 0 |
-| general-ja.html | 9 | 7 | 0 |
 | general-en.html | 9 | 7 | 0 |
 
-全78出現について誤った原ソースパスは見つからなかった。主論文・補足への `#page=` アンカーも全て1–18ページの範囲内である。これは本文素材内の参照先とページ範囲の確認であり、GitHub Pages公開後のHTTP取得、レイアウト、図の言語切替、数式描画の確認は生成・公開工程で別途行う。
+全39出現について誤った原ソースパスは見つからなかった。主論文・補足への `#page=` アンカーも全て1–18ページの範囲内である。これは本文素材内の参照先とページ範囲の確認であり、GitHub Pages公開後のHTTP取得、レイアウト、図の表示、数式描画の確認は生成・公開工程で別途行う。
 
-本文素材は、このリポジトリに同梱する [site-src/content](content/) にある。各本文の出典リンクから原論文と補足へ進める。日英の図・captionは [figures.py](figures.py) に、初回の指摘、修正確認、数値と仮定の照合範囲は [SCIENTIFIC_QA.md](SCIENTIFIC_QA.md) に記録した。生成物の構造・リンク・数式・PDF同一性の検査記録は [verification.json](verification.json) を参照する。
+本文素材は、このリポジトリに同梱する [site-src/content](content/) にある。各本文の出典リンクから原論文と補足へ進める。英語で公開する図・captionは [figures.py](figures.py) に、初回の指摘、修正確認、数値と仮定の照合範囲は [SCIENTIFIC_QA.md](SCIENTIFIC_QA.md) に記録した。生成物の構造・リンク・数式・PDF同一性の検査記録は [verification.json](verification.json) を参照する。

@@ -2,28 +2,30 @@
 
 ## 対象と現在の判定
 
-対象は、このリポジトリに同梱する専門家・理工系学生・一般読者向けの日本語／英語、計6ページと、その26種類の図です。原資料は **Yohtaro Soga, Correlation Actualization Theory, Version 4, 25 November 2026** の[主論文](../quantum-gravity/correlation-actualization-theory/v4/paper/main.pdf)、[技術補足](../quantum-gravity/correlation-actualization-theory/v4/paper/supplement.pdf)、TeXソース、応答書、検証記録です。
+対象は、このリポジトリに同梱する専門家・理工系学生・一般読者向けの英語3ページと、その26種類の図です。原資料は **Yohtaro Soga, Correlation Actualization Theory, Version 4, 25 November 2026** の[主論文](../quantum-gravity/correlation-actualization-theory/v4/paper/main.pdf)、[技術補足](../quantum-gravity/correlation-actualization-theory/v4/paper/supplement.pdf)、TeXソース、応答書、検証記録です。
 
-**初回の4ページQAで挙がった2件の補強事項は解決済みです。** その後、一般向けを含めた6ページの試験一覧、数値と限定条件、日英の構造・出典・図の対応を確認し、下記の図説明も修正しました。確認した範囲で、未対応の重大な科学的齟齬や重要な日英差は見つかっていません。
+**現在の公開対象は英語3記事です。** 2026年11月25日の著者の指示により、読みやすさを理由に日本語3記事と日本語の公開ナビゲーションを除外しました。英語の本文素材・生成articleの内容は変更せず、公開切替に伴う生成・リンク・サイトマップの検査を行います。この切替自体を新たな科学的査読とは扱いません。
+
+初回の4ページQAで挙がった2件の補強事項は、その後の日英6ページの編集段階で解決しました。以下の科学的確認内容はその履歴を引き継ぐもので、現在の英語記事にも残る条件・説明の確認先を示します。削除した日本語ページの読みやすさを保証する記録ではありません。
 
 これは、解説が原論文の仮定・結果・未解決事項を正しく伝えるための編集上の科学的QAです。新たな全面査読、91件の研究結果の独立再実行、観測データの再解析、外部の学術誌査読・掲載承認を意味しません。初回QAの原記録は末尾に保存し、当時の指摘と現在の解決状態を分けて示します。
 
-| 読者 | 本文素材 | 各言語の図 | 各言語の表示式 | 局所／天文・宇宙論の試験行 |
+| 読者 | 本文素材 | 英語記事の図 | 英語記事の表示式 | 局所／天文・宇宙論の試験行 |
 | --- | --- | ---: | ---: | ---: |
-| 専門家 | [日本語](content/expert-ja.html) / [English](content/expert-en.html) | 8 | 12 | 11 / 12 |
-| 理工系学生 | [日本語](content/student-ja.html) / [English](content/student-en.html) | 9 | 8 | 11 / 12 |
-| 一般読者 | [日本語](content/general-ja.html) / [English](content/general-en.html) | 9 | 0 | 11 / 12 |
+| 専門家 | [English](content/expert-en.html) | 8 | 12 | 11 / 12 |
+| 理工系学生 | [English](content/student-en.html) | 9 | 8 | 11 / 12 |
+| 一般読者 | [English](content/general-en.html) | 9 | 0 | 11 / 12 |
 
-主論文の各節と補足の主要テーマへの対応は [COVERAGE.md](COVERAGE.md) に記録しています。読者水準間で同じ数の式や同じ語数を要求するものではありません。同じ読者水準の日英では、仮定・結果・限界を保持します。
+主論文の各節と補足の主要テーマへの対応は [COVERAGE.md](COVERAGE.md) に記録しています。読者水準間で同じ数の式や同じ語数を要求するものではありません。現在の3記事で、仮定・結果・限界を保持します。
 
 ## 初回の2指摘と解決確認
 
 | 初回の指摘 | 実装した対応 | 現在の確認先 |
 | --- | --- | --- |
-| 専門家版の帰還率 `Σp_z²` に、純粋な初期状態という条件が明示されていなかった | 純粋な初期状態、直交電荷群、各群の等長写像を戻す操作、全レジスターの元状態への射影を日英に追加。別設定の論理qubit帰還率 `1−p/2` と区別 | `expert-readout`：[日本語](content/expert-ja.html#expert-readout)／[English](content/expert-en.html#expert-readout)。原定義：[tests.tex](../quantum-gravity/correlation-actualization-theory/v4/paper/tests.tex) 冒頭 |
-| 学生版は補足の11局所試験＋12天文・宇宙論試験を集約し、一部の個別説明がなかった | 原理説明を維持して、全23件の参照付録を日英に追加。一般向けにも同数の付録を追加 | 学生 `student-test-reference`：[日本語](content/student-ja.html#student-test-reference)／[English](content/student-en.html#student-test-reference)。一般 `tests-reference`：[日本語](content/general-ja.html#tests-reference)／[English](content/general-en.html#tests-reference)。原一覧：[supp-tests.tex](../quantum-gravity/correlation-actualization-theory/v4/paper/supp-tests.tex) |
+| 専門家版の帰還率 `Σp_z²` に、純粋な初期状態という条件が明示されていなかった | 純粋な初期状態、直交電荷群、各群の等長写像を戻す操作、全レジスターの元状態への射影を日英に追加。別設定の論理qubit帰還率 `1−p/2` と区別 | `expert-readout`：[English](content/expert-en.html#expert-readout)。原定義：[tests.tex](../quantum-gravity/correlation-actualization-theory/v4/paper/tests.tex) 冒頭 |
+| 学生版は補足の11局所試験＋12天文・宇宙論試験を集約し、一部の個別説明がなかった | 原理説明を維持して、全23件の参照付録を日英に追加。一般向けにも同数の付録を追加 | 学生 `student-test-reference`：[English](content/student-en.html#student-test-reference)。一般 `tests-reference`：[English](content/general-en.html#tests-reference)。原一覧：[supp-tests.tex](../quantum-gravity/correlation-actualization-theory/v4/paper/supp-tests.tex) |
 
-専門家の `expert-tests`、学生の `student-test-reference`、一般の `tests-reference` をHTMLから読み取り、**6ページすべてで局所11行・天文／宇宙論12行**を確認しました。学生版では `L01`–`L11`、`A01`–`A12` の行識別子も使っています。各表は指定した準備・枝ごとの検証案を示し、一つの装置や真空が全条件を同時に満たすという主張にはしていません。
+専門家の `expert-tests`、学生の `student-test-reference`、一般の `tests-reference` をHTMLから読み取り、**現在の英語3ページすべてで局所11行・天文／宇宙論12行**を確認しました。学生版では `L01`–`L11`、`A01`–`A12` の行識別子も使っています。各表は指定した準備・枝ごとの検証案を示し、一つの装置や真空が全条件を同時に満たすという主張にはしていません。
 
 ## 数値と仮定について確認した範囲
 
@@ -43,7 +45,7 @@
 
 算術照合では、共同表の4セルが `[3072,1728,5328,5497]/15625`、すなわち `[19.6608,11.0592,34.0992,35.1808]%` となり、総和1であることを確認しました。`0.75×0.64 + 0.25×0.64×0.36 = 0.5376`、`0.75×0.64³ = 0.196608`、`0.5376 + 0.4624/4 = 0.6532` も一致します。較正の二項反転と式から得る境界は、表示の丸め値0.659582／0.970227と一致しました。
 
-## 図の修正と日英対応
+## 図の修正履歴
 
 [figures.py](figures.py) の26種類を原論文と図仕様に照合しました。数値の修正は不要でしたが、許容域の表示方向と、条件を明確にする以下の修正を実施しました。
 
@@ -59,23 +61,22 @@
 | `expert-history-instrument`, `student-channel`, `general-records` | 図の結果zが後続ポート操作Wへ使われることをcaptionで接続 |
 | 一般ページ `correlations` | 「重ねたシート」の説明を、実際の枠と枝による図に対応する日英の一文へ変更 |
 
-同じ図IDから日英を生成し、26図×2言語の**52 SVGでXML構造エラー0**を確認しました。図中の数値、代替的な枝と複製の区別、物理的入力と条件付き帰結の区別、未実施の設計と観測値の区別を対象としました。`general-source` は閉鎖履歴における担体からの回復を説明する図であり、共通源の全装置配置を描く図としては扱っていません。
+過去の日英併記段階では26図×2言語の52 SVGを検査しました。現在の公開対象は英語26図です。図中の数値、代替的な枝と複製の区別、物理的入力と条件付き帰結の区別、未実施の設計と観測値の区別を対象としました。`general-source` は閉鎖履歴における担体からの回復を説明する図であり、共通源の全装置配置を描く図としては扱っていません。
 
-## 機械的照合と、その限界
+## 現在の機械的照合と、その限界
 
-| 確認対象 | 確認結果 |
+| 確認対象 | 現在の対象・確認方法 |
 | --- | --- |
-| 6本文素材の日英対応 | 各読者水準で、ID列・図ID列・原資料へのリンク列が一致。重複IDなし |
-| 表示式 | 専門家12個、学生8個の日英TeX列が一致。一般向けには独立した表示式なし |
-| 試験一覧 | 各ページに局所11行・天文／宇宙論12行。学生・一般の付録アンカーも実在 |
-| `SOURCE_ROOT` 参照 | 専門家各3、学生各27、一般各9、合計78出現。存在しない原資料パス0 |
-| PDFページ指定 | 主論文・補足の18ページ以内。ページ番号の範囲検査と、実際の内容との照合を区別 |
-| 生成物の既存検査記録 | [verification.json](verification.json) に13 HTML、522ローカルリンク、84原資料リンク、日英3組、エラー0を記録。これは本文素材の78リンクと集計対象が異なる |
-| 原PDFの同一性 | 生成工程の記録で主論文・補足のSHA-256がv4原本と一致。値は [verification.json](verification.json) に保存 |
+| 公開ページ | 共通入口、英語一覧・分野・論文入口、英語3記事の計7 HTML |
+| 本文の保持 | 英語3素材と生成article部分の変更前後SHA-256を照合 |
+| 表示式と図 | 専門家12式・8図、学生8式・9図、一般0式・9図を保持 |
+| 試験一覧 | 各記事に局所11行・天文／宇宙論12行。学生・一般の付録アンカーも対象 |
+| SOURCE_ROOT参照 | 専門家3、学生27、一般9、合計39出現を原資料へ対応させる |
+| 生成・リンク・数式 | 設定言語に対応する全ページ、ID、TL;DR、図の説明、KaTeX、ローカルと原資料へのリンクを検査 |
+| 検索用の対応 | canonical、英語自己参照と入口のx-default、7 HTML＋2 PDFのサイトマップを検査 |
+| 原PDFの同一性 | 主論文・補足のSHA-256がv4原本と一致することを検査 |
 
-ID・式・リンク列の一致だけで、自然言語の意味の同等性が自動的に証明されるわけではありません。数値、仮定、失敗例、未解決事項については上の科学的照合と組み合わせて確認しました。全6ページへの同じ表・式・数値の重複掲載は要求していません。
-
-この文書の仕上げでは、現行の本文素材と参照先を読み取って照合し、本文・研究原稿・生成処理を変更していません。生成物側の検査結果は既存の記録を参照しており、本書更新に伴う再ビルドや、公開先のHTTP取得・画面レイアウト検査を実施したという記録ではありません。
+実行結果は[verification.json](verification.json)を参照してください。英語のみへの切替では、新たな全面査読、数値研究の全面再実行、公開先のHTTP取得や画面確認を実施したとは扱いません。構造やハッシュの一致は内容保持の証拠であり、自然言語の科学的正しさそのものの証明ではありません。
 
 ## 初回QAの原記録
 

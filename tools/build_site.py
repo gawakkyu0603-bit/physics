@@ -14,12 +14,19 @@ import re
 import shutil
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).resolve().parents[1]
 DOCS=ROOT/'docs'
 SOURCE=ROOT/'site-src'
 CATALOG=json.loads((SOURCE/'catalog.json').read_text())
+LANGUAGES=CATALOG.get('languages',['en'])
+if LANGUAGES!=['en']:
+    raise ValueError('Public research introductions are configured for English only')
+for paper in CATALOG['papers']:
+    if paper.get('languages')!=LANGUAGES:
+        raise ValueError('Each paper must use the configured English publication language')
 FIELDS_BY_SLUG={field['slug']:field for field in CATALOG['fields']}
 spec=importlib.util.spec_from_file_location('figures',SOURCE/'figures.py')
 figures=importlib.util.module_from_spec(spec);spec.loader.exec_module(figures)
@@ -35,6 +42,7 @@ DEFAULT_DESCRIPTIONS={
  'expert':{'ja':'定義、仮定、計算、検証の範囲を詳しく確認します。','en':'Examine the definitions, assumptions, calculations, and scope of verification.'},
 }
 BUILD_STATS={}
+GENERATED_PAGES=set()
 
 def tr(lang,ja,en):return ja if lang=='ja' else en
 def url(page,target):return os.path.relpath(DOCS/target,(DOCS/page).parent).replace(os.sep,'/')
@@ -42,6 +50,37 @@ def papath(p,lang,name='index'):return f"{lang}/{p['field']}/{p['slug']}/{name}.
 def ea(s):return escape(str(s),quote=True)
 def write(page,html):
     path=DOCS/page;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(html,encoding='utf-8')
+    GENERATED_PAGES.add(page)
+
+def language_alternates(page,lang):
+    if page=='index.html' or page in {code+'/index.html' for code in LANGUAGES}:
+        targets={code:code+'/index.html' for code in LANGUAGES}
+        targets['x-default']='index.html'
+    else:
+        targets={lang:page}
+    return '\n'.join(f'<link rel="alternate" hreflang="{code}" href="{ea(CATALOG["public_base_url"]+target)}">' for code,target in sorted(targets.items()))
+
+def build_sitemap():
+    namespace='http://www.sitemaps.org/schemas/sitemap/0.9'
+    ET.register_namespace('',namespace)
+    root=ET.Element('{'+namespace+'}urlset')
+    paths=set(GENERATED_PAGES)
+    for paper in CATALOG['papers']:
+        paths.update([paper['main_pdf'],paper['supplement_pdf']])
+    for path in sorted(paths):
+        entry=ET.SubElement(root,'{'+namespace+'}url')
+        ET.SubElement(entry,'{'+namespace+'}loc').text=CATALOG['public_base_url']+path
+    ET.indent(root,space='  ')
+    ET.ElementTree(root).write(DOCS/'sitemap.xml',encoding='utf-8',xml_declaration=True)
+
+def write_indexnow_key():
+    config=json.loads((SOURCE/'indexnow.json').read_text())
+    key=config['key']
+    if not re.fullmatch(r'[0-9a-f]{32}',key):
+        raise ValueError('IndexNow verification key must be 32 lowercase hex characters')
+    if config['site_url']!=CATALOG['public_base_url'] or config['key_location']!=CATALOG['public_base_url']+key+'.txt':
+        raise ValueError('IndexNow site and key location must match the catalog public URL')
+    (DOCS/(key+'.txt')).write_text(key+'\n',encoding='utf-8')
 
 def audience_description(p,audience,lang):
     return p.get('audience_descriptions',{}).get(audience,{}).get(lang,DEFAULT_DESCRIPTIONS[audience][lang])
@@ -66,17 +105,15 @@ def collection_summary(papers,lang):
         collection=tr(lang,f'現在{len(papers)}件の論文を収録しています。',f'The current collection contains {len(papers)} papers. ')
     else:
         collection=tr(lang,'この分野の収録論文を準備しています。','Papers for this field are being prepared. ')
-    return tr(lang,'物理学の論文を分野・論文・版の順に整理しています。','Papers are organized by field, paper, and version. ')+collection+tr(lang,'3種類の解説は同じ研究を扱い、日本語と英語を切り替えられます。','Three introductions cover the same research and are available in equivalent Japanese and English editions.')
+    return 'Papers are organized by field, paper, and version. '+collection+'Three English introductions cover the same research at different reading levels.'
 
 def root_collection_summary(papers):
     if len(papers)==1:
         p=papers[0];name=p.get('short_title') or p['title']
         en=f'{name} Version {p["version"]} is available here as a research collection with three reading levels.'
-        ja=f'{name}第{p["version"]}版を、専門家・理工系学生・一般向けの3つの読み方からたどれます。'
     else:
         en=f'Explore {len(papers)} research papers through three reading levels.' if papers else 'Research papers and their reading guides are being prepared.'
-        ja=f'{len(papers)}件の論文を、専門家・理工系学生・一般向けの3つの読み方からたどれます。' if papers else '論文と、読者に合わせた解説を準備しています。'
-    return ea(en)+'<br>'+ea(ja)
+    return ea(en)
 
 def scope_section(p,lang):
     paragraphs=p.get('scope',{}).get(lang)
@@ -100,10 +137,8 @@ def render_math(html):
     for i,value in enumerate(values):html=html.replace(f'<!--RENDERED_MATH_{i}-->',value)
     return html,len(expressions)
 
-def shell(page,lang,title,description,body,alternate,canonical=True):
-    other='en' if lang=='ja' else 'ja'
+def shell(page,lang,title,description,body):
     home=url(page,f'{lang}/index.html')
-    langname='English' if lang=='ja' else '日本語'
     canon=CATALOG['public_base_url']+page
     return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -111,22 +146,21 @@ def shell(page,lang,title,description,body,alternate,canonical=True):
 <meta name="theme-color" content="#091d3b"><meta name="color-scheme" content="light">
 <link rel="icon" href="{url(page,'assets/favicon.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{url(page,'assets/site.css')}">
-<link rel="alternate" hreflang="{other}" href="{url(page,alternate)}">
+{language_alternates(page,lang)}
 <link rel="canonical" href="{ea(canon)}">
 <meta property="og:type" content="article"><meta property="og:title" content="{ea(title)}"><meta property="og:description" content="{ea(description)}">
 <script defer src="{url(page,'assets/site.js')}"></script></head><body>
 <a class="skip" href="#main">{tr(lang,'本文へ移動','Skip to content')}</a><div class="progress" aria-hidden="true"></div>
-<header class="site-header"><div class="header-inner"><a class="brand" href="{home}"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14" fill="#15375e"/><ellipse cx="18" cy="18" rx="16" ry="7" fill="none" stroke="#17a4bf" stroke-width="2" transform="rotate(-25 18 18)"/><circle cx="28" cy="13" r="3" fill="#d9892c"/></svg>PHYSICS <small>{tr(lang,'研究と対話','Research & understanding')}</small></a><nav class="header-links" aria-label="{tr(lang,'共通ナビゲーション','Site navigation')}"><a href="{home}">{tr(lang,'論文一覧','Papers')}</a><a class="source-nav" href="{REPO}">GitHub</a><a class="language" href="{url(page,alternate)}" lang="{other}" hreflang="{other}">{langname}</a></nav></div></header>
+<header class="site-header"><div class="header-inner"><a class="brand" href="{home}"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14" fill="#15375e"/><ellipse cx="18" cy="18" rx="16" ry="7" fill="none" stroke="#17a4bf" stroke-width="2" transform="rotate(-25 18 18)"/><circle cx="28" cy="13" r="3" fill="#d9892c"/></svg>PHYSICS <small>{tr(lang,'研究と対話','Research & understanding')}</small></a><nav class="header-links" aria-label="{tr(lang,'共通ナビゲーション','Site navigation')}"><a href="{home}">{tr(lang,'論文一覧','Papers')}</a><a class="source-nav" href="{REPO}">GitHub</a></nav></div></header>
 {body}
-<footer class="site-footer"><div class="footer-inner"><div>PHYSICS · {tr(lang,'論文と再現資料を、分野ごとに。','Papers and reproduction materials, organized by field.')}<br>{tr(lang,'原論文・説明記事・検証記録を対応させた研究アーカイブ。','A research archive connecting papers, explanations, and verification records.')}</div><div><a href="{home}">{tr(lang,'論文一覧','Papers')}</a> · <a href="{REPO}">GitHub</a> · <a href="{url(page,alternate)}" lang="{other}">{langname}</a></div></div></footer></body></html>'''
+<footer class="site-footer"><div class="footer-inner"><div>PHYSICS · {tr(lang,'論文と再現資料を、分野ごとに。','Papers and reproduction materials, organized by field.')}<br>{tr(lang,'原論文・説明記事・検証記録を対応させた研究アーカイブ。','A research archive connecting papers, explanations, and verification records.')}</div><div><a href="{home}">{tr(lang,'論文一覧','Papers')}</a> · <a href="{REPO}">GitHub</a></div></div></footer></body></html>'''
 
 def audience_nav(p,page,lang,current=None):
-    other='en' if lang=='ja' else 'ja'
-    result=f'<nav class="audience-bar" aria-label="{tr(lang,"読み方と言語","Audience and language")}"><div class="audience-inner"><span class="audience-label">{tr(lang,"この論文を読む：","Read this paper:")}</span>'
+    result=f'<nav class="audience-bar" aria-label="Reading levels"><div class="audience-inner"><span class="audience-label">{tr(lang,"この論文を読む：","Read this paper:")}</span>'
     for a in p['audiences']:
         current_attr=' aria-current="page"' if a==current else ''
         result+=f'<a href="{url(page,papath(p,lang,a))}"{current_attr}>{ea(LABELS[a][lang])}</a>'
-    result+=f'<a class="lang-switch" href="{url(page,papath(p,other,current or "index"))}" lang="{other}">{tr(lang,"English — 同じ内容","日本語 — same content")}</a></div></nav>'
+    result+='</div></nav>'
     return result
 
 def downloads(p,page,lang):
@@ -148,7 +182,7 @@ def explorer(lang):
 <p class="tiny">{tr(lang,'説明用の理想計算です。約66%／97%という較正付き実験設計の上限・下限とは別の値で、観測結果ではありません。','An ideal mathematical illustration, separate from the approximately 66% / 97% bounds of the calibrated experimental design; these are not measurements.')}</p><noscript><p>{tr(lang,'スライダーにはJavaScriptが必要です。等しい重みの場合は0.5000です。','The slider requires JavaScript. At equal weights the value is 0.5000.')}</p></noscript></section>'''
 
 def build_article(p,lang,audience):
-    page=papath(p,lang,audience);other='en' if lang=='ja' else 'ja'
+    page=papath(p,lang,audience)
     file=SOURCE/'content'/f"{p.get('content_prefix','')}{audience}-{lang}.html"
     soup=BeautifulSoup(file.read_text(), 'html.parser')
     source_text=soup.get_text(' ',strip=True)
@@ -196,8 +230,8 @@ def build_article(p,lang,audience):
     top=hero+audience_nav(p,page,lang,audience)
     bottomlinks=''.join(f'<a href="{url(page,papath(p,lang,a))}"><strong>{ea(LABELS[a][lang])}</strong><span>{ea(audience_description(p,a,lang))}</span></a>' for a in p['audiences'])
     provenance=tr(lang,f'本ページは第{p["version"]}版の説明記事です。原論文の仮定、結果、未解決課題を区別しています。著者の原稿と説明記事の範囲は公開資料で確認できます。',f'This page explains Version {p["version"]}, distinguishing its assumptions, results, and open problems. The paper and publication records document their scope.')
-    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol><div class="toc-tools"><a href="{url(page,p['main_pdf'])}">{tr(lang,'論文本体 PDF','Paper PDF')}</a><a href="{url(page,p['supplement_pdf'])}">{tr(lang,'補足資料 PDF','Supplement PDF')}</a><a href="{url(page,papath(p,other,audience))}" lang="{other}">{tr(lang,'同じ内容を英語で','Same content in Japanese')}</a></div></details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav><p class="status-line">{provenance} <a href="{REPO}/blob/{p['release']}/{p['field']}/{p['archive_slug']}/v{p['version']}/VERIFICATION.md">{tr(lang,'検証範囲','Verification scope')}</a></p></div></main>'''
-    write(page,shell(page,lang,title,p['summary'][lang],body,papath(p,other,audience)))
+    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol><div class="toc-tools"><a href="{url(page,p['main_pdf'])}">{tr(lang,'論文本体 PDF','Paper PDF')}</a><a href="{url(page,p['supplement_pdf'])}">{tr(lang,'補足資料 PDF','Supplement PDF')}</a></div></details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav><p class="status-line">{provenance} <a href="{REPO}/blob/{p['release']}/{p['field']}/{p['archive_slug']}/v{p['version']}/VERIFICATION.md">{tr(lang,'検証範囲','Verification scope')}</a></p></div></main>'''
+    write(page,shell(page,lang,title,p['summary'][lang],body))
     plain=BeautifulSoup(fragment,'html.parser').get_text(' ',strip=True)
     BUILD_STATS[page]={'source_text_characters_including_tex':len(source_text),'source_words_including_tex':len(source_text.split()),'math_expressions':mathcount,'display_equations':len(article.select('.equation')),'figures':len(article.select('figure.diagram')),'tables':len(article.select('table')),'h2_sections':len(toc)}
 
@@ -205,12 +239,11 @@ def reader_cards(p,page,lang):
     return '<div class="catalog-grid">'+''.join(f'''<section class="reader-card {a}"><div class="eyebrow" style="color:var(--muted)">{tr(lang,'読み方','Reading level')} {i+1:02d}</div><h3>{ea(LABELS[a][lang])}</h3><p>{ea(audience_description(p,a,lang))}</p><p class="subtle">{ea(reading_label(p,a,lang,card=True))}</p><a href="{url(page,papath(p,lang,a))}">{tr(lang,'この説明を読む','Read this introduction')} →</a></section>''' for i,a in enumerate(p['audiences']))+'</div>'
 
 def catalog_page(lang,field=None,paper=None):
-    other='en' if lang=='ja' else 'ja'
     papers=[paper] if paper else [p for p in CATALOG['papers'] if field is None or p['field']==field['slug']]
-    if paper:page=papath(paper,lang);alternate=papath(paper,other);title=paper['title'];subtitle=paper['summary'][lang]
-    elif field:page=f"{lang}/{field['slug']}/index.html";alternate=f"{other}/{field['slug']}/index.html";title=field['name'][lang];subtitle=field['summary'][lang]
-    else:page=f'{lang}/index.html';alternate=f'{other}/index.html';title=tr(lang,'物理を、理解できるかたちで。','Physics, made understandable.');subtitle=tr(lang,'研究の核心から、数式と検証まで。前提知識に合った入口で読み、同じ論文を違う深さから確かめるためのアーカイブです。','From the central idea to the mathematics and tests. Choose an entry point that fits your background, then examine the same research at greater depth.')
-    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Physics / {tr(lang,'研究アーカイブ','Research archive')}</p><h1>{ea(title)}</h1><p class="lead">{ea(subtitle)}</p><div class="meta"><span>{tr(lang,'日本語・Englishで同等の内容','Equivalent Japanese & English editions')}</span><span>{tr(lang,'3つの読み方','Three reading levels')}</span><span>{tr(lang,'原論文と再現資料','Papers & reproduction materials')}</span></div></div></section><main id="main" class="catalog">'''
+    if paper:page=papath(paper,lang);title=paper['title'];subtitle=paper['summary'][lang]
+    elif field:page=f"{lang}/{field['slug']}/index.html";title=field['name'][lang];subtitle=field['summary'][lang]
+    else:page=f'{lang}/index.html';title=tr(lang,'物理を、理解できるかたちで。','Physics, made understandable.');subtitle=tr(lang,'研究の核心から、数式と検証まで。前提知識に合った入口で読み、同じ論文を違う深さから確かめるためのアーカイブです。','From the central idea to the mathematics and tests. Choose an entry point that fits your background, then examine the same research at greater depth.')
+    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Physics / {tr(lang,'研究アーカイブ','Research archive')}</p><h1>{ea(title)}</h1><p class="lead">{ea(subtitle)}</p><div class="meta"><span>English research guides</span><span>{tr(lang,'3つの読み方','Three reading levels')}</span><span>{tr(lang,'原論文と再現資料','Papers & reproduction materials')}</span></div></div></section><main id="main" class="catalog">'''
     body+=f'<section class="tldr catalog-summary"><h2>TL;DR</h2><p>{ea(collection_summary(papers,lang))}</p></section>'
     for p in papers:
         graphic=figures.figure(p['hero_figure'],lang) if p.get('hero_figure') else ''
@@ -224,12 +257,15 @@ def catalog_page(lang,field=None,paper=None):
         if paper:
             body+=scope_section(p,lang)+downloads(p,page,lang)
     body+=f'<p class="status-line">{tr(lang,"論文は著者の研究プレプリントです。著者・AIの貢献と再現確認の範囲は原論文および公開資料に記載されています。","The paper is an author research preprint. The manuscript and publication records disclose the author’s and AI’s contributions and the scope of reproduction checks.")}</p></main>'
-    write(page,shell(page,lang,title,subtitle,body,alternate))
+    write(page,shell(page,lang,title,subtitle,body))
 
 def root_index():
     page='index.html'
-    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Open research / Bilingual reading</p><h1>Physics<br>物理を、理解できるかたちで。</h1><p class="lead">Research papers, clear explanations, and reproduction materials.<br>原論文・解説・再現資料を、分野ごとに。</p></div></section><main id="main" class="catalog"><section class="catalog-summary"><h2>TL;DR</h2><p>{root_collection_summary(CATALOG['papers'])}</p></section><div class="catalog-grid language-grid"><section class="reader-card general"><h2>日本語</h2><p>前提知識に合った説明から、原論文の全体へ。</p><a class="button" href="ja/index.html" lang="ja">日本語で読む →</a></section><section class="reader-card expert"><h2>English</h2><p>The same research, figures, and conditions in English.</p><a class="button" href="en/index.html" lang="en">Read in English →</a></section></div></main>'''
-    write(page,shell(page,'ja','Physics · 研究アーカイブ','Bilingual physics research archive. 日本語・英語で読む物理学。',body,'en/index.html'))
+    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Open research / Three reading levels</p><h1>Physics, made understandable.</h1><p class="lead">Research papers, clear explanations, and reproduction materials.</p></div></section><main id="main" class="catalog"><section class="catalog-summary"><h2>TL;DR</h2><p>{root_collection_summary(CATALOG['papers'])}</p><p>Choose a guide for general readers, STEM students and graduates, or experts. Each guide connects the research question to its assumptions, results, and open problems.</p></section>'''
+    for paper in CATALOG['papers']:
+        body+=f'<section class="catalog-intro"><h2><a href="{url(page,papath(paper,"en"))}">{ea(paper["title"])}</a></h2><p>{ea(paper["summary"]["en"])}</p></section>'+reader_cards(paper,page,'en')
+    body+='<p><a class="button" href="en/index.html">Browse the research collection →</a></p></main>'
+    write(page,shell(page,'en','Physics · Research archive','Physics papers, English reading guides, and reproduction materials organized by field.',body))
 
 def main():
     DOCS.mkdir(exist_ok=True)
@@ -237,10 +273,12 @@ def main():
         for lang in p['languages']:
             for audience in p['audiences']:build_article(p,lang,audience)
             catalog_page(lang,paper=p)
-    for lang in ['ja','en']:
+    for lang in LANGUAGES:
         catalog_page(lang)
         for field in CATALOG['fields']:catalog_page(lang,field=field)
     root_index()
+    build_sitemap()
+    write_indexnow_key()
     (DOCS/'.nojekyll').touch()
     (SOURCE/'build-stats.json').write_text(json.dumps(BUILD_STATS,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'pages':len(list(DOCS.rglob('*.html'))),'articles':BUILD_STATS},ensure_ascii=False,indent=2))

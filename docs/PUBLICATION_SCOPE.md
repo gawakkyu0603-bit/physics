@@ -19,19 +19,21 @@ This document describes the contents, canonical URLs and provenance of the `phys
 
 The structure is **physics → field → paper → version**. Future research can add another field, paper, or version without treating CAT’s version number as the version of the whole repository. `tools/build_site.py` is the entry point for generating the reading site.
 
-## Bilingual reading site
+## English reading guides
 
-The common entry points are `docs/ja/index.html` and `docs/en/index.html`. Each audience has complete Japanese and English counterparts:
+The site entry point is `docs/en/index.html`. Current and future papers provide three complete English guides, one for each audience:
 
-| Audience | Japanese source path | English source path | Figures per language |
-| --- | --- | --- | --- |
-| Specialists | `docs/ja/quantum-gravity/cat/expert.html` | `docs/en/quantum-gravity/cat/expert.html` | 8 |
-| STEM students and graduates | `docs/ja/quantum-gravity/cat/student.html` | `docs/en/quantum-gravity/cat/student.html` | 9 |
-| General readers | `docs/ja/quantum-gravity/cat/general.html` | `docs/en/quantum-gravity/cat/general.html` | 9 |
+| Audience | English page path | Figures |
+| --- | --- | --- |
+| Specialists | `docs/en/quantum-gravity/cat/expert.html` | 8 |
+| STEM students and graduates | `docs/en/quantum-gravity/cat/student.html` | 9 |
+| General readers | `docs/en/quantum-gravity/cat/general.html` | 9 |
 
-Public URLs use the Pages base followed by these paths with the leading `docs/` removed. Every page begins with a TL;DR. Language counterparts preserve the same substantive coverage, equations where used, data meanings, and conclusions; English pages are not abbreviated summaries of the Japanese pages.
+Public URLs use the Pages base followed by these paths with the leading `docs/` removed. Every guide begins with a TL;DR and covers the paper and supplement at its intended reader's level. The amount of explanation, vocabulary, equations and figures are adapted to the audience while preserving the assumptions, data meanings, conclusions and limitations.
 
 Coverage extends from motivation and interaction choices through states, channels, physical domains, material currents, matrix dynamics, histories, deadlines, quantum recovery, the common-source fixture, clocks and finite sectors, geometry, shared spacetime, other theories, vacua and radius stability, laboratory and astronomical tests, cosmology, verification, and open questions. Reader-specific reference material links the testing proposals to the technical supplement.
+
+Public repository, field, paper, and version READMEs are maintained in English; Japanese maintenance notes may remain. For every future paper, keep these three English audience guides, with a TL;DR first and complete, sufficiently detailed coverage of the paper and supplement. After the repository, tag, Release assets, and Pages site have all been published and verified, request indexing through Google and Bing and the corresponding Yahoo routes. Submission receipts and actual search indexing are recorded separately. See [the maintenance guide](../ADDING_PAPERS.ja.md) and [search submission procedures](../SEARCH_INDEXING.ja.md).
 
 These are companion explanations of the fourth version. They do not alter the original paper, create new physical evidence, or transform a conditional construction into an observed result.
 
@@ -74,7 +76,7 @@ No new repository-wide license is assigned to the original CAT work. Existing th
 
 ## 日本語の確認事項
 
-リポジトリは `gawakkyu0603-bit/physics`、版タグは `cat-v4.0.0` です。階層は物理学全体から分野・論文・版へ進みます。Pagesは日英それぞれの共通入口と、専門家・学生・一般向けの計6ページを備え、両言語で論文全体の説明範囲をそろえます。
+リポジトリは `gawakkyu0603-bit/physics`、版タグは `cat-v4.0.0` です。階層は物理学全体から分野・論文・版へ進みます。Pagesは英語の共通入口と、専門家・学生・一般向けの英語3ページを備えます。各ページはTL;DRから始まり、前提知識に合わせて主論文と補足の全体を説明します。今後の論文紹介も英語3種類で提供します。
 
 原版709ファイルはGit内で変更せず保持し、33個の実行環境・依存関係ファイルは完全ZIPへ残します。完全ZIPは原版全742ファイルを保持した新しい配布物で、元ZIPとはハッシュが異なります。原研究への一括した新規ライセンス許諾は行いません。
 

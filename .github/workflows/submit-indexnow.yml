@@ -1,0 +1,60 @@
+name: Submit published URLs to IndexNow
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate locally without sending any request
+        type: boolean
+        required: true
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-manual-submission
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch the selected public repository commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "${GITHUB_SHA}"
+          git checkout --detach FETCH_HEAD
+      - name: Validate and optionally submit the published sitemap
+        shell: bash
+        env:
+          INDEXNOW_DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          args=(--output indexnow-result.json)
+          if [[ "$INDEXNOW_DRY_RUN" == "true" ]]; then
+            args+=(--dry-run)
+          fi
+          python3 tools/submit_indexnow.py "${args[@]}"
+      - name: Record the observed submission result
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          path = Path('indexnow-result.json')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+              summary.write('## IndexNow submission result\n\n')
+              if not path.exists():
+                  summary.write('No submission report was produced. See the job log.\n')
+              else:
+                  result = json.loads(path.read_text())
+                  summary.write('```json\n' + json.dumps(result, ensure_ascii=False, indent=2) + '\n```\n\n')
+                  summary.write('Receipt confirms a notification, not crawling or indexing. No automatic retries are performed.\n')
+          PY

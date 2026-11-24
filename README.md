@@ -1,8 +1,6 @@
 # Physics
 
-Versioned research manuscripts, reproducible evidence, and Japanese/English reading guides.
-
-English · [日本語](README.ja.md)
+Versioned research manuscripts, reproducible evidence, and English reading guides for three audiences.
 
 ## Research library
 
@@ -14,15 +12,15 @@ The hierarchy is **field → paper → version**. Each version keeps its origina
 
 ## Read CAT at your preferred level
 
-The Pages home is [English](https://gawakkyu0603-bit.github.io/physics/en/index.html) or [日本語](https://gawakkyu0603-bit.github.io/physics/ja/index.html).
+Read the [English Pages home](https://gawakkyu0603-bit.github.io/physics/en/index.html). The public introductions are in English for all three audiences.
 
-| Audience | English | 日本語 |
-| --- | --- | --- |
-| Research specialists | [Expert guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/expert.html) | [専門家向け](https://gawakkyu0603-bit.github.io/physics/ja/quantum-gravity/cat/expert.html) |
-| STEM students and graduates | [Student guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/student.html) | [理工系学生向け](https://gawakkyu0603-bit.github.io/physics/ja/quantum-gravity/cat/student.html) |
-| General readers | [General guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/general.html) | [一般読者向け](https://gawakkyu0603-bit.github.io/physics/ja/quantum-gravity/cat/general.html) |
+| Audience | English introduction |
+| --- | --- |
+| Research specialists | [Expert guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/expert.html) |
+| STEM students and graduates | [Student guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/student.html) |
+| General readers | [General guide](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/general.html) |
 
-Each language pair covers the same research themes and conclusions. The pages begin with a TL;DR, develop the full paper at the chosen level, and link to the original evidence. The pages include eight figures for specialists, nine for students, and nine for general readers, with corresponding figures in both languages.
+All three guides cover the paper's research themes and conclusions at the chosen level. The pages begin with a TL;DR, develop the full paper, and link to the original evidence and the other reading levels. They include eight figures for specialists, nine for students, and nine for general readers.
 
 ## Manuscript and distribution
 
@@ -36,7 +34,11 @@ The [verification record](quantum-gravity/correlation-actualization-theory/v4/VE
 
 ## Adding research and building the site
 
-Add future papers under their field and retain explicit version directories. Keep the supplied manuscripts immutable; put explanatory pages and their sources alongside the website workflow. Use [tools/build_site.py](tools/build_site.py) as the entry point for site generation, and maintain equivalent Japanese and English coverage.
+Add future papers under their field and retain explicit version directories. Keep the supplied manuscripts immutable; put explanatory pages and their sources alongside the website workflow. Use [tools/build_site.py](tools/build_site.py) as the entry point for site generation. Each future paper receives exactly three English introductions: general, student, and expert. Every article starts with a TL;DR and explains the complete paper and supplement with enough detail for its intended readers. Public repository, field, paper, and version READMEs are maintained in English. Japanese maintenance notes remain available.
+
+Follow the [paper addition, revision, and publication guide](ADDING_PAPERS.ja.md) (Japanese) for the complete maintenance workflow, including the three English reading guides, source coverage, verification, versioned releases, and Pages publication. The [site source reference](site-src/README.md) documents the catalog and content formats.
+
+After all repository, Release, asset, and Pages publication work has finished and the public URLs have been verified, request discovery and indexing through Google Search Console and Bing Webmaster Tools, and notify Bing with IndexNow. Follow the relevant Google and Bing routes for Yahoo! JAPAN and international Yahoo Search. Record submission, receipt, crawling, and indexing separately. The [search submission and update guide](SEARCH_INDEXING.ja.md) (Japanese) documents these steps and their evidence.
 
 No repository-wide license is newly assigned to the original research. Consult the version’s [rights statement](quantum-gravity/correlation-actualization-theory/v4/RIGHTS.md) and [third-party notices](quantum-gravity/correlation-actualization-theory/v4/THIRD_PARTY_NOTICES.md). No DOI or journal acceptance is asserted.
 

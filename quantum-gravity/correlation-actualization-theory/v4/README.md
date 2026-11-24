@@ -3,8 +3,6 @@
 ## A nonperturbative matrix proposal with observer-dependent layers
 
 **Yohtaro Soga · Version 4 · 25 November 2026**  
-English · [日本語](README.ja.md)
-
 [Read the paper](paper/main.pdf) · [Technical supplement](paper/supplement.pdf) · [Reading guide](paper/reading-guide.md) · [Verification](VERIFICATION.md)
 
 This version directory contains the fourth version of **Correlation Actualization Theory (CAT)**,

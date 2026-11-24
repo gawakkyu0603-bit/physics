@@ -271,7 +271,11 @@ def figure(fid,lang):
     key=fun.__name__
     if fid=='expert-joint-probabilities':key='joint_probabilities'
     if fid=='expert-geometry-ladder':key='geometry'
-    cap=CAPTIONS[key];heading=cap[0 if lang=='ja' else 1];desc=cap[2 if lang=='ja' else 3]
+    cap=CAPTIONS[key]
+    if isinstance(cap,dict):
+        heading=cap[lang]['title'];desc=cap[lang]['description']
+    else:
+        heading=cap[0 if lang=='ja' else 1];desc=cap[2 if lang=='ja' else 3]
     title_id=f'{fid}-{lang}-title'
     svg=f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 {height}" role="img" aria-labelledby="{title_id}"><title id="{title_id}">{escape(heading+". "+desc)}</title>{body}</svg>'
     hint=label('小さな画面では図を横にスクロールできます。','On a small screen, scroll the diagram horizontally.',lang)
