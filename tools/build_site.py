@@ -281,5 +281,5 @@ def main():
     write_indexnow_key()
     (DOCS/'.nojekyll').touch()
     (SOURCE/'build-stats.json').write_text(json.dumps(BUILD_STATS,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps({'pages':len(list(DOCS.rglob('*.html'))),'articles':BUILD_STATS},ensure_ascii=False,indent=2))
+    print(json.dumps({'pages':len(GENERATED_PAGES),'articles':BUILD_STATS},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

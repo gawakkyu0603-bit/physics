@@ -16,6 +16,8 @@
 
 プロパティは **URLプレフィックス** `https://gawakkyu0603-bit.github.io/physics/` とします。DomainプロパティにはDNSの確認が必要です。HTMLタグまたはHTMLファイル方式では、Search Console画面で実際に発行された値を指定位置へ公開し、画面の「確認」を実行します。確認タグ・ファイルは検証後も保持します。[Googleの所有権確認手順](https://support.google.com/webmasters/answer/9008080?hl=ja)
 
+HTMLファイル方式では、確認ファイルをリポジトリ直下だけに置いてもPagesから配信されません。必ず `docs/google....html` に配置し、`https://gawakkyu0603-bit.github.io/physics/google....html` で元の内容が取得できることを確認します。現在のビルドはこれらの既存確認ファイルを保持し、サイト検証はファイル名と確認本文の対応を別枠で検査します。確認ファイルは英語3記事やサイトマップのURL数に含めません。配置だけではSearch Consoleの所有権確認や登録申請は完了しないため、画面上の確認結果を別に記録してください。
+
 所有権確認後、「サイトマップ」から公開済みの`sitemap.xml`を送信し、個別URLは「URL検査」から「インデックス登録をリクエスト」を実行します。受付日時と対象を記録します。日次上限に達した場合は反復送信せず、未送信の対象を記録してください。受付後のクロールや収録はGoogle側で判断されます。[URL検査](https://support.google.com/webmasters/answer/9012289?hl=ja)・[サイトマップ](https://support.google.com/webmasters/answer/7451001?hl=ja)
 
 GoogleのIndexing APIは求人情報または所定のライブ配信動画向けであり、この論文サイトには使用しません。[APIの対象範囲](https://developers.google.com/search/apis/indexing-api/v3/quickstart)

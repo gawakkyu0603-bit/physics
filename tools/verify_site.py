@@ -12,7 +12,16 @@ DOCS=ROOT/'docs'
 catalog=json.loads((ROOT/'site-src/catalog.json').read_text())
 languages=catalog.get('languages',['en'])
 errors=[];checks={'html_pages':0,'article_pages':0,'local_links':0,'paper_source_links':0,'configured_languages':languages}
-pages={p:BeautifulSoup(p.read_text(),'html.parser') for p in DOCS.rglob('*.html') if not p.name.startswith('_qa')}
+verification_files=set()
+checks['site_verification_files']={}
+for path in DOCS.glob('google*.html'):
+    if re.fullmatch(r'google[0-9a-f]+\.html',path.name):
+        verification_files.add(path)
+        raw=path.read_bytes()
+        if raw.strip()!=('google-site-verification: '+path.name).encode('ascii'):
+            errors.append([path.name,'Google ownership verification file has unexpected content'])
+        checks['site_verification_files'][path.name]=hashlib.sha256(raw).hexdigest()
+pages={p:BeautifulSoup(p.read_text(),'html.parser') for p in DOCS.rglob('*.html') if not p.name.startswith('_qa') and p not in verification_files}
 expected_pages={'index.html'}
 for lang in languages:
     expected_pages.add(lang+'/index.html')
