@@ -32,14 +32,6 @@ The version directory retains **709 unchanged original files** under `paper/`. T
 
 The [verification record](quantum-gravity/correlation-actualization-theory/v4/VERIFICATION.md) separates v3 full-suite executions from v4 identity checks and limited reruns. The manuscript discloses the human author’s concepts and research direction, Codex assistance, and AI-generated technical reviews. Those reviews are not journal peer review.
 
-## Adding research and building the site
-
-Add future papers under their field and retain explicit version directories. Keep the supplied manuscripts immutable; put explanatory pages and their sources alongside the website workflow. Use [tools/build_site.py](tools/build_site.py) as the entry point for site generation. Each future paper receives exactly three English introductions: general, student, and expert. Every article starts with a TL;DR and explains the complete paper and supplement with enough detail for its intended readers. Public repository, field, paper, and version READMEs are maintained in English. Japanese maintenance notes remain available.
-
-Follow the [paper addition, revision, and publication guide](ADDING_PAPERS.ja.md) (Japanese) for the complete maintenance workflow, including the three English reading guides, source coverage, verification, versioned releases, and Pages publication. The [site source reference](site-src/README.md) documents the catalog and content formats.
-
-For this initial publication, after all repository, Release, asset, and Pages publication work has finished and the public URLs have been verified, make the one-time initial submission through Google Search Console and Bing Webmaster Tools, and notify Bing with IndexNow. Follow the relevant Google and Bing routes for Yahoo! JAPAN and international Yahoo Search. A submission receipt does not establish search indexing. This request does not include periodic monitoring or repeated submission.
-
 No repository-wide license is newly assigned to the original research. Consult the version’s [rights statement](quantum-gravity/correlation-actualization-theory/v4/RIGHTS.md) and [third-party notices](quantum-gravity/correlation-actualization-theory/v4/THIRD_PARTY_NOTICES.md). No DOI or journal acceptance is asserted.
 
 Repository: [gawakkyu0603-bit/physics](https://github.com/gawakkyu0603-bit/physics).
