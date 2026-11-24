@@ -33,7 +33,9 @@ The Version 4 directory retains **709 unchanged original files** under [`v4/pape
 
 The complete ZIP is a new distribution wrapper, with notices outside the original `CAT-review/` payload. It is not the original received ZIP. GitHub's automatic source archives contain the Git tree and therefore omit the Release-only runtime files.
 
-[Original article](v4/paper/main.pdf) · [Supplement](v4/paper/supplement.pdf) · [Reproduction instructions](v4/README.md) · [Release asset names and hashes](v4/release-assets.json) · [Publication scope](../../docs/PUBLICATION_SCOPE.md)
+[Original article](v4/paper/main.pdf) · [Supplement](v4/paper/supplement.pdf) · [Reproduction instructions](v4/README.md) · [Release asset names and hashes](v4/release-assets.json) · [Version 4 publication scope](v4/PUBLICATION_SCOPE.md)
+
+The Version 4 companion guides have their own [coverage table](v4/reading-guides/COVERAGE.md) and [scientific QA record](v4/reading-guides/SCIENTIFIC_QA.md). The [shared publication policy](../../docs/PUBLICATION_SCOPE.md) describes repository-wide organization and the distinction between the current live reading site and immutable versioned research materials.
 
 ## Research status and verification scope
 

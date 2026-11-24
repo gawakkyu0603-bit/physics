@@ -1,49 +1,56 @@
-# サイトの生成元と、新しい論文の追加
+# Site source reference
 
-このディレクトリは、英語の専門家・理工系学生・一般読者向け解説を生成するための資料です。研究資料は **分野 → 論文 → 版** に分け、ウェブサイトはカタログで選んだ版を案内します。
+[Repository overview](../README.md) · [Publication policy](../docs/PUBLICATION_SCOPE.md) · [Adding and publishing papers](../ADDING_PAPERS.md)
 
-現在の対象はCAT第4版の英語3記事です。著者の指示により日本語3記事は削除し、今後の新規論文も英語3記事で公開します。公開用のルート・分野・論文・版のREADMEは英語に統一し、日本語のREADME別版は作りません。日本語の保守文書は残します。各紹介記事はTL;DRから始め、論文・補足を網羅し、対象読者が理解できる十分な説明を保ちます。ビルドやファイルの追加だけでは、GitHubへの公開やPagesの設定は実行されません。
+This directory contains the catalog, article fragments, figure definitions, and rendering support for the English research reading site. Research materials follow **field → paper → version**; the catalog chooses the version currently presented on the site. Each paper has exactly three English guides: general, student, and expert. Every guide begins with a TL;DR and covers the main paper and supplement at an appropriate depth for its audience.
 
-## 1. 生成元と出力の関係
+Use [ADDING_PAPERS.md](../ADDING_PAPERS.md) for the complete publication workflow. This reference describes the source formats, generated outputs, and current implementation limits. Active publication documentation is maintained in English. Original research files and explicitly archived historical evidence retain their original wording and language.
 
-| 場所 | 役割 |
+## 1. Sources, records, and outputs
+
+| Location | Role |
 | --- | --- |
-| `catalog.json` | 公開先、分野の英語名・説明、論文と版、記事・PDFへの対応 |
-| `content/` | 英語3水準、計3個のHTML本文素材 |
-| `figures.py` | 英語のSVG図を作る関数と登録表 |
-| `render-math.cjs` | KaTeXで数式をHTMLとMathMLへ変換 |
-| `COVERAGE.md` | 原論文の節・検証案と、解説ページの対応 |
-| `../tools/build_site.py` | 共通ナビゲーション、目次、図、数式、索引と検索用サイトマップを生成 |
-| `../tools/verify_site.py` | リンク、設定した公開ページ、数式、図、原本PDF、canonical・hreflang・サイトマップの確認 |
-| `../docs/` | 生成するHTMLと、配信する既存の共通資産・PDF |
-| `build-stats.json` / `verification.json` | ビルド／検証コマンドの実行時に更新する記録 |
+| [catalog.json](catalog.json) | Public base URL, fields, papers, selected versions, article registration, and PDF paths. |
+| `content/` | Three English HTML fragments **per paper**, identified by that paper's content prefix. |
+| [figures.py](figures.py) | SVG drawing functions, figure IDs, and English captions. |
+| [render-math.cjs](render-math.cjs) | KaTeX rendering into HTML and MathML. |
+| [COVERAGE.md](COVERAGE.md) | Shared index of version-specific source-to-guide coverage records. |
+| [SCIENTIFIC_QA.md](SCIENTIFIC_QA.md) | Shared index of version-specific scientific content checks and corrections. |
+| [../tools/build_site.py](../tools/build_site.py) | Common navigation, contents lists, figures, mathematics, catalog pages, and sitemap generation. |
+| [../tools/verify_site.py](../tools/verify_site.py) | Structural, link, language, PDF identity, canonical, hreflang, and sitemap checks. |
+| `../docs/` | Generated HTML and separately maintained PDFs, CSS, JavaScript, fonts, and ownership files. |
+| [build-stats.json](build-stats.json) / [verification.json](verification.json) | Records updated by the build and verification commands. |
 
-`build_site.py`はHTMLと`docs/sitemap.xml`を生成します。PDFやCSS・JavaScript・フォントを自動的に配置する処理は含まないため、必要な配信ファイルは別途、正しい場所へ置きます。
+Detailed coverage and QA records belong under each version's `reading-guides/` directory. The shared Markdown files above are indexes; a new paper receives its own records. For the current CAT Version 4 example, see [coverage](../quantum-gravity/correlation-actualization-theory/v4/reading-guides/COVERAGE.md), [scientific QA](../quantum-gravity/correlation-actualization-theory/v4/reading-guides/SCIENTIFIC_QA.md), and [publication scope](../quantum-gravity/correlation-actualization-theory/v4/PUBLICATION_SCOPE.md).
 
-検索用のURLは`catalog.json`の`public_base_url`（末尾に`/`を付けた公開先）から作ります。サイトマップには生成したHTMLと登録済みの主論文・補足PDFを列挙し、英語ページのheadには自己参照の絶対URLを設定します。英語一覧と共通入口は`en`と`x-default`の一組です。今回の初回公開では、リポジトリ・タグ・Release添付・Pagesのすべての公開と実URLの確認が完了した後、Google・Bing・Yahoo向けの初回申請を行います。受付と検索への収録は別の段階です。ビルドだけでは検索エンジンへの送信は行われず、定期監視や繰り返しの再申請は行いません。
+The builder writes HTML, `docs/sitemap.xml`, and `build-stats.json`, and ensures that `docs/.nojekyll` exists. It does not copy PDFs, CSS, JavaScript, or fonts into place. Those assets must already be at the configured paths.
 
-`indexnow.json`にはBing向けの公開確認キーを保存し、ビルド時に同じキーのテキストファイルを`docs/`へ書き出します。初回申請の送信はビルドから分離した手動操作です。
+Search URLs come from `catalog.json`'s `public_base_url`, which ends in `/`. The sitemap lists generated HTML and the registered main-paper and supplement PDFs. Pages have absolute self-referencing canonical URLs. The shared entry and English index advertise `en` and `x-default` alternates; other English pages advertise their English self-reference.
 
-## 2. 原論文を版付きで配置する
+Ownership files are maintained separately from generation. The builder preserves existing service-issued Google and Bing files and does not generate or restore an IndexNow key file. [indexnow.json](indexnow.json) retains the earlier manual-submission configuration. The manual submission script requires a matching local and live key file; leaving the public key file absent prevents a new notification. A normal build sends no search notifications. Initial registration status and the author's decision to wait on Google's sitemap status are recorded in [the publication guide](../ADDING_PAPERS.md#12-verify-the-live-publication-and-make-the-initial-submission); no periodic monitoring or automatic retries are configured by this workflow.
 
-例えば新しい分野に新しい論文を追加する場合、次のような対応を作ります。以下の名前は追加手順を示す例で、実在する収録論文ではありません。
+## 2. Research paths and the selected version
 
-| 対象 | 例 |
+These fictional names illustrate the path relationships; they do not identify an existing paper or verification result.
+
+| Item | Example |
 | --- | --- |
-| 分野のディレクトリ | `stellar-physics/` |
-| 論文の原資料ディレクトリ | `stellar-physics/compact-star-modes/` |
-| 版 | `stellar-physics/compact-star-modes/v1/` |
-| 原稿・コード・証拠 | `stellar-physics/compact-star-modes/v1/paper/` |
-| 公開タグ | `star-modes-v1.0.0` |
-| Pagesの論文URL部分 | `en/stellar-physics/star-modes/` |
+| Field directory | `stellar-physics/` |
+| Paper archive directory | `stellar-physics/compact-star-modes/` |
+| Version directory | `stellar-physics/compact-star-modes/v1/` |
+| Original manuscript, code, and evidence | `stellar-physics/compact-star-modes/v1/paper/` |
+| Version publication record | `stellar-physics/compact-star-modes/v1/PUBLICATION_SCOPE.md` |
+| Guide coverage and QA | `stellar-physics/compact-star-modes/v1/reading-guides/` |
+| Release tag | `star-modes-v1.0.0` |
+| Pages paper path | `en/stellar-physics/star-modes/` |
 
-原稿・データ・計算コードは受領した版のまま保持し、解説のための変更を加えません。版のREADME、検証履歴、権利表示、配布条件をその版のディレクトリに用意します。大きい実行環境をGitから外す場合は、原本の完全配布物への対応を記録します。
+Keep supplied original files unchanged. Version-specific READMEs, provenance, verification, rights, and guide records live outside the original `paper/` directory. If some original runtime files are omitted from Git, record their paths and how they are included in the complete distribution.
 
-同じ論文を改訂するときは旧版を残して`v2/`などを追加します。現在のPagesルートには版番号が含まれないため、同じ`field`と`slug`のカタログ項目を複数置くと同じHTMLパスへ書き込みます。通常はカタログで案内する一版を選び、過去版は原資料・タグ・Releaseからたどれるようにします。
+A revision adds a new version directory, such as `v2/`, while retaining the earlier version and immutable release tag. Current Pages URLs do not include a version number. Two catalog entries with the same `field` and `slug` write to the same HTML paths; select one current version per paper. Earlier research versions remain accessible through their directories, tags, and Releases. Companion-guide maintenance on `main` does not rewrite frozen Release assets or their embedded manifests.
 
-## 3. 分野を登録する
+## 3. Field registration
 
-`catalog.json`の`fields`へ、重複しない`slug`と英語の`name`・`summary`を追加します。
+Add a unique `slug` and English `name` and `summary` to `catalog.json`'s `fields` array:
 
 ```json
 {
@@ -57,11 +64,11 @@
 }
 ```
 
-分野ページの題名・説明、記事のパンくず、論文カードの分野名は、この登録から読みます。`papers`の`field`は必ずここにある`slug`を参照してください。`en`の値を省略しないでください。カタログ最上位の`languages`と各論文の`languages`をともに`["en"]`にします。
+Field titles, descriptions, breadcrumbs, and paper-card field labels use these values. Each paper's `field` must match a registered field slug. Supply the English strings, and use `["en"]` for both the catalog's top-level `languages` and each paper's `languages`.
 
-## 4. 論文と解説のファイルを登録する
+## 4. Paper metadata and article files
 
-`papers`へ追加する項目の例です。
+A complete example entry in the `papers` array is shown below. Page counts, reading times, names, and scope statements are illustrative; replace them with values established for the actual paper and guides. Register the example figure before using its ID.
 
 ```json
 {
@@ -79,31 +86,19 @@
   "content_prefix": "star-modes-",
   "main_pdf": "downloads/star-modes-v1-main.pdf",
   "supplement_pdf": "downloads/star-modes-v1-supplement.pdf",
-  "audiences": [
-    "general",
-    "student",
-    "expert"
-  ],
-  "languages": [
-    "en"
-  ],
+  "audiences": ["general", "student", "expert"],
+  "languages": ["en"],
   "summary": {
-    "en": "The paper’s question and the scope of its results."
+    "en": "The paper's question and the scope of its results."
   },
   "page_counts": {
     "main": 12,
     "supplement": 6
   },
   "audience_descriptions": {
-    "general": {
-      "en": "Understand the question through accessible examples."
-    },
-    "student": {
-      "en": "Connect foundational equations to the model and calculations."
-    },
-    "expert": {
-      "en": "Examine definitions, assumptions, and tests in detail."
-    }
+    "general": {"en": "Understand the question through accessible examples."},
+    "student": {"en": "Connect foundational equations to the model and calculations."},
+    "expert": {"en": "Examine definitions, assumptions, and tests in detail."}
   },
   "reading_times": {
     "general": "15–25",
@@ -121,34 +116,34 @@
 }
 ```
 
-`slug`はサイトの短い名前、`archive_slug`は原資料側の論文ディレクトリ名です。`source_path`はリポジトリルートからの原資料へのパス、PDFパスは`docs/`からの相対パスです。リリース名は論文ごとに区別してください。
+`slug` is the site's short paper name; `archive_slug` names the original-material directory. `source_path` is relative to the repository root, while PDF paths are relative to `docs/`. Give each paper distinct release names and keep its registered version aligned with its original files and distribution records.
 
-例のページ数・時間は説明用です。実際のPDFと記事で確認して入力します。論文固有の表示と、未指定時の動作は次のとおりです。
-
-| メタデータ | 使う場所／未指定時 |
+| Metadata | Use and behavior when optional values are omitted |
 | --- | --- |
-| `title`、`short_title` | 論文入口の題名、パンくず、単一論文の紹介。略称を省くと`title`を使う |
-| `version` | 記事ヘッダー、PDF案内、記事末尾の版説明。原資料と一致する値が必須 |
-| `page_counts.main` / `.supplement` | PDFボタンのページ数。省略した側は数を表示しない |
-| `audience_descriptions` | 3水準のカードと記事末尾の案内。言語や水準の値がなければ中立的な説明を使う |
-| `reading_times` | 読了時間の目安。未指定なら時間を表示せず、TL;DRの案内だけにする |
-| `scope.en` | 論文入口に並べる説明範囲の段落。文字列の配列で指定し、未指定なら原論文への中立的な案内を表示 |
-| `hero_figure` | 論文一覧・分野一覧の紹介図。未指定なら図なし、未登録のIDなら明示的にエラー |
-| `interactive_return` | 二群の理想帰還の対話的説明を入れる明示的な指定。既定は無効で、現在はCATだけが有効 |
+| `title`, `short_title` | Paper headings, breadcrumbs, and a single-paper collection summary. An omitted short title falls back to `title`. |
+| `version` | Article headers, download labels, and provenance statements. Required and matched to the original version. |
+| `page_counts.main`, `.supplement` | Page counts in PDF buttons. An omitted count is not displayed. |
+| `audience_descriptions` | Reading-level cards and end navigation. A missing level or language uses a neutral default. |
+| `reading_times` | Approximate reading times. If absent, the label mentions the opening TL;DR without a time estimate. |
+| `scope.en` | Scope paragraphs on the paper landing page. Supply an array of strings; if absent, a neutral pointer to the original paper is used. |
+| `hero_figure` | Illustration on paper listings. If absent, no illustration is inserted; an unregistered ID raises an error. |
+| `interactive_return` | Explicitly enables the two-group ideal-return interactive explanation. The default is false; it is currently enabled only for CAT. |
 
-複数論文を登録すると共通入口のTL;DRは収録件数を案内し、単一論文ならその論文の題名・版を使います。新しい論文にCATの題名・版・ページ数・図・読了時間を自動適用しません。
+Collection summaries use the selected paper's title and version for one paper, or the paper count for multiple papers. A newly registered paper does not inherit CAT's title, version, page counts, figures, or reading times. The ideal-return calculation is a particular mathematical model; enable it only when it applies to the paper being explained.
 
-`content_prefix`が`star-modes-`なら、本文素材は以下の3ファイルです。
+One current template limit requires a separate check: article headers still use the fixed label `Research preprint`, and catalog footers mention a preprint and the author's and AI's contributions. These strings are not inferred from paper metadata. Before publishing a paper with different review status or contribution history, update those template statements to accurately describe each paper and the collection. The presence of a catalog entry does not establish AI involvement or peer-review status.
+
+For `content_prefix: "star-modes-"`, supply exactly these three fragments:
 
 - `content/star-modes-general-en.html`
 - `content/star-modes-student-en.html`
 - `content/star-modes-expert-en.html`
 
-CATの接頭辞は空文字です。新しい論文で空文字を再利用すると、既存CATの本文を読み込むため、論文ごとに別の接頭辞を使います。英語3水準で同じ研究範囲・条件・結論・出典を扱い、読者に応じて語彙や数式の詳細度を調整します。
+CAT currently uses an empty prefix. Give other papers distinct prefixes; reusing the empty prefix would load CAT's fragments. The three guides cover the same research topics, conditions, conclusions, and sources, with explanatory depth adapted to the reader.
 
-## 5. 本文素材の書式
+## 5. Article fragment format
 
-本文はページ全体ではなく、`article`を一つ含む断片にします。見出し、TL;DR、最初の説明の例は次のとおりです。
+A fragment contains one `article`, not a complete HTML document:
 
 ```html
 <article lang="en">
@@ -170,19 +165,19 @@ CATの接頭辞は空文字です。新しい論文で空文字を再利用す�
 </article>
 ```
 
-ビルダーはTL;DRを記事の先頭へ移し、`h1`を共通ヘッダーへ載せ、`h2`から目次を作ります。各ページ内のIDを重複させず、安定した節IDを使って目次と出典から参照できるようにします。TL;DR内の見出しも`h2`が必要です。
+The builder moves the TL;DR to the start of the article, places the `h1` in the common header, and builds the contents list from `h2` headings. The TL;DR also requires an `h2`. Use unique and stable IDs for sections and headings so that coverage records and links remain meaningful.
 
-置換されるトークンは`{{PAPER_PDF}}`、`{{SUPP_PDF}}`、`{{SOURCE_ROOT}}`です。前二つはPDFへのローカルリンク、最後はその論文の指定Releaseタグを使ったGitHubの原資料リンクになります。ページ番号や原ソースのファイル名は、実際の版で確認します。
+The replacement tokens are `{{PAPER_PDF}}`, `{{SUPP_PDF}}`, and `{{SOURCE_ROOT}}`. The first two become local PDF links. The last becomes a GitHub link to the original files at the paper's configured Release tag. Check page numbers and source filenames against that exact version.
 
-インライン数式は`\(...\)`、表示数式は`<div class="equation">\[...\]</div>`を使います。原論文の式と対応させ、記号と成立条件を説明します。HTML内の`<`や`>`は必要に応じてエンティティへ変換してください。KaTeXのエラーはビルドを停止します。
+Use `\(...\)` for inline mathematics and `<div class="equation">\[...\]</div>` for displayed equations. Explain symbols, units, and validity conditions, and connect the expression to the original paper. Escape `<` and `>` as HTML entities where required. A KaTeX error stops the build.
 
-専門家・学生・一般向けで説明の粒度を変えても、物理的仮定、条件付き結果、計画段階の実験、未解決事項の区別を保ちます。新しい論文についても`COVERAGE.md`に原論文・補足と本文の対応を追加します。
+Distinguish physical assumptions, conditional results, proposed experiments, observations, and open questions at every reading level. Record the source-to-section mapping in the version's `reading-guides/COVERAGE.md`; record content checks and corrections in its `reading-guides/SCIENTIFIC_QA.md`.
 
-## 6. 英語の図を追加する
+## 6. English SVG figures
 
-`figures.py`に、`lang`を受け取り`(SVGの内部文字列, 高さ)`を返す、名前付きの図関数を用意します。既存の`text`、`rect`、`arrow`等を再利用できます。標準の幅は880です。
+Define a named function in `figures.py` that accepts `lang` and returns `(inner_svg_markup, height)`. Existing helpers such as `text`, `rect`, and `arrow` can be reused; the common SVG width is 880.
 
-次に、`MAP`へHTMLで使う図IDと関数を登録し、`CAPTIONS`へ**関数名**をキーとして、英語の題名・説明を登録します。新規図では`{"en": {"title": ..., "description": ...}}`形式を使えます。従来の4要素形式も既存図の互換性のため読み取りますが、英語公開で使うのは位置1と3です。
+Register the HTML figure ID in `MAP` and its English title and description in `CAPTIONS`, keyed by the **function name**:
 
 ```python
 MAP['star-modes-student-overview'] = star_modes_overview
@@ -194,21 +189,19 @@ CAPTIONS['star_modes_overview'] = {
 }
 ```
 
-`figure()`が`figure-`で始まるID、SVGの`title`、キャプションを付けます。同じ図IDを同じページに二度置かないでください。図IDを本文の節IDに使う場合も、生成される`figure-…`と衝突しないようにします。
+The dictionary format is supported for new figures. The existing four-element caption format remains supported, with positions 1 and 3 providing the English title and description. No additional language version is required.
 
-色だけに意味を持たせず、本文・原論文と同じ値・構造を保ちます。模式図、計算例、観測データを明示して区別し、小画面で文字が欠けないことを確認します。
+`figure()` adds a `figure-` ID, an accessible SVG title, and a caption. Do not insert the same figure ID twice in a page or use a section ID that collides with the generated ID. Pair colors with labels or line styles. For calculated plots, preserve traceable inputs and identify axes, units, parameters, errors, and conditions. Distinguish diagrams, calculations, and observations; check legibility and scrolling on narrow screens.
 
-## 7. PDFと配布情報を確認する
+## 7. PDFs and version correspondence
 
-新しいPDFを、カタログに書いた`docs/downloads/…`へ原版と同じバイト列で配置します。主論文・補足それぞれのSHA-256を記録し、`verify_site.py`のPDF検査対象へ追加します。現在の検査対象はCAT第4版の2PDFなので、別論文の登録だけではそのPDFの同一性検査は増えません。既存のCAT検査を消さずに拡張します。
+Place each PDF at the `docs/` path registered in the catalog, preserving the supplied original bytes. Record its independently obtained SHA-256 and extend `tools/verify_site.py`'s PDF identity checks. Its current expected-hash table contains the two CAT Version 4 PDFs; adding a catalog entry does not automatically add a new PDF identity check. Retain existing checks when adding others.
 
-共通のダウンロード案内は、カタログの版番号・PDFページ数を読みます。案内先の原資料、検証記録、Releaseタグを同じ版にそろえてください。`source_path`や`archive_slug`を新しくしても、原資料側のREADMEや検証履歴が自動作成されるわけではありません。
+Download labels read version and optional page counts from the catalog. Keep original files, verification records, and Release tags aligned with that version. Adding `source_path` or `archive_slug` does not generate research READMEs, provenance, coverage, QA, or publication manifests; those records must be maintained separately.
 
-図や解説の内容は著者・編集者が用意し、カタログはそれらの対応を指定します。既存CATの文言・図はCAT自身のメタデータに残り、新しい論文へ流用されません。二群の理想帰還の計算は特定の数学的説明なので、新論文と直接の関係がない限り`interactive_return`を有効にしません。
+## 8. Build and verification
 
-## 8. ビルド、検証、表示確認
-
-リポジトリルートで、Node.jsとPython 3を用意します。Pythonの依存は必要に応じて専用の仮想環境へ入れてください。
+From the repository root, use Node.js and Python 3 with the pinned dependencies. A dedicated Python virtual environment is described in [the publication guide](../ADDING_PAPERS.md#91-generate-the-site-and-run-structural-checks).
 
 ```sh
 npm ci
@@ -217,16 +210,16 @@ python3 tools/build_site.py
 python3 tools/verify_site.py
 ```
 
-ビルドは`docs/`のHTML、サイトマップ、公開IndexNow確認キーと`site-src/build-stats.json`を更新し、検証は`site-src/verification.json`を更新します。検証は、ローカルリンク、原資料リンク、設定した英語記事の存在、節・図・数式、重複ID、TL;DR、数式エラー、登録済みPDFのハッシュを確認します。終了コードと`error_count`を確認してください。
+Check the exit codes and `verification.json`'s `error_count`. The verifier checks local links and anchors, original-source paths, configured English articles, IDs, TL;DR structure, equations and figures, registered PDF hashes, canonical URLs, hreflang links, and sitemap scope. It does not establish scientific correctness or readability; compare each guide with its original paper and use its version-specific QA record.
 
-表示確認は例えば次のローカルサーバーから行えます。
+For a local visual review:
 
 ```sh
 python3 -m http.server 8000 --directory docs
 ```
 
-共通入口、英語一覧、分野、論文入口、3水準の英語3記事を開きます。PCと狭い画面で、目次、長い数式・表・図の横スクロール、他水準への移動、PDFと出典を確認します。構造検査だけでは、科学的内容の正しさや説明の読みやすさは検査されません。
+Review the shared entry, English index, field and paper pages, and all three guides per paper on desktop and narrow screens. Check navigation, long equations, tables and figures, PDF links, and original sources.
 
-カタログからの削除・改名では、古い生成HTMLは自動削除されません。残す版へのリンクを整理したうえで、不要な旧生成ページを個別に確認します。ビルド後の差分では、意図した解説・カタログ・生成物の変更と、変更してはいけない原論文を区別してください。
+Removing or renaming a catalog entry does not automatically delete old generated HTML. Review obsolete pages and retained-version links explicitly. The build also leaves ownership files under manual control; a removed IndexNow key file stays removed.
 
-公開操作はこの工程と別です。実際にpush・Pages設定・Release作成を済ませ、公開URLで結果を確認するまでは、準備済みの状態を公開済みと記載しません。
+Local generation does not push Git changes, configure Pages, create Releases, or submit search notifications. Follow [ADDING_PAPERS.md](../ADDING_PAPERS.md) for publication, and record completion only after the corresponding remote operations and live checks succeed.

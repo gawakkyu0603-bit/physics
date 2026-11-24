@@ -1,6 +1,6 @@
 # Adding, revising, and publishing research papers
 
-[Repository overview](README.md) · [Site source reference](site-src/README.md)
+[Repository overview](README.md) · [Shared publication policy](docs/PUBLICATION_SCOPE.md) · [Site source reference](site-src/README.md)
 
 This guide explains how to add future papers to the existing `physics` repository and publish their original materials, reproduction resources, and three English reading guides as a consistent collection. Every paper receives exactly three introductions: one for general readers, one for STEM students and graduates, and one for specialists. Public repository, field, paper, and version READMEs are maintained in English; do not create a separate Japanese README.
 
@@ -76,6 +76,9 @@ When adding a paper, update the root and field index entries and maintain the de
 | `paper/` | Supplied manuscript, sources, data, and code. Do not change them to accommodate the explanations. |
 | `README.md`, in English | Version contents, reading order, reproduction instructions, important files, and distribution links. |
 | `VERIFICATION.md` | Facts checked for this version, evidence inherited from earlier versions, and work not executed for this version. |
+| `PUBLICATION_SCOPE.md` | This version's identity, distribution and provenance, scientific limits, contribution statements, and links to its detailed records. |
+| `reading-guides/COVERAGE.md` | Mapping from this version's main paper and supplement to the three English guides, with source locations and stable section IDs. |
+| `reading-guides/SCIENTIFIC_QA.md` | Content comparisons, corrections, figure and equation checks, inherited evidence, and remaining unverified scope for this version's guides. |
 | `RELEASE_NOTES.md` | Scope of the first release, or differences from the preceding version and publication changes. |
 | `CITATION.cff` / `CITATION.bib` | Actual authors, title, version, publication date, and URL. Include a DOI only if one has been obtained. |
 | `RIGHTS.md` / `THIRD_PARTY_NOTICES.md` | Verified rights and distribution conditions for the original research and third-party material. |
@@ -83,6 +86,8 @@ When adding a paper, update the root and field index entries and maintain the de
 | `release-assets.json` | Names, sizes, SHA-256 hashes, Release tag, and download locations of the actual assets to attach. |
 
 Use the [CAT Version 4 directory](quantum-gravity/correlation-actualization-theory/v4/README.md) as a formatting reference. Establish original file counts, completed verification, authorship, licensing, AI involvement, review status, and hashes independently for every paper. Copying CAT's values or wording does not create evidence for another study.
+
+Keep [docs/PUBLICATION_SCOPE.md](docs/PUBLICATION_SCOPE.md) as shared policy and an index of version-specific publication records. The shared [coverage index](site-src/COVERAGE.md) and [scientific QA index](site-src/SCIENTIFIC_QA.md) link to each version's detailed records. Add index entries for a new paper or version; put its findings, counts, hashes, and corrections in its own version directory. Maintain active publication and guide documentation in English. Preserve original research files and explicitly archived historical evidence in their original wording and language.
 
 If some original materials are excluded from Git, identify their paths, the reason, and whether the complete distribution includes them. Use file counts and hashes to make the exact scope of identity between originals and distributions traceable. If a manuscript needs correction, treat it as a new version and record the changes.
 
@@ -131,6 +136,8 @@ The following is a minimal example for the `papers` array. Replace the title, au
 
 For informative navigation, add verified values for `short_title`, `page_counts`, `audience_descriptions`, `reading_times`, and `scope`. See the [site source reference](site-src/README.md) for the complete format and behavior when optional values are omitted. Base page counts and reading-time estimates on the actual manuscript and explanations. Register a figure before naming it in `hero_figure`.
 
+Check the generator's publication-status and contribution statements against the new paper. The current header label `Research preprint` and catalog-footer wording about preprints and AI contributions are fixed template strings, not catalog fields. If they do not apply, adapt the templates to represent each paper and the collection accurately before publishing. Do not infer those facts from CAT's existing presentation.
+
 The current shared interface assumes two PDFs: a main paper and a supplement. To support a paper without a supplement, first adapt the interface, builder, and verifier instead of pointing to an empty or unrelated PDF. The `interactive_return` feature explains CAT's ideal return behavior for two groups. For another paper, normally omit it or set it to `false`; assess it separately only if its mathematical content is actually relevant.
 
 ## 5. Prepare three English guides
@@ -155,13 +162,13 @@ All three levels must cover the research themes, conditions, conclusions, limita
 
 ### Retain a coverage and source map
 
-Add paper-specific entries to [site-src/COVERAGE.md](site-src/COVERAGE.md), with a mapping table containing at least the columns below. Check each topic individually so that omissions remain visible.
+Create `reading-guides/COVERAGE.md` within the new paper's version directory, with a mapping table containing at least the columns below. For the working example, use `stellar-physics/compact-star-modes/v1/reading-guides/COVERAGE.md`. Check each topic individually so that omissions remain visible, then add a link in the shared [coverage index](site-src/COVERAGE.md).
 
 | Original location | Topic and conditions | General EN | Student EN | Expert EN | Supporting evidence |
 | --- | --- | --- | --- | --- | --- |
 | Main-paper section or equation number; supplement section | What is explained and what is assumed | Section ID | Section ID | Section ID | PDF page, source, data, or execution record |
 
-A statement that “everything is covered” is insufficient. Use the table to check supplementary results, validation plans, negative results, and open questions. Add the new paper's content comparisons, corrections, and unverified scope to [site-src/SCIENTIFIC_QA.md](site-src/SCIENTIFIC_QA.md). Check numerical values and annotations within figures with the same care as the prose.
+A statement that “everything is covered” is insufficient. Use the table to check supplementary results, validation plans, negative results, and open questions. Record this version's content comparisons, corrections, and unverified scope in its own `reading-guides/SCIENTIFIC_QA.md`, and link it from the shared [scientific QA index](site-src/SCIENTIFIC_QA.md). Check numerical values and annotations within figures with the same care as the prose. Keep earlier versions' records when the catalog advances; do not append a new paper's evidence to CAT's records or replace an older version's record with the new one.
 
 ## 6. Format article text, equations, and source links
 
@@ -201,14 +208,15 @@ Add a named function to [site-src/figures.py](site-src/figures.py) that accepts 
 ```python
 # Define star_modes_overview(lang) before registering it.
 MAP['star-modes-student-overview'] = star_modes_overview
-CAPTIONS['star_modes_overview'] = (
-    '', 'English figure title',
-    '',
-    'English explanation with conditions, units, sources, and scope.'
-)
+CAPTIONS['star_modes_overview'] = {
+    'en': {
+        'title': 'English figure title',
+        'description': 'English explanation with conditions, units, sources, and scope.'
+    }
+}
 ```
 
-The key in `MAP` corresponds to the article's `data-figure` value; the key in `CAPTIONS` is the **function name**. The existing figure API reads a four-element tuple and uses the second element for the English title and the fourth for the English description. Empty strings in the example retain the unused positions; they do not require an additional language version. The function receives `lang="en"`. Shared processing adds an SVG title and a caption. Generated figure IDs use `figure-` followed by the figure ID. Reusing the same figure ID twice on a page produces duplicate IDs; register a distinct ID for a repeated appearance.
+The key in `MAP` corresponds to the article's `data-figure` value; the key in `CAPTIONS` is the **function name**. The figure API accepts the English dictionary above. For compatibility with existing figures, it also accepts a four-element tuple, using the second element for the English title and the fourth for the English description. The function receives `lang="en"`. Shared processing adds an SVG title and a caption. Generated figure IDs use `figure-` followed by the figure ID. Reusing the same figure ID twice on a page produces duplicate IDs; register a distinct ID for a repeated appearance.
 
 Place mechanism diagrams, quantity comparisons, process diagrams, and tables connecting conditions to results where they resolve likely reader difficulties. Their purpose is to advance the explanation. Pair colors with English labels or line styles, and keep values, arrangements, and color meanings consistent with the text.
 
@@ -257,7 +265,7 @@ git diff --check
 git diff --stat
 ```
 
-`npm ci` installs dependencies from the lockfile. `npm run build` and `npm run verify` correspond to the Python commands above. The build updates HTML, `docs/sitemap.xml`, `docs/<verification-key>.txt`, and `site-src/build-stats.json`. Verification updates `site-src/verification.json`. Reuse the public key in `site-src/indexnow.json` for its verification file; do not regenerate it during ordinary paper additions. Place or update served CSS, JavaScript, fonts, and other assets separately when needed.
+`npm ci` installs dependencies from the lockfile. `npm run build` and `npm run verify` correspond to the Python commands above. The build updates HTML, `docs/sitemap.xml`, and `site-src/build-stats.json`, and ensures the Pages `.nojekyll` marker exists. Verification updates `site-src/verification.json`. Ownership-verification files are managed separately: the builder preserves existing Google and Bing files and does not generate or restore an IndexNow key file. Keep a deliberately removed verification file removed unless its restoration is requested. Place or update served CSS, JavaScript, fonts, and other assets separately when needed.
 
 Confirm an exit code of 0 and `error_count` of 0. Checks cover local files and anchors, original-source paths, IDs, the opening TL;DR, KaTeX, configured publication languages and articles, registered PDF hashes, canonical URLs, hreflang links including English self-references, and sitemap URL scope. For the current single paper, the sitemap covers seven HTML pages and two PDFs: nine URLs in total. When adding papers, use counts appropriate to the actual published content.
 
@@ -292,6 +300,8 @@ For a distribution organized like CAT's, prepare these five assets. Describe the
 | `SHA256SUMS` | Hashes of the distribution files above; do not include this checksum file itself in its own list. |
 
 Create `PUBLICATION_MANIFEST.json` from the new version's actual contents, using the [existing CAT format](quantum-gravity/correlation-actualization-theory/v4/PUBLICATION_MANIFEST.json) as a reference. Paths are relative to the version directory, and the manifest excludes itself. If a version-directory README or another wrapper changes, update its recorded hash. Separately record the completed assets' sizes, hashes, and URLs in `release-assets.json`. These two records describe different sets of files.
+
+After publication, the manifest on `main` may be maintained to describe that version directory's current documentation. Preserve the original-file hashes and any frozen manifest embedded in an existing Release asset. Adding or correcting repository documentation does not require rebuilding published assets or moving an existing tag. State which distribution each manifest describes.
 
 The current site generation commands do not automatically ingest original materials or create a distribution ZIP, source archive, manifest, or Release. Complete those tasks before fixing the publication commit. Inspect archive paths, extracted file lists, and correspondence with original hashes; successful compression alone does not establish completeness.
 
@@ -382,7 +392,9 @@ Navigate from the public site home to the new field and paper, and open all thre
 
 For this initial publication, finish and verify all repository, tag, Release asset, and Pages work before the initial registration and sitemap submission through Google Search Console and Bing Webmaster Tools, and the IndexNow notification to Bing. Yahoo! JAPAN uses the relevant Google route; international Yahoo Search uses the Bing Webmaster Tools route. Use ownership-verification values actually issued by the service. Distinguish submission and receipt from inclusion in search results. This request does not include periodic monitoring, automatic retries, or repeated submissions. An initial step already completed should not be repeated merely because this guide is being maintained.
 
-On 25 November 2026, the author reported completion of Google Search Console registration and Bing Webmaster Tools setup. The author also reported a "Couldn't fetch" status for Google's sitemap submission; Google property registration alone does not establish successful sitemap retrieval. The initial IndexNow submission for nine URLs received HTTP 202 at 07:31 JST that day ([workflow run 45501701597](https://github.com/gawakkyu0603-bit/physics/actions/runs/45501701597)), indicating receipt with key validation pending. These records do not establish indexing of every URL, and documentation changes do not require a new submission.
+On 25 November 2026, the author reported completion of Google Search Console registration and Bing Webmaster Tools setup. Google's submitted sitemap had shown "Couldn't fetch", but the author subsequently opened the sitemap from the Search Console link and chose to wait for the status to settle. Follow that decision without further submission, automatic retries, or scheduled monitoring. Opening the link confirms access through that link; it does not establish successful retrieval by Google's sitemap processor or completed indexing. A temporary service issue remains a possibility, not a confirmed diagnosis.
+
+The initial IndexNow submission for nine URLs received HTTP 202 at 07:31 JST that day ([workflow run 45501701597](https://github.com/gawakkyu0603-bit/physics/actions/runs/45501701597)), indicating receipt with key validation pending. The author later removed the public IndexNow verification file in [commit 88a042c](https://github.com/gawakkyu0603-bit/physics/commit/88a042cb9523e409408952ef033439e16da56cac). Ordinary builds respect that removal. `site-src/indexnow.json` retains the earlier manual-submission configuration; it does not cause the file to be regenerated or a notification to be sent. The manual submission script requires a matching local and live key file before it can send a notification. These historical records do not establish indexing of every URL, and documentation changes do not require a new submission.
 
 ### Ownership files with the main /docs Pages source
 

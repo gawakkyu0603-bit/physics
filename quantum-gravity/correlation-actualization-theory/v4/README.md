@@ -3,7 +3,9 @@
 ## A nonperturbative matrix proposal with observer-dependent layers
 
 **Yohtaro Soga · Version 4 · 25 November 2026**  
-[Read the paper](paper/main.pdf) · [Technical supplement](paper/supplement.pdf) · [Reading guide](paper/reading-guide.md) · [Verification](VERIFICATION.md)
+[Read the paper](paper/main.pdf) · [Technical supplement](paper/supplement.pdf) · [Reading guide](paper/reading-guide.md) · [Verification](VERIFICATION.md) · [Publication scope](PUBLICATION_SCOPE.md)
+
+[CAT and its versions](../README.md) · [Shared publication policy](../../../docs/PUBLICATION_SCOPE.md)
 
 This version directory contains the fourth version of **Correlation Actualization Theory (CAT)**,
 a proposed framework motivated by the different records available to an infalling observer
@@ -30,6 +32,8 @@ under `quantum-gravity/correlation-actualization-theory/v4` and Release tag `cat
 | Verification history and its limits | [Publication verification summary](VERIFICATION.md), [original verification record](paper/evidence/verification.json) |
 | Changes responding to the review of Version 3 | [Version 4 response](paper/response.md) |
 | Original package instructions | [Unchanged original README](paper/README.md) |
+| Version 4 distribution, provenance, and scientific scope | [Version-specific publication scope](PUBLICATION_SCOPE.md) |
+| English companion-guide coverage and scientific review | [Coverage table](reading-guides/COVERAGE.md), [scientific QA record](reading-guides/SCIENTIFIC_QA.md) |
 
 The research archive includes Japanese working notes and English summaries.
 The 91 numbered records describe results of different kinds, including conditional

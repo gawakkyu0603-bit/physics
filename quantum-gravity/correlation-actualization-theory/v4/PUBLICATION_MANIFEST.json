@@ -51,9 +51,14 @@
       "sha256": "58c5e784b8bf4a0ae609f679ff07fd97621abe36bc4dc782dd0c25eb483aa63a"
     },
     {
+      "path": "PUBLICATION_SCOPE.md",
+      "bytes": 8213,
+      "sha256": "8ad54efe8a74f9223d567d6484deb506342ba9c72f3442bc9cd523d60545971e"
+    },
+    {
       "path": "README.md",
-      "bytes": 9627,
-      "sha256": "bf6000700f4091a13257804b54ca392ae7c9adf2591043a5289dd80f90a0db19"
+      "bytes": 10062,
+      "sha256": "09f9e595e9c201c0479ae9e80fe3d660ec2e166a2c46522a1749913fc514e7c7"
     },
     {
       "path": "RELEASE_NOTES.md",
@@ -3631,6 +3636,16 @@
       "sha256": "2fc9cc3550ece4fcfc11540f441e4a6fc84a55973532cdf93e9285dc5927e22b"
     },
     {
+      "path": "reading-guides/COVERAGE.md",
+      "bytes": 14555,
+      "sha256": "08b89734c4935ca857cc6361d1f60e0bc8aecc4b2c3846333da157c55c191444"
+    },
+    {
+      "path": "reading-guides/SCIENTIFIC_QA.md",
+      "bytes": 18131,
+      "sha256": "0e53d813fbd1be61eae44ec793db58e24bd4c6d9a51a7478e48376ff789ef655"
+    },
+    {
       "path": "release-assets.json",
       "bytes": 1772,
       "sha256": "69d275f0f2b1dc4b165d3dd8b8c28d37b00bfe8a2ea14d1b195d58de06ea34af"
@@ -3641,5 +3656,5 @@
       "sha256": "2f53c426f305a6987e6459cd913a770dc45212f5cd37640a5816b2a83f6b8ae1"
     }
   ],
-  "maintenance_note": "This manifest describes the current version directory in main. Public README maintenance removes the separate Japanese README; the 709 original files in paper/ and the frozen cat-v4.0.0 Release assets are unchanged."
+  "maintenance_note": "This manifest describes the current version directory on main, including maintained publication and reading-guide documentation. The 709 original files in paper/ retain their supplied bytes. The cat-v4.0.0 tag, published Release assets, and manifests embedded in those assets remain frozen and describe their own distributions."
 }

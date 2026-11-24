@@ -73,15 +73,6 @@ def build_sitemap():
     ET.indent(root,space='  ')
     ET.ElementTree(root).write(DOCS/'sitemap.xml',encoding='utf-8',xml_declaration=True)
 
-def write_indexnow_key():
-    config=json.loads((SOURCE/'indexnow.json').read_text())
-    key=config['key']
-    if not re.fullmatch(r'[0-9a-f]{32}',key):
-        raise ValueError('IndexNow verification key must be 32 lowercase hex characters')
-    if config['site_url']!=CATALOG['public_base_url'] or config['key_location']!=CATALOG['public_base_url']+key+'.txt':
-        raise ValueError('IndexNow site and key location must match the catalog public URL')
-    (DOCS/(key+'.txt')).write_text(key+'\n',encoding='utf-8')
-
 def audience_description(p,audience,lang):
     return p.get('audience_descriptions',{}).get(audience,{}).get(lang,DEFAULT_DESCRIPTIONS[audience][lang])
 
@@ -278,7 +269,6 @@ def main():
         for field in CATALOG['fields']:catalog_page(lang,field=field)
     root_index()
     build_sitemap()
-    write_indexnow_key()
     (DOCS/'.nojekyll').touch()
     (SOURCE/'build-stats.json').write_text(json.dumps(BUILD_STATS,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'pages':len(GENERATED_PAGES),'articles':BUILD_STATS},ensure_ascii=False,indent=2))
