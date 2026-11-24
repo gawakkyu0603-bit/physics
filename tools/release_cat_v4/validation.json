@@ -1,0 +1,122 @@
+{
+  "validated_on_utc": "2026-11-24",
+  "official_download_paths_verified": 31,
+  "unique_official_downloads_verified": 26,
+  "unique_download_bytes": 287086434,
+  "original_omitted_files": 33,
+  "embedded_original_files": 2,
+  "frozen_outer_files": 15,
+  "all_original_files": 742,
+  "original_files_retained_in_git": 709,
+  "no_original_files_modified": true,
+  "checks": [
+    {
+      "status": "all_five_assets_byte_identical",
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "zlib_compile_version": "1.3.2",
+      "zlib_runtime_version": "1.3.2",
+      "original_files_verified": 742,
+      "zip_members": 757,
+      "assets": [
+        {
+          "name": "CAT_v4_article_source.tar.gz",
+          "bytes": 48663,
+          "sha256": "252413fa68fe1b52b12756f91ab07022a784148f61a5b1e16d95a09c9558391c"
+        },
+        {
+          "name": "CAT_v4_full_publication_bundle.zip",
+          "bytes": 301080385,
+          "sha256": "1c4f5ce9f33a531d4c07842a5a64dbeb080d7dea0a5a6b5433e873dbc887e7e7"
+        },
+        {
+          "name": "CAT_v4_main.pdf",
+          "bytes": 455720,
+          "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a"
+        },
+        {
+          "name": "CAT_v4_supplement.pdf",
+          "bytes": 378255,
+          "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+        },
+        {
+          "name": "SHA256SUMS",
+          "bytes": 366,
+          "sha256": "055ad20af4cf0d7cf16a1a4602d6b4f1da291ee098b5cfab8bb5278ef75f22c2"
+        }
+      ],
+      "case": "validation-python312"
+    },
+    {
+      "status": "all_five_assets_byte_identical",
+      "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+      "zlib_compile_version": "1.3.1",
+      "zlib_runtime_version": "1.3.1",
+      "original_files_verified": 742,
+      "zip_members": 757,
+      "assets": [
+        {
+          "name": "CAT_v4_article_source.tar.gz",
+          "bytes": 48663,
+          "sha256": "252413fa68fe1b52b12756f91ab07022a784148f61a5b1e16d95a09c9558391c"
+        },
+        {
+          "name": "CAT_v4_full_publication_bundle.zip",
+          "bytes": 301080385,
+          "sha256": "1c4f5ce9f33a531d4c07842a5a64dbeb080d7dea0a5a6b5433e873dbc887e7e7"
+        },
+        {
+          "name": "CAT_v4_main.pdf",
+          "bytes": 455720,
+          "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a"
+        },
+        {
+          "name": "CAT_v4_supplement.pdf",
+          "bytes": 378255,
+          "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+        },
+        {
+          "name": "SHA256SUMS",
+          "bytes": 366,
+          "sha256": "055ad20af4cf0d7cf16a1a4602d6b4f1da291ee098b5cfab8bb5278ef75f22c2"
+        }
+      ],
+      "case": "validation-python313"
+    },
+    {
+      "status": "all_five_assets_byte_identical",
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "zlib_compile_version": "1.3.2",
+      "zlib_runtime_version": "1.3.2",
+      "original_files_verified": 742,
+      "zip_members": 757,
+      "assets": [
+        {
+          "name": "CAT_v4_article_source.tar.gz",
+          "bytes": 48663,
+          "sha256": "252413fa68fe1b52b12756f91ab07022a784148f61a5b1e16d95a09c9558391c"
+        },
+        {
+          "name": "CAT_v4_full_publication_bundle.zip",
+          "bytes": 301080385,
+          "sha256": "1c4f5ce9f33a531d4c07842a5a64dbeb080d7dea0a5a6b5433e873dbc887e7e7"
+        },
+        {
+          "name": "CAT_v4_main.pdf",
+          "bytes": 455720,
+          "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a"
+        },
+        {
+          "name": "CAT_v4_supplement.pdf",
+          "bytes": 378255,
+          "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+        },
+        {
+          "name": "SHA256SUMS",
+          "bytes": 366,
+          "sha256": "055ad20af4cf0d7cf16a1a4602d6b4f1da291ee098b5cfab8bb5278ef75f22c2"
+        }
+      ],
+      "case": "validation-git-and-upstream"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "package": "numpy",
+    "version": "2.4.2",
+    "filename": "numpy-2.4.2-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/05/cb/eff72a91b2efdd1bc98b3b8759f6a1654aa87612fc86e3d87d6fe4f948c4/numpy-2.4.2-cp314-cp314-win_amd64.whl",
+    "sha256": "068cdb2d0d644cdb45670810894f6a0600797a69c05f1ac478e8d31670b8ee75"
+  },
+  {
+    "package": "scipy",
+    "version": "1.17.1",
+    "filename": "scipy-1.17.1-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/4b/39/f0e8ea762a764a9dc52aa7dabcfad51a354819de1f0d4652b6a1122424d6/scipy-1.17.1-cp314-cp314-win_amd64.whl",
+    "sha256": "3877ac408e14da24a6196de0ddcace62092bfc12a83823e92e49e40747e52c19"
+  },
+  {
+    "package": "matplotlib",
+    "version": "3.10.8",
+    "filename": "matplotlib-3.10.8-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/93/a5/de89ac80f10b8dc615807ee1133cd99ac74082581196d4d9590bea10690d/matplotlib-3.10.8-cp314-cp314-win_amd64.whl",
+    "sha256": "83d282364ea9f3e52363da262ce32a09dfe241e4080dcedda3c0db059d3c1f11"
+  },
+  {
+    "package": "contourpy",
+    "version": "1.3.3",
+    "filename": "contourpy-1.3.3-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/7d/c2/57f54b03d0f22d4044b8afb9ca0e184f8b1afd57b4f735c2fa70883dc601/contourpy-1.3.3-cp314-cp314-win_amd64.whl",
+    "sha256": "cf9022ef053f2694e31d630feaacb21ea24224be1c3ad0520b13d844274614fd"
+  },
+  {
+    "package": "cycler",
+    "version": "0.12.1",
+    "filename": "cycler-0.12.1-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl",
+    "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30"
+  },
+  {
+    "package": "fonttools",
+    "version": "4.61.1",
+    "filename": "fonttools-4.61.1-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/52/7b/91e7b01e37cc8eb0e1f770d08305b3655e4f002fc160fb82b3390eabacf5/fonttools-4.61.1-cp314-cp314-win_amd64.whl",
+    "sha256": "4f5686e1fe5fce75d82d93c47a438a25bf0d1319d2843a926f741140b2b16e0c"
+  },
+  {
+    "package": "kiwisolver",
+    "version": "1.4.9",
+    "filename": "kiwisolver-1.4.9-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/28/e0/a9a90416fce5c0be25742729c2ea52105d62eda6c4be4d803c2a7be1fa50/kiwisolver-1.4.9-cp314-cp314-win_amd64.whl",
+    "sha256": "0763515d4df10edf6d06a3c19734e2566368980d21ebec439f33f9eb936c07b7"
+  },
+  {
+    "package": "packaging",
+    "version": "26.0",
+    "filename": "packaging-26.0-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/b7/b9/c538f279a4e237a006a2c98387d081e9eb060d203d8ed34467cc0f0b9b53/packaging-26.0-py3-none-any.whl",
+    "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529"
+  },
+  {
+    "package": "pillow",
+    "version": "12.1.1",
+    "filename": "pillow-12.1.1-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/40/72/4c245f7d1044b67affc7f134a09ea619d4895333d35322b775b928180044/pillow-12.1.1-cp314-cp314-win_amd64.whl",
+    "sha256": "50480dcd74fa63b8e78235957d302d98d98d82ccbfac4c7e12108ba9ecbdba15"
+  },
+  {
+    "package": "pyparsing",
+    "version": "3.3.2",
+    "filename": "pyparsing-3.3.2-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl",
+    "sha256": "850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d"
+  },
+  {
+    "package": "python-dateutil",
+    "version": "2.9.0.post0",
+    "filename": "python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+    "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
+  },
+  {
+    "package": "six",
+    "version": "1.17.0",
+    "filename": "six-1.17.0-py2.py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl",
+    "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"
+  },
+  {
+    "package": "h5py",
+    "version": "3.16.0",
+    "filename": "h5py-3.16.0-cp314-cp314-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/3e/14/615a450205e1b56d16c6783f5ccd116cde05550faad70ae077c955654a75/h5py-3.16.0-cp314-cp314-win_amd64.whl",
+    "sha256": "fa48993a0b799737ba7fd21e2350fa0a60701e58180fae9f2de834bc39a147ab"
+  },
+  {
+    "package": "CPython",
+    "version": "3.14.7",
+    "filename": "python-3.14.7-embed-amd64.zip",
+    "url": "https://www.python.org/ftp/python/3.14.7/python-3.14.7-embed-amd64.zip",
+    "sha256": "d297e5ff019966817ad8502465176139f2d3d840fa4ed84b13bed399a6ab1f15"
+  }
+]

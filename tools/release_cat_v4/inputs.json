@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "original_archive_sha256": "fad61f93e3915de81701d9ebe8f3326c8a66fbb23c1a16572ee8aac7609fa14f",
+  "original_files": 742,
+  "retained_in_git": 709,
+  "downloaded_files": 31,
+  "embedded_original_files": [
+    {
+      "path": "CAT-review/evidence/python-linux/distributions.json",
+      "bytes": 5337,
+      "sha256": "75f9d10f45c69f6f90ca60517bd7d91ad22d51fabeb9069ad62d31095db2fc30"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/distributions.json",
+      "bytes": 5047,
+      "sha256": "12a8da83af534ae4f239c2f23ebfda09ad390ec9336484a003ea5bddaf4b2c38"
+    }
+  ],
+  "upstream": [
+    {
+      "path": "CAT-review/evidence/lean-toolchain/lean-linux.tar.gz",
+      "bytes": 10392293,
+      "sha256": "34c6e65d90f6b9161b2b5acdfb24baf8f3d59ec20d5090ba9688bf8a9b0765aa",
+      "url": "https://github.com/leanprover-community/lean/releases/download/v3.51.1/lean-3.51.1-linux.tar.gz"
+    },
+    {
+      "path": "CAT-review/evidence/lean-toolchain/lean-win.zip",
+      "bytes": 8326409,
+      "sha256": "88c7fff586ba3804ccbabcd348e51f87858dd60216c0b07009b9fbb239ceca3b",
+      "url": "https://github.com/leanprover-community/lean/releases/download/v3.51.1/lean-3.51.1-windows.zip"
+    },
+    {
+      "path": "CAT-review/evidence/lean-toolchain/mathlib-cache.tar.xz",
+      "bytes": 93715324,
+      "sha256": "a12ac02e6d7748e5e38eb96d8182ac75f7332f578d8d6cb8a668a2ae578c586e",
+      "url": "https://oleanstorage.azureedge.net/mathlib/65a1391a0106c9204fe45bc73a039f056558cb83.tar.xz"
+    },
+    {
+      "path": "CAT-review/evidence/lean-toolchain/mathlib-src.tar.gz",
+      "bytes": 10964229,
+      "sha256": "bff93aff8e652abae578de63af358e870c9ec2f45812ce12533e49070cf727a6",
+      "url": "https://codeload.github.com/leanprover-community/mathlib3/tar.gz/65a1391a0106c9204fe45bc73a039f056558cb83"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "bytes": 362601,
+      "sha256": "4d00e655fcef08aba35ec9610536bfe90267d7ab5ba944f7032549c55a146da1",
+      "url": "https://files.pythonhosted.org/packages/cc/8f/ec6289987824b29529d0dfda0d74a07cec60e54b9c92f3c9da4c0ac732de/contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/cycler-0.12.1-py3-none-any.whl",
+      "bytes": 8321,
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "url": "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/fonttools-4.61.1-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl",
+      "bytes": 4954103,
+      "sha256": "10d88e55330e092940584774ee5e8a6971b01fc2f4d3466a1d6c158230880796",
+      "url": "https://files.pythonhosted.org/packages/b7/37/82dbef0f6342eb01f54bca073ac1498433d6ce71e50c3c3282b655733b31/fonttools-4.61.1-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/h5py-3.16.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+      "bytes": 5405250,
+      "sha256": "dfc21898ff025f1e8e67e194965a95a8d4754f452f83454538f98f8a3fcb207e",
+      "url": "https://files.pythonhosted.org/packages/9e/e9/1a19e42cd43cc1365e127db6aae85e1c671da1d9a5d746f4d34a50edb577/h5py-3.16.0-cp312-cp312-manylinux_2_28_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/kiwisolver-1.4.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "bytes": 1474756,
+      "sha256": "f6008a4919fdbc0b0097089f67a1eb55d950ed7e90ce2cc3e640abadd2757a04",
+      "url": "https://files.pythonhosted.org/packages/70/90/6d240beb0f24b74371762873e9b7f499f1e02166a2d9c5801f4dbf8fa12e/kiwisolver-1.4.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/matplotlib-3.10.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "bytes": 8716944,
+      "sha256": "3ab4aabc72de4ff77b3ec33a6d78a68227bf1123465887f9905ba79184a1cc04",
+      "url": "https://files.pythonhosted.org/packages/3e/f3/c5195b1ae57ef85339fd7285dfb603b22c8b4e79114bae5f4f0fcf688677/matplotlib-3.10.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "bytes": 16606086,
+      "sha256": "0d8163f43acde9a73c2a33605353a4f1bc4798745a8b1d73183b28e5b435ae28",
+      "url": "https://files.pythonhosted.org/packages/b6/23/2a1b231b8ff672b4c450dac27164a8b2ca7d9b7144f9c02d2396518352eb/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/packaging-26.0-py3-none-any.whl",
+      "bytes": 74366,
+      "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529",
+      "url": "https://files.pythonhosted.org/packages/b7/b9/c538f279a4e237a006a2c98387d081e9eb060d203d8ed34467cc0f0b9b53/packaging-26.0-py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/pillow-12.1.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "bytes": 7041540,
+      "sha256": "7aac39bcf8d4770d089588a2e1dd111cbaa42df5a94be3114222057d68336bd0",
+      "url": "https://files.pythonhosted.org/packages/ff/79/6df7b2ee763d619cda2fb4fea498e5f79d984dae304d45a8999b80d6cf5c/pillow-12.1.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/pyparsing-3.3.2-py3-none-any.whl",
+      "bytes": 122781,
+      "sha256": "850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d",
+      "url": "https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "bytes": 229892,
+      "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+      "url": "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "bytes": 35009148,
+      "sha256": "9eeb9b5f5997f75507814ed9d298ab23f62cf79f5a3ef90031b1ee2506abdb5b",
+      "url": "https://files.pythonhosted.org/packages/d1/fe/66d73b76d378ba8cc2fe605920c0c75092e3a65ae746e1e767d9d020a75a/scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-linux/six-1.17.0-py2.py3-none-any.whl",
+      "bytes": 11050,
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "url": "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/contourpy-1.3.3-cp314-cp314-win_amd64.whl",
+      "bytes": 232424,
+      "sha256": "cf9022ef053f2694e31d630feaacb21ea24224be1c3ad0520b13d844274614fd",
+      "url": "https://files.pythonhosted.org/packages/7d/c2/57f54b03d0f22d4044b8afb9ca0e184f8b1afd57b4f735c2fa70883dc601/contourpy-1.3.3-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/cycler-0.12.1-py3-none-any.whl",
+      "bytes": 8321,
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "url": "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/fonttools-4.61.1-cp314-cp314-win_amd64.whl",
+      "bytes": 2323487,
+      "sha256": "4f5686e1fe5fce75d82d93c47a438a25bf0d1319d2843a926f741140b2b16e0c",
+      "url": "https://files.pythonhosted.org/packages/52/7b/91e7b01e37cc8eb0e1f770d08305b3655e4f002fc160fb82b3390eabacf5/fonttools-4.61.1-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/h5py-3.16.0-cp314-cp314-win_amd64.whl",
+      "bytes": 3183263,
+      "sha256": "fa48993a0b799737ba7fd21e2350fa0a60701e58180fae9f2de834bc39a147ab",
+      "url": "https://files.pythonhosted.org/packages/3e/14/615a450205e1b56d16c6783f5ccd116cde05550faad70ae077c955654a75/h5py-3.16.0-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/kiwisolver-1.4.9-cp314-cp314-win_amd64.whl",
+      "bytes": 75417,
+      "sha256": "0763515d4df10edf6d06a3c19734e2566368980d21ebec439f33f9eb936c07b7",
+      "url": "https://files.pythonhosted.org/packages/28/e0/a9a90416fce5c0be25742729c2ea52105d62eda6c4be4d803c2a7be1fa50/kiwisolver-1.4.9-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/matplotlib-3.10.8-cp314-cp314-win_amd64.whl",
+      "bytes": 8272719,
+      "sha256": "83d282364ea9f3e52363da262ce32a09dfe241e4080dcedda3c0db059d3c1f11",
+      "url": "https://files.pythonhosted.org/packages/93/a5/de89ac80f10b8dc615807ee1133cd99ac74082581196d4d9590bea10690d/matplotlib-3.10.8-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/numpy-2.4.2-cp314-cp314-win_amd64.whl",
+      "bytes": 12443072,
+      "sha256": "068cdb2d0d644cdb45670810894f6a0600797a69c05f1ac478e8d31670b8ee75",
+      "url": "https://files.pythonhosted.org/packages/05/cb/eff72a91b2efdd1bc98b3b8759f6a1654aa87612fc86e3d87d6fe4f948c4/numpy-2.4.2-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/packaging-26.0-py3-none-any.whl",
+      "bytes": 74366,
+      "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529",
+      "url": "https://files.pythonhosted.org/packages/b7/b9/c538f279a4e237a006a2c98387d081e9eb060d203d8ed34467cc0f0b9b53/packaging-26.0-py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/pillow-12.1.1-cp314-cp314-win_amd64.whl",
+      "bytes": 7176748,
+      "sha256": "50480dcd74fa63b8e78235957d302d98d98d82ccbfac4c7e12108ba9ecbdba15",
+      "url": "https://files.pythonhosted.org/packages/40/72/4c245f7d1044b67affc7f134a09ea619d4895333d35322b775b928180044/pillow-12.1.1-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/pyparsing-3.3.2-py3-none-any.whl",
+      "bytes": 122781,
+      "sha256": "850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d",
+      "url": "https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/python-3.14.7-embed-amd64.zip",
+      "bytes": 12673227,
+      "sha256": "d297e5ff019966817ad8502465176139f2d3d840fa4ed84b13bed399a6ab1f15",
+      "url": "https://www.python.org/ftp/python/3.14.7/python-3.14.7-embed-amd64.zip"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "bytes": 229892,
+      "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+      "url": "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/scipy-1.17.1-cp314-cp314-win_amd64.whl",
+      "bytes": 37290984,
+      "sha256": "3877ac408e14da24a6196de0ddcace62092bfc12a83823e92e49e40747e52c19",
+      "url": "https://files.pythonhosted.org/packages/4b/39/f0e8ea762a764a9dc52aa7dabcfad51a354819de1f0d4652b6a1122424d6/scipy-1.17.1-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "path": "CAT-review/evidence/python-win64/six-1.17.0-py2.py3-none-any.whl",
+      "bytes": 11050,
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "url": "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl"
+    }
+  ],
+  "publication_manifest_sha256": "124e0ba0da07a4006fdf1761ed351eae21506468ddeed13865d8ff20ef372817",
+  "zip": {
+    "date_time": [
+      2026,
+      11,
+      25,
+      0,
+      0,
+      0
+    ],
+    "compression": "DEFLATE",
+    "compresslevel": 6,
+    "create_system": 3,
+    "external_attr": 2175008768
+  },
+  "assets": [
+    {
+      "name": "CAT_v4_article_source.tar.gz",
+      "bytes": 48663,
+      "sha256": "252413fa68fe1b52b12756f91ab07022a784148f61a5b1e16d95a09c9558391c"
+    },
+    {
+      "name": "CAT_v4_full_publication_bundle.zip",
+      "bytes": 301080385,
+      "sha256": "1c4f5ce9f33a531d4c07842a5a64dbeb080d7dea0a5a6b5433e873dbc887e7e7"
+    },
+    {
+      "name": "CAT_v4_main.pdf",
+      "bytes": 455720,
+      "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a"
+    },
+    {
+      "name": "CAT_v4_supplement.pdf",
+      "bytes": 378255,
+      "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+    },
+    {
+      "name": "SHA256SUMS",
+      "bytes": 366,
+      "sha256": "055ad20af4cf0d7cf16a1a4602d6b4f1da291ee098b5cfab8bb5278ef75f22c2"
+    }
+  ]
+}
