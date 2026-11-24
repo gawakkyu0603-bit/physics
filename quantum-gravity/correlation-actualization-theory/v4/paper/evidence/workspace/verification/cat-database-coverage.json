@@ -1,0 +1,237 @@
+{
+  "source_sha256": "3e5ab3154458c63b490c78632beaedf9efd6452c3281fe93ed23dcd2ff513005",
+  "original_member": "成果物/04_行列模型の膜と創発幾何/投稿原稿/CAT.tex",
+  "original_sections": 10,
+  "original_references": 49,
+  "equation_homes": {
+    "eq:clock": [
+      "C1",
+      4
+    ],
+    "eq:index": [
+      "C2",
+      6
+    ],
+    "eq:write": [
+      "C3",
+      6
+    ],
+    "eq:route": [
+      "C4",
+      6
+    ],
+    "eq:bound": [
+      "C5",
+      1
+    ],
+    "eq:arc": [
+      "C6",
+      3
+    ],
+    "eq:atemporal": [
+      "C7",
+      4
+    ],
+    "eq:short-wave": [
+      "C8",
+      4
+    ],
+    "eq:tide-sign": [
+      "C9",
+      7
+    ],
+    "eq:recovery": [
+      "C10",
+      2
+    ],
+    "eq:cat-material-effect": [
+      "C11",
+      2
+    ],
+    "eq:chiral-charge": [
+      "C12",
+      2
+    ],
+    "eq:unsigned-port": [
+      "C13",
+      2
+    ]
+  },
+  "volumes": [
+    {
+      "volume": 1,
+      "title": "Observers, shared records and observational bounds",
+      "source_line_ranges": [
+        [
+          19,
+          19
+        ],
+        [
+          22,
+          26
+        ],
+        [
+          67,
+          78
+        ],
+        [
+          199,
+          203
+        ],
+        [
+          243,
+          244
+        ]
+      ],
+      "attributed_nonblank_lines": 18,
+      "citations": {
+        "hawking": "dbcat-hawking",
+        "complement": "dbcat-complement",
+        "datta": "dbcat-datta",
+        "technical": "series04",
+        "microscope": "dbcat-microscope",
+        "speed": "dbcat-speed",
+        "cassini": "measure-cassini",
+        "torsion": "dbcat-torsion",
+        "cats": "dbcat-cats",
+        "eht": "dbcat-eht",
+        "ring": "dbcat-ring",
+        "gwtc": "dbcat-gwtc",
+        "ai": "dbcat-ai"
+      },
+      "source_entry_sha256": "c26cff74b84a50eca307cdd5e0cca7437dbffb7ad914ccd79d16973387785553"
+    },
+    {
+      "volume": 2,
+      "title": "What a gravitational charge can learn from an unknown state",
+      "source_line_ranges": [
+        [
+          140,
+          189
+        ]
+      ],
+      "attributed_nonblank_lines": 39,
+      "citations": {
+        "greg": "dbcat-greg",
+        "klv": "zm-noiseless",
+        "matrixcurr": "dbcat-matrixcurr",
+        "technical": "series04",
+        "coherent": "dbcat-coherent"
+      },
+      "source_entry_sha256": "f46132522116e36a11c928dfb648ab6a446017fbc29cd6e17dc26d06349ea9b6"
+    },
+    {
+      "volume": 3,
+      "title": "Can the M-theory circle carry a layer?",
+      "source_line_ranges": [
+        [
+          79,
+          90
+        ]
+      ],
+      "attributed_nonblank_lines": 9,
+      "citations": {
+        "phase": "dbcat-phase",
+        "witten": "dbcat-witten",
+        "schwarz": "dbcat-schwarz",
+        "time": "dbcat-time",
+        "lqg": "dbcat-lqg",
+        "causet": "dbcat-causet",
+        "cdt": "dbcat-cdt"
+      },
+      "source_entry_sha256": "9c164240c1839b15264b16786314e8fb5d03dc26de2d8c05ef43a3b04ae5042d"
+    },
+    {
+      "volume": 4,
+      "title": "The ordinary matrix action, physical clocks and vacuum waves",
+      "source_line_ranges": [
+        [
+          27,
+          37
+        ],
+        [
+          91,
+          122
+        ]
+      ],
+      "attributed_nonblank_lines": 36,
+      "citations": {
+        "ikkt": "mw-ikkt",
+        "taylor": "mc-taylor",
+        "bfss": "block-bfss",
+        "brink": "cr-brink",
+        "clifford": "cr-clifford",
+        "pageclock": "cr-pageclock",
+        "steinacker": "mw-metric",
+        "technical": "volume 4, appendix S"
+      },
+      "source_entry_sha256": "d2cb3c806740586524fce95e666c9de01ccfe1c53749e214953b4d00f1a87938"
+    },
+    {
+      "volume": 5,
+      "title": "Twenty tests of gravitational recording",
+      "source_line_ranges": [
+        [
+          204,
+          242
+        ]
+      ],
+      "attributed_nonblank_lines": 35,
+      "citations": {
+        "rotor": "dbcat-rotor",
+        "fuchs": "dbcat-fuchs",
+        "whittle": "dbcat-whittle",
+        "sourceatom": "dbcat-sourceatom",
+        "longatom": "dbcat-longatom",
+        "diosi": "dbcat-diosi",
+        "phonon": "dbcat-phonon"
+      },
+      "source_entry_sha256": "58f08386fccff322c28214bc8ff348c5414132ddaf1354598d68e044540086f9"
+    },
+    {
+      "volume": 6,
+      "title": "Material crossings, compensated charge and routing",
+      "source_line_ranges": [
+        [
+          38,
+          66
+        ]
+      ],
+      "attributed_nonblank_lines": 25,
+      "citations": {
+        "rotator": "dbcat-rotator",
+        "technical": "series04",
+        "index": "dbcat-index",
+        "luders": "dbcat-luders"
+      },
+      "source_entry_sha256": "09dc7165c09eb66dc45d7a1c26514ed4f47216ffee899117025eba8b0af81e7b"
+    },
+    {
+      "volume": 7,
+      "title": "Tidal information and the deadline for a gravitational receipt",
+      "source_line_ranges": [
+        [
+          123,
+          139
+        ],
+        [
+          190,
+          198
+        ]
+      ],
+      "attributed_nonblank_lines": 17,
+      "citations": {
+        "penrose": "p20-blau",
+        "synge": "dbcat-synge",
+        "technical": "series04",
+        "jacobi": "dbcat-jacobi",
+        "sussman": "dbcat-sussman",
+        "nist": "dbcat-nist",
+        "dust": "dbcat-dust",
+        "basicfermi": "p21-fermi",
+        "paulisurface": "dbcat-paulisurface"
+      },
+      "source_entry_sha256": "ddbb7702ac68a57c1c370f5d2e0028a66c371b0d84f3baa7c0a3e1d3a58c042a"
+    }
+  ]
+}

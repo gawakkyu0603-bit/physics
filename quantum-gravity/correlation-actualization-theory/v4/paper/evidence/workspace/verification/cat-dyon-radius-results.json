@@ -1,0 +1,196 @@
+{
+  "rotation": [
+    {
+      "N": 11,
+      "p": 1,
+      "x": 0.035276992704181956,
+      "k2_band_in_vector_units": [
+        -1.0399667658962661,
+        -0.677817292470278
+      ],
+      "optimal_k2_over_vector2": 0.0,
+      "uniform_growth_over_vector": 0.0,
+      "maximum_growth_over_vector": 0.0
+    },
+    {
+      "N": 5,
+      "p": 1,
+      "x": 0.15355177902778946,
+      "k2_band_in_vector_units": [
+        -0.7119760860047563,
+        -0.059609681772928025
+      ],
+      "optimal_k2_over_vector2": 0.0,
+      "uniform_growth_over_vector": 0.0,
+      "maximum_growth_over_vector": 0.0
+    },
+    {
+      "N": 5,
+      "p": 2,
+      "x": 0.40200377652776603,
+      "k2_band_in_vector_units": [
+        0.3273200690288352,
+        0.8887101431932932
+      ],
+      "optimal_k2_over_vector2": 0.5835160502430057,
+      "uniform_growth_over_vector": 0.0,
+      "maximum_growth_over_vector": 0.15652174247707096
+    },
+    {
+      "N": 7,
+      "p": 3,
+      "x": 0.4224375262005376,
+      "k2_band_in_vector_units": [
+        0.4337606536216813,
+        0.9457395559826196
+      ],
+      "optimal_k2_over_vector2": 0.6703594863522849,
+      "uniform_growth_over_vector": 0.0,
+      "maximum_growth_over_vector": 0.13925020089703896
+    },
+    {
+      "N": 11,
+      "p": 5,
+      "x": 0.4354428830254438,
+      "k2_band_in_vector_units": [
+        0.5046600092471846,
+        0.978883054956366
+      ],
+      "optimal_k2_over_vector2": 0.7256322528581363,
+      "uniform_growth_over_vector": 0.0,
+      "maximum_growth_over_vector": 0.12704046301725713
+    },
+    {
+      "N": 31,
+      "p": 15,
+      "x": 0.44330429408708777,
+      "k2_band_in_vector_units": [
+        0.5490143668766915,
+        0.9974199858200109
+      ],
+      "optimal_k2_over_vector2": 0.7590432498701231,
+      "uniform_growth_over_vector": 0.0,
+      "maximum_growth_over_vector": 0.11905430054486987
+    }
+  ],
+  "commuting": {
+    "vector_count": 24,
+    "weyl_count": 96,
+    "response": -11.090354888959121,
+    "independent_integral": -11.090354888959126
+  },
+  "torus": {
+    "fractions": [
+      0.2,
+      0.3,
+      0.5
+    ],
+    "canonical_mass2_over_density_mplminus2": [
+      [
+        0.1,
+        12
+      ],
+      [
+        0.15,
+        12
+      ],
+      [
+        0.25,
+        12
+      ],
+      [
+        0.5,
+        2
+      ]
+    ],
+    "hessian_error_tolerance": 2e-06,
+    "fragment_axion_mass2_over_density_mplminus2": 1.0,
+    "missing_one_species_flat_directions": 12
+  },
+  "rr": {
+    "squared_norm": 4,
+    "max_abs_linear_metric_slope": 0.0,
+    "least_deformed_sample": 4.24992954441023,
+    "single_coordinate_D3_mass_over_MPl": 1.7724538509055159,
+    "calibrated_line_mass_lower_bound_over_MPl": 7.0898154036220635,
+    "rectangular_min_ratio_in_samples": 1.0513185492999522
+  },
+  "laboratory": {
+    "earth_Q": 0.0019200302104015292,
+    "titanium_Q": 0.0022514464225426513,
+    "platinum_Q": 0.004185747389881038,
+    "eta": -1.4855665173194417e-05,
+    "normal_95_envelope": 6.8819758453564245e-15,
+    "canonical_em_slope_limit": 3.0438659230509457e-05,
+    "ratio_to_envelope": 2158633727.7278004,
+    "one_stack_min_bare_alpha": 339.0430184773853,
+    "many_stacks_min_charge_weighted_alpha": 169.52150923869263
+  },
+  "nuclear_running": [
+    {
+      "surface_coefficient_factor": 0.9,
+      "matched_roots": [
+        0.7785001423140764,
+        0.2433342898345136
+      ],
+      "max_eta_lower_bound": 0.00034285700213530925,
+      "signals_at_5": [
+        0.002132743770027167,
+        0.006203378266128845
+      ],
+      "signals_at_25": [
+        0.0026002843501331157,
+        0.006856884850098712
+      ]
+    },
+    {
+      "surface_coefficient_factor": 1.0,
+      "matched_roots": [
+        0.678134069059749,
+        0.21830344736726642
+      ],
+      "max_eta_lower_bound": 0.00034615683897404526,
+      "signals_at_5": [
+        0.002504577911892219,
+        0.0069416420415630104
+      ],
+      "signals_at_25": [
+        0.002994857027423956,
+        0.007639659369146855
+      ]
+    },
+    {
+      "surface_coefficient_factor": 1.1,
+      "matched_roots": [
+        0.6006915044852555,
+        0.19794193782897504
+      ],
+      "max_eta_lower_bound": 0.0003489579683898171,
+      "signals_at_5": [
+        0.0028758102507439325,
+        0.007677909838170746
+      ],
+      "signals_at_25": [
+        0.003388733337233169,
+        0.0084201517514412
+      ]
+    }
+  ],
+  "cosmology": [
+    {
+      "fraction": 0.1,
+      "initial_log_radius": 0.1,
+      "today_log_radius": 0.07989674261010929
+    },
+    {
+      "fraction": 0.5,
+      "initial_log_radius": 0.1,
+      "today_log_radius": 0.02942537873587568
+    },
+    {
+      "fraction": 1.0,
+      "initial_log_radius": 0.1,
+      "today_log_radius": 0.005528091126107554
+    }
+  ]
+}

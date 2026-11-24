@@ -1,0 +1,72 @@
+\section{Propagation without a prescribed spacetime}\label{sec:geometry}
+The surface action in Eq.~\eqref{eq:route} uses a specified geometry, and the matrix clock quotient in Eq.~\eqref{eq:bfss} uses a chosen time parameter. Both descriptions make measured times accessible. One can also ask which matrices are correlated when a physical clock has a particular reading. Take two material oscillator modes \(a,b\) in a sector with \(n_a+n_b=N\). A unit of exchange increases \(q=n_b\) by one. The polar part \(V\) of \(b^\dagger a\) shifts \(q\) on this finite chain and annihilates its last state. Conditional on the material occupation and the local contact, put
+\begin{equation}
+ T_z=\sum_{q=0}^{N-1}V|q\rangle\langle q|\otimes K_{z|q},\qquad
+ \Phi(H)=\sum_z T_z H T_z^\dagger,\qquad
+ \Omega=\rho_{\rm source}+\Phi(\Omega).
+ \label{eq:clock}
+\end{equation}
+Here \(K_{z|q}\) includes any physically required routing once. For a source at \(q=0\), the positive solution is
+\(\Omega=\sum_{j=0}^{N}\Phi^j(\rho_{\rm source})\); the shift terminates. The trace counts visited clock slices. The density for a specified reading is normalized on that slice. This formulation needs no input coordinate time, lapse, four-manifold or prescribed graph of spacetime points. It does use an algebra, a contraction of ten internal indices, a prepared monotone clock sector, and a source. A physical clock can turn, split or run out. A sum over all such sectors with a positive physical measure is an open problem. The general idea of conditioning dynamics on correlations with a clock has precedents \cite{pagewootters}.
+
+\subsection{Which metric can a wave measure?}
+To determine the sign of a physical matter wave, displace one unused spacelike matrix by a small Hermitian scalar \(\phi\). Its index occurs in both orders in Eq.~\eqref{eq:ikkt}. With mostly-plus signature and the forward phase \(e^{iS_L}\), the quadratic term is
+\[
+ S_{\phi,L}=\frac{1}{2g_0^2}\Tr[X^a,\phi][X_a,\phi]
+ \ \longrightarrow\
+ -\frac{1}{2g_0^2}\int \dd^4\xi\,H^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi .
+\]
+The sign on the right comes from the two factors of \(i\) in the semiclassical commutators. In the clock quotient the kinetic term is positive: at unit reduced coupling a normalized abelian \(\phi=\cos\tau\) gives \(+\pi/2\) over a period. This fixes the energy sign relative to the other matrices. The wave cone depends only on the principal equation. For embedding symbols \(x^a(\xi)\) and Poisson tensor \(\theta^{\mu\nu}\), its density and the four-dimensional metric are
+\[
+ H^{\mu\nu}=\rho_\theta\,\theta^{\mu\alpha}\theta^{\nu\beta}
+       \partial_\alpha x^a\partial_\beta x_a,\qquad
+ g_{\mu\nu}=\sqrt{|\det H|}\,(H^{-1})_{\mu\nu}\quad(d=4).
+\]
+Here \(\rho_\theta\) is the trace density, with the overall normalization fixed by the probe convention. The coordinates describe the resulting solution. This extraction of an effective metric from matrix propagation is established \cite{steinacker,kim}. In particular, it does not automatically give the Einstein field equations for arbitrary matrix data.
+
+One exact ordinary matrix family lets us test the distinction. On a regular interval choose transverse data \(a(u),b(u),f(u)\), \(s=1+f^2\), and use its material affine clock \(\dd t=s\,\dd u\). The long-wavelength wave sees
+\begin{align}
+ \dd s^2&=-2\,\dd t\,\dd v+\dd{\bf X}^T\dd{\bf X}
+              +{\bf X}^T K(t){\bf X}\,\dd t^2 ,&
+ R_{titj}&=-K_{ij},\nonumber\\[-2pt]
+ \tfrac12\Tr K&=(a^2+b^2)/s^2-f'^2/s . \label{eq:wave}
+\end{align}
+Primes refer to \(u\). Thus \(a^2+b^2=sf'^2\) selects a vacuum Einstein wave while leaving a trace-free tidal tensor. At \(f=f'=0,\ f''=1,\ a=\sqrt{s}f',\ b=0\), the tidal eigenvalues are \(+\sqrt2,-\sqrt2\) in the chosen units. The construction can reproduce both smooth polarizations on a finite interval. It supplies local vacuum geometry for a physical probe. The companion calculations also contain solutions violating the vacuum equation and an example in which the five-pole angular fluctuation grows. The four-dimensional Einstein equations with general matter, universal coupling of all species and stability of the vacuum occupied by observers remain stronger requirements.
+
+\subsection{What happens at a classical singularity?}
+Two interiors can match the same incident tidal tensor and later give different phases or occupation numbers to a material oscillator. A rotating six-matrix family offers a concrete regular alternative. In a dimensionless normalization, its nonzero angular momentum \(L\) and conserved energy \(E>0\) bound the spatial volume \(V\) per unit longitudinal interval by \(V\ge |L|/E^{1/4}\). A member with normalized tangential speed \(h=1/2\) has radial null convergence integrated over one cycle of \(-1.07718\) in the adopted normalization. The sign is the defocusing required by the null Raychaudhuri equation at the turnaround. The angular mode with \(\ell=5\) changes linear stability at \(h=\sqrt5/4\). Keeping one of its modes initially in the ground state gives excitation probabilities of \(1.81\%\) after one cycle and \(14.45\%\) after three at \(h=1/2\). One must check what material exits with this record. Smooth continuation in an effective metric does not imply erasure of its distinctive matter state.
+
+This resolves a logical ambiguity in the falling experiment. In a thin A-history the classical proper time can run to the regime usually called the singularity. The parent admits both defocusing continuation and other futures compatible with specified incoming data. Calling this a change of vacuum would require a transition amplitude between inequivalent vacuum sectors, in addition to different solutions with the same limited initial observations. We have no such amplitude for a generic collapse or for a hot early universe. The B-sector of Eq.~\eqref{eq:route} reaches a different question earlier: at its contact the interior channel does not exist.
+
+\subsection{Where a common spacetime approximation is justified}
+Two observers can compare clock ratios, received light travel times, polarizations and relative orientations on an overlap. A common metric is an approximation whose transport maps must agree there, including on triples of overlapping records. Common scalar readings on a few light paths are insufficient. In a pair of curved vacuum continuations with a common past, two orthogonal optical arms gave identical return times. An arm at \(45^\circ\) gave \(0.33301\) and \(0.30801\) in the same wave units. A single fitted time then needs tolerance at least \(0.01250\). If orientation is maintained from the common past, the two entire futures cannot both be the same isometric extension. If the orientation datum is discarded, the example admits a reflection. The discrepancy depends on what has actually been retained.
+
+There are uncountably many inequivalent smooth structures on the topological \(\mathbb R^4\) \cite{demichelis}. Some small exotic smoothings embed as open subsets of the standard smooth space and can carry restrictions of a curved matrix solution. Overlapping chart data suffice for limited comparisons. This construction neither equips a complete Minkowski spacetime with multiple smoothings at a fixed metric nor associates one observer with one exotic smoothing. Global hyperbolicity cannot hold on an exotic \(\mathbb R^4\) \cite{cher}. Even in one ordinary smooth vacuum there are distinct material observers; changing the vacuum can instead change a tidal invariant measurable by any appropriately prepared probe.
+
+\section{Relation to other quantum-gravity proposals}\label{sec:comparisons}
+The comparison with critical type-II superstrings concerns ten target dimensions. With one massless vector, a real sixteen-component supersymmetry multiplet before going on shell, one time direction and no extra massless scalars, matching the physical polarizations requires \(d-2=8\), hence \(d=10\). A four-dimensional vector with six scalars gives the same boson count. CAT inherits ten matrices for its ordinary layer; the receipt rule alone fixes neither \(d\) nor the signature. Four is the dimension that matter probes can resolve on particular emergent states. Table~\ref{tab:parents} distinguishes the IIB matrix proposal, the IIA strong-coupling route to eleven-dimensional M theory, and four-dimensional approaches such as loop gravity.
+
+\begin{table}[!tb]
+\centering\small
+\caption{What can be matched before an irreversible receipt, and what CAT adds or leaves open.}\label{tab:parents}
+\begin{tabularx}{\linewidth}{@{}L{.22\linewidth}X X@{}}\toprule
+Framework & Ordinary sector used for comparison & Condition for extending the comparison\\\midrule
+IKKT / perturbative IIB & Ten Lorentzian matrices, reduced Yang--Mills action, smooth brane waves. & At occupied crossings CAT discards the relative phase between distinct deposited charges. No perturbative string world-sheet derivation of that operation is known.\\
+BFSS / IIA / M theory & D0 matrix quantum mechanics in the clock sector; the IIA strong-coupling circle has \(R_{11}=g_s\ell_s\) and integer Kaluza--Klein charge \cite{bfss,witten}. & Identifying a layer with this circle requires its momentum, exchange amplitudes and protected forces as well as an integer label.\\
+Four-dimensional loop gravity & Area, flux and intertwiner data at a receiving surface can carry a comparison. The spin-foam vertex has simplicity and gauge constraints \cite{lqg}. & Gauge-invariant receipts must preserve these constraints and commute appropriately across independent regions. Neither the EPRL dynamics nor its continuum limit follows from the routing rule.\\
+Causal sets & The partial order gives a candidate order of receipts. Sequential growth already has nontrivial consistency conditions \cite{causet}. & Reordering incomparable contacts must preserve each retained pair of outcomes and later controls. Classical growth probabilities alone specify no quantum material port.\\
+Causal dynamical triangulations & A transfer construction can test dimensionality and an extended four-dimensional phase \cite{cdt}. & For a reversible equilibrium kernel, \(\pi_iT_{ij}=\pi_jT_{ji}\) with positive weights forbids an isolated one-way transition. A fundamentally oriented receipt therefore needs explicit additional data.\\
+\bottomrule\end{tabularx}
+\end{table}
+
+The proposed M-circle identification has a further limitation. At fixed total integer momentum \(N\), relative momentum along the circle has only \(N+1\) coefficients in the two-positive-block sector including endpoints. A material aperture in the phase angle \(\theta\) is described by \(E_{\Delta,mn}=\int_\Delta e^{i(n-m)\theta}\dd\theta/(2\pi)\). The normalized finite Fourier polynomial has nonzero weight on every open arc. For \(N=1\) the least weight on a half circle is \(1/2-1/\pi\); at \(N=7\) it is about \(1.61\times10^{-5}\). Sharp orthogonal integer sectors at finite rank can implement Eq.~\eqref{eq:route}. A literally empty open angular interval cannot. Matching the usual two-block velocity-dependent \(v^4/r^7\) interaction and the exchange \(p_{11}=n/R_{11}\) would be necessary to interpret a layer label as an observational eleventh dimension. Membrane scattering with longitudinal transfer has been calculated in a specific M-theory regime \cite{momentum}. In one model of flux transfer two blocks with fluxes \((3,4)\) and \((4,3)\) produce equal total counts but opposite spin-weighted counts. That readout tests relative longitudinal transport, not the existence of an eleventh dimension in every CAT state.
+
+\subsection{A landscape and the radius it does not fix}
+Classical matrix solutions can vary continuously in a measurable curvature. Raw counts of matrices, inequivalent classical geometries, quantized fluxes and stable quantum ground states answer different questions. In one square-torus orientifold sector with fixed coupling and tadpole bound, the unrestricted imaginary-self-dual even flux configurations numbered \(48{,}055{,}489\). A specified primitive \((2,1)\) condition left \(20{,}597\), and the finite lattice and duality quotient gave \(115\) orbits. The linearized ten complex shape/coupling variables were fixed in \(49\) of these. In \(41\) their flux saturated the O3 charge. These are counts in a specified string-derived sector; they give no estimate of all CAT vacua. Flux landscape counting has its own well-defined ensembles \cite{denef}. Two observers in one solution and two inequivalent four-dimensional vacua should likewise not be counted by the same rule.
+
+The gravitational comparison can select a shared shape. If \(T_e\) depends only on differences in scale, a uniform change in all log radii leaves its kernel unchanged. This mathematical freedom becomes physical when atomic masses depend on the common radius. We compared the same static twisted six-dimensional background and parity-even bulk function modes in ordinary CAT, IKKT and static BFSS. At equal magnetic frequencies the vector and ghost combination gives weights \((2,4,2)\), and the corresponding spin weights \((4,8,4)\) enter with factor \(1/2\) and opposite sign. The one-loop bulk shifts cancel for periodic spinors in this sector. For a free positive-energy excitation at external rest in the stated Einstein-frame deformation \(s\), \(E^2=X+Y\) with \(X,Y\ge0\) and
+\[
+ \frac{-\partial_s E}{E}=3+\frac{3Y}{4(X+Y)} .
+\]
+Each constituent in this bound has zero external three-momentum. Every such populated free mode pushes in the same direction; positive Born mixing cannot supply the missing restoring force here. A localized bound state or a gravitational receipt that couples the two paths can change the force. This is a distinction between incomplete ordinary stabilization shared with the comparison models and an additional CAT-specific mechanism requiring a matrix element. In an example of a light unscreened scalar coupling through electromagnetism alone, the predicted Ti--Pt differential acceleration parameter exceeds \(3.28\times10^{-6}\). MICROSCOPE measured \((-1.5\pm2.3_{\rm stat}\pm1.5_{\rm syst})\times10^{-15}\) \cite{microscope}. This rules out that light-force branch under its matter assumptions. A compatible stable vacuum, the observed particle spectrum and parameter-free values of the physical constants have not been derived.
+

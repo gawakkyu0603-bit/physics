@@ -1,0 +1,8 @@
+{
+  "name": "physics-research-pages",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static bilingual research pages; GitHub Pages serves docs directly.",
+  "scripts": {"build": "python3 tools/build_site.py", "verify": "python3 tools/verify_site.py"},
+  "dependencies": {"katex": "0.16.22"}
+}

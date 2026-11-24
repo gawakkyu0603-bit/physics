@@ -1,0 +1,935 @@
+{
+  "atom": {
+    "omega": 9186971852161040.0,
+    "gap_eV": 6.046974721263814,
+    "spontaneous_s": 7.130838176428716e-41
+  },
+  "frequencies": [
+    {
+      "Momega": 0.015,
+      "transmission": [
+        1.4385150916470055e-11,
+        7.329639418396399e-18,
+        3.737246457839569e-24,
+        1.5128570661923916e-30,
+        4.733628612383452e-37,
+        1.157323745322239e-43,
+        2.252251758702676e-50
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 6.591429349279309e+17,
+        "radius_m": 4.894901075032069e-05,
+        "upward_s": 3.1113701513250817e-57,
+        "probability_before_annihilation": 3.889212689156352e-67
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            1.8749986624890325,
+            1.2499996656221302,
+            0.3125010031333531,
+            0.3125010031333527,
+            1.2499996656221295
+          ],
+          "minimum": 0.3125010031333527,
+          "all_guess": 0.8924238419320208,
+          "correct_given_half_marked": 0.9742643621759539,
+          "quarter_mark_dark": 0.4843757523500145,
+          "compatible_echo": 0.4921862460845166
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            2.249998394986839,
+            1.4999995987462493,
+            0.37500080250658024,
+            8.025075005862597e-07,
+            0.37500080250657974,
+            1.4999995987462487
+          ],
+          "minimum": 8.025075005862597e-07,
+          "all_guess": 0.743943881312015,
+          "correct_given_half_marked": 0.8122672446818999,
+          "quarter_mark_dark": 0.25000060188062545,
+          "compatible_echo": 0.9999983949857503
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            2.999997859982452,
+            1.999999464994999,
+            0.5000010700083646,
+            5.350050003910565e-07,
+            8.183666614092878e-13,
+            5.350050003910571e-07,
+            0.5000010700083639,
+            1.9999994649949981
+          ],
+          "minimum": 8.183666614092878e-13,
+          "all_guess": 0.5580380955042058,
+          "correct_given_half_marked": 0.6093189258931317,
+          "quarter_mark_dark": 0.2500000000006138,
+          "compatible_echo": 0.9999999999983633
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.2500000000018403,
+        "calibrated": 0.25,
+        "tail_fraction": 4.676379269701298e-13,
+        "variance": 20.7708461734561
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.5859388551429159,
+          "witness_norm_squared": 1.513669923268458,
+          "allowed_error_coefficient": 7.5683496163422905
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 4.815017525602223e-06,
+          "witness_norm_squared": 5.999931520108719,
+          "allowed_error_coefficient": 35.99958912065232
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 6.546913262365455e-12,
+          "witness_norm_squared": 7.999951051615772,
+          "allowed_error_coefficient": 63.99960841292618
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 2.4945297868457987e-05,
+        "quadrupole_cancelled_bound": 2.494593940755623e-05,
+        "witness_norm_squared": 93.24981187360304
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 8.025075005862597e-07,
+          "dark_probability": 1.3375125009770996e-07,
+          "dark_sector": 3,
+          "all_guess": 0.743943881312015
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.37500130407312365,
+          "dark_probability": 0.06250021734552061,
+          "dark_sector": 3,
+          "all_guess": 0.9452354419156168
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.6445323879284863,
+          "dark_probability": 0.10742206465474771,
+          "dark_sector": 3,
+          "all_guess": 0.983733630648649
+        }
+      ]
+    },
+    {
+      "Momega": 0.08,
+      "transmission": [
+        6.258019228316153e-07,
+        8.894038961946533e-12,
+        1.2766622858980974e-16,
+        1.460574299277495e-21,
+        1.2941123061469344e-26,
+        8.969773652925608e-32,
+        4.952359347377721e-37
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 3.515428986282298e+18,
+        "radius_m": 0.00026106139066837703,
+        "upward_s": 3.36884819104899e-55,
+        "probability_before_annihilation": 4.211060238811237e-65
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            1.8749626932448917,
+            1.2499906732108186,
+            0.3125279801667351,
+            0.3125279801667347,
+            1.249990673210818
+          ],
+          "minimum": 0.3125279801667347,
+          "all_guess": 0.892434074609605,
+          "correct_given_half_marked": 0.9742722535074507,
+          "quarter_mark_dark": 0.48439598512505105,
+          "compatible_echo": 0.4921525257310494
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            2.249955231893863,
+            1.4999888076120047,
+            0.37502238405306854,
+            2.238477598929829e-05,
+            0.37502238405306804,
+            1.499988807612004
+          ],
+          "minimum": 2.238477598929829e-05,
+          "all_guess": 0.7450504682977448,
+          "correct_given_half_marked": 0.8138966620307965,
+          "quarter_mark_dark": 0.250016788581992,
+          "compatible_echo": 0.9999552310326127
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            2.999940309191817,
+            1.9999850768160015,
+            0.5000298450827833,
+            1.4923183997679207e-05,
+            6.426158875541087e-10,
+            1.4923183997679226e-05,
+            0.5000298450827826,
+            1.9999850768160006
+          ],
+          "minimum": 6.426158875541087e-10,
+          "all_guess": 0.5592155663141887,
+          "correct_given_half_marked": 0.6110547492189343,
+          "quarter_mark_dark": 0.2500000004819619,
+          "compatible_echo": 0.9999999987147683
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.25000000144584195,
+        "calibrated": 0.2500000000000003,
+        "tail_fraction": 3.6720541113019744e-10,
+        "variance": 20.771191491917925
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.5859752976193661,
+          "witness_norm_squared": 1.5136174379405631,
+          "allowed_error_coefficient": 7.5680871897028155
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 0.0001342872809023285,
+          "witness_norm_squared": 5.998090414873094,
+          "allowed_error_coefficient": 35.98854248923856
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 5.140484368053878e-09,
+          "witness_norm_squared": 7.998622182263104,
+          "allowed_error_coefficient": 63.988977458104834
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 0.0006953606482234152,
+        "quadrupole_cancelled_bound": 0.0006958594867161733,
+        "witness_norm_squared": 93.11489389586413
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 2.238477598929829e-05,
+          "dark_probability": 3.7307959982163818e-06,
+          "dark_sector": 3,
+          "all_guess": 0.7450504682977448
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.3750363740369993,
+          "dark_probability": 0.06250606233949989,
+          "dark_sector": 3,
+          "all_guess": 0.9452424063263408
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.6445629892956164,
+          "dark_probability": 0.10742716488260273,
+          "dark_sector": 3,
+          "all_guess": 0.9837365172455516
+        }
+      ]
+    },
+    {
+      "Momega": 0.16,
+      "transmission": [
+        0.0001200247880333648,
+        6.577209010377042e-09,
+        3.6952300270511036e-13,
+        1.6674017973604908e-17,
+        5.850493402547714e-22,
+        1.6097549511938888e-26,
+        3.5337925111462524e-31
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 7.030857972564596e+18,
+        "radius_m": 0.0005221227813367541,
+        "upward_s": 1.9076661307384933e-54,
+        "probability_before_annihilation": 2.384582663423117e-64
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            1.8748561582415135,
+            1.2499640380453112,
+            0.3126078828339312,
+            0.3126078828339308,
+            1.2499640380453105
+          ],
+          "minimum": 0.3126078828339308,
+          "all_guess": 0.8924643778840162,
+          "correct_given_half_marked": 0.9742956184207673,
+          "quarter_mark_dark": 0.48445591212544814,
+          "compatible_echo": 0.4920526604240335
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            2.2498273898893864,
+            1.4999568420177825,
+            0.3750863050553062,
+            8.63159644336143e-05,
+            0.3750863050553057,
+            1.4999568420177818
+          ],
+          "minimum": 8.63159644336143e-05,
+          "all_guess": 0.7463731453391151,
+          "correct_given_half_marked": 0.8158341432384941,
+          "quarter_mark_dark": 0.2500647369733252,
+          "compatible_echo": 0.9998273767633193
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            2.9997698531858488,
+            1.9999424560234234,
+            0.5001150685580009,
+            5.7543976575596e-05,
+            9.698148344118146e-09,
+            5.7543976575596073e-05,
+            0.5001150685580003,
+            1.9999424560234225
+          ],
+          "minimum": 9.698148344118146e-09,
+          "all_guess": 0.5606297664605422,
+          "correct_given_half_marked": 0.6131324117391563,
+          "quarter_mark_dark": 0.25000000727361127,
+          "compatible_echo": 0.9999999806037033
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.25000002181825326,
+        "calibrated": 0.24999999999999983,
+        "tail_fraction": 5.541580777212936e-09,
+        "variance": 20.772214421491654
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.5860832236773386,
+          "witness_norm_squared": 1.5134620070074718,
+          "allowed_error_coefficient": 7.567310035037359
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 0.0005175781474722078,
+          "witness_norm_squared": 5.992643024094217,
+          "allowed_error_coefficient": 35.9558581445653
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 7.75590399857744e-08,
+          "witness_norm_squared": 7.994609247418733,
+          "allowed_error_coefficient": 63.956873979349865
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 0.00267617565925439,
+        "quadrupole_cancelled_bound": 0.0026835791911186567,
+        "witness_norm_squared": 92.71686849312141
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 8.63159644336143e-05,
+          "dark_probability": 1.438599407226905e-05,
+          "dark_sector": 3,
+          "all_guess": 0.7463731453391151
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.3751402450835726,
+          "dark_probability": 0.06252337418059543,
+          "dark_sector": 3,
+          "all_guess": 0.945263030001798
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.6446536191461165,
+          "dark_probability": 0.1074422698576861,
+          "dark_sector": 3,
+          "all_guess": 0.9837450646261048
+        }
+      ]
+    },
+    {
+      "Momega": 0.28,
+      "transmission": [
+        0.02581948585812458,
+        4.17995564925523e-06,
+        6.89880594146587e-10,
+        9.269912507489001e-14,
+        9.758944418141584e-18,
+        8.094187623394737e-22,
+        5.373055334099588e-26
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 1.2304001451988044e+19,
+        "radius_m": 0.0009137148673393197,
+        "upward_s": 6.454916028581777e-54,
+        "probability_before_annihilation": 8.068645035727222e-64
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            1.874575078495234,
+            1.2498937564790835,
+            0.3128187042732988,
+            0.3128187042732984,
+            1.2498937564790829
+          ],
+          "minimum": 0.3128187042732984,
+          "all_guess": 0.8925442989659828,
+          "correct_given_half_marked": 0.974357207089622,
+          "quarter_mark_dark": 0.4846140282049738,
+          "compatible_echo": 0.4917892415452736
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            2.2494900941831752,
+            1.4998724762164573,
+            0.375254952908412,
+            0.00025504756708395716,
+            0.3752549529084115,
+            1.4998724762164566
+          ],
+          "minimum": 0.00025504756708395716,
+          "all_guess": 0.7483250507853481,
+          "correct_given_half_marked": 0.8186735239796525,
+          "quarter_mark_dark": 0.25019128567531296,
+          "compatible_echo": 0.9994899807566371
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            2.999320125577565,
+            1.9998299682812053,
+            0.5003398951258898,
+            0.00017003171879384065,
+            8.417065447092965e-08,
+            0.00017003171879384087,
+            0.5003398951258892,
+            1.9998299682812044
+          ],
+          "minimum": 8.417065447092965e-08,
+          "all_guess": 0.5627297023662338,
+          "correct_given_half_marked": 0.6162036104710553,
+          "quarter_mark_dark": 0.25000006312799083,
+          "compatible_echo": 0.9999998316586991
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.2500001893173434,
+        "calibrated": 0.2500000000000003,
+        "tail_fraction": 4.809187717094937e-08,
+        "variance": 20.77491437838265
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.5863678974558114,
+          "witness_norm_squared": 1.51305207936989,
+          "allowed_error_coefficient": 7.5652603968494505
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 0.001527516317832943,
+          "witness_norm_squared": 5.978311331467342,
+          "allowed_error_coefficient": 35.86986798880405
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 6.726989228007164e-07,
+          "witness_norm_squared": 7.9841793171439255,
+          "allowed_error_coefficient": 63.873434537151404
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 0.007867736940335362,
+        "quadrupole_cancelled_bound": 0.007932064515286918,
+        "witness_norm_squared": 91.67796086140923
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 0.00025504756708395716,
+          "dark_probability": 4.250792784732619e-05,
+          "dark_sector": 3,
+          "all_guess": 0.7483250507853481
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.37541429261271997,
+          "dark_probability": 0.06256904876878666,
+          "dark_sector": 3,
+          "all_guess": 0.9453174159559736
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.6448926888423283,
+          "dark_probability": 0.10748211480705472,
+          "dark_sector": 3,
+          "all_guess": 0.9837675997050631
+        }
+      ]
+    },
+    {
+      "Momega": 0.4,
+      "transmission": [
+        0.6898213383113384,
+        0.0006735045126667093,
+        2.1665097546185137e-07,
+        5.750432973195985e-11,
+        1.2056758076727416e-14,
+        2.0020631081186532e-18,
+        2.670326003390768e-22
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 1.757714493141149e+19,
+        "radius_m": 0.0013053069533418855,
+        "upward_s": 4.141964708456882e-54,
+        "probability_before_annihilation": 5.177455885571103e-64
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            1.8724399732160566,
+            1.2493598390097325,
+            0.31442017438223824,
+            0.31442017438223785,
+            1.2493598390097318
+          ],
+          "minimum": 0.31442017438223785,
+          "all_guess": 0.8931498397636575,
+          "correct_given_half_marked": 0.9748222601694551,
+          "quarter_mark_dark": 0.4858151307866784,
+          "compatible_echo": 0.48979170650579246
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            2.246927967601699,
+            1.4992314362479344,
+            0.37653601619914995,
+            0.0015371275041299076,
+            0.37653601619914945,
+            1.4992314362479338
+          ],
+          "minimum": 0.0015371275041299076,
+          "all_guess": 0.7552463387504408,
+          "correct_given_half_marked": 0.8285580197027251,
+          "quarter_mark_dark": 0.2511528456280974,
+          "compatible_echo": 0.9969285015461982
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            2.995903956802178,
+            1.9989752481588228,
+            0.5020475273422053,
+            0.0010247518411761094,
+            9.885134105517205e-07,
+            0.0010247518411761107,
+            0.5020475273422046,
+            1.9989752481588219
+          ],
+          "minimum": 9.885134105517205e-07,
+          "all_guess": 0.5701560711074366,
+          "correct_given_half_marked": 0.6269339237978322,
+          "quarter_mark_dark": 0.2500007413850579,
+          "compatible_echo": 0.9999980229742781
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.2500022226099586,
+        "calibrated": 0.24999999999999983,
+        "tail_fraction": 5.647340310991533e-07,
+        "variance": 20.795430707309407
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.5885262802735056,
+          "witness_norm_squared": 1.509946365849743,
+          "allowed_error_coefficient": 7.5497318292487146
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 0.00912332780648617,
+          "witness_norm_squared": 5.871527682782277,
+          "allowed_error_coefficient": 35.22916609669366
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 7.892838346743656e-06,
+          "witness_norm_squared": 7.969151927369891,
+          "allowed_error_coefficient": 63.75321541895913
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 0.04558316289520596,
+        "quadrupole_cancelled_bound": 0.04782762324495739,
+        "witness_norm_squared": 84.31843743537195
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 0.0015371275041299076,
+          "dark_probability": 0.0002561879173549846,
+          "dark_sector": 3,
+          "all_guess": 0.7552463387504408
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.37749435983648416,
+          "dark_probability": 0.06291572663941403,
+          "dark_sector": 3,
+          "all_guess": 0.945728997412586
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.6467053838502013,
+          "dark_probability": 0.1077842306417002,
+          "dark_sector": 3,
+          "all_guess": 0.9839379125297025
+        }
+      ]
+    },
+    {
+      "Momega": 0.55,
+      "transmission": [
+        0.9968462218672182,
+        0.1448510814282737,
+        9.684912477052924e-05,
+        4.6511603675852594e-08,
+        1.782728222555073e-11,
+        5.448532795446713e-15,
+        1.3439442166410749e-18
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 2.41685742806908e+19,
+        "radius_m": 0.001794797060845092,
+        "upward_s": 8.772316115509537e-56,
+        "probability_before_annihilation": 1.0965395144386922e-65
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            1.5579296760194472,
+            1.170692724468241,
+            0.5503424375220344,
+            0.550342437522034,
+            1.1706927244682406
+          ],
+          "minimum": 0.550342437522034,
+          "all_guess": 0.9587711450191997,
+          "correct_given_half_marked": 1.0000000000000002,
+          "quarter_mark_dark": 0.6627568281415255,
+          "compatible_echo": 0.26276728320116466
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            1.8695154912731837,
+            1.4047358826078282,
+            0.5652422543634076,
+            0.19052823478434217,
+            0.5652422543634075,
+            1.4047358826078278
+          ],
+          "minimum": 0.19052823478434217,
+          "all_guess": 0.8955091290643769,
+          "correct_given_half_marked": 0.9727688709428449,
+          "quarter_mark_dark": 0.3928961760882566,
+          "compatible_echo": 0.6612947067230259
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            2.49268732162285,
+            1.8729810968063048,
+            0.7535290768830443,
+            0.12701890319369422,
+            0.0002545246110605223,
+            0.12701890319369435,
+            0.753529076883044,
+            1.8729810968063039
+          ],
+          "minimum": 0.0002545246110605223,
+          "all_guess": 0.7184324910413112,
+          "correct_given_half_marked": 0.7989732000930019,
+          "quarter_mark_dark": 0.25019089345829537,
+          "compatible_echo": 0.9994910236585036
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.2505719608418679,
+        "calibrated": 0.24999999999999972,
+        "tail_fraction": 0.00014538175335179434,
+        "variance": 23.820142704006404
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.835510016445214,
+          "witness_norm_squared": 1.183191672255781,
+          "allowed_error_coefficient": 5.915958361278904
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 0.5583719760550889,
+          "witness_norm_squared": 1.8242674335082238,
+          "allowed_error_coefficient": 10.945604601049343
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 0.002025951423851416,
+          "witness_norm_squared": 7.919761652685695,
+          "allowed_error_coefficient": 63.35809322148556
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 0.9173117336288685,
+        "quadrupole_cancelled_bound": 5.934431191013275,
+        "witness_norm_squared": 1.8732384259064978
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 0.19052823478434217,
+          "dark_probability": 0.03175470579739036,
+          "dark_sector": 3,
+          "all_guess": 0.8955091290643769
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.6480758801983673,
+          "dark_probability": 0.10801264669972788,
+          "dark_sector": 3,
+          "all_guess": 0.9840678777803621
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.8520985751940292,
+          "dark_probability": 0.14201642919900487,
+          "dark_sector": 3,
+          "all_guess": 0.9972531279762902
+        }
+      ]
+    },
+    {
+      "Momega": 0.7,
+      "transmission": [
+        0.9999686421527523,
+        0.9632056267363115,
+        0.02229721078236755,
+        1.6947391603338416e-05,
+        1.0154642766940588e-08,
+        4.884646867746573e-12,
+        1.9054903438432523e-15
+      ],
+      "rates": {
+        "radius_over_M": 100000.0,
+        "mass_kg": 3.0760003629970104e+19,
+        "radius_m": 0.002284287168348299,
+        "upward_s": 2.4855753375785405e-57,
+        "probability_before_annihilation": 3.1069691719731755e-67
+      },
+      "rings": [
+        {
+          "sites": 5,
+          "occupations": [
+            0.7980898486840224,
+            0.9761844188381686,
+            1.124770656819819,
+            1.1247706568198195,
+            0.9761844188381686
+          ],
+          "minimum": 0.7980898486840224,
+          "all_guess": 0.996205111477882,
+          "correct_given_half_marked": 1.0000000000000002,
+          "quarter_mark_dark": 0.8485673865130168,
+          "compatible_echo": 0.16815719051893813
+        },
+        {
+          "sites": 6,
+          "occupations": [
+            0.9576858628407191,
+            1.1603880670458593,
+            1.0211570685796403,
+            0.6792238659082799,
+            1.0211570685796407,
+            1.1603880670458593
+          ],
+          "minimum": 0.6792238659082799,
+          "all_guess": 0.9927588835325687,
+          "correct_given_half_marked": 0.9999999999999998,
+          "quarter_mark_dark": 0.75941789943121,
+          "compatible_echo": 0.17978817153939403
+        },
+        {
+          "sites": 8,
+          "occupations": [
+            1.2769144624014606,
+            1.5471694416479886,
+            1.3468171509932731,
+            0.4528305583520101,
+            0.029451235611991186,
+            0.4528305583520105,
+            1.3468171509932738,
+            1.5471694416479886
+          ],
+          "minimum": 0.029451235611991186,
+          "all_guess": 0.8686771466930712,
+          "correct_given_half_marked": 0.9221198267249445,
+          "quarter_mark_dark": 0.2720884267089934,
+          "compatible_echo": 0.9420733259649748
+        }
+      ],
+      "estimator": {
+        "input_fraction": 0.25,
+        "uncorrected": 0.31613359465727936,
+        "calibrated": 0.25000000000000067,
+        "tail_fraction": 0.016818138475047824,
+        "variance": 31.73324192750944
+      },
+      "designated_sites": [
+        {
+          "sites": 5,
+          "maximum_local_mark": 0.9842664561899581,
+          "witness_norm_squared": 1.017152931803178,
+          "allowed_error_coefficient": 5.08576465901589
+        },
+        {
+          "sites": 6,
+          "maximum_local_mark": 0.9679642136029972,
+          "witness_norm_squared": 1.040208706781108,
+          "allowed_error_coefficient": 6.241252240686649
+        },
+        {
+          "sites": 8,
+          "maximum_local_mark": 0.19078553801186346,
+          "witness_norm_squared": 5.301570124013442,
+          "allowed_error_coefficient": 42.41256099210754
+        }
+      ],
+      "opposite_hemisphere": {
+        "maximum_local_mark": 0.9266311058671907,
+        "quadrupole_cancelled_bound": 22.487554317688325,
+        "witness_norm_squared": 1.1606913916364505
+      },
+      "six_station_blocks": [
+        {
+          "atoms": 1,
+          "minimum": 0.6792238659082799,
+          "dark_probability": 0.11320397765137998,
+          "dark_sector": 3,
+          "all_guess": 0.9927588835325687
+        },
+        {
+          "atoms": 2,
+          "minimum": 0.9869140231992041,
+          "dark_probability": 0.16448567053320068,
+          "dark_sector": 2,
+          "all_guess": 0.9999545893199883
+        },
+        {
+          "atoms": 3,
+          "minimum": 0.9978293723201984,
+          "dark_probability": 0.16630489538669974,
+          "dark_sector": 3,
+          "all_guess": 0.9999996632156175
+        }
+      ]
+    }
+  ],
+  "low_frequency_check": [
+    {
+      "Momega": 0.0005,
+      "octupole_ratio": 0.999997166993468,
+      "six_site_ratio": 0.9999971679004951
+    },
+    {
+      "Momega": 0.002,
+      "octupole_ratio": 0.9999635511440114,
+      "six_site_ratio": 0.9999635656559653
+    },
+    {
+      "Momega": 0.006,
+      "octupole_ratio": 0.9997352504677514,
+      "six_site_ratio": 0.99973538104551
+    }
+  ],
+  "triangle": {
+    "colatitude": 0.72,
+    "solid_angle": 0.787755552585801,
+    "closure": -1.5755111051716049,
+    "pair_overlap": 0.4539518108831343,
+    "individual_fraction": 0.21301994326469845
+  },
+  "graviton_luminosity": {
+    "total": 3.83673996055763e-06,
+    "ell2_fraction": 0.9906148167431178,
+    "partials": [
+      3.8007314529187936e-06,
+      3.565233474172308e-08,
+      3.526501010558622e-10,
+      3.4884801637372366e-12,
+      3.4034044300810465e-14,
+      2.8129696406624493e-16,
+      5.513118396075949e-19
+    ],
+    "coarser": 3.836741103642804e-06
+  },
+  "geometry": {
+    "Momega": 0.4799999999999654,
+    "added_mark": 0.23000000000002044,
+    "R_m": 0.00156636834401091,
+    "M_kg": 2.109257391769224e+19,
+    "compactness": 9.999999999995132e-06,
+    "ratio": 0.810842022561892,
+    "ratio_slope": 0.38683604832778773,
+    "search_bracket": [
+      0.45,
+      0.51
+    ]
+  }
+}

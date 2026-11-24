@@ -1,0 +1,322 @@
+{
+  "projector_ranks": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "self_bound_profiles": [
+    {
+      "nu": 0.67,
+      "gravity": 0.0,
+      "central_angle": 1.5061994183381247,
+      "half_amplitude_radius": 4.249963776220879,
+      "q": 499.68126595342426,
+      "e": 407.07439677403954,
+      "energy_over_free_mass": 0.8146681184801179,
+      "maximum_compactness": 0.0,
+      "central_lapse": 1.0,
+      "boundary": 40.82577556375154,
+      "yukawa_amplitude": 103.86621026534232
+    },
+    {
+      "nu": 0.55,
+      "gravity": 0.0,
+      "central_angle": 1.5615616315797047,
+      "half_amplitude_radius": 6.481796883794789,
+      "q": 1333.410765245137,
+      "e": 905.916804429788,
+      "energy_over_free_mass": 0.6793981479992344,
+      "maximum_compactness": 0.0,
+      "central_lapse": 1.0,
+      "boundary": 38.940524612753364,
+      "yukawa_amplitude": 1478.4680797288677,
+      "hessians": [
+        {
+          "step": 0.1198169988084719,
+          "fixed_frequency_min": -0.04725179119750916,
+          "fixed_charge_min": 0.23259147213378056,
+          "translation": -0.000523497651494236,
+          "quadrupole_static": 0.09191468304295891
+        },
+        {
+          "step": 0.07996000947177283,
+          "fixed_frequency_min": -0.046961369071881184,
+          "fixed_charge_min": 0.23288458191372757,
+          "translation": -0.00023287336537795522,
+          "quadrupole_static": 0.09220478841016358
+        }
+      ],
+      "finite_wall_clock": [
+        {
+          "step": 0.1198169988084719,
+          "frequency_over_m": 0.16506132765757922,
+          "frequency_times_radius": 1.0698939992459275,
+          "tt_overlap_over_pi_tension_R": -3.825572677007512
+        },
+        {
+          "step": 0.07996000947177283,
+          "frequency_over_m": 0.1653174067240256,
+          "frequency_times_radius": 1.0715538517408247,
+          "tt_overlap_over_pi_tension_R": -3.8227851518277545
+        }
+      ]
+    },
+    {
+      "nu": 0.45,
+      "gravity": 0.0,
+      "central_angle": 1.5703265196951355,
+      "half_amplitude_radius": 9.791723932539318,
+      "q": 3632.9033996651115,
+      "e": 2032.9724701236705,
+      "energy_over_free_mass": 0.5595999250382143,
+      "maximum_compactness": 0.0,
+      "central_lapse": 1.0,
+      "boundary": 40.11073880149267,
+      "yukawa_amplitude": 61870.49082158048
+    },
+    {
+      "nu": 0.36,
+      "gravity": 0.0,
+      "central_angle": 1.5707937128360947,
+      "half_amplitude_radius": 15.378404804879676,
+      "q": 11084.436487425579,
+      "e": 4977.580883381847,
+      "energy_over_free_mass": 0.4490603459209245,
+      "maximum_compactness": 0.0,
+      "central_lapse": 1.0,
+      "boundary": 44.37248500823046,
+      "yukawa_amplitude": 26247374.826407846,
+      "hessians": [
+        {
+          "step": 0.11992563515737963,
+          "fixed_frequency_min": -0.008981594494111383,
+          "fixed_charge_min": 0.04158195877642319,
+          "translation": -0.0005538640714290381,
+          "quadrupole_static": 0.016296325163748404
+        },
+        {
+          "step": 0.07995042343825308,
+          "fixed_frequency_min": -0.008673601108889305,
+          "fixed_charge_min": 0.04189003274259896,
+          "translation": -0.0002458652420790721,
+          "quadrupole_static": 0.01660432974845323
+        }
+      ],
+      "finite_wall_clock": [
+        {
+          "step": 0.11992563515737963,
+          "frequency_over_m": 0.07112777892024147,
+          "frequency_times_radius": 1.0938317771074606,
+          "tt_overlap_over_pi_tension_R": -3.7602797582211034
+        },
+        {
+          "step": 0.07995042343825308,
+          "frequency_over_m": 0.07176982581192512,
+          "frequency_times_radius": 1.1037054341114867,
+          "tt_overlap_over_pi_tension_R": -3.7491900516924836
+        }
+      ]
+    },
+    {
+      "nu": 0.3,
+      "gravity": 0.0,
+      "central_angle": 1.570796322746227,
+      "half_amplitude_radius": 22.18507867679038,
+      "q": 27580.767706014427,
+      "e": 10332.414151561585,
+      "energy_over_free_mass": 0.3746238778302185,
+      "maximum_compactness": 0.0,
+      "central_lapse": 1.0,
+      "boundary": 50.525912813714015,
+      "yukawa_amplitude": 34491377786.64802
+    }
+  ],
+  "einstein_profile": {
+    "nu": 0.36,
+    "gravity": 5e-05,
+    "central_angle": 1.5707936665426334,
+    "half_amplitude_radius": 15.35780054333709,
+    "q": 11051.36272241319,
+    "e": 4963.690527787718,
+    "energy_over_free_mass": 0.44914737236168095,
+    "maximum_compactness": 0.0011263135699187687,
+    "central_lapse": 0.9988507818856481,
+    "boundary": 44.37248500823046,
+    "scalar_sensitivity": {
+      "fixed_charge_ADM": 0.9992021161863918,
+      "integrated_trace": 0.9992021162634417
+    },
+    "adm_hessians": [
+      {
+        "radial_basis_order": 12,
+        "constrained_min": 0.2603284321977703
+      },
+      {
+        "radial_basis_order": 24,
+        "constrained_min": 0.07533360940466546
+      },
+      {
+        "radial_basis_order": 48,
+        "constrained_min": 0.03987331420378847
+      }
+    ]
+  },
+  "geometric_clock": {
+    "breathing": 2.263115441123412,
+    "quadrupole": 1.117951894951256,
+    "octupole": 1.9729307373647051,
+    "tt_overlap_over_pi_tension_R": -3.7211521798341787
+  },
+  "exchange": {
+    "dq_dnu": -153941.78657186785,
+    "clock_sensitivity": 2.0148888560907654,
+    "measurements": [
+      {
+        "surface_gap_times_m": 20.0,
+        "centre_distance_times_m": 50.75680960975935,
+        "coupling_times_g2_over_m": 9.278426004568184e-07,
+        "growth_rate_over_m": 3.4719534270971213e-06,
+        "growth_exponent_in_1000_cycles": 0.3039568023686595,
+        "exchange_redshift_deviation": 0.09379635439643115
+      },
+      {
+        "surface_gap_times_m": 30.0,
+        "centre_distance_times_m": 60.75680960975935,
+        "coupling_times_g2_over_m": 6.880395771175782e-11,
+        "growth_rate_over_m": 2.98980901272968e-08,
+        "growth_exponent_in_1000_cycles": 0.002617468253202151,
+        "exchange_redshift_deviation": 6.902146816330591e-06
+      },
+      {
+        "surface_gap_times_m": 40.0,
+        "centre_distance_times_m": 70.75680960975936,
+        "coupling_times_g2_over_m": 5.244208061226473e-15,
+        "growth_rate_over_m": 2.6102174786587855e-10,
+        "growth_exponent_in_1000_cycles": 2.2851497721939793e-05,
+        "exchange_redshift_deviation": 5.260783610980596e-10
+      }
+    ]
+  },
+  "dilute_einstein": [
+    {
+      "epsilon": 0.075,
+      "nu": 0.9971835337589565,
+      "zeta": 1.0,
+      "q": 6.544452209668102,
+      "e": 6.538358850567465,
+      "energy_over_free_mass": 0.999068927557965,
+      "central_angle": 0.005799803545170239,
+      "half_charge_radius": 29.56148136794757,
+      "maximum_compactness": 0.0048483925261118,
+      "central_lapse": 0.9945371983676138
+    },
+    {
+      "epsilon": 0.045,
+      "nu": 0.9989869869022319,
+      "zeta": 1.0,
+      "q": 3.9508359408244376,
+      "e": 3.949505801369501,
+      "energy_over_free_mass": 0.9996633270844805,
+      "central_angle": 0.0020754786567679204,
+      "half_charge_radius": 49.58744289796678,
+      "maximum_compactness": 0.0017464316587550988,
+      "central_lapse": 0.9980359909797352
+    }
+  ],
+  "minimal_scalar": [
+    {
+      "nu": 0.5168989823812199,
+      "q": 246.74011002592303,
+      "e": 180.0730396121231,
+      "scalar_tail": 7.164878593050067,
+      "energy_over_free_mass": 0.729808540626833
+    },
+    {
+      "nu": 0.6097995432025755,
+      "q": 171.34729862906465,
+      "e": 137.87415310392413,
+      "scalar_tail": 5.485838247832004,
+      "energy_over_free_mass": 0.8046473694481538
+    }
+  ],
+  "scale_force": {
+    "two_sided_95_negative_extent": 2.408e-05,
+    "universal_force_ratio_limit": 1.2040144963345359e-05,
+    "minimum_v_over_reduced_Planck_minimal": 288.193473911738,
+    "families": [
+      {
+        "zeta": 1.0,
+        "bare_to_induced_interval": [
+          -0.006488562687839741,
+          0.006494582760321413
+        ],
+        "absolute_mass_slope_mismatch_at_zero_bare": 0.006491572026228219
+      },
+      {
+        "zeta": 10000.0,
+        "bare_to_induced_interval": [
+          -0.006010077643356526,
+          0.006010078245363774
+        ],
+        "absolute_mass_slope_mismatch_at_zero_bare": 0.006010077944360143
+      }
+    ]
+  },
+  "round_compact_one_loop": [
+    {
+      "matrix_rank": 2,
+      "shape_coefficient_log_kernel": 0.5,
+      "shape_coefficient_from_matrices": 0.4999999969034404,
+      "stationary_shear_curvature_coefficient": -0.33333333333333337,
+      "cK_squared": 7.4022033008170185,
+      "lightest_G_times_mass_squared": 4.1887902047863905
+    },
+    {
+      "matrix_rank": 3,
+      "shape_coefficient_log_kernel": 0.7222222222222222,
+      "shape_coefficient_from_matrices": 0.7222222203964734,
+      "stationary_shear_curvature_coefficient": -0.7777777777777778,
+      "cK_squared": 19.739208802178716,
+      "lightest_G_times_mass_squared": 1.5707963267948966
+    },
+    {
+      "matrix_rank": 5,
+      "shape_coefficient_log_kernel": 0.8956296296296297,
+      "shape_coefficient_from_matrices": 0.895629628620831,
+      "stationary_shear_curvature_coefficient": -1.1245925925925926,
+      "cK_squared": 59.21762640653615,
+      "lightest_G_times_mass_squared": 0.5235987755982988
+    },
+    {
+      "matrix_rank": 9,
+      "shape_coefficient_log_kernel": 0.9958245149911816,
+      "shape_coefficient_from_matrices": 0.9958245141110841,
+      "stationary_shear_curvature_coefficient": -1.3249823633156965,
+      "cK_squared": 197.39208802178717,
+      "lightest_G_times_mass_squared": 0.15707963267948966
+    },
+    {
+      "matrix_rank": 16,
+      "shape_coefficient_log_kernel": 1.0384306935348602,
+      "shape_coefficient_from_matrices": 1.038430691377897,
+      "stationary_shear_curvature_coefficient": -1.4101947204030538,
+      "cK_squared": 629.1872805694466,
+      "lightest_G_times_mass_squared": 0.04927988476219283
+    }
+  ],
+  "macroscopic_comparison": [
+    {
+      "mass_kg": 70.0,
+      "radius_m": 0.3,
+      "compactness": 3.465541458922044e-25,
+      "zeta_for_one_dense_droplet": 3.7161743275618535e+25
+    },
+    {
+      "mass_kg": 1.31e-09,
+      "radius_m": 5e-05,
+      "compactness": 3.891307981018181e-32,
+      "zeta_for_one_dense_droplet": 3.3095700118235334e+32
+    }
+  ]
+}

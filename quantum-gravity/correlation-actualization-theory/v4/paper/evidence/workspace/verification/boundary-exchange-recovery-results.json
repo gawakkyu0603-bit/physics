@@ -1,0 +1,290 @@
+{
+  "matrix": {
+    "first_bosonic_success": 172,
+    "bosonic_cases": [
+      {
+        "j": 63,
+        "active_modes": 64,
+        "collision": 0.02393654362672057
+      },
+      {
+        "j": 100,
+        "active_modes": 101,
+        "collision": 0.01604992711592663
+      },
+      {
+        "j": 127,
+        "active_modes": 128,
+        "collision": 0.013029341016135931
+      },
+      {
+        "j": 171,
+        "active_modes": 172,
+        "collision": 0.01003685062823349
+      },
+      {
+        "j": 172,
+        "active_modes": 173,
+        "collision": 0.009985496063030395
+      },
+      {
+        "j": 191,
+        "active_modes": 192,
+        "collision": 0.009105340993214152
+      },
+      {
+        "j": 255,
+        "active_modes": 256,
+        "collision": 0.007053239140632356
+      }
+    ],
+    "physical_lapse": [
+      {
+        "impact_over_radius": 1.0,
+        "height": 0.1,
+        "reflected_min_gap": 1.0820686535684132e-07,
+        "reflected_span": 0.03120631921021444,
+        "toeplitz_min_gap": 1.0952022644339365e-07,
+        "toeplitz_collision": 0.007812674043302418,
+        "matrix_weight_error": 9.8879238130678e-17
+      },
+      {
+        "impact_over_radius": 2.0,
+        "height": 0.1,
+        "reflected_min_gap": 1.9452089181637433e-06,
+        "reflected_span": 0.029714139219873092,
+        "toeplitz_min_gap": 1.9554639409946617e-06,
+        "toeplitz_collision": 0.007812525377727744,
+        "matrix_weight_error": 0.0
+      },
+      {
+        "impact_over_radius": 4.0,
+        "height": 0.1,
+        "reflected_min_gap": 4.293147100820072e-06,
+        "reflected_span": 0.01719278466499785,
+        "toeplitz_min_gap": 4.296277455573261e-06,
+        "toeplitz_collision": 0.00781250048486869,
+        "matrix_weight_error": 6.938893903907228e-18
+      },
+      {
+        "impact_over_radius": 6.0,
+        "height": 0.1,
+        "reflected_min_gap": 1.8103231916866136e-06,
+        "reflected_span": 0.006127823941275201,
+        "toeplitz_min_gap": 1.8104601399171472e-06,
+        "toeplitz_collision": 0.007812500005456257,
+        "matrix_weight_error": 2.7755575615628914e-17
+      }
+    ],
+    "derivative_tail": 0.32186871274018847,
+    "maximum_H": 1.1430576932352243,
+    "derivative_floor": 0.0006012551487848687,
+    "range_ceiling": 0.043590349434203146,
+    "minimum_gap_128": 3.6214634824246486e-07,
+    "minimum_gap_boson_191": 6.29586543230229e-06,
+    "shortest_for_w4_s": 1.0043601511518495e-07,
+    "shortest_for_count2pi_s": 2.008720302303699e-07,
+    "max_band_frequency_error": 709921.901445419,
+    "example_source_M2_units": 7386314,
+    "example_height": 0.04999999805365428
+  },
+  "matter": [
+    {
+      "body": "person",
+      "early_before_4R": 103625082816281.38,
+      "late_4R_to_3R": 165548377116326.16,
+      "new_seed_marks_lower": 380494719.37089944,
+      "min_single_write_probability": 9.18933136758102e-06,
+      "coherence_half_angle": 1.7959878593025375e-06,
+      "projected_after_4R": 231198.31952168065,
+      "natural_visibility_lower": 0.5910534740982605,
+      "passive_exponent": 63.06359615032752,
+      "passive_error_log": -57.80610077829974,
+      "full_coherent_exponent": 1214386794157.392,
+      "sufficient_kept_fraction_for_union": 3.62782538726633e-11,
+      "bad_support_log_at_one_percent": -6071933960.970339,
+      "gram_error_log_at_one_percent": -6071933965.534687
+    },
+    {
+      "body": "1 mm",
+      "early_before_4R": 191498705.2372138,
+      "late_4R_to_3R": 305932685.50727224,
+      "new_seed_marks_lower": 703.1525971207809,
+      "min_single_write_probability": 9.18933136758102e-06,
+      "coherence_half_angle": 0.0030531793608143134,
+      "projected_after_4R": 1234761.6424294882,
+      "natural_visibility_lower": 0.5910534740982605,
+      "passive_exponent": 336.8039599993124,
+      "passive_error_log": -331.5464646272846,
+      "full_coherent_exponent": 2244181.5477301897,
+      "sufficient_kept_fraction_for_union": 1.9631135663962007e-05,
+      "bad_support_log_at_one_percent": -11211.091117031434,
+      "gram_error_log_at_one_percent": -11215.655465222902
+    },
+    {
+      "body": "0.1 mm",
+      "early_before_4R": 1914987.0523721378,
+      "late_4R_to_3R": 3059326.8550727223,
+      "new_seed_marks_lower": 7.031525971207809,
+      "min_single_write_probability": 9.18933136758102e-06,
+      "coherence_half_angle": 0.018,
+      "projected_after_4R": 429152.96312571154,
+      "natural_visibility_lower": 0.5910534740982605,
+      "passive_exponent": 117.05936794552846,
+      "passive_error_log": -111.80187257350069,
+      "full_coherent_exponent": 22441.815477301898,
+      "sufficient_kept_fraction_for_union": 0.0019631135663962006,
+      "bad_support_log_at_one_percent": -102.39245576699503,
+      "gram_error_log_at_one_percent": -106.95680395846286
+    }
+  ],
+  "decoder": {
+    "weighted_gram_error": 0.001953125000000222,
+    "uniform_gram_bound": 0.001953125,
+    "herald_probability_and_entanglement_fidelity": [
+      [
+        0.33345257216512636,
+        0.9999997301547309
+      ],
+      [
+        0.33337043126022264,
+        0.9999996308345094
+      ],
+      [
+        0.3331769965746515,
+        0.9999998899103975
+      ]
+    ],
+    "premature_irreversible_record_local_return": 0.9494414151423118,
+    "vacuum_filled_tag_overlap": 1.0
+  },
+  "radiation": {
+    "eight_packet_strings": 70,
+    "eight_packet_orbits": 10,
+    "erasure_matrix_error": 1.1102230246251565e-16,
+    "sixty_four_words": 1832624140942590534,
+    "guaranteed_qubits_64": 54
+  },
+  "geometry": {
+    "loop_spins": [
+      {
+        "spin_dimension": 64,
+        "collision": 0.020832061767578125,
+        "min_gap": 0.01562739990727513
+      },
+      {
+        "spin_dimension": 128,
+        "collision": 0.010416507720947266,
+        "min_gap": 0.007812798979979996
+      },
+      {
+        "spin_dimension": 133,
+        "collision": 0.010024920971658611,
+        "min_gap": 0.007519063471792542
+      },
+      {
+        "spin_dimension": 134,
+        "collision": 0.009950110219674627,
+        "min_gap": 0.007462947118795804
+      },
+      {
+        "spin_dimension": 160,
+        "collision": 0.008333251953125,
+        "min_gap": 0.0062501529776815
+      },
+      {
+        "spin_dimension": 256,
+        "collision": 0.005208313465118408,
+        "min_gap": 0.003906287311902346
+      }
+    ],
+    "causal_mean": [
+      {
+        "atoms": 100,
+        "zero_past_weight": 0.3741311503762254,
+        "ensemble_collision_floor": 0.17644356612902143
+      },
+      {
+        "atoms": 500,
+        "zero_past_weight": 0.19686453313417235,
+        "ensemble_collision_floor": 0.058462120077286794
+      },
+      {
+        "atoms": 1000,
+        "zero_past_weight": 0.14563030058365214,
+        "ensemble_collision_floor": 0.03472693975165389
+      },
+      {
+        "atoms": 2000,
+        "zero_past_weight": 0.10660997886107099,
+        "ensemble_collision_floor": 0.020212411869440883
+      },
+      {
+        "atoms": 4000,
+        "zero_past_weight": 0.07741344452831046,
+        "ensemble_collision_floor": 0.011568117777395253
+      },
+      {
+        "atoms": 8000,
+        "zero_past_weight": 0.05586044481206866,
+        "ensemble_collision_floor": 0.006528734955695829
+      },
+      {
+        "atoms": 16000,
+        "zero_past_weight": 0.040113150606622634,
+        "ensemble_collision_floor": 0.003641689547966563
+      }
+    ],
+    "realized_sprinklings": [
+      {
+        "atoms": 512,
+        "seed": 119,
+        "collision": 0.05474090576171875,
+        "distinct_volumes": 102
+      },
+      {
+        "atoms": 512,
+        "seed": 120,
+        "collision": 0.056121826171875,
+        "distinct_volumes": 111
+      },
+      {
+        "atoms": 4000,
+        "seed": 119,
+        "collision": 0.013907875000000007,
+        "distinct_volumes": 815
+      },
+      {
+        "atoms": 8000,
+        "seed": 119,
+        "collision": 0.007825312499999992,
+        "distinct_volumes": 1645
+      }
+    ],
+    "continuum_resolution": 2.4996057673782402e-08,
+    "continuum_close_ceiling": 9.675520469942035e-06,
+    "finite_atoms": 10000000000000,
+    "concentration_width": 1.3e-06,
+    "finite_close_ceiling": 0.0007961816768579131
+  },
+  "frozen_source": {
+    "bosonic_dispersion_eV": 3.013353284263411e-12,
+    "BPS_speed": 0.001,
+    "BPS_grain_nonradial_ceiling": 9.937392891214584e-06,
+    "pair_energy_convexity": [
+      [
+        0.036978272875284386,
+        0.09330151513495859
+      ],
+      [
+        9.276265745058017e-05,
+        0.00011354522972381928
+      ],
+      [
+        0.0021344497828080272,
+        0.0024713330561315933
+      ]
+    ],
+    "maximum_lapse_span": 0.043590349434203146
+  }
+}

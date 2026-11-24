@@ -1,0 +1,1279 @@
+{
+  "q": 0.3,
+  "crossing": 0.8495529531545084,
+  "horizon": 0.9683772233983162,
+  "gap_time_product": 0.03564728107314234,
+  "signed_mass_at_horizon": -0.7238482470955181,
+  "postcross_localization_weight": 0.05029744540214346,
+  "continuum": [
+    {
+      "gap": 0.05,
+      "time": 0.8495529531545084,
+      "one_per_band": [
+        6.678331295718716e-05,
+        -0.00018832453614473995,
+        3.72475954318242e-05
+      ],
+      "total": -1.751031479854144e-05,
+      "flat": -1.8413540810292783e-05,
+      "adiabatic": -0.22419320062145437,
+      "thermal": -3.2495472861661495e-06,
+      "refinement": 4.910822536027251e-09
+    },
+    {
+      "gap": 0.05,
+      "time": 0.9683772233983162,
+      "one_per_band": [
+        0.0001381618404574888,
+        -0.000355810635967882,
+        5.186000513750916e-05
+      ],
+      "total": -2.7626949915395254e-05,
+      "flat": -3.104984738865139e-05,
+      "adiabatic": -0.4552675944692518,
+      "thermal": -5.432151604944952e-06,
+      "refinement": 9.388179401741657e-09
+    },
+    {
+      "gap": 0.25,
+      "time": 0.8495529531545084,
+      "one_per_band": [
+        0.0003244019830180925,
+        -0.0009142131091303023,
+        0.00018517896435210705
+      ],
+      "total": -8.023017874201032e-05,
+      "flat": -8.429989854442639e-05,
+      "adiabatic": -0.1336361894203658,
+      "thermal": -1.61273218986572e-05,
+      "refinement": 6.700241022270827e-10
+    },
+    {
+      "gap": 0.25,
+      "time": 0.9683772233983162,
+      "one_per_band": [
+        0.0006709702488785149,
+        -0.0017263127825148327,
+        0.00025764043714552026
+      ],
+      "total": -0.0001267318476122826,
+      "flat": -0.00014217311131946476,
+      "adiabatic": -0.29389022914188473,
+      "thermal": -2.6963370446099163e-05,
+      "refinement": 4.207587496300735e-09
+    },
+    {
+      "gap": 1.0,
+      "time": 0.8495529531545084,
+      "one_per_band": [
+        0.001048737893631841,
+        -0.0029395187682274325,
+        0.0006855190328436838
+      ],
+      "total": -0.00015652394812006682,
+      "flat": -0.00016293196268592973,
+      "adiabatic": -0.01940869509544992,
+      "thermal": -5.77395757141902e-05,
+      "refinement": 1.8118140572911945e-09
+    },
+    {
+      "gap": 1.0,
+      "time": 0.9683772233983162,
+      "one_per_band": [
+        0.002164745830962128,
+        -0.005524126286285309,
+        0.0009442364243492964
+      ],
+      "total": -0.00025039820001175606,
+      "flat": -0.0002751543858066088,
+      "adiabatic": -0.050380572129803056,
+      "thermal": -9.675115684493825e-05,
+      "refinement": 1.0219619867371521e-08
+    }
+  ],
+  "interval": [
+    {
+      "sites": 32,
+      "spacing": 0.1,
+      "steps": 260,
+      "results": [
+        {
+          "time": 0.8495529531545084,
+          "tidal_current": -4.362522260030409e-05,
+          "flat_current": -4.511188781978592e-05,
+          "final_count_distance": 1.3385976880845143e-05,
+          "common_integer": 64,
+          "tidal_probability": 0.353180969376951,
+          "flat_probability": 0.3531778777775379,
+          "tidal_mean": 63.37486308211055,
+          "flat_mean": 63.3748615954451,
+          "tidal_sharp_charge_cost": 24.961225665596686,
+          "flat_sharp_charge_cost": 24.963727512744256,
+          "tidal_central_band": {
+            "negative_energy": -0.5441090272498457,
+            "positive_energy": 0.5441090272498386,
+            "particle_probability": 0.024753333378837297,
+            "hole_probability": 0.02475333337885599,
+            "compensated_pair_probability": 0.00852837348680791,
+            "positive_in_right": 0.6427326818802885,
+            "negative_in_left": 0.6427326818802858
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8655302285074278,
+            "positive_energy": 0.8655302285074242,
+            "particle_probability": 5.884177316772296e-05,
+            "hole_probability": 5.88417731721691e-05,
+            "compensated_pair_probability": 1.657569031054245e-05,
+            "positive_in_right": 0.5678562850554641,
+            "negative_in_left": 0.5678562850554606
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.5441090272498457,
+            "positive_energy": 0.5441090272498386,
+            "particle_probability": 0.02498218701985865,
+            "hole_probability": 0.02498218701986432,
+            "compensated_pair_probability": 0.008565237297582911,
+            "positive_in_right": 0.6427326818802885,
+            "negative_in_left": 0.6427326818802858,
+            "positive_projector_commutator_norm": 0.3794471881283607
+          },
+          "frozen_tidal_commutator": 4.833798499354997e-14,
+          "electric_probability_error_per_coupling": 557.8504511593765,
+          "total_meter": {
+            "distance": 1.3385976880845143e-05,
+            "one_minus_overlap": 2.585711610657071e-10,
+            "copies_necessary_99": 6243786328,
+            "copies_sufficient_99": 15129386390
+          },
+          "directional_meter": {
+            "distance": 0.004627413243678189,
+            "one_minus_overlap": 1.5650919493734077e-05,
+            "copies_necessary_99": 103154,
+            "copies_sufficient_99": 249953
+          }
+        },
+        {
+          "time": 0.9419052498068887,
+          "tidal_current": -6.385346509486041e-05,
+          "flat_current": -6.782328981710028e-05,
+          "final_count_distance": 4.135574192955335e-05,
+          "common_integer": 64,
+          "tidal_probability": 0.35311184080841895,
+          "flat_probability": 0.3531009379874153,
+          "tidal_mean": 63.37484285386809,
+          "flat_mean": 63.37483888404317,
+          "tidal_sharp_charge_cost": 24.95692317555885,
+          "flat_sharp_charge_cost": 24.964003132462008,
+          "tidal_central_band": {
+            "negative_energy": -0.35115843067715247,
+            "positive_energy": 0.351158430677156,
+            "particle_probability": 0.12188380217324732,
+            "hole_probability": 0.12188380217326111,
+            "compensated_pair_probability": 0.05181775556180175,
+            "positive_in_right": 0.7785146090859588,
+            "negative_in_left": 0.7785146090859568,
+            "decay_per_site": 0.9582593511696716,
+            "left_trial_residual": 0.7556780360754579,
+            "left_trial_fidelity": 0.8280523582081241
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8602215321231341,
+            "positive_energy": 0.8602215321231235,
+            "particle_probability": 8.785833987761277e-05,
+            "hole_probability": 8.785833988256275e-05,
+            "compensated_pair_probability": 2.4867738401874775e-05,
+            "positive_in_right": 0.5685495412713213,
+            "negative_in_left": 0.5685495412713101
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.35115843067715247,
+            "positive_energy": 0.351158430677156,
+            "particle_probability": 0.12271774141103971,
+            "hole_probability": 0.12271774141104397,
+            "compensated_pair_probability": 0.05199000441328288,
+            "positive_in_right": 0.7785146090859588,
+            "negative_in_left": 0.7785146090859568,
+            "positive_projector_commutator_norm": 0.8312144427548838,
+            "decay_per_site": 0.9582593511696716,
+            "left_trial_residual": 0.7556780360754579,
+            "left_trial_fidelity": 0.8280523582081241
+          },
+          "frozen_tidal_commutator": 3.1605159513934087e-14,
+          "electric_probability_error_per_coupling": 618.4926632331953,
+          "total_meter": {
+            "distance": 4.135574192955335e-05,
+            "one_minus_overlap": 2.259283718752096e-09,
+            "copies_necessary_99": 714590676,
+            "copies_sufficient_99": 1731532419
+          },
+          "directional_meter": {
+            "distance": 0.007497758772102071,
+            "one_minus_overlap": 4.083907467451956e-05,
+            "copies_necessary_99": 39532,
+            "copies_sufficient_99": 95790
+          }
+        },
+        {
+          "time": 0.9683772233983162,
+          "tidal_current": -7.00740835069101e-05,
+          "flat_current": -7.574009587785001e-05,
+          "final_count_distance": 6.113264622856886e-05,
+          "common_integer": 64,
+          "tidal_probability": 0.3530927771262703,
+          "flat_probability": 0.35307550454212777,
+          "tidal_mean": 63.37483663324967,
+          "flat_mean": 63.37483096723706,
+          "tidal_sharp_charge_cost": 24.953563169653677,
+          "flat_sharp_charge_cost": 24.964102070801786,
+          "tidal_central_band": {
+            "negative_energy": -0.28180682273957913,
+            "positive_energy": 0.28180682273957913,
+            "particle_probability": 0.2377816273284507,
+            "hole_probability": 0.2377816273284663,
+            "compensated_pair_probability": 0.10916154952819326,
+            "positive_in_right": 0.8923280804951742,
+            "negative_in_left": 0.8923280804951734,
+            "decay_per_site": 0.9276151752904482,
+            "left_trial_residual": 0.33875331081495325,
+            "left_trial_fidelity": 0.9382252338109184
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8586162746653976,
+            "positive_energy": 0.8586162746653905,
+            "particle_probability": 9.780489663982702e-05,
+            "hole_probability": 9.78048966449041e-05,
+            "compensated_pair_probability": 2.7723199460492196e-05,
+            "positive_in_right": 0.5687612943945068,
+            "negative_in_left": 0.5687612943944979
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.28180682273957913,
+            "positive_energy": 0.28180682273957913,
+            "particle_probability": 0.2389309864553152,
+            "hole_probability": 0.23893098645532163,
+            "compensated_pair_probability": 0.10944517391138903,
+            "positive_in_right": 0.8923280804951742,
+            "negative_in_left": 0.8923280804951734,
+            "positive_projector_commutator_norm": 1.1720439337336936,
+            "decay_per_site": 0.9276151752904482,
+            "left_trial_residual": 0.33875331081495325,
+            "left_trial_fidelity": 0.9382252338109184
+          },
+          "frozen_tidal_commutator": 3.2132219178413846e-14,
+          "electric_probability_error_per_coupling": 635.8752199722704,
+          "total_meter": {
+            "distance": 6.113264622856886e-05,
+            "one_minus_overlap": 4.6739148415174625e-09,
+            "copies_necessary_99": 345419875,
+            "copies_sufficient_99": 836990645
+          },
+          "directional_meter": {
+            "distance": 0.008663477869452452,
+            "one_minus_overlap": 5.440908169075149e-05,
+            "copies_necessary_99": 29672,
+            "copies_sufficient_99": 71899
+          }
+        }
+      ]
+    },
+    {
+      "sites": 48,
+      "spacing": 0.075,
+      "steps": 360,
+      "results": [
+        {
+          "time": 0.8495529531545084,
+          "tidal_current": -5.358194171485985e-05,
+          "flat_current": -5.523426452346653e-05,
+          "final_count_distance": 1.542046668114389e-05,
+          "common_integer": 96,
+          "tidal_probability": 0.34023009207191357,
+          "flat_probability": 0.3402260010763458,
+          "tidal_mean": 95.35898674522721,
+          "flat_mean": 95.35898509290422,
+          "tidal_sharp_charge_cost": 33.46336016454495,
+          "flat_sharp_charge_cost": 33.46533037360723,
+          "tidal_central_band": {
+            "negative_energy": -0.4989632645521702,
+            "positive_energy": 0.49896326455215956,
+            "particle_probability": 0.030624117891937537,
+            "hole_probability": 0.030624117891952962,
+            "compensated_pair_probability": 0.011274196881430859,
+            "positive_in_right": 0.6569099279755666,
+            "negative_in_left": 0.656909927975565
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8165082684765608,
+            "positive_energy": 0.8165082684765537,
+            "particle_probability": 6.977881994745075e-05,
+            "hole_probability": 6.977881995007262e-05,
+            "compensated_pair_probability": 2.1178108103993726e-05,
+            "positive_in_right": 0.5704869878414256,
+            "negative_in_left": 0.5704869878414246
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.4989632645521702,
+            "positive_energy": 0.49896326455215956,
+            "particle_probability": 0.030854581356619382,
+            "hole_probability": 0.030854581356625665,
+            "compensated_pair_probability": 0.011316119649841574,
+            "positive_in_right": 0.6569099279755666,
+            "negative_in_left": 0.656909927975565,
+            "positive_projector_commutator_norm": 0.3866368720746126
+          },
+          "frozen_tidal_commutator": 5.700030388573691e-14,
+          "electric_probability_error_per_coupling": 1410.5297591814933,
+          "total_meter": {
+            "distance": 1.542046668114389e-05,
+            "one_minus_overlap": 3.057003872843681e-10,
+            "copies_necessary_99": 5281194095,
+            "copies_sufficient_99": 12796918708
+          },
+          "directional_meter": {
+            "distance": 0.004808954189814468,
+            "one_minus_overlap": 1.5886357773187768e-05,
+            "copies_necessary_99": 101625,
+            "copies_sufficient_99": 246249
+          }
+        },
+        {
+          "time": 0.9419052498068887,
+          "tidal_current": -7.90649821591608e-05,
+          "flat_current": -8.369661778097044e-05,
+          "final_count_distance": 4.780492475864874e-05,
+          "common_integer": 96,
+          "tidal_probability": 0.34016441863513086,
+          "flat_probability": 0.3401504108758653,
+          "tidal_mean": 95.35896126218677,
+          "flat_mean": 95.35895663055118,
+          "tidal_sharp_charge_cost": 33.45969787902564,
+          "flat_sharp_charge_cost": 33.4656005013657,
+          "tidal_central_band": {
+            "negative_energy": -0.32222108970762164,
+            "positive_energy": 0.32222108970760033,
+            "particle_probability": 0.14922590568172053,
+            "hole_probability": 0.14922590568174077,
+            "compensated_pair_probability": 0.06576212167760129,
+            "positive_in_right": 0.811381020587128,
+            "negative_in_left": 0.8113810205871299,
+            "decay_per_site": 0.9686945133772538,
+            "left_trial_residual": 0.7367250569102443,
+            "left_trial_fidelity": 0.8645052659929201
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8111932133139668,
+            "positive_energy": 0.8111932133139632,
+            "particle_probability": 0.00010434040684150601,
+            "hole_probability": 0.00010434040684215162,
+            "compensated_pair_probability": 3.1799284407595936e-05,
+            "positive_in_right": 0.5712618085916868,
+            "negative_in_left": 0.5712618085916896
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.32222108970762164,
+            "positive_energy": 0.32222108970760033,
+            "particle_probability": 0.150032982023997,
+            "hole_probability": 0.15003298202400905,
+            "compensated_pair_probability": 0.06594749271277053,
+            "positive_in_right": 0.811381020587128,
+            "negative_in_left": 0.8113810205871299,
+            "positive_projector_commutator_norm": 0.8458722152698255,
+            "decay_per_site": 0.9686945133772538,
+            "left_trial_residual": 0.7367250569102443,
+            "left_trial_fidelity": 0.8645052659929201
+          },
+          "frozen_tidal_commutator": 5.877520942670925e-14,
+          "electric_probability_error_per_coupling": 1563.8641243593731,
+          "total_meter": {
+            "distance": 4.780492475864874e-05,
+            "one_minus_overlap": 2.720687477613194e-09,
+            "copies_necessary_99": 593402621,
+            "copies_sufficient_99": 1437880328
+          },
+          "directional_meter": {
+            "distance": 0.007785105543863906,
+            "one_minus_overlap": 4.1413911861416593e-05,
+            "copies_necessary_99": 38983,
+            "copies_sufficient_99": 94460
+          }
+        },
+        {
+          "time": 0.9683772233983162,
+          "tidal_current": -8.69369376774046e-05,
+          "flat_current": -9.359106316500948e-05,
+          "final_count_distance": 7.04588122281198e-05,
+          "common_integer": 96,
+          "tidal_probability": 0.34014714548491676,
+          "flat_probability": 0.34012547309254226,
+          "tidal_mean": 95.35895339023116,
+          "flat_mean": 95.35894673610555,
+          "tidal_sharp_charge_cost": 33.45657849732851,
+          "flat_sharp_charge_cost": 33.46569721925967,
+          "tidal_central_band": {
+            "negative_energy": -0.26875778796484795,
+            "positive_energy": 0.26875778796484084,
+            "particle_probability": 0.2704437910622895,
+            "hole_probability": 0.2704437910623012,
+            "compensated_pair_probability": 0.12322706010015054,
+            "positive_in_right": 0.9213716962284934,
+            "negative_in_left": 0.9213716962284927,
+            "decay_per_site": 0.9457113814678362,
+            "left_trial_residual": 0.29803729804280016,
+            "left_trial_fidelity": 0.9616232981699111
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8095862644817338,
+            "positive_energy": 0.8095862644817444,
+            "particle_probability": 0.00011620430482691564,
+            "hole_probability": 0.00011620430482905952,
+            "compensated_pair_probability": 3.545973531469238e-05,
+            "positive_in_right": 0.5714986201103418,
+            "negative_in_left": 0.5714986201103488
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.26875778796484795,
+            "positive_energy": 0.26875778796484084,
+            "particle_probability": 0.27149948858634665,
+            "hole_probability": 0.271499488586352,
+            "compensated_pair_probability": 0.12353056647599307,
+            "positive_in_right": 0.9213716962284934,
+            "negative_in_left": 0.9213716962284927,
+            "positive_projector_commutator_norm": 1.1781215335227075,
+            "decay_per_site": 0.9457113814678362,
+            "left_trial_residual": 0.29803729804280016,
+            "left_trial_fidelity": 0.9616232981699111
+          },
+          "frozen_tidal_commutator": 4.755889199390845e-14,
+          "electric_probability_error_per_coupling": 1607.8160715526924,
+          "total_meter": {
+            "distance": 7.04588122281198e-05,
+            "one_minus_overlap": 5.655466571420698e-09,
+            "copies_necessary_99": 285469476,
+            "copies_sufficient_99": 691724184
+          },
+          "directional_meter": {
+            "distance": 0.009008623265003976,
+            "one_minus_overlap": 5.534481825479379e-05,
+            "copies_necessary_99": 29171,
+            "copies_sufficient_99": 70683
+          }
+        }
+      ]
+    },
+    {
+      "sites": 64,
+      "spacing": 0.05,
+      "steps": 480,
+      "results": [
+        {
+          "time": 0.8495529531545084,
+          "tidal_current": -4.722949943465645e-05,
+          "flat_current": -4.821002329107385e-05,
+          "final_count_distance": 1.905487068941206e-05,
+          "common_integer": 128,
+          "tidal_probability": 0.3291764133516624,
+          "flat_probability": 0.32917070678279,
+          "tidal_mean": 127.36050748765452,
+          "flat_mean": 127.36050650713082,
+          "tidal_sharp_charge_cost": 50.41364508924677,
+          "flat_sharp_charge_cost": 50.414835044081286,
+          "tidal_central_band": {
+            "negative_energy": -0.547470660299318,
+            "positive_energy": 0.547470660299318,
+            "particle_probability": 0.024553427181837967,
+            "hole_probability": 0.02455342718184439,
+            "compensated_pair_probability": 0.008193495891588276,
+            "positive_in_right": 0.6435884177113208,
+            "negative_in_left": 0.6435884177113212
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8640561402112112,
+            "positive_energy": 0.8640561402112397,
+            "particle_probability": 5.982566221474047e-05,
+            "hole_probability": 5.982566221907071e-05,
+            "compensated_pair_probability": 1.6273810125294266e-05,
+            "positive_in_right": 0.569305743549787,
+            "negative_in_left": 0.5693057435497972
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.547470660299318,
+            "positive_energy": 0.547470660299318,
+            "particle_probability": 0.02478526651802573,
+            "hole_probability": 0.02478526651803248,
+            "compensated_pair_probability": 0.008229330186124467,
+            "positive_in_right": 0.6435884177113208,
+            "negative_in_left": 0.6435884177113212,
+            "positive_projector_commutator_norm": 0.38263150323521805
+          },
+          "frozen_tidal_commutator": 7.86261301729068e-14,
+          "electric_probability_error_per_coupling": 2228.139521297392,
+          "total_meter": {
+            "distance": 1.905487068941206e-05,
+            "one_minus_overlap": 4.0300019798185866e-10,
+            "copies_necessary_99": 4006109894,
+            "copies_sufficient_99": 9707248345
+          },
+          "directional_meter": {
+            "distance": 0.004901879994981836,
+            "one_minus_overlap": 1.5511444963649417e-05,
+            "copies_necessary_99": 104082,
+            "copies_sufficient_99": 252201
+          }
+        },
+        {
+          "time": 0.9419052498068887,
+          "tidal_current": -7.039116056478895e-05,
+          "flat_current": -7.329219579213232e-05,
+          "final_count_distance": 5.822041570677084e-05,
+          "common_integer": 128,
+          "tidal_probability": 0.32911756674346987,
+          "flat_probability": 0.32909896998760524,
+          "tidal_mean": 127.36048432599351,
+          "flat_mean": 127.36048142495801,
+          "tidal_sharp_charge_cost": 50.411150729064076,
+          "flat_sharp_charge_cost": 50.41516540041434,
+          "tidal_central_band": {
+            "negative_energy": -0.3568106701221794,
+            "positive_energy": 0.3568106701221865,
+            "particle_probability": 0.11776421529626048,
+            "hole_probability": 0.11776421529625625,
+            "compensated_pair_probability": 0.048750829236126475,
+            "positive_in_right": 0.7748769866041038,
+            "negative_in_left": 0.7748769866041035,
+            "decay_per_site": 0.9791296755848358,
+            "left_trial_residual": 1.0912330873179967,
+            "left_trial_fidelity": 0.82037339076417
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8588170676432583,
+            "positive_energy": 0.8588170676432441,
+            "particle_probability": 8.929988534622381e-05,
+            "hole_probability": 8.929988535577582e-05,
+            "compensated_pair_probability": 2.440887041896022e-05,
+            "positive_in_right": 0.5700036448875703,
+            "negative_in_left": 0.570003644887568
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.3568106701221794,
+            "positive_energy": 0.3568106701221865,
+            "particle_probability": 0.11860342386082753,
+            "hole_probability": 0.11860342386083389,
+            "compensated_pair_probability": 0.04891984595980617,
+            "positive_in_right": 0.7748769866041038,
+            "negative_in_left": 0.7748769866041035,
+            "positive_projector_commutator_norm": 0.8311594316812351,
+            "decay_per_site": 0.9791296755848358,
+            "left_trial_residual": 1.0912330873179967,
+            "left_trial_fidelity": 0.82037339076417
+          },
+          "frozen_tidal_commutator": 7.552916584853311e-14,
+          "electric_probability_error_per_coupling": 2470.353736773523,
+          "total_meter": {
+            "distance": 5.822041570677084e-05,
+            "one_minus_overlap": 3.566320666132751e-09,
+            "copies_necessary_99": 452697116,
+            "copies_sufficient_99": 1096935292
+          },
+          "directional_meter": {
+            "distance": 0.007946380001064538,
+            "one_minus_overlap": 4.057395520647946e-05,
+            "copies_necessary_99": 39790,
+            "copies_sufficient_99": 96416
+          }
+        },
+        {
+          "time": 0.9683772233983162,
+          "tidal_current": -7.7737632253241e-05,
+          "flat_current": -8.202163505306877e-05,
+          "final_count_distance": 8.522112105405705e-05,
+          "common_integer": 128,
+          "tidal_probability": 0.32910346070541746,
+          "flat_probability": 0.3290753674634505,
+          "tidal_mean": 127.36047697952172,
+          "flat_mean": 127.36047269551858,
+          "tidal_sharp_charge_cost": 50.408606635254,
+          "flat_sharp_charge_cost": 50.41528599356276,
+          "tidal_central_band": {
+            "negative_energy": -0.2860885215692335,
+            "positive_energy": 0.28608852156921927,
+            "particle_probability": 0.22856629189315292,
+            "hole_probability": 0.22856629189315758,
+            "compensated_pair_probability": 0.10317689027432703,
+            "positive_in_right": 0.8855659579134486,
+            "negative_in_left": 0.88556595791345,
+            "decay_per_site": 0.9638075876452241,
+            "left_trial_residual": 0.5060780383304333,
+            "left_trial_fidelity": 0.930699803415686
+          },
+          "flat_central_band": {
+            "negative_energy": -0.8572329373277086,
+            "positive_energy": 0.8572329373277299,
+            "particle_probability": 9.94003323364427e-05,
+            "hole_probability": 9.940033234567824e-05,
+            "compensated_pair_probability": 2.7209615123021936e-05,
+            "positive_in_right": 0.5702167742414908,
+            "negative_in_left": 0.5702167742414996
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.2860885215692335,
+            "positive_energy": 0.28608852156921927,
+            "particle_probability": 0.2297334267654646,
+            "hole_probability": 0.2297334267654806,
+            "compensated_pair_probability": 0.10345938456717901,
+            "positive_in_right": 0.8855659579134486,
+            "negative_in_left": 0.88556595791345,
+            "positive_projector_commutator_norm": 1.1707621486868764,
+            "decay_per_site": 0.9638075876452241,
+            "left_trial_residual": 0.5060780383304333,
+            "left_trial_fidelity": 0.930699803415686
+          },
+          "frozen_tidal_commutator": 8.160842299074869e-14,
+          "electric_probability_error_per_coupling": 2539.782311351232,
+          "total_meter": {
+            "distance": 8.522112105405705e-05,
+            "one_minus_overlap": 7.406710104099254e-09,
+            "copies_necessary_99": 217973035,
+            "copies_sufficient_99": 528172824
+          },
+          "directional_meter": {
+            "distance": 0.009221289635577343,
+            "one_minus_overlap": 5.45358360363511e-05,
+            "copies_necessary_99": 29603,
+            "copies_sufficient_99": 71732
+          }
+        }
+      ]
+    },
+    {
+      "sites": 96,
+      "spacing": 0.1,
+      "steps": 360,
+      "results": [
+        {
+          "time": 0.8495529531545084,
+          "tidal_current": -6.529872312558189e-05,
+          "flat_current": -6.817718258773602e-05,
+          "final_count_distance": 1.3157794546812942e-05,
+          "common_integer": 192,
+          "tidal_probability": 0.34501936699215596,
+          "flat_probability": 0.3450159665829247,
+          "tidal_mean": 191.34281534519977,
+          "flat_mean": 191.34281246673936,
+          "tidal_sharp_charge_cost": 25.02128577369254,
+          "flat_sharp_charge_cost": 25.023788305432547,
+          "tidal_central_band": {
+            "negative_energy": -0.2983214852390823,
+            "positive_energy": 0.29832148523907165,
+            "particle_probability": 0.12144420740208076,
+            "hole_probability": 0.12144420740208361,
+            "compensated_pair_probability": 0.06465425575673521,
+            "positive_in_right": 0.7645826251525407,
+            "negative_in_left": 0.7645826251525267
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5987477297259609,
+            "positive_energy": 0.5987477297259609,
+            "particle_probability": 0.00016155728020795016,
+            "hole_probability": 0.00016155728022404503,
+            "compensated_pair_probability": 9.116014224159153e-05,
+            "positive_in_right": 0.5631314055115644,
+            "negative_in_left": 0.5631314055115698
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.2983214852390823,
+            "positive_energy": 0.29832148523907165,
+            "particle_probability": 0.12167299427598349,
+            "hole_probability": 0.1216729942760082,
+            "compensated_pair_probability": 0.06475311507285328,
+            "positive_in_right": 0.7645826251525407,
+            "negative_in_left": 0.7645826251525267,
+            "positive_projector_commutator_norm": 0.4385885218908983
+          },
+          "frozen_tidal_commutator": 6.400817351678625e-14,
+          "electric_probability_error_per_coupling": 15035.863914582256,
+          "total_meter": {
+            "distance": 1.3157794546812942e-05,
+            "one_minus_overlap": 2.4243127043178144e-10,
+            "copies_necessary_99": 6659467145,
+            "copies_sufficient_99": 16136627087
+          },
+          "directional_meter": {
+            "distance": 0.004549190217505885,
+            "one_minus_overlap": 1.4969478122757608e-05,
+            "copies_necessary_99": 107850,
+            "copies_sufficient_99": 261332
+          }
+        },
+        {
+          "time": 0.9419052498068887,
+          "tidal_current": -9.483880704342628e-05,
+          "flat_current": -0.00010259734389262879,
+          "final_count_distance": 4.062433276364814e-05,
+          "common_integer": 192,
+          "tidal_probability": 0.34495161884887104,
+          "flat_probability": 0.3449400379996697,
+          "tidal_mean": 191.34278580511616,
+          "flat_mean": 191.34277804657847,
+          "tidal_sharp_charge_cost": 25.016988126052517,
+          "flat_sharp_charge_cost": 25.024070121962772,
+          "tidal_central_band": {
+            "negative_energy": -0.2503732468012281,
+            "positive_energy": 0.2503732468012423,
+            "particle_probability": 0.3297598058406624,
+            "hole_probability": 0.32975980584064823,
+            "compensated_pair_probability": 0.11829810520674905,
+            "positive_in_right": 0.9847092102404391,
+            "negative_in_left": 0.9847092102404407,
+            "decay_per_site": 0.9582593511696716,
+            "left_trial_residual": 0.04771440498175576,
+            "left_trial_fidelity": 0.9990053204882299
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5930201219308451,
+            "positive_energy": 0.5930201219308344,
+            "particle_probability": 0.00024422375355829737,
+            "hole_probability": 0.00024422375357291415,
+            "compensated_pair_probability": 0.00013789226580370007,
+            "positive_in_right": 0.5643151285967465,
+            "negative_in_left": 0.5643151285967439
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.2503732468012281,
+            "positive_energy": 0.2503732468012423,
+            "particle_probability": 0.33033768195230356,
+            "hole_probability": 0.33033768195230595,
+            "compensated_pair_probability": 0.11865331991893664,
+            "positive_in_right": 0.9847092102404391,
+            "negative_in_left": 0.9847092102404407,
+            "positive_projector_commutator_norm": 0.8789895274168352,
+            "decay_per_site": 0.9582593511696716,
+            "left_trial_residual": 0.04771440498175576,
+            "left_trial_fidelity": 0.9990053204882299
+          },
+          "frozen_tidal_commutator": 4.0100673597821544e-14,
+          "electric_probability_error_per_coupling": 16670.366578022207,
+          "total_meter": {
+            "distance": 4.062433276364814e-05,
+            "one_minus_overlap": 2.1287346222742196e-09,
+            "copies_necessary_99": 758414442,
+            "copies_sufficient_99": 1837722261
+          },
+          "directional_meter": {
+            "distance": 0.007370620219086181,
+            "one_minus_overlap": 3.904900071980601e-05,
+            "copies_necessary_99": 41344,
+            "copies_sufficient_99": 100181
+          }
+        },
+        {
+          "time": 0.9683772233983162,
+          "tidal_current": -0.00010368860785272464,
+          "flat_current": -0.00011456550433282578,
+          "final_count_distance": 6.0027304037356604e-05,
+          "common_integer": 192,
+          "tidal_probability": 0.34493296569385173,
+          "flat_probability": 0.3449148956874882,
+          "tidal_mean": 191.3427769553154,
+          "flat_mean": 191.3427660784184,
+          "tidal_sharp_charge_cost": 25.0136292193126,
+          "flat_sharp_charge_cost": 25.024171206304338,
+          "tidal_central_band": {
+            "negative_energy": -0.25000211346959844,
+            "positive_energy": 0.25000211346961265,
+            "particle_probability": 0.3589387753054406,
+            "hole_probability": 0.3589387753054334,
+            "compensated_pair_probability": 0.1292266857952409,
+            "positive_in_right": 0.9992663718811793,
+            "negative_in_left": 0.9992663718811784,
+            "decay_per_site": 0.9276151752904482,
+            "left_trial_residual": 0.0027519919257764677,
+            "left_trial_fidelity": 0.9999953061347594
+          },
+          "flat_central_band": {
+            "negative_energy": -0.591289638712059,
+            "positive_energy": 0.5912896387120625,
+            "particle_probability": 0.0002728965620500687,
+            "hole_probability": 0.00027289656206186397,
+            "compensated_pair_probability": 0.0001541106324124274,
+            "positive_in_right": 0.5646794936826066,
+            "negative_in_left": 0.5646794936826184
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.25000211346959844,
+            "positive_energy": 0.25000211346961265,
+            "particle_probability": 0.3597285403827703,
+            "hole_probability": 0.35972854038277535,
+            "compensated_pair_probability": 0.12979160613140564,
+            "positive_in_right": 0.9992663718811793,
+            "negative_in_left": 0.9992663718811784,
+            "positive_projector_commutator_norm": 1.1833441045354338,
+            "decay_per_site": 0.9276151752904482,
+            "left_trial_residual": 0.0027519919257764677,
+            "left_trial_fidelity": 0.9999953061347594
+          },
+          "frozen_tidal_commutator": 3.1732546998003194e-14,
+          "electric_probability_error_per_coupling": 17138.882390948504,
+          "total_meter": {
+            "distance": 6.0027304037356604e-05,
+            "one_minus_overlap": 4.4151242917899116e-09,
+            "copies_necessary_99": 365666507,
+            "copies_sufficient_99": 886050480
+          },
+          "directional_meter": {
+            "distance": 0.008516532748192095,
+            "one_minus_overlap": 5.202664227442007e-05,
+            "copies_necessary_99": 31031,
+            "copies_sufficient_99": 75191
+          }
+        }
+      ]
+    },
+    {
+      "sites": 128,
+      "spacing": 0.075,
+      "steps": 440,
+      "results": [
+        {
+          "time": 0.8495529531545084,
+          "tidal_current": -6.778147345620677e-05,
+          "flat_current": -7.034080296957135e-05,
+          "final_count_distance": 1.5173322103753551e-05,
+          "common_integer": 256,
+          "tidal_probability": 0.33469146600645244,
+          "flat_probability": 0.3346872960761571,
+          "tidal_mean": 255.33518087921024,
+          "flat_mean": 255.33517831988092,
+          "tidal_sharp_charge_cost": 33.50491860244834,
+          "flat_sharp_charge_cost": 33.50688923711904,
+          "tidal_central_band": {
+            "negative_energy": -0.29843716198000436,
+            "positive_energy": 0.29843716198000436,
+            "particle_probability": 0.12137721202757161,
+            "hole_probability": 0.12137721202758023,
+            "compensated_pair_probability": 0.0643729340995084,
+            "positive_in_right": 0.765019226039814,
+            "negative_in_left": 0.765019226039816
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5982798974026018,
+            "positive_energy": 0.598279897402616,
+            "particle_probability": 0.00016240533973044065,
+            "hole_probability": 0.00016240533972489146,
+            "compensated_pair_probability": 9.12588575477285e-05,
+            "positive_in_right": 0.5634348765239192,
+            "negative_in_left": 0.5634348765239422
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.29843716198000436,
+            "positive_energy": 0.29843716198000436,
+            "particle_probability": 0.12160616629000034,
+            "hole_probability": 0.12160616629000687,
+            "compensated_pair_probability": 0.0644714605644678,
+            "positive_in_right": 0.765019226039814,
+            "negative_in_left": 0.765019226039816,
+            "positive_projector_commutator_norm": 0.43872517532918864
+          },
+          "frozen_tidal_commutator": 4.947541473337462e-14,
+          "electric_probability_error_per_coupling": 26727.887405548365,
+          "total_meter": {
+            "distance": 1.5173322103753551e-05,
+            "one_minus_overlap": 2.922206527190211e-10,
+            "copies_necessary_99": 5524808275,
+            "copies_sufficient_99": 13387222869
+          },
+          "directional_meter": {
+            "distance": 0.004750303330683746,
+            "one_minus_overlap": 1.5400599323328092e-05,
+            "copies_necessary_99": 104831,
+            "copies_sufficient_99": 254016
+          }
+        },
+        {
+          "time": 0.9419052498068887,
+          "tidal_current": -9.936971578670151e-05,
+          "flat_current": -0.00010647028951684263,
+          "final_count_distance": 4.704069232989951e-05,
+          "common_integer": 256,
+          "tidal_probability": 0.33462704341377736,
+          "flat_probability": 0.33461295047046485,
+          "tidal_mean": 255.33514929096845,
+          "flat_mean": 255.3351421903944,
+          "tidal_sharp_charge_cost": 33.501259327900435,
+          "flat_sharp_charge_cost": 33.507163170050404,
+          "tidal_central_band": {
+            "negative_energy": -0.2503942374848229,
+            "positive_energy": 0.2503942374848265,
+            "particle_probability": 0.32913563921152805,
+            "hole_probability": 0.32913563921153666,
+            "compensated_pair_probability": 0.11805951412256094,
+            "positive_in_right": 0.9843979325846994,
+            "negative_in_left": 0.9843979325846992,
+            "decay_per_site": 0.9686945133772538,
+            "left_trial_residual": 0.056469875779771625,
+            "left_trial_fidelity": 0.9989467589798185
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5925592995274265,
+            "positive_energy": 0.59255929952743,
+            "particle_probability": 0.00024549627085459466,
+            "hole_probability": 0.0002454962708451358,
+            "compensated_pair_probability": 0.0001380364481657256,
+            "positive_in_right": 0.5646237470182937,
+            "negative_in_left": 0.5646237470183134
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.2503942374848229,
+            "positive_energy": 0.2503942374848265,
+            "particle_probability": 0.3297130515161358,
+            "hole_probability": 0.32971305151614383,
+            "compensated_pair_probability": 0.11841332397764619,
+            "positive_in_right": 0.9843979325846994,
+            "negative_in_left": 0.9843979325846992,
+            "positive_projector_commutator_norm": 0.8789883484315012,
+            "decay_per_site": 0.9686945133772538,
+            "left_trial_residual": 0.056469875779771625,
+            "left_trial_fidelity": 0.9989467589798185
+          },
+          "frozen_tidal_commutator": 5.112783594553339e-14,
+          "electric_probability_error_per_coupling": 29633.394092804498,
+          "total_meter": {
+            "distance": 4.704069232989951e-05,
+            "one_minus_overlap": 2.609905459166491e-09,
+            "copies_necessary_99": 618590637,
+            "copies_sufficient_99": 1498913682
+          },
+          "directional_meter": {
+            "distance": 0.0076898738394077445,
+            "one_minus_overlap": 4.014123955878333e-05,
+            "copies_necessary_99": 40219,
+            "copies_sufficient_99": 97455
+          }
+        },
+        {
+          "time": 0.9683772233983162,
+          "tidal_current": -0.00010896723852312282,
+          "flat_current": -0.00011901741588696903,
+          "final_count_distance": 6.932707375019217e-05,
+          "common_integer": 256,
+          "tidal_probability": 0.3346100846467277,
+          "flat_probability": 0.33458839616684294,
+          "tidal_mean": 255.33513969344554,
+          "flat_mean": 255.33512964326852,
+          "tidal_sharp_charge_cost": 33.49814061442332,
+          "flat_sharp_charge_cost": 33.50726120440993,
+          "tidal_central_band": {
+            "negative_energy": -0.25000246997294795,
+            "positive_energy": 0.2500024699729302,
+            "particle_probability": 0.35826519906845705,
+            "hole_probability": 0.35826519906847765,
+            "compensated_pair_probability": 0.1287688243921194,
+            "positive_in_right": 0.9992144853077682,
+            "negative_in_left": 0.9992144853077669,
+            "decay_per_site": 0.9457113814678362,
+            "left_trial_residual": 0.0034192849079947366,
+            "left_trial_fidelity": 0.9999945033883041
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5908309569946759,
+            "positive_energy": 0.590830956994683,
+            "particle_probability": 0.00027431522007654034,
+            "hole_probability": 0.0002743152200679333,
+            "compensated_pair_probability": 0.0001542700052750079,
+            "positive_in_right": 0.5649896878100921,
+            "negative_in_left": 0.5649896878101105
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.25000246997294795,
+            "positive_energy": 0.2500024699729302,
+            "particle_probability": 0.3590535561660447,
+            "hole_probability": 0.35905355616606716,
+            "compensated_pair_probability": 0.12933151202876753,
+            "positive_in_right": 0.9992144853077682,
+            "negative_in_left": 0.9992144853077669,
+            "positive_projector_commutator_norm": 1.1833441042752337,
+            "decay_per_site": 0.9457113814678362,
+            "left_trial_residual": 0.0034192849079947366,
+            "left_trial_fidelity": 0.9999945033883041
+          },
+          "frozen_tidal_commutator": 6.106037720357225e-14,
+          "electric_probability_error_per_coupling": 30466.232030601233,
+          "total_meter": {
+            "distance": 6.932707375019217e-05,
+            "one_minus_overlap": 5.4337197887142315e-09,
+            "copies_necessary_99": 297119311,
+            "copies_sufficient_99": 719953025
+          },
+          "directional_meter": {
+            "distance": 0.00889840717532838,
+            "one_minus_overlap": 5.364786934583651e-05,
+            "copies_necessary_99": 30093,
+            "copies_sufficient_99": 72919
+          }
+        }
+      ]
+    },
+    {
+      "sites": 128,
+      "spacing": 0.075,
+      "steps": 880,
+      "results": [
+        {
+          "time": 0.8495529531545084,
+          "tidal_current": -6.778133332607957e-05,
+          "flat_current": -7.034061806574681e-05,
+          "final_count_distance": 1.5172926752185565e-05,
+          "common_integer": 256,
+          "tidal_probability": 0.3346914660137018,
+          "flat_probability": 0.3346872962379367,
+          "tidal_mean": 255.33518087934874,
+          "flat_mean": 255.33517832006373,
+          "tidal_sharp_charge_cost": 33.50491855181881,
+          "flat_sharp_charge_cost": 33.506889233679466,
+          "tidal_central_band": {
+            "negative_energy": -0.29843716198000436,
+            "positive_energy": 0.29843716198000436,
+            "particle_probability": 0.12137721788394888,
+            "hole_probability": 0.1213772178839796,
+            "compensated_pair_probability": 0.06437293662626829,
+            "positive_in_right": 0.765019226039814,
+            "negative_in_left": 0.765019226039816
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5982798974026018,
+            "positive_energy": 0.598279897402616,
+            "particle_probability": 0.00016240535270199978,
+            "hole_probability": 0.00016240535271716539,
+            "compensated_pair_probability": 9.125886364235461e-05,
+            "positive_in_right": 0.5634348765239192,
+            "negative_in_left": 0.5634348765239422
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.29843716198000436,
+            "positive_energy": 0.29843716198000436,
+            "particle_probability": 0.12160616647068206,
+            "hole_probability": 0.12160616647070965,
+            "compensated_pair_probability": 0.06447146064342536,
+            "positive_in_right": 0.765019226039814,
+            "negative_in_left": 0.765019226039816,
+            "positive_projector_commutator_norm": 0.43872517532918864
+          },
+          "frozen_tidal_commutator": 4.947541473337462e-14,
+          "electric_probability_error_per_coupling": 26727.887405548365,
+          "total_meter": {
+            "distance": 1.5172926752185565e-05,
+            "one_minus_overlap": 2.922088037921839e-10,
+            "copies_necessary_99": 5525032303,
+            "copies_sufficient_99": 13387765715
+          },
+          "directional_meter": {
+            "distance": 0.004750291648102662,
+            "one_minus_overlap": 1.540052443355856e-05,
+            "copies_necessary_99": 104831,
+            "copies_sufficient_99": 254017
+          }
+        },
+        {
+          "time": 0.9419052498068887,
+          "tidal_current": -9.936969167492757e-05,
+          "flat_current": -0.00010647005256495055,
+          "final_count_distance": 4.703889575676545e-05,
+          "common_integer": 256,
+          "tidal_probability": 0.3346270428736576,
+          "flat_probability": 0.33461295065153096,
+          "tidal_mean": 255.33514929099033,
+          "flat_mean": 255.33514219063002,
+          "tidal_sharp_charge_cost": 33.501259084020916,
+          "flat_sharp_charge_cost": 33.50716316404018,
+          "tidal_central_band": {
+            "negative_energy": -0.2503942374848229,
+            "positive_energy": 0.2503942374848265,
+            "particle_probability": 0.3291356554320119,
+            "hole_probability": 0.32913565543204826,
+            "compensated_pair_probability": 0.11805952404682704,
+            "positive_in_right": 0.9843979325846994,
+            "negative_in_left": 0.9843979325846992,
+            "decay_per_site": 0.9686945133772538,
+            "left_trial_residual": 0.056469875779771625,
+            "left_trial_fidelity": 0.9989467589798185
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5925592995274265,
+            "positive_energy": 0.59255929952743,
+            "particle_probability": 0.0002454962902510791,
+            "hole_probability": 0.0002454962902572744,
+            "compensated_pair_probability": 0.00013803645728525775,
+            "positive_in_right": 0.5646237470182937,
+            "negative_in_left": 0.5646237470183134
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.2503942374848229,
+            "positive_energy": 0.2503942374848265,
+            "particle_probability": 0.3297130517647217,
+            "hole_probability": 0.3297130517647463,
+            "compensated_pair_probability": 0.11841332412956512,
+            "positive_in_right": 0.9843979325846994,
+            "negative_in_left": 0.9843979325846992,
+            "positive_projector_commutator_norm": 0.8789883484315012,
+            "decay_per_site": 0.9686945133772538,
+            "left_trial_residual": 0.056469875779771625,
+            "left_trial_fidelity": 0.9989467589798185
+          },
+          "frozen_tidal_commutator": 5.112783594553339e-14,
+          "electric_probability_error_per_coupling": 29633.394092804498,
+          "total_meter": {
+            "distance": 4.703889575676545e-05,
+            "one_minus_overlap": 2.60974570100715e-09,
+            "copies_necessary_99": 618628504,
+            "copies_sufficient_99": 1499005440
+          },
+          "directional_meter": {
+            "distance": 0.007689843367328196,
+            "one_minus_overlap": 4.0140923866691854e-05,
+            "copies_necessary_99": 40220,
+            "copies_sufficient_99": 97456
+          }
+        },
+        {
+          "time": 0.9683772233983162,
+          "tidal_current": -0.0001089673598283922,
+          "flat_current": -0.00011901716626700967,
+          "final_count_distance": 6.932396027247462e-05,
+          "common_integer": 256,
+          "tidal_probability": 0.3346100835553136,
+          "flat_probability": 0.33458839633798104,
+          "tidal_mean": 255.33513969332162,
+          "flat_mean": 255.33512964351598,
+          "tidal_sharp_charge_cost": 33.498140045155914,
+          "flat_sharp_charge_cost": 33.50726119894673,
+          "tidal_central_band": {
+            "negative_energy": -0.25000246997294795,
+            "positive_energy": 0.2500024699729302,
+            "particle_probability": 0.3582652242490024,
+            "hole_probability": 0.3582652242490505,
+            "compensated_pair_probability": 0.1287688423435794,
+            "positive_in_right": 0.9992144853077682,
+            "negative_in_left": 0.9992144853077669,
+            "decay_per_site": 0.9457113814678362,
+            "left_trial_residual": 0.0034192849079947366,
+            "left_trial_fidelity": 0.9999945033883041
+          },
+          "flat_central_band": {
+            "negative_energy": -0.5908309569946759,
+            "positive_energy": 0.590830956994683,
+            "particle_probability": 0.0002743152414198642,
+            "hole_probability": 0.00027431524142940145,
+            "compensated_pair_probability": 0.00015427001531193916,
+            "positive_in_right": 0.5649896878100921,
+            "negative_in_left": 0.5649896878101105
+          },
+          "same_reader_on_flat": {
+            "negative_energy": -0.25000246997294795,
+            "positive_energy": 0.2500024699729302,
+            "particle_probability": 0.359053556413973,
+            "hole_probability": 0.3590535564140145,
+            "compensated_pair_probability": 0.12933151220581787,
+            "positive_in_right": 0.9992144853077682,
+            "negative_in_left": 0.9992144853077669,
+            "positive_projector_commutator_norm": 1.1833441042752337,
+            "decay_per_site": 0.9457113814678362,
+            "left_trial_residual": 0.0034192849079947366,
+            "left_trial_fidelity": 0.9999945033883041
+          },
+          "frozen_tidal_commutator": 6.106037720357225e-14,
+          "electric_probability_error_per_coupling": 30466.232030601233,
+          "total_meter": {
+            "distance": 6.932396027247462e-05,
+            "one_minus_overlap": 5.433321006240687e-09,
+            "copies_necessary_99": 297141118,
+            "copies_sufficient_99": 720005866
+          },
+          "directional_meter": {
+            "distance": 0.008898364796410199,
+            "one_minus_overlap": 5.364736197330167e-05,
+            "copies_necessary_99": 30094,
+            "copies_sufficient_99": 72920
+          }
+        }
+      ]
+    }
+  ],
+  "sweep": [
+    {
+      "gap_over_sqrt_slope": 0.1,
+      "transferred": 0.09896259867739604
+    },
+    {
+      "gap_over_sqrt_slope": 0.35,
+      "transferred": 0.30984354577310014
+    },
+    {
+      "gap_over_sqrt_slope": 1.0,
+      "transferred": 0.4939055589075985
+    },
+    {
+      "gap_over_sqrt_slope": 1.8,
+      "transferred": 0.4999967879939978
+    }
+  ],
+  "shear": [
+    {
+      "scale": 0.16,
+      "triplet_m0_linear": -0.0015399992983039898,
+      "total_linear": 2.1380769312447936e-08,
+      "total_quadratic": 1.4590628706033863e-05
+    },
+    {
+      "scale": 0.08,
+      "triplet_m0_linear": -0.0015399477534023891,
+      "total_linear": 5.345100150642578e-09,
+      "total_quadratic": 1.4590334437794604e-05
+    },
+    {
+      "scale": 0.04,
+      "triplet_m0_linear": -0.001539934866529888,
+      "total_linear": 1.3362700657906963e-09,
+      "total_quadratic": 1.4590260885464173e-05
+    },
+    {
+      "scale": 0.02,
+      "triplet_m0_linear": -0.0015399316447677407,
+      "total_linear": 3.340698161353496e-10,
+      "total_quadratic": 1.4590242837275768e-05
+    }
+  ],
+  "deadline": [
+    {
+      "time": 0.9419052498068887,
+      "line_phase_width": 0.01821377081767755,
+      "phase_only_success_ceiling": 0.504553379764444,
+      "one_particle_trace_distance_bound": 0.044819879792286944,
+      "mass_integral_after_crossing": 0.01760308335382305
+    },
+    {
+      "time": 0.9683772233983162,
+      "line_phase_width": 0.023639443842517194,
+      "phase_only_success_ceiling": 0.5059097233545891,
+      "one_particle_trace_distance_bound": 0.05286397812990216,
+      "mass_integral_after_crossing": 0.0256471816914284
+    }
+  ],
+  "two_momentum_current": -0.003331787920816731,
+  "radiation": {
+    "grain": {
+      "mass_kg": 1.3089969389957475e-09,
+      "band_number_ceiling": 0.0003762005801205867,
+      "chance_of_nonvacuum_ceiling": 0.0003762005801205867,
+      "discrimination_ceiling": 0.5096979454025142
+    },
+    "human": {
+      "mass_kg": 70.0,
+      "band_number_ceiling": 1.0758166935395588e+18,
+      "chance_of_nonvacuum_ceiling": 1.0,
+      "discrimination_ceiling": 1.0
+    },
+    "planck_mass_kg": 2.1764343427178984e-08,
+    "ten_solar_frequency_hz": 323.1250342442165,
+    "one_quantum_necessary_mass_kg": 6.748836401246323e-08,
+    "first_compact_density_form_factor_squared_n2": 0.20787957635076193
+  }
+}

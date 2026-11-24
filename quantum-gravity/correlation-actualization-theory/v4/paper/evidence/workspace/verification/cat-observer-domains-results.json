@@ -1,0 +1,348 @@
+{
+  "causal_chart": {
+    "cone_chart_max_error": 3.552713678800501e-15,
+    "coherent_buffer": [
+      {
+        "buffer": 1.0,
+        "direct": 0.7357588823428846,
+        "bound": 0.7357588823428847
+      },
+      {
+        "buffer": 2.0,
+        "direct": 0.09157819444367085,
+        "bound": 0.0915781944436709
+      },
+      {
+        "buffer": 3.0,
+        "direct": 0.0012340980408667953,
+        "bound": 0.0012340980408667955
+      },
+      {
+        "buffer": 4.0,
+        "direct": 1.913097970227409e-06,
+        "bound": 1.913097970227405e-06
+      }
+    ],
+    "exterior_smooth_types": "DeMichelis-Freedman; no exotic space is discretized in this check"
+  },
+  "curved_extensions": {
+    "curvature": [
+      {
+        "u": -0.5,
+        "strength": 0.0,
+        "signed_eigenvalues": [
+          -0.45817027402491695,
+          0.4581702740249164
+        ],
+        "analytic_amplitude": 0.45817027402484334,
+        "ricci_max": 6.661338147750939e-16
+      },
+      {
+        "u": -0.5,
+        "strength": 1.0,
+        "signed_eigenvalues": [
+          -0.45817027402491695,
+          0.4581702740249164
+        ],
+        "analytic_amplitude": 0.45817027402484334,
+        "ricci_max": 6.661338147750939e-16
+      },
+      {
+        "u": 0.5,
+        "strength": 0.0,
+        "signed_eigenvalues": [
+          -0.45817027402491695,
+          0.45817027402491656
+        ],
+        "analytic_amplitude": 0.45817027402484334,
+        "ricci_max": 6.661338147750939e-16
+      },
+      {
+        "u": 0.5,
+        "strength": 1.0,
+        "signed_eigenvalues": [
+          -1.7466763483092305,
+          1.7466763483092294
+        ],
+        "analytic_amplitude": 1.7466763482978105,
+        "ricci_max": 8.881784197001252e-16
+      },
+      {
+        "u": 1.0,
+        "strength": 0.0,
+        "signed_eigenvalues": [
+          -0.3952847075210451,
+          0.39528470752104494
+        ],
+        "analytic_amplitude": 0.39528470752104744,
+        "ricci_max": 1.1102230246251565e-15
+      },
+      {
+        "u": 1.0,
+        "strength": 1.0,
+        "signed_eigenvalues": [
+          -0.8838834764834289,
+          0.883883476483428
+        ],
+        "analytic_amplitude": 0.8838834764831844,
+        "ricci_max": 3.552713678800501e-15
+      }
+    ],
+    "equal_tolerance_minimum": 0.2442993844810685,
+    "comparison_wave": {
+      "equal_tolerance_full_screen": 0.24634130992957268,
+      "reconstruction_max_error": 8.869841925045121e-08,
+      "minimum_sampled_amplitude": 0.614928664719068,
+      "interval": [
+        -0.5416666666666666,
+        1.3333333333333333
+      ]
+    },
+    "weyl_shift_ratios": [
+      1.0000062494531183,
+      1.0000015624658203,
+      1.0000003906228638
+    ],
+    "quartic_probe_correction_per_hbar_squared": 0.5303300858899107
+  },
+  "fixed_vacuum": [
+    {
+      "resolution": 0.0,
+      "outcome_probability": 0.5000000000000001,
+      "bit_given_outcome": 0.5,
+      "outside_sector": 0.0
+    },
+    {
+      "resolution": 0.25,
+      "outcome_probability": 0.5,
+      "bit_given_outcome": 0.6250000000000001,
+      "outside_sector": 0.0
+    },
+    {
+      "resolution": 0.5,
+      "outcome_probability": 0.49999999999999994,
+      "bit_given_outcome": 0.75,
+      "outside_sector": 0.0
+    },
+    {
+      "resolution": 0.75,
+      "outcome_probability": 0.5,
+      "bit_given_outcome": 0.875,
+      "outside_sector": 0.0
+    },
+    {
+      "resolution": 1.0,
+      "outcome_probability": 0.5,
+      "bit_given_outcome": 1.0,
+      "outside_sector": 0.0
+    }
+  ],
+  "longitudinal_blocks": {
+    "transfers": [
+      {
+        "initial": [
+          4,
+          4
+        ],
+        "final": [
+          5,
+          3
+        ],
+        "relative_energy_change": "1/15"
+      },
+      {
+        "initial": [
+          3,
+          4
+        ],
+        "final": [
+          4,
+          3
+        ],
+        "relative_energy_change": "0"
+      },
+      {
+        "initial": [
+          7,
+          5
+        ],
+        "final": [
+          6,
+          6
+        ],
+        "relative_energy_change": "-1/36"
+      }
+    ],
+    "elastic_phases": [
+      {
+        "ranks": [
+          3,
+          4
+        ],
+        "speed": 0.2,
+        "impact": 7.0,
+        "phase": 8.159865362221526e-07
+      },
+      {
+        "ranks": [
+          4,
+          3
+        ],
+        "speed": 0.2,
+        "impact": 7.0,
+        "phase": 8.159865362221526e-07
+      },
+      {
+        "ranks": [
+          2,
+          5
+        ],
+        "speed": 0.3,
+        "impact": 8.0,
+        "phase": 1.02996826171875e-06
+      }
+    ],
+    "membrane_target": [
+      {
+        "r_over_R": 2.0,
+        "transfer": 1,
+        "relative_kernel": 0.5864528940253216
+      },
+      {
+        "r_over_R": 2.0,
+        "transfer": 2,
+        "relative_kernel": 0.1892616018502532
+      },
+      {
+        "r_over_R": 6.0,
+        "transfer": 1,
+        "relative_kernel": 0.04709629135663277
+      },
+      {
+        "r_over_R": 6.0,
+        "transfer": 2,
+        "relative_kernel": 0.00037479695352946946
+      }
+    ],
+    "reversible_visibility": 1.0,
+    "resolved_and_averaged_visibility": 0.0
+  },
+  "homogeneous_volume": {
+    "angular_momentum": 0.5,
+    "energy": 1.25,
+    "lower_volume_per_solid_angle": 0.4728708045015879,
+    "turn_volume_per_solid_angle": 0.7071067811865475,
+    "radial_null_ricci": -28.0,
+    "proper_volume_acceleration": 10.5,
+    "endpoint_a_squared": 0.6544962537291831,
+    "proper_half_duration": 0.3797465599890147,
+    "endpoint_trace_angle": 0.29086151372732905,
+    "matter": [
+      {
+        "family": "angular",
+        "spin": null,
+        "endpoint_frequency": 1.144112104410388,
+        "mean_occupation": 0.025403767442001235,
+        "excited_probability": 0.012464888846082323,
+        "wronskian": 0.9999999999999998
+      },
+      {
+        "family": "longitudinal",
+        "spin": 128,
+        "endpoint_frequency": 2.5636610776473896,
+        "mean_occupation": 0.17479045754698386,
+        "excited_probability": 0.07738652162584114,
+        "wronskian": 0.9999999999999997
+      },
+      {
+        "family": "longitudinal",
+        "spin": 256,
+        "endpoint_frequency": 2.563766124888078,
+        "mean_occupation": 0.17479693383300587,
+        "excited_probability": 0.07738906466831774,
+        "wronskian": 0.9999999999999998
+      },
+      {
+        "family": "longitudinal",
+        "spin": null,
+        "endpoint_frequency": 2.5638013243688986,
+        "mean_occupation": 0.17479910353048234,
+        "excited_probability": 0.07738991663847017,
+        "wronskian": 0.9999999999999992
+      }
+    ]
+  },
+  "material_contacts": [
+    {
+      "spin": 0.5,
+      "central_gap": 0.4999999999999992,
+      "contact_nullity": 8,
+      "negative_slopes": 4,
+      "positive_slopes": 4,
+      "min_slope": -0.25,
+      "max_slope": 0.25000000000000006
+    },
+    {
+      "spin": 1.0,
+      "central_gap": 0.9999999999999988,
+      "contact_nullity": 8,
+      "negative_slopes": 4,
+      "positive_slopes": 4,
+      "min_slope": -0.5000000000000009,
+      "max_slope": 0.5000000000000007
+    },
+    {
+      "spin": 2.0,
+      "central_gap": 1.9999999999999962,
+      "contact_nullity": 8,
+      "negative_slopes": 4,
+      "positive_slopes": 4,
+      "min_slope": -1.0000000000000009,
+      "max_slope": 1.000000000000001
+    }
+  ],
+  "reduced_quantum_response": {
+    "coarse": {
+      "points": 1024,
+      "steps": 480,
+      "epsilon": 0.2,
+      "share": 0.2,
+      "turn": 0.08396387733245643,
+      "q_initial": 1.0038729833462074,
+      "q_turn": 0.8040294927903098,
+      "angular_at_turn": 0.9195610890158934,
+      "quartic_force_term": 67.20836316164352,
+      "mixed_term": 0.5749969657909777,
+      "ordering_term": 0.0012000000000000008,
+      "second_derivative_at_turn": 66.63456619585254,
+      "radial_null_moment_metric": -50.2552021061124,
+      "finite_difference_acceleration": 66.63443260634949,
+      "operator_acceleration_same_step": 66.63452124132138,
+      "finite_difference_velocity": 0.0024070121961983215,
+      "operator_velocity_same_step": 0.002407015909043838,
+      "energy_drift": 4.858646283079082e-07,
+      "edge_probability": 6.697196008678701e-30
+    },
+    "fine": {
+      "points": 2048,
+      "steps": 960,
+      "epsilon": 0.2,
+      "share": 0.2,
+      "turn": 0.08396385761139676,
+      "q_initial": 1.0038729833462074,
+      "q_turn": 0.8040294960792583,
+      "angular_at_turn": 0.9195611070810967,
+      "quartic_force_term": 67.20832550821218,
+      "mixed_term": 0.5749973326563828,
+      "ordering_term": 0.0012000000000000008,
+      "second_derivative_at_turn": 66.6345281755558,
+      "radial_null_moment_metric": -50.255172135894455,
+      "finite_difference_acceleration": 66.6344610209535,
+      "operator_acceleration_same_step": 66.63448318944924,
+      "finite_difference_velocity": 0.0024083289362208937,
+      "operator_velocity_same_step": 0.002408329864425235,
+      "energy_drift": 1.214660347859109e-07,
+      "edge_probability": 2.5698840432508575e-29
+    }
+  }
+}

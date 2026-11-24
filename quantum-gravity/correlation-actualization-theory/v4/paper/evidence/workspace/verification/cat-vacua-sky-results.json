@@ -1,0 +1,247 @@
+{
+  "geometries": [
+    {
+      "speed": 0.25,
+      "curvature_in_sphere_units": -1.875,
+      "from_metric_samples": -1.8750000029477096
+    },
+    {
+      "speed": 0.6,
+      "curvature_in_sphere_units": -1.28,
+      "from_metric_samples": -1.2799999995587958
+    },
+    {
+      "speed": 1.0,
+      "curvature_in_sphere_units": 0.0,
+      "from_metric_samples": 1.3734819948041377e-09
+    },
+    {
+      "speed": 1.3,
+      "curvature_in_sphere_units": 1.3800000000000003,
+      "from_metric_samples": 1.379999998937485
+    }
+  ],
+  "quantum_sectors": {
+    "smith": [
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "free_rank": 2,
+    "torsion_order": 16,
+    "finite_character_grids": {
+      "2": 64,
+      "3": 9,
+      "4": 256,
+      "5": 25
+    },
+    "illustrative_mixing_spectrum": [
+      -4,
+      -2,
+      0,
+      2,
+      4
+    ],
+    "multiplicities": [
+      1,
+      4,
+      6,
+      4,
+      1
+    ]
+  },
+  "orientifold": {
+    "bare_isd_shells": [
+      1,
+      40,
+      760,
+      9120,
+      77560,
+      497648,
+      2508000,
+      10232640,
+      34729720
+    ],
+    "raw_isd": 48055489,
+    "primitive_shells": [
+      1,
+      0,
+      36,
+      0,
+      504,
+      0,
+      3664,
+      0,
+      16392
+    ],
+    "marked_primitive": 20597,
+    "reduced_shells": {
+      "0": 1,
+      "2": 2,
+      "4": 9,
+      "6": 27,
+      "8": 76
+    },
+    "reduced_total": 115,
+    "burnside_sum": [
+      384,
+      0,
+      768,
+      0,
+      3456,
+      0,
+      10368,
+      0,
+      29184
+    ],
+    "polarized_mass_ranks": {
+      "moduli": 7,
+      "marked_rank_histogram": {
+        "0": 1,
+        "4": 1068,
+        "5": 120,
+        "6": 7360,
+        "7": 12048
+      },
+      "orbits_by_norm_and_rank": {
+        "0": {
+          "0": 1
+        },
+        "2": {
+          "4": 2
+        },
+        "4": {
+          "4": 5,
+          "5": 2,
+          "6": 1,
+          "7": 1
+        },
+        "6": {
+          "4": 3,
+          "6": 17,
+          "7": 7
+        },
+        "8": {
+          "4": 8,
+          "5": 2,
+          "6": 25,
+          "7": 41
+        }
+      },
+      "full_rank_marked": 12048,
+      "full_rank_orbits": 49
+    },
+    "general_period_mass_ranks": {
+      "moduli": 10,
+      "marked_rank_histogram": {
+        "0": 1,
+        "6": 1188,
+        "8": 1776,
+        "9": 5584,
+        "10": 12048
+      },
+      "orbits_by_norm_and_rank": {
+        "0": {
+          "0": 1
+        },
+        "2": {
+          "6": 2
+        },
+        "4": {
+          "6": 7,
+          "9": 1,
+          "10": 1
+        },
+        "6": {
+          "6": 3,
+          "8": 8,
+          "9": 9,
+          "10": 7
+        },
+        "8": {
+          "6": 10,
+          "8": 10,
+          "9": 15,
+          "10": 41
+        }
+      },
+      "full_rank_marked": 12048,
+      "full_rank_orbits": 49
+    }
+  },
+  "sky": {
+    "normalized_harmonics": [
+      0.32000000000000006,
+      0.7499999999999999
+    ],
+    "opposite_kick_energy_ratio": 1.360000000000001,
+    "recovered_mixture": [
+      0.32000000000000006,
+      0.4299999999999998,
+      0.2500000000000001
+    ],
+    "optical_distance_ratio": 1.1111111111111112,
+    "flux_siren_distance_ratio": 1.0259783520851542,
+    "two_distance_ratio": 0.9233805168766387,
+    "echo_source_frame_ms": 5.329633306603007
+  },
+  "interlayer_vacuum": {
+    "same_vacuum_and_route": 0.37499999999999983,
+    "changed_route": 0.24999999999999994,
+    "same_route_changed_state": 0.3749999999999999,
+    "compatible_sections": {
+      "5": [
+        2,
+        1,
+        0
+      ],
+      "12": [
+        2,
+        1,
+        0
+      ],
+      "32": [
+        2,
+        1,
+        0
+      ]
+    }
+  },
+  "collapse": {
+    "largest_path_defect": 0.8500000000000002,
+    "two_graviton_patterns": [
+      {
+        "cosine": -1.0,
+        "energy_per_graviton": 1.0,
+        "pattern_overlap": -1.0,
+        "rank": 1
+      },
+      {
+        "cosine": -0.5,
+        "energy_per_graviton": 0.9706641697883125,
+        "pattern_overlap": -0.9756097560975611,
+        "rank": 2
+      },
+      {
+        "cosine": 0.0,
+        "energy_per_graviton": 0.9446148618625834,
+        "pattern_overlap": -4.930380657631328e-32,
+        "rank": 2
+      },
+      {
+        "cosine": 0.5,
+        "energy_per_graviton": 0.9212159716610869,
+        "pattern_overlap": 0.9756097560975611,
+        "rank": 2
+      },
+      {
+        "cosine": 1.0,
+        "energy_per_graviton": 0.9,
+        "pattern_overlap": 1.0,
+        "rank": 1
+      }
+    ]
+  }
+}

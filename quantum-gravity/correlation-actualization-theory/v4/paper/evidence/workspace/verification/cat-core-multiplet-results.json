@@ -1,0 +1,334 @@
+{
+  "sphere": {
+    "harmonic_checks": [
+      {
+        "ell": 1,
+        "transverse_triplet": 6,
+        "gauge": 3,
+        "positive_majorana": 24,
+        "vector_eigen_error": 1.0842934775355992e-15
+      },
+      {
+        "ell": 2,
+        "transverse_triplet": 10,
+        "gauge": 5,
+        "positive_majorana": 40,
+        "vector_eigen_error": 7.105427357601002e-15
+      },
+      {
+        "ell": 3,
+        "transverse_triplet": 14,
+        "gauge": 7,
+        "positive_majorana": 56,
+        "vector_eigen_error": 1.4210854715202004e-14
+      },
+      {
+        "ell": 5,
+        "transverse_triplet": 22,
+        "gauge": 11,
+        "positive_majorana": 88,
+        "vector_eigen_error": 4.973799150320701e-14
+      }
+    ],
+    "circular_fermions": [
+      {
+        "ell": 1,
+        "straight_energy": 32,
+        "circular_energy": 7.867877173357935,
+        "circular_exact_upper": 36.0,
+        "ratio": 0.24587116166743547
+      },
+      {
+        "ell": 2,
+        "straight_energy": 96,
+        "circular_energy": 4.346044407828629,
+        "circular_exact_upper": 30.0,
+        "ratio": 0.04527129591488155
+      },
+      {
+        "ell": 4,
+        "straight_energy": 320,
+        "circular_energy": 3.4509769756400632,
+        "circular_exact_upper": 27.0,
+        "ratio": 0.010784303048875198
+      },
+      {
+        "ell": 8,
+        "straight_energy": 1152,
+        "circular_energy": 3.1775158596328366,
+        "circular_exact_upper": 25.5,
+        "ratio": 0.0027582602948201707
+      },
+      {
+        "ell": 16,
+        "straight_energy": 4352,
+        "circular_energy": 4.522564824891606,
+        "circular_exact_upper": 24.75,
+        "ratio": 0.0010391922851313432
+      }
+    ],
+    "quantum_energy_bounds": [
+      {
+        "j": 8,
+        "g2": 0.01,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 38.65829590623161,
+        "energy_floor_per_inertia": -0.0004808119929116924,
+        "deficit_per_inertia": 0.015151060074356114,
+        "negative_slope_per_inertia": 21.318182273258977,
+        "far_side_probability_bound": 1.0
+      },
+      {
+        "j": 8,
+        "g2": 0.03,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 12.889507615833157,
+        "energy_floor_per_inertia": -0.000693450890175537,
+        "deficit_per_inertia": 0.015151060074356114,
+        "negative_slope_per_inertia": 21.318182273258977,
+        "far_side_probability_bound": 0.8621283768937837
+      },
+      {
+        "j": 8,
+        "g2": 0.1,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 3.8704349994385527,
+        "energy_floor_per_inertia": -0.001035878036912314,
+        "deficit_per_inertia": 0.015151060074356114,
+        "negative_slope_per_inertia": 21.318182273258977,
+        "far_side_probability_bound": 0.2880570424780667
+      },
+      {
+        "j": 8,
+        "g2": 1.0,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 0.39169537150794914,
+        "energy_floor_per_inertia": -0.002231731577366017,
+        "deficit_per_inertia": 0.015151060074356114,
+        "negative_slope_per_inertia": 21.318182273258977,
+        "far_side_probability_bound": 0.03063687258780317
+      },
+      {
+        "j": 16,
+        "g2": 1.0,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 0.3984396727837626,
+        "energy_floor_per_inertia": -0.00035924332358876047,
+        "deficit_per_inertia": 0.0038503754589483945,
+        "negative_slope_per_inertia": 21.329482957874387,
+        "far_side_probability_bound": 0.031003933541300654
+      },
+      {
+        "j": 32,
+        "g2": 1.0,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 0.4001708856420323,
+        "energy_floor_per_inertia": -5.714533608489427e-05,
+        "deficit_per_inertia": 0.0009698334181833782,
+        "negative_slope_per_inertia": 21.33236349991515,
+        "far_side_probability_bound": 0.03111158797109871
+      },
+      {
+        "j": 128,
+        "g2": 1.0,
+        "initial_radius_sigma": 0.04,
+        "energy_per_inertia": 0.4007174209660806,
+        "energy_floor_per_inertia": -1.4273312263897998e-06,
+        "deficit_per_inertia": 6.093336000000958e-05,
+        "negative_slope_per_inertia": 21.333272399973332,
+        "far_side_probability_bound": 0.03114855595343142
+      }
+    ],
+    "backreaction": [
+      {
+        "j": 8,
+        "g2": 0.0,
+        "initial_energy": 0.38480000000000003,
+        "first_zero": 0.6963553907295496,
+        "first_turn": 2.096090834430394,
+        "signed_radius_at_turn": -0.93662611963283,
+        "fermion_work_equal_radius_per_inertia": 12.799999999999999,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 2.7755575615628914e-16,
+        "wronskian_error": 2.5935698033663357e-11
+      },
+      {
+        "j": 8,
+        "g2": 0.01,
+        "initial_energy": 0.38471509729088427,
+        "first_zero": 0.6994500871056268,
+        "first_turn": 1.997301487502927,
+        "signed_radius_at_turn": -0.6776432442780929,
+        "fermion_work_equal_radius_per_inertia": 12.799999999999999,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 1.6994183837937271e-12,
+        "wronskian_error": 1.7995716028451625e-11
+      },
+      {
+        "j": 8,
+        "g2": 0.03,
+        "initial_energy": 0.3845452918726527,
+        "first_zero": 0.705830364645066,
+        "first_turn": 1.404652118181553,
+        "signed_radius_at_turn": -0.32131399231151536,
+        "fermion_work_equal_radius_per_inertia": 12.799999999999999,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 1.2477241462249822e-12,
+        "wronskian_error": 3.295252959389927e-12
+      },
+      {
+        "j": 8,
+        "g2": 0.1,
+        "initial_energy": 0.3839509729088422,
+        "first_zero": 0.7306214117619116,
+        "first_turn": 1.0332653539239647,
+        "signed_radius_at_turn": -0.12741730979097954,
+        "fermion_work_equal_radius_per_inertia": 12.799999999999999,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 2.7082169840042525e-11,
+        "wronskian_error": 5.0645043714325766e-12
+      },
+      {
+        "j": 8,
+        "g2": 1.0,
+        "initial_energy": 0.37630972908842203,
+        "first_zero": null,
+        "first_turn": 1.303753266373593,
+        "signed_radius_at_turn": 0.04589553066170369,
+        "fermion_work_equal_radius_per_inertia": 12.799999999999999,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 3.799199843612655e-11,
+        "wronskian_error": 6.298461752152207e-12
+      },
+      {
+        "j": 16,
+        "g2": 0.03,
+        "initial_energy": 0.38473314928091956,
+        "first_zero": 0.7011984470260121,
+        "first_turn": 1.4047825353873329,
+        "signed_radius_at_turn": -0.3155020584578971,
+        "fermion_work_equal_radius_per_inertia": 12.8,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 2.518374397908474e-12,
+        "wronskian_error": 1.1029510638138618e-11
+      },
+      {
+        "j": 32,
+        "g2": 0.03,
+        "initial_energy": 0.3847828641728271,
+        "first_zero": 0.6987992647563434,
+        "first_turn": 1.3952673092199304,
+        "signed_radius_at_turn": -0.3089856436066122,
+        "fermion_work_equal_radius_per_inertia": 12.8,
+        "fermion_only_necessary_g2": 0.025000000000000005,
+        "energy_drift": 4.131917030747445e-12,
+        "wronskian_error": 2.4615753879686508e-11
+      }
+    ]
+  },
+  "null_tube": {
+    "deformation": 0.08,
+    "affine_shift": 5.999069316126444e-18,
+    "finite_difference_ricci": 9.692513458503527e-10,
+    "direct_matrix_checks": {
+      "dirac_square_error": 2.9315985031776777e-15,
+      "material_source_error": 1.5182071523486655e-15
+    },
+    "near_zero_exponents": [
+      1.9968614781897203,
+      1.9874831743209522
+    ],
+    "reads": [
+      {
+        "k": 0.0,
+        "vector_frobenius": 2.3215903725064615e-11,
+        "spinor_frobenius_per_copy": 1.642587132504472e-11,
+        "material_probabilities": [
+          0.0913884693037534,
+          0.0913884693036609
+        ]
+      },
+      {
+        "k": 0.00125,
+        "vector_frobenius": 1.8902680053955277e-07,
+        "spinor_frobenius_per_copy": 1.336620986650915e-07,
+        "material_probabilities": [
+          0.09138843651088556,
+          0.09138844162142112
+        ]
+      },
+      {
+        "k": 0.0025,
+        "vector_frobenius": 7.5446411092688e-07,
+        "spinor_frobenius_per_copy": 5.334866050175804e-07,
+        "material_probabilities": [
+          0.0913883381322406,
+          0.09138835847821859
+        ]
+      },
+      {
+        "k": 0.005,
+        "vector_frobenius": 2.9917867676862e-06,
+        "spinor_frobenius_per_copy": 2.1155127040146395e-06,
+        "material_probabilities": [
+          0.09138794461774494,
+          0.09138802448268812
+        ]
+      },
+      {
+        "k": 0.01,
+        "vector_frobenius": 1.1568884109163182e-05,
+        "spinor_frobenius_per_copy": 8.18043638542561e-06,
+        "material_probabilities": [
+          0.09138637055946297,
+          0.09138666691199261
+        ]
+      },
+      {
+        "k": 0.02,
+        "vector_frobenius": 4.090549257877989e-05,
+        "spinor_frobenius_per_copy": 2.8924551219225947e-05,
+        "material_probabilities": [
+          0.09138007432346062,
+          0.09138095169639165
+        ]
+      },
+      {
+        "k": 0.04,
+        "vector_frobenius": 0.00011158036449560324,
+        "spinor_frobenius_per_copy": 7.889923239027805e-05,
+        "material_probabilities": [
+          0.09135488932747227,
+          0.09135550517791015
+        ],
+        "max_relative_angle": 5.579018666734742e-05,
+        "best_single_success": 0.5000278950933192,
+        "ideal_parallel_uses_for_orthogonality": 28156
+      },
+      {
+        "k": 0.08,
+        "vector_frobenius": 0.00018440512161354162,
+        "spinor_frobenius_per_copy": 0.00013039411222267658,
+        "material_probabilities": [
+          0.09125414841299748,
+          0.09124168984750854
+        ],
+        "max_relative_angle": 9.220256165104041e-05,
+        "best_single_success": 0.5000461012807602,
+        "ideal_parallel_uses_for_orthogonality": 17037
+      },
+      {
+        "k": 0.16,
+        "vector_frobenius": 0.0008103099744470043,
+        "spinor_frobenius_per_copy": 0.0005729756778620961,
+        "material_probabilities": [
+          0.09085116374638658,
+          0.09076265530748602
+        ],
+        "max_relative_angle": 0.00040515499088600575,
+        "best_single_success": 0.5002025774899008,
+        "ideal_parallel_uses_for_orthogonality": 3878
+      }
+    ]
+  }
+}

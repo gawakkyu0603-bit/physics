@@ -1,0 +1,383 @@
+{
+  "localizer": [
+    {
+      "size": 2,
+      "radius_over_alpha_j": 0.65,
+      "signed_total": 0,
+      "relative_index": 1.0000000000000004
+    },
+    {
+      "size": 2,
+      "radius_over_alpha_j": 1.15,
+      "signed_total": 0,
+      "relative_index": -8.326672684688674e-17
+    },
+    {
+      "size": 3,
+      "radius_over_alpha_j": 0.65,
+      "signed_total": 0,
+      "relative_index": 0.9999999999999998
+    },
+    {
+      "size": 3,
+      "radius_over_alpha_j": 1.15,
+      "signed_total": 0,
+      "relative_index": 4.440892098500626e-16
+    },
+    {
+      "size": 4,
+      "radius_over_alpha_j": 0.65,
+      "signed_total": 0,
+      "relative_index": 1.0000000000000004
+    },
+    {
+      "size": 4,
+      "radius_over_alpha_j": 1.15,
+      "signed_total": 0,
+      "relative_index": -4.163336342344337e-16
+    },
+    {
+      "size": 7,
+      "radius_over_alpha_j": 0.65,
+      "signed_total": 0,
+      "relative_index": 0.999999999999999
+    },
+    {
+      "size": 7,
+      "radius_over_alpha_j": 1.15,
+      "signed_total": 0,
+      "relative_index": -5.689893001203927e-16
+    },
+    {
+      "size": 12,
+      "radius_over_alpha_j": 0.65,
+      "signed_total": 0,
+      "relative_index": 0.9999999999999996
+    },
+    {
+      "size": 12,
+      "radius_over_alpha_j": 1.15,
+      "signed_total": 0,
+      "relative_index": -1.7486012637846216e-15
+    }
+  ],
+  "crossing": {
+    "crossing_time_times_alpha0": 0.5334407899056304,
+    "slope_per_j_alpha0_squared": 0.8267972847076845,
+    "landau_zener": [
+      {
+        "normal_gap": 0.0,
+        "sweep": 1.0,
+        "diabatic": 1.0,
+        "finite_window": [
+          0.9999999982519125,
+          0.9999999963721482
+        ]
+      },
+      {
+        "normal_gap": 0.35,
+        "sweep": 1.0,
+        "diabatic": 0.6805560461278611,
+        "finite_window": [
+          0.6805281260286334,
+          0.680564233108539
+        ]
+      },
+      {
+        "normal_gap": 0.7,
+        "sweep": 1.0,
+        "diabatic": 0.21451397306126196,
+        "finite_window": [
+          0.21450310278053647,
+          0.21451810382681144
+        ]
+      },
+      {
+        "normal_gap": 1.0,
+        "sweep": 1.0,
+        "diabatic": 0.04321391826377226,
+        "finite_window": [
+          0.043248608807843876,
+          0.043203669517144466
+        ]
+      }
+    ]
+  },
+  "protected": {
+    "two_mark_overlap": 0.0,
+    "lost_bell_fidelity": 0.5,
+    "origin_preserved_bell_fidelity": 1.0
+  },
+  "energy_matched": {
+    "conservation": {
+      "positive_gaps": [
+        1.0,
+        2.0000000000000004,
+        3.0,
+        4.0
+      ],
+      "residuals": {
+        "intertwining": 4.691516468481732e-16,
+        "trace": 1.0481828030977614e-15,
+        "first_moment": 4.235212259489308e-15,
+        "second_moment": 1.7002298685252346e-14,
+        "spectral_measure": 9.365584114393259e-16
+      }
+    },
+    "retained_spectator": {
+      "coherent_gap_fidelity": 0.9999999999999996,
+      "archived_absolute_energy_fidelity": 0.4999999999999998
+    },
+    "alternative_discretizations": {
+      "oriented_four_valent_flux": [
+        -1.7320508075688772,
+        1.7320508075688772
+      ],
+      "separate_receipts_commute": true,
+      "transfer_probability": 0.2,
+      "reverse_probability": 0.0,
+      "stationary_ready_weight": 0.0
+    },
+    "common_interior": {
+      "near_common": {
+        "gram": [
+          0.0,
+          0.5
+        ],
+        "infall": 1.0,
+        "surface": 0.0
+      },
+      "distant_closed": {
+        "gram": [
+          0.25,
+          0.5
+        ],
+        "infall": 2.4651903288156624e-32,
+        "surface": 1.0
+      },
+      "distant_refined": {
+        "gram": [
+          0.25,
+          0.5
+        ],
+        "infall": 2.4651903288156624e-32,
+        "surface": 1.0
+      }
+    },
+    "supersymmetry": {
+      "supercharges": 16,
+      "multiplet_dimension": 256,
+      "rate_per_component": 1.52587890625e-05,
+      "open_dimension_before_one_forbidden_polarization": 255,
+      "invariant_open_dimension": 0
+    },
+    "surface_write": {
+      "two_signs": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "unwritten_probability_given_incidence": 0.0,
+      "input_qubits": 1,
+      "output_payload_qubits_per_selected_sign": 1
+    }
+  },
+  "string": {
+    "bare_unitarity_limit": 5.135103576135435,
+    "samples": [
+      {
+        "x": 0.5,
+        "bare_transmission": 0.0063655218284129015,
+        "exterior_transmission": 0.007320635768037559
+      },
+      {
+        "x": 1,
+        "bare_transmission": 0.025855824605182102,
+        "exterior_transmission": 0.03450395559043565
+      },
+      {
+        "x": 2,
+        "bare_transmission": 0.10962716061343891,
+        "exterior_transmission": 0.1866858674556187
+      },
+      {
+        "x": 4,
+        "bare_transmission": 0.5321531571637886,
+        "exterior_transmission": 0.7550914524523828
+      },
+      {
+        "x": 6,
+        "bare_transmission": 1.511173416800546,
+        "exterior_transmission": 0.9669875851960538
+      },
+      {
+        "x": 8,
+        "bare_transmission": 3.3632625700395593,
+        "exterior_transmission": 0.9960419875887208
+      }
+    ],
+    "finite_release": [
+      {
+        "content": "Page_content",
+        "final_mass_fraction": 0.99,
+        "low_hazard": 0.17738276917139295,
+        "high_hazard": 1.1627734151477929,
+        "one_complete": 0.6873820419124339,
+        "two_complete": 0.04734603883156285,
+        "cross_phase_amplitude": 0.18040182052436463,
+        "exact_heralded_rate": 0.04734603883156285
+      },
+      {
+        "content": "Page_content",
+        "final_mass_fraction": 0.9,
+        "low_hazard": 2.5904660726191526,
+        "high_hazard": 13.999896405582136,
+        "one_complete": 0.9999991683851347,
+        "two_complete": 0.9000304272262015,
+        "cross_phase_amplitude": 0.948698939994938,
+        "exact_heralded_rate": 0.9000304272262015
+      },
+      {
+        "content": "Page_content",
+        "final_mass_fraction": 0.8,
+        "low_hazard": 8.357994366082043,
+        "high_hazard": 33.40801600716344,
+        "one_complete": 0.9999999999999969,
+        "two_complete": 0.9996873143839108,
+        "cross_phase_amplitude": 0.9998436449685059,
+        "exact_heralded_rate": 0.9996873143839108
+      },
+      {
+        "content": "relativistic_SM",
+        "final_mass_fraction": 0.99,
+        "low_hazard": 0.00813190648834419,
+        "high_hazard": 0.05330599315415015,
+        "one_complete": 0.05191014091431376,
+        "two_complete": 0.00013047852479541877,
+        "cross_phase_amplitude": 0.002602529271386197,
+        "exact_heralded_rate": 0.00013047852479541877
+      },
+      {
+        "content": "relativistic_SM",
+        "final_mass_fraction": 0.9,
+        "low_hazard": 0.11875690047105467,
+        "high_hazard": 0.6418089476700995,
+        "one_complete": 0.4736605581515553,
+        "two_complete": 0.02325776029313842,
+        "cross_phase_amplitude": 0.10495848570650695,
+        "exact_heralded_rate": 0.02325776029313842
+      },
+      {
+        "content": "relativistic_SM",
+        "final_mass_fraction": 0.8,
+        "low_hazard": 0.38316251873041507,
+        "high_hazard": 1.5315515898213417,
+        "one_complete": 0.7838000467087753,
+        "two_complete": 0.1630513958551919,
+        "cross_phase_amplitude": 0.3574908274169149,
+        "exact_heralded_rate": 0.1630513958551919
+      }
+    ],
+    "frozen_temperature_ratio_after_tenth": 0.6971370023173351
+  },
+  "geometry": {
+    "adjoint_spectra": [
+      {
+        "rank": 2,
+        "dimension": 4,
+        "spectrum_error": 0.0
+      },
+      {
+        "rank": 4,
+        "dimension": 16,
+        "spectrum_error": 1.7763568394002505e-15
+      },
+      {
+        "rank": 7,
+        "dimension": 49,
+        "spectrum_error": 7.105427357601002e-14
+      },
+      {
+        "rank": 12,
+        "dimension": 144,
+        "spectrum_error": 3.694822225952521e-13
+      }
+    ],
+    "heat_traces": [
+      {
+        "rank": 12,
+        "diffusion": 0.01,
+        "spatial_spectral_dimension": 2.098944917573419
+      },
+      {
+        "rank": 32,
+        "diffusion": 0.01,
+        "spatial_spectral_dimension": 2.9926074247988885
+      },
+      {
+        "rank": 64,
+        "diffusion": 0.01,
+        "spatial_spectral_dimension": 2.9933288718739277
+      },
+      {
+        "rank": 128,
+        "diffusion": 0.01,
+        "spatial_spectral_dimension": 2.9933288718739277
+      },
+      {
+        "rank": 128,
+        "diffusion": 0.003,
+        "spatial_spectral_dimension": 2.997999599542182
+      }
+    ],
+    "rotating_solutions": [
+      {
+        "initial_radius": 1.0,
+        "min_angular_pressure": -0.0,
+        "max_angular_pressure": -0.0,
+        "max_energy_drift": 0.0
+      },
+      {
+        "initial_radius": 1.01,
+        "min_angular_pressure": -0.12388675957562036,
+        "max_angular_pressure": 0.11590952949158684,
+        "max_energy_drift": 5.839773109528323e-14
+      },
+      {
+        "initial_radius": 1.15,
+        "min_angular_pressure": -3.036765648803915,
+        "max_angular_pressure": 1.135344808176887,
+        "max_energy_drift": 6.34803321020172e-12
+      }
+    ]
+  },
+  "gravitational_preparation": [
+    {
+      "frequency_ratio": 1.0,
+      "peak_tide_in_omega_squared": 0.002,
+      "pulse_in_receiver_cycles": 6.0,
+      "first_order_probability": 0.00026647931882941276,
+      "exact_quadratic_probability": 0.0002664398356332668
+    },
+    {
+      "frequency_ratio": 1.0,
+      "peak_tide_in_omega_squared": 0.02,
+      "pulse_in_receiver_cycles": 6.0,
+      "first_order_probability": 0.026647931882941275,
+      "exact_quadratic_probability": 0.026257327814321007
+    },
+    {
+      "frequency_ratio": 1.18,
+      "peak_tide_in_omega_squared": 0.002,
+      "pulse_in_receiver_cycles": 6.0,
+      "first_order_probability": 1.0000514964498277e-07,
+      "exact_quadratic_probability": 9.999480959765946e-08
+    },
+    {
+      "frequency_ratio": 1.18,
+      "peak_tide_in_omega_squared": 0.02,
+      "pulse_in_receiver_cycles": 6.0,
+      "first_order_probability": 1.0000514964498277e-05,
+      "exact_quadratic_probability": 9.89729824765921e-06
+    }
+  ]
+}

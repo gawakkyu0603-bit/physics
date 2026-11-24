@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "html_pages": 13,
+    "local_links": 522,
+    "paper_source_links": 84,
+    "paired_articles": 3,
+    "pdf_sha256": {
+      "cat-v4-main.pdf": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a",
+      "cat-v4-supplement.pdf": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+    }
+  },
+  "error_count": 0,
+  "errors": []
+}

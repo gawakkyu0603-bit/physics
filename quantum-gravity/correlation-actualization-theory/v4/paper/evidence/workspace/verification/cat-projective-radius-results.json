@@ -1,0 +1,345 @@
+{
+  "linear": {
+    "axes": 6,
+    "relative_rms": 0.3061862178478973,
+    "multiplicities": [
+      6,
+      9
+    ]
+  },
+  "spectra": [
+    {
+      "level": 1,
+      "charge": 0,
+      "even_states": 17,
+      "odd_states": 8,
+      "lowest_odd": 1.5,
+      "first_even": 1.0
+    },
+    {
+      "level": 1,
+      "charge": 1,
+      "even_states": 44,
+      "odd_states": 26,
+      "lowest_odd": 1.5857864376269049,
+      "first_even": 0.30741759643274796
+    },
+    {
+      "level": 1,
+      "charge": 2,
+      "even_states": 90,
+      "odd_states": 60,
+      "lowest_odd": 1.7679491924311228,
+      "first_even": 0.6277186767309857
+    },
+    {
+      "level": 2,
+      "charge": 0,
+      "even_states": 116,
+      "odd_states": 80,
+      "lowest_odd": 1.5,
+      "first_even": 0.6277186767309857
+    },
+    {
+      "level": 2,
+      "charge": 1,
+      "even_states": 240,
+      "odd_states": 180,
+      "lowest_odd": 1.5505102572168221,
+      "first_even": 0.22508278236462514
+    },
+    {
+      "level": 3,
+      "charge": 0,
+      "even_states": 500,
+      "odd_states": 400,
+      "lowest_odd": 1.5,
+      "first_even": 0.4688711258507252
+    }
+  ],
+  "products": [
+    {
+      "level": 1,
+      "charge_in": [
+        1,
+        2
+      ],
+      "charge_out": 3,
+      "projected_fraction": 0.9999171272463249,
+      "vertex_norm_squared": 2.319488984136189
+    },
+    {
+      "level": 2,
+      "charge_in": [
+        1,
+        2
+      ],
+      "charge_out": 3,
+      "projected_fraction": 0.9999830613742067,
+      "vertex_norm_squared": 4.121226771097885
+    },
+    {
+      "level": 4,
+      "charge_in": [
+        1,
+        2
+      ],
+      "charge_out": 3,
+      "projected_fraction": 0.9999982489385657,
+      "vertex_norm_squared": 9.729649214498222
+    }
+  ],
+  "four_links": [
+    {
+      "level": 1,
+      "tree": 12.0,
+      "mixed": 53.71428571428571,
+      "unit_scale_inverse_G": 8.548894086078949,
+      "first_mode_G_mass_squared": 0.23394838909711227,
+      "shear_second_variation": 0.6889131283216443,
+      "tree_force_transverse_fraction": 0.0
+    },
+    {
+      "level": 2,
+      "tree": 84.00000000000001,
+      "mixed": 518.0484932164235,
+      "unit_scale_inverse_G": 82.44997845670201,
+      "first_mode_G_mass_squared": 0.015226654717942163,
+      "shear_second_variation": 0.7613511145976304,
+      "tree_force_transverse_fraction": 0.4961389383568338,
+      "scale_minimized_transverse_slope": -0.9168151929539459
+    }
+  ],
+  "onsite": [
+    {
+      "level": 1,
+      "onsite": 2.2232392257875873,
+      "energy_ratio": -1.2446963908990507,
+      "phase_curvature": -0.12699948878308834,
+      "axis_curvature": 0.78481857175261
+    },
+    {
+      "level": 2,
+      "onsite": 3.3652443384978428,
+      "energy_ratio": -1.6284441356344102,
+      "phase_curvature": -0.024966721747138945,
+      "axis_curvature": 0.5403929882116615
+    }
+  ],
+  "polarization": [
+    {
+      "level": 1,
+      "vector_mass_squared": -2,
+      "scalar_mass_squared": 2.0,
+      "divergence_norm": 0.0,
+      "required_gap_ratio": 1.0
+    },
+    {
+      "level": 2,
+      "vector_mass_squared": -4,
+      "scalar_mass_squared": 1.2554373534619714,
+      "divergence_norm": 7.850462293418876e-17,
+      "required_gap_ratio": 1.784976375651652
+    },
+    {
+      "level": 3,
+      "vector_mass_squared": -6,
+      "scalar_mass_squared": 0.9377422517014504,
+      "divergence_norm": 0.0,
+      "required_gap_ratio": 2.5294953361514536
+    },
+    {
+      "level": 4,
+      "vector_mass_squared": -8,
+      "scalar_mass_squared": 0.7530492340404017,
+      "divergence_norm": 1.6184142622847344e-16,
+      "required_gap_ratio": 3.2593673286360034
+    },
+    {
+      "level": 6,
+      "vector_mass_squared": -12,
+      "scalar_mass_squared": 0.5431677051990397,
+      "divergence_norm": 4.108622148914904e-16,
+      "required_gap_ratio": 4.700279164166818
+    }
+  ],
+  "finite_shapes": [
+    {
+      "matrix_size": 3,
+      "resummed": false,
+      "negative_energy": 39.737824091979256,
+      "relative_gradient": 8.932610637138361e-08,
+      "symmetry_directions": 20,
+      "minimum_shape_curvature": 0.7869767209044256,
+      "zero_shape_modes": 20,
+      "alternative_start_energy_ratio": 1.0000000000000022,
+      "summed_to_quartic": 1.1353749540173101,
+      "G_times_light_mass2": 0.3526913423223014,
+      "first_scalar": 0.2565054484612665,
+      "transverse_low": -0.5670439743843403,
+      "transverse_negative": 10,
+      "required_gap_over_first_scalar": 1.486825745742617,
+      "relative_spin_min": -1.9999999999999891,
+      "relative_spin_max": 3.248669651817062
+    },
+    {
+      "matrix_size": 4,
+      "resummed": false,
+      "negative_energy": 126.17273363668612,
+      "relative_gradient": 1.6117801206894754e-08,
+      "symmetry_directions": 27,
+      "minimum_shape_curvature": 0.5839772517186745,
+      "zero_shape_modes": 27,
+      "alternative_start_energy_ratio": 0.9999999999999996,
+      "summed_to_quartic": 0.9371879825917003,
+      "G_times_light_mass2": 0.15684977505035208,
+      "first_scalar": 0.17220410793934174,
+      "transverse_low": -0.28645924048313537,
+      "transverse_negative": 28,
+      "required_gap_over_first_scalar": 1.2897622587036859,
+      "relative_spin_min": -1.7371123613860282,
+      "relative_spin_max": 5.058209844469238
+    },
+    {
+      "matrix_size": 5,
+      "resummed": false,
+      "negative_energy": 304.87591487316746,
+      "relative_gradient": 7.817500549526334e-08,
+      "symmetry_directions": 36,
+      "minimum_shape_curvature": 0.8484646849172308,
+      "zero_shape_modes": 36,
+      "alternative_start_energy_ratio": 0.9999999999999978,
+      "summed_to_quartic": 0.9164231277486564,
+      "G_times_light_mass2": 0.10046382618621814,
+      "first_scalar": 0.15769573335766346,
+      "transverse_low": -0.21096658406370336,
+      "transverse_negative": 47,
+      "required_gap_over_first_scalar": 1.1566364218597678,
+      "relative_spin_min": -2.000000000000003,
+      "relative_spin_max": 5.449782454206196
+    }
+  ],
+  "summed_search": [
+    {
+      "matrix_size": 2,
+      "resummed": true,
+      "negative_energy": 15.374496445382276,
+      "relative_gradient": 2.4701783037225347e-07,
+      "symmetry_directions": 12,
+      "alternative_start_energy_ratio": 1.000000000000001,
+      "summed_to_quartic": 1.3862943611198852,
+      "G_times_light_mass2": 2.266180070241374,
+      "first_scalar": 0.9999999997033617,
+      "transverse_low": -0.9999999999999996,
+      "transverse_negative": 2,
+      "required_gap_over_first_scalar": 1.000000000148319,
+      "relative_spin_min": -1.9999999999999998,
+      "relative_spin_max": 1.9999999999999998
+    },
+    {
+      "matrix_size": 4,
+      "resummed": true,
+      "negative_energy": 132.83448203928913,
+      "relative_gradient": 4.364720150270732e-07,
+      "symmetry_directions": 28,
+      "alternative_start_energy_ratio": 1.000000000000001,
+      "summed_to_quartic": 1.2517170906385184,
+      "G_times_light_mass2": 0.1739294365037563,
+      "first_scalar": 0.16831750603255063,
+      "transverse_low": -0.4493014675676632,
+      "transverse_negative": 16,
+      "required_gap_over_first_scalar": 1.6338202510309352,
+      "relative_spin_min": -1.9999999999999996,
+      "relative_spin_max": 2.732050838369326
+    }
+  ],
+  "ordered_trace": {
+    "momentum_integral": 2.5812770640784595,
+    "spectral_result": 2.581277064078458,
+    "quartic": 2.3775499760660326,
+    "weak_spin_coefficient": 2.3775530591950575
+  },
+  "matter": {
+    "AdS_mass_squared_L_squared": [
+      18.000000361481064,
+      3.999999220738459
+    ],
+    "scalar_force_ratios": [
+      0.33333333337893767,
+      1.1581698944807293e-19,
+      3.0000000036427736
+    ],
+    "cassini_long_range_ratio": 1.2040144963345359e-05,
+    "universal_D0_fraction_tolerance": 0.0015025069652508287,
+    "gauge_scale_Einstein_slopes": [
+      0.0,
+      -0.22222222222367802
+    ]
+  },
+  "balanced_flux": [
+    {
+      "field": 0.6,
+      "max_level": 4,
+      "separation_squared": 0.0,
+      "response": 4.158883083359672
+    },
+    {
+      "field": 0.6,
+      "max_level": 4,
+      "separation_squared": 0.8,
+      "response": 3.1921179105599595
+    },
+    {
+      "field": 1.7,
+      "max_level": 9,
+      "separation_squared": 0.8,
+      "response": 21.937466345427254
+    }
+  ],
+  "closed_matrix_spectra": [
+    {
+      "lower_spin": 0.5,
+      "tree": 42.0,
+      "summed_mixed": 164.39588424440166,
+      "flat_internal_loop": -65.39712435851106,
+      "first_scalar": 1.5,
+      "lowest_charged_vector": 0.5,
+      "tree_shape_numerator": -99.3292489878504,
+      "loop_shape_numerator": -5732.1446874702415,
+      "G_times_light_mass2": 0.057329768346012173
+    },
+    {
+      "lower_spin": 1.0,
+      "tree": 156.0,
+      "summed_mixed": 618.394536965605,
+      "flat_internal_loop": -258.53184922772925,
+      "first_scalar": 1.5,
+      "lowest_charged_vector": 0.5,
+      "tree_shape_numerator": -500.42676514010736,
+      "loop_shape_numerator": -23378.04967384387,
+      "G_times_light_mass2": 0.015240719956899594
+    },
+    {
+      "lower_spin": 2.0,
+      "tree": 930.0,
+      "summed_mixed": 3709.1472108454514,
+      "flat_internal_loop": -1620.0659830607474,
+      "first_scalar": 1.5,
+      "lowest_charged_vector": 0.5,
+      "tree_shape_numerator": -3583.322876217513,
+      "loop_shape_numerator": -149313.1095689005,
+      "G_times_light_mass2": 0.0025409554878845384
+    },
+    {
+      "lower_spin": 4.0,
+      "tree": 8190.0,
+      "summed_mixed": 32732.95515279771,
+      "flat_internal_loop": -14666.331801772118,
+      "first_scalar": 1.5,
+      "lowest_charged_vector": 0.5,
+      "tree_shape_numerator": -34262.94998305058,
+      "loop_shape_numerator": -1361970.7713355762,
+      "G_times_light_mass2": 0.00028792933350424476
+    }
+  ]
+}

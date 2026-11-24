@@ -1,0 +1,8 @@
+* -text
+*.pdf binary
+*.zip binary
+*.gz binary
+*.xz binary
+*.whl binary
+*.npz binary
+*.h5 binary

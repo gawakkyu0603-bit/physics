@@ -1,0 +1,43 @@
+{
+  "manuscript_version": 4,
+  "manuscript_date": "2026-11-25",
+  "review_kind": "AI-assisted technical review, not journal peer review",
+  "original_archive_sha256": "fad61f93e3915de81701d9ebe8f3326c8a66fbb23c1a16572ee8aac7609fa14f",
+  "original_archive_size_bytes": 303175654,
+  "original_payload_file_count": 742,
+  "original_manifest_entry_count": 741,
+  "git_retained_original_files": 709,
+  "git_omitted_runtime_files": 33,
+  "git_retained_original_bytes": 23463032,
+  "full_release_preserves_all_original_files": true,
+  "v3_full_driver_reruns_reported": 9,
+  "v3_selected_lean_module_reruns_reported": 10,
+  "reference_numeric_groups": 59,
+  "reference_floating_point_values": 1195,
+  "selected_lean_theorem_lemma_declarations": 365,
+  "all_supplied_research_lean_files": 85,
+  "v4_full_driver_reruns": 0,
+  "v4_full_lean_reruns": 0,
+  "v4_package_check_exit_code": 0,
+  "v4_finite_link_checks_passed": 143,
+  "v4_identical_to_v3": {
+    "selected_execution_files": 33,
+    "workspace_files": 309,
+    "numbered_result_records": 91,
+    "checked_linux_and_lean_dependency_files": 18
+  },
+  "v4_archive_diff": {
+    "unchanged": 717,
+    "changed": 23,
+    "added": 2,
+    "removed": 0
+  },
+  "article_sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a",
+  "supplement_sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8",
+  "limits": [
+    "Formal checks are conditional on stated analytical and physical inputs.",
+    "The proposed readout protocol is not an observed gravitational experiment.",
+    "No general rank/continuum limit, physical sector measure, generic natural collapse, or endpoint recovery is claimed.",
+    "Publication integrity checks do not certify scientific correctness or unrestricted data reuse."
+  ]
+}

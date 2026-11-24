@@ -1,0 +1,19 @@
+{
+  "mode_energy": {
+    "mixed_change": -0.0049056,
+    "diagonalization": -0.00490560000000255,
+    "cutoff_difference": 1.2073675392798577e-15
+  },
+  "near": {
+    "mark": 0.51,
+    "missed_overlap": 0.8163265306122449
+  },
+  "far": {
+    "mark": 0.12,
+    "missed_overlap": 0.4545454545454546
+  },
+  "causal_feedback": {
+    "predicted": -0.0496162919282885,
+    "from_potential": -0.04961629184557781
+  }
+}

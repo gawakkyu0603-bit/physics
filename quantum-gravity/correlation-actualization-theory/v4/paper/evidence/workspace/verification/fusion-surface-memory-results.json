@@ -1,0 +1,357 @@
+{
+  "black_hole_gravitons": {
+    "mean_x": 8.694178449827014,
+    "mean_x_sq": 79.22247575119637,
+    "moments": [
+      {
+        "gap_over_TH": 0.6931471805599453,
+        "grid_difference": 1.4079299579634879e-12,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 3.9809208407453787e-10,
+        "sine": 1.8042966946363558e-09
+      },
+      {
+        "gap_over_TH": 0.6931471805599453,
+        "grid_difference": 5.000926838131781e-13,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 7.777114025263134e-13,
+        "sine": 7.049736325309576e-12
+      },
+      {
+        "gap_over_TH": 1.3862943611198906,
+        "grid_difference": 2.912070378672388e-12,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 3.429870336030864e-05,
+        "sine": -7.772703801330866e-05
+      },
+      {
+        "gap_over_TH": 1.3862943611198906,
+        "grid_difference": 1.4079299579634879e-12,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 3.9809208407453787e-10,
+        "sine": 1.8042966946363558e-09
+      },
+      {
+        "gap_over_TH": 2.772588722239781,
+        "grid_difference": 5.070366002057902e-12,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 0.01156595748944621,
+        "sine": 0.01310527118180843
+      },
+      {
+        "gap_over_TH": 2.772588722239781,
+        "grid_difference": 2.912070378672388e-12,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 3.429870336030864e-05,
+        "sine": -7.772703801330866e-05
+      }
+    ],
+    "partial_powers": [
+      3.800731411464118e-06,
+      3.5652334387474713e-08,
+      3.526501295997319e-10,
+      3.4885194912080846e-12,
+      3.408054996244515e-14,
+      3.278351906951438e-16,
+      2.9106483682288458e-18
+    ],
+    "power": 3.836739918911979e-06
+  },
+  "black_hole_photons": {
+    "mean_x": 5.7139144480045125,
+    "mean_x_sq": 35.87989740609255,
+    "moments": [
+      {
+        "gap_over_TH": 0.6931471805599453,
+        "grid_difference": 6.084661685863944e-11,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 9.431807584623705e-08,
+        "sine": -4.27483487619319e-07
+      },
+      {
+        "gap_over_TH": 0.6931471805599453,
+        "grid_difference": 2.501070262262278e-10,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 1.5133670258724537e-09,
+        "sine": -1.3718248776039746e-08
+      },
+      {
+        "gap_over_TH": 1.3862943611198906,
+        "grid_difference": 2.5570655337749494e-11,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 1.1292457687812015e-05,
+        "sine": 2.5590742563754627e-05
+      },
+      {
+        "gap_over_TH": 1.3862943611198906,
+        "grid_difference": 6.084661685863944e-11,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 9.431807584623705e-08,
+        "sine": -4.27483487619319e-07
+      },
+      {
+        "gap_over_TH": 2.772588722239781,
+        "grid_difference": 8.097213871627318e-12,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 0.008350827315751385,
+        "sine": 0.009462239219298339
+      },
+      {
+        "gap_over_TH": 2.772588722239781,
+        "grid_difference": 2.5570655337749494e-11,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 1.1292457687812015e-05,
+        "sine": 2.5590742563754627e-05
+      }
+    ],
+    "partial_powers": [
+      3.2961072886922916e-05,
+      6.672753342079499e-07,
+      1.0067829482827186e-08,
+      1.3017807954211077e-10,
+      1.5308251054760641e-12,
+      1.6882417639360704e-14,
+      1.7758246385852028e-16,
+      1.6162781604757628e-18
+    ],
+    "power": 3.363854777657996e-05
+  },
+  "combined": {
+    "mean_x": 5.921737006945368,
+    "mean_x_sq": 38.90230264846893,
+    "moments": [
+      {
+        "gap_over_TH": 0.6931471805599453,
+        "grid_difference": 5.6701732888070166e-11,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 8.771323936647522e-08,
+        "radial_difference": 7.019091641656684e-12,
+        "recoil_mass_threshold_planck": 5940.871337786575,
+        "sine": -3.975479900151602e-07
+      },
+      {
+        "gap_over_TH": 0.6931471805599453,
+        "grid_difference": 2.3270120921237852e-10,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 1.4077812659371866e-09,
+        "radial_difference": 7.001493231105091e-13,
+        "recoil_mass_threshold_planck": 46893.768090177844,
+        "sine": -1.2761143396289468e-08
+      },
+      {
+        "gap_over_TH": 1.3862943611198906,
+        "grid_difference": 2.400511990317063e-11,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 8.113252171683895e-06,
+        "radial_difference": 6.297711965363561e-11,
+        "recoil_mass_threshold_planck": 617.7108571490845,
+        "sine": 1.8386090381766504e-05
+      },
+      {
+        "gap_over_TH": 1.3862943611198906,
+        "grid_difference": 5.6701732888070166e-11,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 8.771323936647522e-08,
+        "radial_difference": 7.019091641656684e-12,
+        "recoil_mass_threshold_planck": 5940.871337786575,
+        "sine": -3.975479900151602e-07
+      },
+      {
+        "gap_over_TH": 2.772588722239781,
+        "grid_difference": 7.690995409981305e-12,
+        "harmonic": 1,
+        "min_mean_pair_detuning_over_TH": 0.008575027782427032,
+        "radial_difference": 1.0739750529870085e-09,
+        "recoil_mass_threshold_planck": 19.000496700887766,
+        "sine": 0.009716278534033278
+      },
+      {
+        "gap_over_TH": 2.772588722239781,
+        "grid_difference": 2.400511990317063e-11,
+        "harmonic": 2,
+        "min_mean_pair_detuning_over_TH": 8.113252171683895e-06,
+        "radial_difference": 6.297711965363561e-11,
+        "recoil_mass_threshold_planck": 617.7108571490845,
+        "sine": 1.8386090381766504e-05
+      }
+    ],
+    "partial_powers": [],
+    "power": 3.747528769549194e-05
+  },
+  "finite_recoil": [
+    {
+      "mass_shell_error": 0.0,
+      "scale": 1.003440215240671
+    },
+    {
+      "mass_shell_error": 7.105427357601002e-15,
+      "scale": 1.2251482265544136
+    },
+    {
+      "mass_shell_error": 4.440892098500626e-16,
+      "scale": 1.0
+    }
+  ],
+  "folded": [
+    {
+      "gap_over_TH": 0.6931471805599453,
+      "maximum_density": 1.0000081012806905,
+      "minimum_density": 0.9999929032942563,
+      "residual_sine": -3.9754437447525603e-07,
+      "sufficient_triple_fraction": 2.3825167741389173e-06,
+      "three_marginal_error": 2.220446049250313e-16,
+      "triple_density_minimum": 0.16024648628153004,
+      "unavoidable_unpaired_fraction": 5.069297019457981e-07
+    },
+    {
+      "gap_over_TH": 1.3862943611198906,
+      "maximum_density": 1.0000349106601178,
+      "minimum_density": 0.9999545415578138,
+      "residual_sine": 1.838608003362774e-05,
+      "sufficient_triple_fraction": 0.00011081763700049562,
+      "three_marginal_error": 2.220446049250313e-16,
+      "triple_density_minimum": 0.1196585658942424,
+      "unavoidable_unpaired_fraction": 2.338570686858505e-05
+    },
+    {
+      "gap_over_TH": 2.772588722239781,
+      "maximum_density": 1.0245707656728322,
+      "minimum_density": 0.9754827473892126,
+      "residual_sine": 0.00971627819264509,
+      "sufficient_triple_fraction": 0.05841671926899901,
+      "three_marginal_error": 2.220446049250313e-16,
+      "triple_density_minimum": 0.11490282149416187,
+      "unavoidable_unpaired_fraction": 0.012370165094353397
+    }
+  ],
+  "impurity": {
+    "coupling_over_v": 4.618802153517007,
+    "detuned": [
+      {
+        "entanglement_fidelity_after_phase": 0.8451381105129432,
+        "strength_over_matched": 0.5,
+        "transfer": 0.7032967032967034
+      },
+      {
+        "entanglement_fidelity_after_phase": 0.9958520750344255,
+        "strength_over_matched": 0.9,
+        "transfer": 0.991712770597553
+      },
+      {
+        "entanglement_fidelity_after_phase": 1.0,
+        "strength_over_matched": 1,
+        "transfer": 0.9999999999999998
+      },
+      {
+        "entanglement_fidelity_after_phase": 0.9966034632279793,
+        "strength_over_matched": 1.1,
+        "transfer": 0.99321270450383
+      },
+      {
+        "entanglement_fidelity_after_phase": 0.8451381105129432,
+        "strength_over_matched": 2,
+        "transfer": 0.7032967032967034
+      }
+    ],
+    "swap_error": 0.0
+  },
+  "one_sided": {
+    "empty_horizon_radius_ratio": 0.4375,
+    "empty_infall_speed_at_horizon": 0.75,
+    "empty_time_to_trap_over_R0": 2.0321493470453804,
+    "examples": [
+      {
+        "density_derivative_ratio": 0.8825242185233841,
+        "exact_pressure_linearization_error": 4.133124120730969e-09,
+        "full_curvature_discriminant": -0.5156114601284808,
+        "full_curvature_poles": [
+          [
+            -0.17157287525380965,
+            1.0154914673481812
+          ],
+          [
+            -0.17157287525380965,
+            -1.0154914673481812
+          ]
+        ],
+        "scalar_pressure_over_energy": -0.08981137949147967,
+        "slice_omega_sq": 0.1875,
+        "u": 1.4142135623730951
+      },
+      {
+        "density_derivative_ratio": 1.25,
+        "exact_pressure_linearization_error": 4.127573005607843e-09,
+        "full_curvature_discriminant": 0.0625,
+        "full_curvature_poles": [
+          [
+            3.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "scalar_pressure_over_energy": -0.25,
+        "slice_omega_sq": 0.1875,
+        "u": 2.0
+      }
+    ],
+    "illustrative_empty_time_us": 80.07466574336345
+  },
+  "surface": {
+    "T_H_eV": 1.7723730081977001e-12,
+    "a_fall_us": 36.194818680589115,
+    "b_lead_us": 1.592688160413656,
+    "cell_density_planck": 0.40575798025002097,
+    "early_charge": {
+      "coherent_symmetric_target_error": 0.01,
+      "min_one_cell_error": 0.47211750033133215,
+      "necessary_energy_eV": 1.184780936066845e-09,
+      "necessary_energy_time": 2.8668372699345483,
+      "one_flying_charge_energy_eV": 2.630749019934217e-08,
+      "one_flying_charge_energy_time": 63.6567411628717
+    },
+    "excitation_cost_two_cells_over_TH": 0.6931471805599453,
+    "gap_over_cell_energy": 792.6209794206657,
+    "gap_time_seed_radius_rs": 14.78889473422923,
+    "kappa_for_one_gap_time": 0.003963549710589308,
+    "local_window": 0.0404195281389578,
+    "locked_sound_min_lapse": 0.395294962490828,
+    "log_slope": 0.75,
+    "material_loads": [
+      {
+        "mass_kg": 70.0,
+        "material": "person",
+        "parallel_pulse_energy_fraction": 0.025347886596653577,
+        "radius_m": 0.85,
+        "storage_patch_radius_m": 1.1210871205609465e-12,
+        "upper_code_bits": 1.5332603858850587e+45
+      },
+      {
+        "mass_kg": 1.31e-09,
+        "material": "grain",
+        "parallel_pulse_energy_fraction": 1.4910521527443284e-06,
+        "radius_m": 5e-05,
+        "storage_patch_radius_m": 3.719645319195336e-20,
+        "upper_code_bits": 1.6878748785793505e+30
+      }
+    ],
+    "min_radius_rs": 1.1851965734256407,
+    "min_swap_gap_R": 77.72462466136048,
+    "min_swap_gap_eV": 1.2983293903339748e-09,
+    "phase_active_empty_adm_fraction": 0.5833333333333334,
+    "proper_energy_per_defect_R": 0.09806026673451182,
+    "radial_center_difference": 0.37499994220979715,
+    "radial_omega_sq_R_sq": 0.375,
+    "radial_phase_advance": 0.024751804896128292,
+    "radius_m": 11813.000310058042,
+    "radius_rs": 1.3333333333333333,
+    "sound_reach_m": 399.4849978564418,
+    "sound_speed_sq": 0.7,
+    "spacing_planck": 1.569880030020633,
+    "speed_limit_duration_in_units_R": 16.018682990610944,
+    "swap_seed_radius_rs": 29.81350152186087,
+    "z": 0.5
+  }
+}

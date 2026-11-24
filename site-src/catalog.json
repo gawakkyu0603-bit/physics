@@ -1,0 +1,84 @@
+{
+  "owner": "gawakkyu0603-bit",
+  "repository": "physics",
+  "public_base_url": "https://gawakkyu0603-bit.github.io/physics/",
+  "fields": [
+    {
+      "slug": "quantum-gravity",
+      "name": {
+        "ja": "量子重力",
+        "en": "Quantum gravity"
+      },
+      "summary": {
+        "ja": "量子理論と重力の接点を、原論文・説明・再現資料から読む。",
+        "en": "Explore the meeting of quantum theory and gravity through papers, explanations, and reproduction materials."
+      }
+    }
+  ],
+  "papers": [
+    {
+      "slug": "cat",
+      "field": "quantum-gravity",
+      "archive_slug": "correlation-actualization-theory",
+      "title": "Correlation Actualization Theory",
+      "subtitle": "A nonperturbative matrix proposal with observer-dependent layers",
+      "author": "Yohtaro Soga",
+      "version": "4",
+      "date": "2026-11-25",
+      "release": "cat-v4.0.0",
+      "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper",
+      "content_prefix": "",
+      "main_pdf": "downloads/cat-v4-main.pdf",
+      "supplement_pdf": "downloads/cat-v4-supplement.pdf",
+      "audiences": [
+        "general",
+        "student",
+        "expert"
+      ],
+      "languages": [
+        "ja",
+        "en"
+      ],
+      "summary": {
+        "ja": "重力による記録の選択は、物質が進める経路を変えられるか。行列模型・量子情報・ブラックホールを結び、条件付きの数学と検証案を示す研究です。",
+        "en": "Can gravitationally selected records change the routes matter can take? A research proposal connecting matrix models, quantum information, and black holes through conditional constructions and tests."
+      },
+      "short_title": "CAT",
+      "page_counts": {
+        "main": 18,
+        "supplement": 18
+      },
+      "audience_descriptions": {
+        "general": {
+          "ja": "意識と観測者、経路の閉鎖、量子情報、時空、実験を、比喩と図から順に理解します。",
+          "en": "Build intuition about observers, closed routes, quantum information, spacetime, and experiments through examples and diagrams."
+        },
+        "student": {
+          "ja": "線形代数と量子力学の基本から、チャネル、モード数、回復、行列模型の関係をたどります。",
+          "en": "Use linear algebra and introductory quantum mechanics to connect channels, mode counts, recovery, and matrix models."
+        },
+        "expert": {
+          "ja": "親作用、量子インストゥルメント、領域制御、回復条件、幾何と真空、全検証案を精査します。",
+          "en": "Examine the parent action, instruments, domain control, recovery conditions, geometry, vacua, and the full test catalogue."
+        }
+      },
+      "reading_times": {
+        "general": "25–40",
+        "student": "35–50",
+        "expert": "45–65"
+      },
+      "scope": {
+        "ja": [
+          "動機と作用の選択から、受信・履歴・経路の閉鎖、共通準備と量子情報回復、物質時計、時空と真空、物質と尺度、実験・天体・宇宙論、検証記録と未解決課題までを扱います。一般向けでは比喩と具体例、学生向けでは基本式、専門家向けでは定義・条件・定量的な比較を中心に展開します。",
+          "図は条件付きの模型や説明用の模式図として明示しています。数学的に得られた結果と、自然界でまだ確認されていない機構を読み分けられる構成です。"
+        ],
+        "en": [
+          "Each introduction covers the motivation and action choice; receipts, histories and route closure; common preparation and quantum recovery; material clocks; spacetime and vacua; matter and scales; experiments, astronomy and cosmology; verification and open problems. General readers receive examples and intuition, students the key equations, and experts the definitions, conditions and quantitative comparisons.",
+          "Diagrams identify conditional models and explanatory schematics. The text distinguishes mathematical results from mechanisms that remain unconfirmed in nature."
+        ]
+      },
+      "hero_figure": "expert-observer-domains",
+      "interactive_return": true
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+\subsection{How to tell a return from a false positive}\label{sec:echo3}
+Prepare a balanced logical qubit \(|+\rangle\). A qubit-independent bright resonance absorbs with probability \(p\). If absorbed, a reversible gate tags the logical basis at two material ends of equal energy and total momentum, including their supports. The occupied CAT contact resolves empty, left and right with respective weights \(1-p,p/2,p/2\). Reverse the ordinary circuit. The empty branch returns the logical qubit with certainty; each tagged branch returns it with probability \(1/2\). The ideal logical return is \(1-p/2\). Projection on the initial state of \emph{all} registers gives the different quantity \((1-p)^2+p^2/2\). Ordinary unitary inversion of the full preparation returns both with certainty.
+
+\paragraph{What must be calibrated?}
+A detector that resets everything to \(|+\rangle\) passes any positive reference and gives a false return on every negative input. At \(p=0.8\) it reports one where the ideal CAT probability is \(0.6\). Use both \(|+\rangle\) and \(|-\rangle\) references on the same readout path. Immediately before a stable terminal measurement with effect \(E\), randomly apply \(I\) or \(X\) with equal probability. Here \(X=|0\rangle\langle1|+|1\rangle\langle0|\) is the computational Pauli operator. In the return basis \(|\pm\rangle=(|0\rangle\pm|1\rangle)/\sqrt2\), it gives \(X|\pm\rangle=\pm|\pm\rangle\). Each reference therefore keeps its identity, and the relative phase changes sign. The desired effect \(P_+=|+\rangle\langle+|\) is preserved. The averaged effect is diagonal in the return basis:
+\[
+ (E+XEX)/2=aP_++bP_-,\qquad
+ a=\Pr(+\mid +),\quad b=\Pr(+\mid -).
+\]
+The largest absolute readout error over all logical states is \(\max(1-a,b)\). If flags affect the terminal measurement, a single qubit effect need not describe them.
+
+There is also an independent physical assumption. Let \(\mathcal S\) include every allowed post-inversion conditional state for empty, left and right, the reversible control, their mixtures and any attached environment or carrier flags. For each, the actual full-circuit success probability must be within \(\Delta\) of the calibrated qubit effect on its \emph{ideal} reduced output. This envelope includes preparation, inversion, unreturned environments, randomized gate, flag-dependent readout and transport drift. It could be bounded with independently characterized operations on the admitted sector. Our numerical design assumes \(\Delta\le0.01\) and dark-click probability \(d\le0.01\); neither bound has been measured for this apparatus.
+
+\paragraph{One prespecified attempt.}
+Choose the bright reactance \(\kappa=1/\sqrt2\), giving target \(p=8/9\). Use independent sacrificial absorption trials, positive and negative references, and a final signal block. Fix the preparation, observation window and the following decisions before taking data.
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lrlX@{}}\toprule
+Block & Shots & Criterion & Use\\\midrule
+Absorption & 200 & At least 160 clicks & Lower bound on the bright transition\\
+Positive reference & 300 & All return & Bound on \(1-a\)\\
+Negative reference & 300 & No false returns & Bound on \(b\)\\
+Signal & 100 & At least 88 or at most 85 returns & Reject the specified CAT or bounded ordinary model, respectively\\
+\bottomrule\end{tabularx}
+\end{center}
+Stop without a claim if any calibration fails. Leave 86 or 87 signal returns undecided. The maximum is 900 trials per attempt, apart from establishing the two independent hardware bounds. The click probability is \(u=sp+d(1-p)\), where \(s\le1\). Inverting the one-sided binomial tail at \(160/200\), with tail \(0.005\), gives \(p_L=(u_L-0.01)/0.99=0.714974\ldots\). Allocate \(0.0025\) to each reference failure. With zero observed errors their respective upper bounds are \(e=1-0.0025^{1/300}=0.0197734\ldots\). For the qualified parameter envelope,
+\[
+ \lambda_{\rm CAT}\le 1-\tfrac12 p_L(1-e)+\Delta\simeq0.659582,\qquad
+ \lambda_{\rm ordinary}\ge 1-e-\Delta\simeq0.970227 .
+\]
+The first inequality uses \((1-p/2)a+(p/2)b\); the second uses \(a\). The binomial false-rejection tails in that envelope are \(4.25\,10^{-7}\) and \(2.97\,10^{-7}\), respectively (rounded upwards). The probability of a false rejection in the \emph{whole procedure} is bounded by the corresponding tail plus \(0.01\), conditional on the two hardware bounds and the independent, stationary trial model. Statistical certificates for the hardware bounds require their own error budgets.
+
+Qualification itself costs power. At the separate source benchmark \(p=0.64\), even \(s=1,d=0.01\) gives probability only \(1.0432\,10^{-6}\) of passing the click cut. At the design target \(p=8/9,\ s=1,\ d=0.01,\ a=0.999,\ b=0.001\), with zero residual transfer error, all three calibration blocks pass with probability \(0.54861\). The idealized true signal probabilities including readout are \(0.555444\ldots\) for CAT and \(0.999\) for ordinary inversion. Multiplying the qualification probability by the appropriate signal tail gives \(0.54861\) probability of a correct decisive result per planned attempt in either case. A failure to qualify is inconclusive and triggers no retry.
+
+For comparison, the earlier design budgeted 200 absorption shots, 256 positive references and 100 signals. Its numerical limits \(0.6730\) and \(0.9695\) follow only with an independently certified \emph{state-uniform} error envelope covering false positives and all signal branches. The 256 positive controls alone did not establish that envelope.
+
+\subsection{Which conditions were realized together?}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}L{.24\linewidth}XX@{}}\toprule
+Preparation and evidence & Quantities established together & Additional condition still required\\\midrule
+Spherical boundary, RES-0141 & Signed port count, arbitrary state on the declared internal code, preterminal radiation tests & All accessible species and ports must obey the same polarization.\\
+Paired packets, RES-0182 & One source, four received charges, local recoil and no signalling, whole-history decoding at fixed bandwidth & Microscopic strength and causal switching from ordinary collapsing matter; a spacetime solving gravity for that source.\\
+Matrix wave, RES-0162 & Scalar light cone and a curved vacuum Einstein wave when the profile satisfies the trace constraint & Universal species couplings and all metric variations in a matter background.\\
+Projected magnetic matrix, RES-0177--0178 & A positive induced term in one three-link configuration coexists with an instability at finite wavelength & A nonnegative Hessian and the correct force law in the same state.\\
+Closed-string charge sector, RES-0178--0180 & Restoring curvatures for specified internal deformations; a composition-dependent atomic force in the light electromagnetic branch & Stable remaining modes, viable atomic clocks and a compatible long-range force.\\
+Twisted static bulk, RES-0181 & Periodic-spinor cancellation and outward force for free positive-energy quanta with zero external three-momentum & A restoring contribution and viable matter in that same background.\\
+\bottomrule\end{tabularx}
+\end{center}
+A general composite metric \(g(A)\) obeys the projected equation \((\delta g/\delta A)^*{\cal E}=0\). Obtaining the Einstein equations throughout a matter spacetime requires the missing physical metric variations or independent constraints, as well as a common cone for the actual species. No row establishes a single stable vacuum with the observed particles, gravity, clocks and irreversible receipts.
+

@@ -1,0 +1,237 @@
+{
+  "continuum": {
+    "harmonics": [
+      0.004088219735821251,
+      3.253445777369973e-05,
+      1.6789995031063405e-07,
+      7.111147535664621e-10
+    ],
+    "a_exact": 0.0003617979171657754,
+    "b_exact": 0.0033665287327914596,
+    "thin_ceiling": 0.00045574705208128037,
+    "thick_floor": 0.0026670907009510155,
+    "mode_spacing": 8.885765876316733e-06,
+    "guaranteed_mode_interval": [
+      52,
+      300
+    ],
+    "grid_checks": [
+      [
+        48,
+        0.3,
+        0.0003617979171657755
+      ],
+      [
+        48,
+        1.3,
+        0.003366528732791459
+      ],
+      [
+        96,
+        0.3,
+        0.0003617979171657754
+      ],
+      [
+        96,
+        1.3,
+        0.00336652873279146
+      ],
+      [
+        192,
+        0.3,
+        0.0003617979171657755
+      ],
+      [
+        192,
+        1.3,
+        0.00336652873279146
+      ]
+    ],
+    "nonuniform": [
+      0.0004143354638171292,
+      0.003372104871598479
+    ],
+    "relative_acceleration_phase_bound": 1.9991302715577357e-10,
+    "resolution_invariance_error": 0.0
+  },
+  "exchange": {
+    "first_phases": [
+      2.1149594590728666,
+      0.01291309154053012,
+      5.6012537079405904e-05,
+      2.0852137383406429e-07
+    ],
+    "radial_weights": {
+      "2": 1.0,
+      "3": 0.06873914650335944,
+      "4": 0.31389628507397804,
+      "5": 0.02519237068476272
+    },
+    "rank_three_one_harmonic": 0.06868690911527471,
+    "image_phase_error": 1.4203385134692326e-09,
+    "field_strength_upper": 2.640017638151474e-07,
+    "eikonal_recoil_time_ratio": 3.947841760435743e-11
+  },
+  "receipts": {
+    "near_visibility": 0.51795941962079,
+    "near_accepted_fraction": 0.34613864816966466,
+    "far_visibility": 6.943897799303534e-06,
+    "far_accepted_fraction": 0.9999999999879458,
+    "incident_energy": 0.0015994378577370118,
+    "near_count": 20000,
+    "far_count": 10,
+    "thin_failure_upper": 0.002201919018770754,
+    "thick_failure_upper": 9.436665503950927e-10,
+    "representative_posterior_first_variance": 0.0069239502316150725
+  },
+  "small_contact": {
+    "area": 2000000000000.0,
+    "speed": 0.1,
+    "clock_duration": 17.999999999999996,
+    "incident_mode": 180,
+    "energy": 0.0015994378577370118,
+    "results": [
+      {
+        "kind": "thin",
+        "mean": 0.0012391884305037394,
+        "sd": 0.027777777862834738,
+        "cantelli": 0.9980138307270204,
+        "fft_wrong": 0.482432031439338
+      },
+      {
+        "kind": "thick",
+        "mean": -0.0017528374915946976,
+        "sd": 0.02777778498587748,
+        "cantelli": 0.996033913248554,
+        "fft_wrong": 0.4752324388248666
+      }
+    ]
+  },
+  "extended_contact": {
+    "area": 1.25e+20,
+    "speed": 0.002,
+    "clock_duration": 899.9999999999999,
+    "incident_mode": 14230249,
+    "energy": 0.01599437804825241,
+    "results": [
+      {
+        "kind": "thin",
+        "mean": 0.012391883775919686,
+        "sd": 0.000555980677676058,
+        "cantelli": 0.0020089603998435074,
+        "fft_wrong": 4.441026563681668e-28
+      },
+      {
+        "kind": "thick",
+        "mean": -0.017528375445064682,
+        "sd": 0.0005904972301639561,
+        "cantelli": 0.0011335999036962308,
+        "fft_wrong": 1.8326735201423082e-28
+      }
+    ]
+  },
+  "radiation": {
+    "single_packet_kl_error": 1.1102230246251565e-16,
+    "type_probability": 0.04860000000000001,
+    "eligible_quartets": 600,
+    "encoded_qubits": 10,
+    "insufficient_probability": 9.025143624039601e-06
+  },
+  "falling": {
+    "proper_time_bound_per_radius": 1.5707963267948966,
+    "times": [
+      [
+        1.0,
+        0.0,
+        0.6666666666666669
+      ],
+      [
+        1.5,
+        0.0,
+        0.5113456944575921
+      ],
+      [
+        1.0,
+        2.0,
+        0.31913525445379204
+      ],
+      [
+        0.8,
+        3.0,
+        0.2685491999633233
+      ]
+    ],
+    "curvature_at_fixed_x_scales_as_mass_power": -4
+  },
+  "ordinary_horizon": {
+    "planck_mass_kg": 2.1764343427178984e-08,
+    "radius_in_gravitational_masses": 40.0,
+    "thermal_occupation": 4.549467973293563,
+    "circular_sources": [
+      {
+        "mass_kg": 0.001,
+        "horizon_quanta_per_orbit": 10.362839178501341,
+        "vacuum_no_capture": 3.158465430761282e-05,
+        "thermal_read_error": 0.15553446735129794
+      },
+      {
+        "mass_kg": 0.01,
+        "horizon_quanta_per_orbit": 1036.2839178501342,
+        "vacuum_no_capture": 0.0,
+        "thermal_read_error": 2.037070256752105e-24
+      },
+      {
+        "mass_kg": 1.0,
+        "horizon_quanta_per_orbit": 10362839.178501341,
+        "vacuum_no_capture": 0.0,
+        "thermal_read_error": 0.0
+      }
+    ],
+    "kerr_time_in_mass_units": [
+      [
+        0.1,
+        3.1947349994879937,
+        3.2986722862692828
+      ],
+      [
+        0.5,
+        3.6628455680674525,
+        3.9269908169872414
+      ],
+      [
+        0.9,
+        4.277921727141904,
+        4.5553093477052
+      ],
+      [
+        0.999,
+        4.441217013331971,
+        4.710818184057895
+      ]
+    ]
+  },
+  "area_records": {
+    "old_states": 6,
+    "logical_states": 2,
+    "new_states": 144,
+    "flag_count": 12,
+    "unbiased_click": 0.916666666666667,
+    "identity_click": 0.0,
+    "unitarity_error": 3.1086244689504383e-15,
+    "haar_quiet_mean": 0.08495090405595951,
+    "haar_quiet_tail": 0.04741666666666667,
+    "exact_tail": 0.04223513603210449,
+    "random_seed": 116,
+    "absorbed_entropy_40_log_quiet": -39.30685281944005
+  },
+  "microscopic_flags": {
+    "old_pairs": 9,
+    "full_singlet_dimension": 4862,
+    "one_pair_one_qubit_flags": 1,
+    "two_pairs_two_qubits_flags": 3,
+    "strictly_new_four_puncture_states": 2,
+    "level_two_three_pairs_three_qubits_flags": 1,
+    "equivalent_unmarked_precursors": 126,
+    "colored_orbits": 5
+  }
+}

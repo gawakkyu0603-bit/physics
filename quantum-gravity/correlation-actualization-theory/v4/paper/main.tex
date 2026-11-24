@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,tabularx,array}
+\usepackage{graphicx}
+\usepackage[margin=25mm,top=24mm,bottom=26mm]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue,pdftitle={Correlation Actualization Theory: a nonperturbative matrix proposal with observer-dependent layers},pdfauthor={Yohtaro Soga}]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\tabularxcolumn}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\topfraction}{.90}
+\renewcommand{\bottomfraction}{.80}
+\renewcommand{\textfraction}{.10}
+\renewcommand{\floatpagefraction}{.82}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\id}{\mathbf 1}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\dof}{\mathcal H}
+\newcommand{\source}[2]{\href{#1}{#2}}
+\title{\textbf{Correlation Actualization Theory}\\[3pt]\large A nonperturbative matrix proposal with observer-dependent layers}
+\author{Yohtaro Soga\\[-1pt]\small Correspondence: \href{mailto:gawakkyu0603@gmail.com}{gawakkyu0603@gmail.com}}
+\date{25 November 2026 \quad(Version 4)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We propose Correlation Actualization Theory (CAT) as a candidate framework for a theory of everything. Ordinary unitary evolution correlates matter with its surroundings. A gravitational transition can select a layer irreversibly with Born weight; the charge received by an observer can then change which modes carry matter onward. Black-hole infall motivates this rule. The infaller can cross the horizon in finite proper time, while the distant observer's description can end at a surface carrying the infaller's quantum information. Requiring the inward route to disappear exactly leads to a constraint on the allowed states. We give a ten-matrix representation both with a chosen clock and with contacts ordered by material correlations, without an input spacetime metric. The prescription sets no maximum matrix size. Its nonperturbative calculations use complete scattering blocks at specified rank, clock and port. A common-source example realizes the two continuations and permits recovery of a qubit on the exterior histories. A quantum theory connecting the ranks and clock sectors, the widespread formation of the required ports in natural collapse, and information recovery at the evaporation endpoint remain open.
+\end{abstract}
+
+\section{A matrix proposal motivated by infall}\label{sec:motivation}
+What becomes of a quantum state carried by a falling observer if no signal can ever bring the infaller's final record back to a distant laboratory? Correlation Actualization Theory (CAT) starts with the records these two observers can obtain. It proposes a law for the irreversible selection of layers by gravity, alongside the ordinary unitary dynamics of matter and fields within each layer. Two nearby observers can usually use a common geometry wherever their records agree. The proposal does not require them to have a common spacetime beyond that region.
+Suppose A carries a clock, a spin prepared by a colleague, and a small receiver into a large, nearly Schwarzschild black hole. A can relate the spin to nearby matter by ordinary interactions. B stays far outside. Signals received by B from successively deeper on A's trajectory are increasingly delayed and redshifted. Hawking emission is a prediction of quantum fields on a suitable collapsing geometry \cite{hawking,page}. Neither the redshift nor the emission is an observation by B of A being destroyed on the horizon. Classical relativity assigns A a regular crossing. For radial fall from rest at infinity it assigns a proper time \(2r_s/(3c)\) from \(r_s=2GM/c^2\) to the classical singularity. Which description continues to apply when curvature becomes large is a question for the microscopic theory.
+
+Our working hypothesis takes the absence of a possible comparison seriously. A can have an inward continuation. In B's present physical description the hole can instead end at a surface carrying A's correlations. There is then no present B-interior in which a second copy could reside. A later decision by B to fall would create a new sequence of receipts. It supplies no earlier joint observation of the two endpoints. Complementarity already gives the freely falling and exterior observers different operational descriptions \cite{complement,amps}. The extra step here is to specify a physical law that can remove the inward channel in B's evolution while preserving it in A's.
+
+A's matter and the nearby field take part in the same ordinary interactions whichever observer describes them. Giving B less information about those interactions would, on its own, change only B's prediction. We therefore make three physical assumptions. First, ordinary dynamics creates quantum correlations in all the degrees of freedom of the infaller and its surroundings. Second, gravity can separate those correlations into layers and select a material receipt irreversibly with Born weight. The strength of a populated transition enters its scattering amplitude. Third, layers can affect each other's later propagation through the resulting gravitational contact. This coupling can act even when tensor waves do not propagate between layers. Conditioning on the records that make A a local observer can narrow A's own history while leaving many possibilities for A in B's description. No preferred person or location enters the rule.
+
+A density operator within a layer can already be mixed. If the later dynamics is insensitive to which layers were selected, the usual mixed-state predictions suffice. The horizon thought experiment asks for a sharper distinction. A model that leaves even one per cent of B's weight on an inward route still assigns B possible histories with an interior. \textbf{The demand for exact closure in B's description guided our choice of low-energy action.} Section~\ref{sec:ir} compares interactions that suppress a route with a surface constraint that removes the allowed states themselves. Section~\ref{sec:parent} then asks how a matrix action can realize that constraint. The comparisons with other gravity theories and the observational tests follow from these two choices. We use \(c=\hbar=1\) unless units are restored explicitly.
+
+\section{Choosing the low-energy interaction}\label{sec:ir}
+\begin{figure}[htbp]
+\centering\includegraphics[width=.96\linewidth]{fig-route.pdf}
+\caption{The dashed arrows are the outstanding physical preparation problem: can one collapsing source produce these different receipts by their respective deadlines? The solid arrows are consequences of the spherical interface once the indicated charges have arrived. The channel count refers to spatial propagation of an arbitrary carried quantum state.}
+\label{fig:routes}
+\end{figure}
+\subsection{What can carry a difference between layers?}
+Ordinary matter can acquire a correlation through the tidal coupling \(H_{\rm tide}=-Q^{ij}{\cal E}_{ij}/2\), where \(Q^{ij}\) is its mass quadrupole and \({\cal E}_{ij}=R_{i0j0}\) in a freely falling material frame (the sign fixes our quadrupole convention). Absorption exchanges real energy and angular momentum. Reversing the field, source and recoil can in principle undo this step. For comparison, gravitational radiation escaping a laboratory or crossing a Killing horizon can itself decohere a superposition accessible to that laboratory \cite{horizondeco}. It is essential to include such ordinary, potentially inaccessible modes when estimating a reversal signal.
+
+We examined two ways for an additional interaction to change a layer. In a mediator description a field \(x\) with quadratic kernel \(D\) couples to a sum of layer sources \(J_h\). Eliminating a Gaussian field in the quadratic action yields a response proportional to \(-\tfrac12\sum_{h,h'}J_h D^{-1}J_{h'}\), with the boundary prescription fixed by the preparation. A causal response calculation uses the retarded kernel on the two branches of the evolution. A direct interaction can give the same static energy. Equal static forces alone cannot decide whether an independent mode propagates. Propagating tensor exchange also faces a sharp test if the layer coordinate is identified with the ordinary M-theory circle: in a parallel, equally charged membrane configuration, the three-form exchange is required along with the metric to give the protected force cancellation \cite{bfss,witten,m2}. Treating every membrane as a different layer and coupling them only by ordinary tensor gravity loses that cancellation.
+
+A second possibility is a \emph{constraint at a received contact}. The word contact denotes a junction that can actually receive the relevant material currents, with compensating charge and recoil present. It can change a continuation even when no tensor wave crosses from one layer to another. A direct instantaneous force between freely controllable, spatially separated laboratories would in general change remote statistics. We restrict the junction to causally available receipts; independent spacelike local instruments must commute at the level of their nonselective operations. If the outcomes are retained, exchanging the order must also preserve the maps for each pair of records and the control applied afterwards. Section~\ref{sec:parent} gives the history law; Sec.~4.1 of the technical supplement works through this stronger condition. A general quantum-gravitational derivation of the full constraint algebra remains open.
+
+\subsection{Why width and dissipation alone do not close the route}
+Let \(E\) be the positive effect for an inward continuation at a \emph{fixed} input port, and let \(\rho_A,\rho_B\) be density operators there. If \(\rho_B\geq\lambda\rho_A\) for some \(\lambda>0\), then
+\begin{equation}
+ p_B=\Tr(E\rho_B)\ \geq\ \lambda\Tr(E\rho_A)=\lambda p_A .
+ \label{eq:floor}
+\end{equation}
+This is the positivity of a trace, related to the usual operator-order comparison of states \cite{datta}. It explains why replacing A's sharp state by a broad ensemble containing it cannot make a common port strictly dark. For \(k\) independently and uniformly drawn \(d\)-valued comparisons, a port that opens on complete agreement retains probability \(d^{-k}\). Ten balanced binary comparisons leave \(1/1024\). A finite integrated decay rate also leaves positive survival. These mechanisms can produce a sharp practical difference. Neither supplies the zero required by B's thought experiment. A different \emph{physical support} for the inward channel can do so.
+
+A broad record need not give the support of A's records at this junction. For example, both descriptions can carry a broad distribution of an absolute integer \(n\) while assigning different, sharp \emph{relative} charges to two received ends. Nor does equality of the two ends reveal which common value was received. The difference can govern propagation and the common value can sharpen A's history without revealing A's unknown payload. In a four-alternative preparation the best guess of a local value rose from \(39\%\) to \(100\%\) after A's receipt, and stayed at \(39\%\) upon B's symmetric receipt. Giving B one further ordering bit raised it to \(43.21\%\). The distinction depends on \emph{all} accessible records, not on coordinate distance alone.
+
+\subsection{The spherical interface}\label{sec:sphere}
+Let the lines selected by two material ends over a sphere of directions have degrees \(n\) and \(m\), using the orientation of the receiving surface. An inward field \(Y\) is a section of their comparison line \(L=\mathcal O(m-n)\) over \(\mathbb{CP}^1\). A local multiplier imposes its covariant holomorphic constraint. Schematically the interface contribution is
+\begin{equation}
+ S_{\partial}=\int_{\Sigma}\! \mathrm{Re}\langle \lambda,\bar\partial_LY\rangle\,
+             \dd\mu_{\Sigma},\qquad
+ N_{\rm in}=\dim H^0(\mathbb{CP}^1,L)=\max(1+m-n,0).
+ \label{eq:route}
+\end{equation}
+Here \(\lambda\) is a dual-valued multiplier, the pairing includes the surface density, and the count uses the spherical polarized sector. Holomorphic sections of a line bundle on the sphere are classical mathematics \cite{groth}. The physical postulate is that propagation of every component of A through this junction requires such a section. The same constraint has a finite matrix realization: the two coordinate multiplication maps must intertwine. Its \(k\)-th column is a translate of the first, whose support is \(0,\ldots,m-n\). The corresponding finite statements have been formalized and checked in Lean (Appendix~\ref{sec:verification}).
+
+For \(m=n\) one spatial link carries the entire payload, including entanglement with a reference. For \(m=n-1\) there is no inward degree of freedom. In this B-sector the surface and its exterior give the domain of subsequent evolution; an unobserved interior behind an opaque wall would be a different model. Reversing the sign of the mismatch gives two allowed modes. The orientation of a deposited charge is therefore measurable in principle. For this claim the physical angular sphere of the junction carries the holomorphic constraint for each allowed spin and species in the chosen energy band. The sphere of matrix-probe directions determines the signed material index. A nontrivial species bundle or another inward connection can reopen transmission. A finite energetic penalty for violating the constraint only approximates this result. A common distribution over many \(n\)'s preserves exact closure if each occupied B-sector has \(m=n-1\). A nonzero weight in a matched sector reopens it. The zero counts the specified port. Interpreting the entire B-description as exterior only additionally takes this surface to exhaust its possible continuations, or requires closure at every accessible inward port. Closure in one angular patch cannot establish that global statement.
+
+There is an independent restriction from causal propagation. A strictly local surface coinciding with a classical null event horizon cannot first receive information there and then send it to future null infinity along a classical outgoing causal curve. A timelike emitting boundary outside a trapped region, a receding timelike trapping surface, or encoding in exterior modes before the last contact can provide an outgoing channel. A coupling to exterior tidal fields at finite radius is another, radially nonlocal, effective candidate. Our spherical comparison fixes the allowable \emph{inward} modes. The causal surface, emission amplitudes and their time scales must still be supplied by the microscopic solution.
+
+\section{A matrix action for matter, selection and gravitational feedback}\label{sec:parent}
+\subsection{Ordinary evolution and the material crossing}
+The parent we adopt, Correlation Actualization Theory (CAT), has a reversible part with ten Hermitian matrices \(X^a\), a Majorana--Weyl spinor \(\Psi\), and a target contraction of signature \((9,1)\). In Lorentzian conventions it is
+\begin{equation}
+ S_0=+\frac{1}{g_0^2}\Tr\left(\frac14[X^a,X^b][X_a,X_b]
+             +\frac12\bar\Psi\Gamma^a[X_a,\Psi]\right).
+ \label{eq:ikkt}
+\end{equation}
+We use the IKKT interactions \cite{ikkt} with Hermitian matrices, \(\eta={\rm diag}(-,+,\ldots,+)\) and forward weight \(e^{+iS_0}\). The negative Euclidean contraction of the original matrix integral uses \(e^{-S_E}\). A material clock sector can be represented by \(X^0=-i\partial_\tau+a_0\) on a translation quotient of period \(\beta\), with nine remaining matrices \(X^i(\tau)\). With normalized trace per period \(g_1^2=\beta g_0^2\). The bosonic Lorentzian action in that sector reads
+\begin{equation}
+ S_{\rm clock}=\frac1{g_1^2}\int\dd\tau\,\mathrm{tr}
+ \left\{\tfrac12(D_\tau X^i)^2+\tfrac14[X^i,X^j]^2\right\},
+ \label{eq:bfss}
+\end{equation}
+Indeed \([X^0,X^i]=-iD_\tau X^i\), so contracting both time--space orders gives \(+2(D_\tau X^i)^2\). Writing \(\Pi_i=D_\tau X_i/g_1^2\), the physical bosonic Hamiltonian is \({\rm tr}[g_1^2\Pi_i^2/2-[X_i,X_j]^2/(4g_1^2)]\). On the adjoint singlet sector the connection imposes the Gauss constraint. The supplement spells out the fermion convention, Wick rotation and signed clock tests. The second term has nonpositive trace for Hermitian matrices. This is the usual matrix quantum mechanics under the quotient assumptions \cite{bfss,taylor}. It is the time-based version used for matching to the exterior. The clock period, state and coupling set reference units here. There is no derivation of their measured values from the history law.
+
+To decide which material correlation can write a history, take a material three-plane separated by a gap in the inertia tensor, with its handedness fixed by an oriented material observable. At gaps or orientations that cannot be resolved, this prescription requires further input. A Hermitian spinor probe uses \(D=\sum_I\gamma_I(X_s^I-y^I)\), where \(s\) labels the source block and \(y\) the material probe position in the matrix configuration. In an oriented orthonormal frame define
+\begin{equation}
+ \chi=-i\gamma_1\gamma_2\gamma_3,\quad
+ D_\parallel=\tfrac12(D+\chi D\chi),\quad
+ \nu=\tfrac1{16}\Tr\!\left[\chi\,\sgn(D_\parallel)\right].
+ \label{eq:index}
+\end{equation}
+Here the matrix index counts spectral signs on the two gapped sides of a crossing. A receipt is an ordinary absorbed transition with a physically compensated charge. Occupation refers to that transition carrying amplitude. The law actualizes its outgoing charge sector as an irreversible record. The signed fuzzy-sphere receiver in the supplement supplies an explicit handedness observable. This adapts the established matrix membrane index \cite{berenstein}. For the index sectors used here, a gravitationally occupied, isolated crossing of jump \(\Delta\nu\) transports \((q,c)\mapsto(q+\Delta\nu,c-\Delta\nu)\) to a receiving and a compensating port. A reversible level crossing or a charge pump by itself does not supply irreversible selection. The receipt requires a nonzero on-shell transition and an energy source. For a massive receiver initially at rest, raising its rest mass from \(M\) to \(M'\) by absorbing one massless quantum requires \(\omega=(M'^2-M^2)/(2M)\). Source, support and recoil must be included when applying this condition.
+
+\subsection{The action for histories}
+Write \({\cal U}_e\) for ordinary evolution and reversible matching through one candidate contact. Let \(P_z\) resolve the deposited, physically distinguishable charge, including an empty outcome. Let \(B_z\) be the isometry accounting for the corresponding physical record and recoil. On a history \(h\), with subnormalized density \(\rho_h\), the forward rule is
+\begin{align}
+ K_z&=B_zP_z{\cal U}_e,&
+ \rho'_{h'}&=\sum_{\Lambda(h,z)=h'}K_z\rho_hK_z^\dagger,&
+ \sum_z K_z^\dagger K_z&=\id .
+ \label{eq:write}
+\end{align}
+Selection of \(z\) has probability \(\Tr(K_z\rho_hK_z^\dagger)/\Tr\rho_h\) when \(\Tr\rho_h>0\). A continuous spectrum or a sequence of contacts gives arbitrarily many alternatives. For continuous outcomes the primitive observable is the instrument on a \emph{measurable set}, for instance \(\int_\Delta K_z\rho K_z^\dagger\dd\mu(z)\) when an operator density exists. A single point of zero measure is never assigned a finite probability by a formal delta-function projector. The history is the selected layer or set of layers. A reverse material transfer can discharge a port, and the map \(\Lambda\) may merge later labels. Lost coherences do not follow from reading the present charge alone. The choice of a fundamentally irreversible selection is a postulate beyond ordinary unitary environmental decoherence \cite{luders,relational,tilloy}.
+
+For contact \(e\), \(J_e\) maps the possible payload to the local comparison space and \(d_e\) takes the difference read there. Put \(T_e=d_eJ_e\). The occupation vector \({\bf n}\) counts the physical contacts that are present. With \(S\) the swap of the degenerate inward and surface routes, define
+\begin{align}
+ C_{\bf n}&=\sum_e n_e T_e^\dagger T_e,&
+ P_{\bf n}&=\mathbf 1_{\{0\}}(C_{\bf n}),&
+ W_{\bf n}&=P_{\bf n}\otimes\id+(\id-P_{\bf n})\otimes S .
+ \label{eq:feedback}
+\end{align}
+The two routes carry the same payload space. Since the terms in \(C_{\bf n}\) are positive, only an input annihilated by every occupied comparison can continue inwards. Across mutually exclusive material configurations one uses a single operator \(\mathbb W=\sum_{\bf n}|{\bf n}\rangle\langle{\bf n}|\otimes W_{\bf n}\). For diagonal occupation blocks the inward probability is \(\sum_{\bf n}p_{\bf n}{\rm Tr}(P_{\bf n}\rho_{\bf n})\); arbitrarily small weight in a different configuration does not redefine the operator. For an integrable family of positive quadratic forms the condition holds almost everywhere on occupied support, on their common form domain. Pure rescalings of positive strengths cannot change that kernel. A gravitationally received inequality can thus change a later trajectory without allowing ordinary matter to excite a new interlayer gravitational wave directly. Physically distinct layers can participate in a comparison only through the prescribed material junction. Applying \(W\) to unconstrained, externally controllable hidden data would require a separate causality test.
+
+Equations~\eqref{eq:ikkt}, \eqref{eq:index}--\eqref{eq:feedback} specify a \emph{doubled} action: an interval has weight \(e^{iS_0[X_+]-iS_0[X_-]}\); a received crossing inserts the superoperator \(\sum_z K_z\otimes\overline K_z\) with its outgoing charge sectors, and routing inserts \(W\otimes\overline W\). Independent empty intervals have ordinary unitary propagation. This specification as an influence functional and local instruments identifies precisely where the usual closed-system unitarity has been relaxed. A complete channel respects local exchange on the matched port when, for each conserved total generator \(Q\), its spectral projections obey \(\Pi_{\rm out}(\Delta)K_z=K_z\Pi_{\rm in}(\Delta)\), and likewise for routing. This is a stringent condition on an implementation, including four-momentum. Trace preservation alone does not imply it. The explicit experiment in Sec.~\ref{sec:joint} satisfies this condition on a flat energy shell and fixes remote observables for local instruments. This addresses one issue raised for fundamental pure-to-mixed evolution \cite{bps}; a covariant energy balance for arbitrary emergent geometries remains to be obtained.
+
+\input{parent-history}
+
+\section{A finite deadline and an unknown quantum state}\label{sec:hole}
+\subsection{Can ordinary matter prepare the two continuations?}
+The distinctive requirement is a pair of received charges produced from \emph{one} complete physical preparation. One matched sector for A and one mismatched sector for B may consistently be specified. Showing that a star and a falling laboratory actually prepare them also requires the source of tidal excitation, its retarded arrival, its gravitational absorption at both relevant ends, and the time of the subsequent contact. A remote observer's conditional uncertainty can be large even when the local tidal field is identical in the two descriptions. A distance-only rule, or selecting two different initial charge states by hand, cannot settle this question.
+
+There are examples on both sides of the deadline. In a specified radial quadrature of a freely falling receiver, \(r_i/r_f>9.1470725\) suffices for the reference crossing with the chosen initial quadratures. For \(10M_\odot\), the trajectory from \(19.2r_s\) to \(1.2r_s\) lasts \(5.44\) ms. The falling receiver has another \(20.66\,\mu{\rm s}\) before \(r_s\); an ingoing light signal propagated from the crossing to the specified stationary receiver at \(1.01r_s\) leaves only \(1.003\,\mu{\rm s}\) on that receiver's proper clock before the infaller arrives there. These are different clocks and different causal tests. A nine-colour matrix preparation with collective motion changes the index by one with \(3.88\,\mu{\rm s}\) to spare. Removing the tidal drive barely shifts that example: the preparation supplies the energy and an actual compensated receipt is still required. In homogeneous dust the electric Weyl tensor vanishes inside: a trace-free quadrupole there is dark to that homogeneous tide. A Ricci-sensitive material response is a different port.
+
+Macroscopic mass by itself gives no lower bound on the needed absorption. For independent cold molecular quadrupoles in one specified pulse the expected numbers of excited molecules for \(70\,{\rm kg}\) and a \(1.31\,\mu{\rm g}\) grain are roughly \(2.30\times10^{-36}\) and \(4.30\times10^{-47}\), respectively. Conversely, a prepared many-mode exchange can push B's inward probability below one per cent for both masses. A coherent collective response, a rapid signal and a nonzero joint signed charge are three separate physical requirements. A further check on a magnetized falling matrix material gave an endpoint occupation probability of \(11.806\%\), against \(11.841\%\) in its matched flat control. Detecting charge at two ends with separate runs does not determine the simultaneous Born law that routes A. These examples locate the principal open step between the conditional horizon and generic collapse.
+
+\subsection{What must the radiation carry?}
+Attach an untouched reference \(R\) to the unknown state of the infalling system. Recovery means preserving its entanglement with \(R\), including the phase between two orthogonal inputs. In the exterior description the decoder may use the accessible physical charge record, \emph{all} emitted species (including gravitons, photons, neutrinos and massive quanta whenever open), and any surviving core at the semiclassical cutoff. Inaccessible interlayer records must be traced over. For a code projector \(P\) and Kraus operators \(K_{z\alpha}\) with accessible classical flag \(z\) and inaccessible label \(\alpha\), exact recovery requires and, for the specified channel, permits
+\begin{equation}
+ P K_{z\alpha}^\dagger K_{z\beta}P=c^{(z)}_{\alpha\beta}P
+ \quad\hbox{for every }z,\alpha,\beta .
+ \label{eq:code}
+\end{equation}
+These are the standard quantum-error-correction conditions applied to an accessible flag \cite{knill,gregoratti}. Even a perfectly recovered charge can destroy quantum information if it distinguishes two components of the code. A scalar receiver preserving a fixed spin multiplet and an oriented receiver absorbing two units of angular momentum illustrate the difference. In a specified axial spin-one receiver the write probabilities for \(m=-1,0,+1\) are \(1/2,15/16,1/2\). For a qubit encoded in \(0,+1\) even the optimally corrected entanglement fidelity is \(0.930715\); the signs \(\pm1\) need not be distinguished. A chiral resonant receiver can distinguish the signs, with \(p_+=\sin^2(|g|T)\), \(p_-=0\). The matrix elements, polarization and the actual gravitational energy exchange decide what is written.
+
+Before a Planck-scale endpoint the matching problem has a direct spectral test. A stationary Schwarzschild exterior gives, for each free species and partial wave, \(\dd N/(\dd u\,\dd\omega)=\Gamma_{\ell s}(\omega)/[2\pi(\exp(\omega/T_H)-(-1)^{2s})]\). The greybody transmission \(\Gamma_{\ell s}\) and temperature \(T_H=(8\pi GM)^{-1}\) constrain intensities \cite{page}. They do not determine the Gram matrix of emission amplitudes in Eq.~\eqref{eq:code}. In a finite observation window with \(T_H\Delta u=16\), three choices of signs for otherwise identical intensities gave relative emission from an adjacent-level difference of \(7.47\times10^{-8}\), \(0.00974\), and \(1.00338\) times the mean. A model returning the right luminosity can therefore lose a logical phase. Conversely, an explicit symmetric six-polarization matrix emission carries a four-component code isometrically into radiation and core together, while the respective single-output distinguishabilities are \(2/3\) and \(1/3\). This is an existence example for a local channel. No complete solution yet connects it to a generic collapsing source. The final emitted quantum is outside our semiclassical matching condition.
+
+% Main article and its component sources are distributed together.
+
+\input{joint-experiment}
+\input{geometry}
+\input{tests}
+\input{closing}

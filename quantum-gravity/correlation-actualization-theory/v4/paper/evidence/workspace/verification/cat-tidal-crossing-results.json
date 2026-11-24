@@ -1,0 +1,328 @@
+{
+  "kahler": {
+    "orbit_dimensions": {
+      "3": 40,
+      "4": 9
+    },
+    "marked_dimensions": {
+      "3": 11136,
+      "4": 912
+    },
+    "mobile_D3": {
+      "0": 41,
+      "4": 7,
+      "8": 1
+    },
+    "anchor_flux": [
+      -1,
+      -1,
+      -1,
+      0,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "shared_metric_dimensions": {
+      "1": 12044,
+      "3": 4
+    },
+    "ordered_marked_pair_dimensions": {
+      "1": 135830016,
+      "2": 8365056,
+      "3": 941568,
+      "4": 17664
+    }
+  },
+  "crossing": [
+    {
+      "q": 0.0,
+      "rank": 2,
+      "proper_time_remaining_fraction": 0.1429962612209771,
+      "radius_fraction": 0.27345327037439227,
+      "start_radius_for_horizon_crossing": 3.6569319453772593,
+      "slope_in_x": 2.876444031275721,
+      "retarded_lead_vs_1p5_horizon": 6.017397150435869
+    },
+    {
+      "q": 0.0,
+      "rank": 4,
+      "proper_time_remaining_fraction": 0.042212051449088996,
+      "radius_fraction": 0.12123396408275458,
+      "start_radius_for_horizon_crossing": 8.248513587474527,
+      "slope_in_x": 16.193959999140958
+    },
+    {
+      "q": 0.0,
+      "rank": 6,
+      "proper_time_remaining_fraction": 0.021565618162524055,
+      "radius_fraction": 0.07747732318741053,
+      "start_radius_for_horizon_crossing": 12.907002447426995,
+      "slope_in_x": 40.80372347720153
+    },
+    {
+      "q": 0.0,
+      "rank": 8,
+      "proper_time_remaining_fraction": 0.013527471144376598,
+      "radius_fraction": 0.056773335567913266,
+      "start_radius_for_horizon_crossing": 17.61390254768072,
+      "slope_in_x": 77.11353361930799
+    },
+    {
+      "q": 0.1,
+      "rank": 2,
+      "proper_time_remaining_fraction": 0.14382021570310252,
+      "radius_fraction": 0.27450270210947864,
+      "start_radius_for_horizon_crossing": 3.642951389240513,
+      "slope_in_x": 2.8513224711895306,
+      "retarded_lead_vs_1p5_horizon": 6.0612782733445165
+    },
+    {
+      "q": 0.1,
+      "rank": 4,
+      "proper_time_remaining_fraction": 0.042653496814164055,
+      "radius_fraction": 0.12207772505001407,
+      "start_radius_for_horizon_crossing": 8.191502582394206,
+      "slope_in_x": 15.920454016072203
+    },
+    {
+      "q": 0.1,
+      "rank": 6,
+      "proper_time_remaining_fraction": 0.021830834623047086,
+      "radius_fraction": 0.07811124496540768,
+      "start_radius_for_horizon_crossing": 12.802254021720683,
+      "slope_in_x": 39.984139475892036
+    },
+    {
+      "q": 0.1,
+      "rank": 8,
+      "proper_time_remaining_fraction": 0.01370746794398852,
+      "radius_fraction": 0.05727584335005448,
+      "start_radius_for_horizon_crossing": 17.45936753629746,
+      "slope_in_x": 75.43081344331702
+    },
+    {
+      "q": 0.3,
+      "rank": 2,
+      "proper_time_remaining_fraction": 0.1504470468454379,
+      "radius_fraction": 0.28287144666599273,
+      "start_radius_for_horizon_crossing": 3.535174765025945,
+      "slope_in_x": 2.6647916075420235,
+      "retarded_lead_vs_1p5_horizon": 6.4097091531421135
+    },
+    {
+      "q": 0.3,
+      "rank": 4,
+      "proper_time_remaining_fraction": 0.0463534430571726,
+      "radius_fraction": 0.12903910204681895,
+      "start_radius_for_horizon_crossing": 7.749588955115112,
+      "slope_in_x": 13.924147299964753
+    },
+    {
+      "q": 0.3,
+      "rank": 6,
+      "proper_time_remaining_fraction": 0.024096036972462823,
+      "radius_fraction": 0.08342516621240789,
+      "start_radius_for_horizon_crossing": 11.98679062207573,
+      "slope_in_x": 34.02543998454908
+    },
+    {
+      "q": 0.3,
+      "rank": 8,
+      "proper_time_remaining_fraction": 0.015261495611950886,
+      "radius_fraction": 0.06152685704842184,
+      "start_radius_for_horizon_crossing": 16.253064888606232,
+      "slope_in_x": 63.21800230388984
+    },
+    {
+      "q": 0.6,
+      "rank": 2,
+      "proper_time_remaining_fraction": 0.17325210249851866,
+      "radius_fraction": 0.3107794848480075,
+      "start_radius_for_horizon_crossing": 3.2177156110837517,
+      "slope_in_x": 2.1870426139781483,
+      "retarded_lead_vs_1p5_horizon": 7.556129208019458
+    },
+    {
+      "q": 0.6,
+      "rank": 4,
+      "proper_time_remaining_fraction": 0.061394540928256636,
+      "radius_fraction": 0.15562755848562815,
+      "start_radius_for_horizon_crossing": 6.425597173988614,
+      "slope_in_x": 9.15178667670055,
+      "retarded_lead_vs_1p5_horizon": 0.3643191144891067
+    },
+    {
+      "q": 0.6,
+      "rank": 6,
+      "proper_time_remaining_fraction": 0.03414134057960488,
+      "radius_fraction": 0.10524150416762461,
+      "start_radius_for_horizon_crossing": 9.501954650963926,
+      "slope_in_x": 20.033496310302727
+    },
+    {
+      "q": 0.6,
+      "rank": 8,
+      "proper_time_remaining_fraction": 0.02253331604234637,
+      "radius_fraction": 0.0797780479032422,
+      "start_radius_for_horizon_crossing": 12.534776499079515,
+      "slope_in_x": 34.780748498738475
+    }
+  ],
+  "displaced": {
+    "jacobi_horizon_aspect": 4.754992625327019,
+    "coverage_at_start_ten": {
+      "2": 0.9072413000091523,
+      "3": 0.8038492102904582,
+      "4": 0.6369142989219118,
+      "5": 0.27034566103841323,
+      "6": 0.13590224852384633,
+      "7": 0.0,
+      "8": 0.0,
+      "9": 0.0
+    },
+    "weights": [
+      {
+        "rank": 2,
+        "q": 0.1,
+        "offset": 0.2,
+        "k": 0.0,
+        "radius_fraction": 0.24621029057946037,
+        "probability_rising_occupied": 0.9883214434057895,
+        "all_four_empty": 1.8601873157124462e-08
+      },
+      {
+        "rank": 2,
+        "q": 0.3,
+        "offset": 0.3,
+        "k": 0.0,
+        "radius_fraction": 0.20974924266689954,
+        "probability_rising_occupied": 0.9620447182808581,
+        "all_four_empty": 2.075338185996829e-06
+      },
+      {
+        "rank": 3,
+        "q": 0.1,
+        "offset": 0.5,
+        "k": 0.5,
+        "radius_fraction": 0.18113650542049767,
+        "probability_rising_occupied": 0.9999906405524489,
+        "all_four_empty": 7.673630083035657e-21
+      },
+      {
+        "rank": 3,
+        "q": 0.3,
+        "offset": 0.65,
+        "k": 0.5,
+        "radius_fraction": 0.1740255232167472,
+        "probability_rising_occupied": 0.981253204540507,
+        "all_four_empty": 1.2351171834472246e-07
+      },
+      {
+        "rank": 4,
+        "q": 0.1,
+        "offset": 0.86,
+        "k": 1.0,
+        "radius_fraction": 0.13755623232258707,
+        "probability_rising_occupied": 0.990837079470043,
+        "all_four_empty": 7.049132595012129e-09
+      }
+    ]
+  },
+  "transverse_emission": {
+    "core_trace_distance": 0.3333333333333334,
+    "emitted_mode_trace_distance": 0.6666666666666669,
+    "joint_trace_distance": 1.0000000000000004
+  },
+  "unaligned_shapes": {
+    "points_per_scramble": 16384,
+    "scrambles": 8,
+    "mean_crossing_counts": [
+      0.771209716796875,
+      0.14324951171875,
+      0.085540771484375
+    ],
+    "between_scramble_sd": [
+      0.0028486394364164013,
+      0.0024524981710555742,
+      0.001213269076594639
+    ]
+  },
+  "occupation": [
+    {
+      "rank": 2,
+      "beta_a": 0.0,
+      "probability_none": 0.05061179087875417,
+      "probability_all": 0.05061179087875417,
+      "mean_occupied": 2.0
+    },
+    {
+      "rank": 2,
+      "beta_a": 1.0,
+      "probability_none": 0.01299430747518995,
+      "probability_all": 0.13433442808105586,
+      "mean_occupied": 2.507455137049066
+    },
+    {
+      "rank": 2,
+      "beta_a": 4.0,
+      "probability_none": 1.3138929338851297e-05,
+      "probability_all": 0.6370362617402505,
+      "mean_occupied": 3.5957769353631654
+    },
+    {
+      "rank": 4,
+      "beta_a": 0.0,
+      "probability_none": 0.05659640905542545,
+      "probability_all": 0.05659640905542544,
+      "mean_occupied": 2.0
+    },
+    {
+      "rank": 4,
+      "beta_a": 1.0,
+      "probability_none": 0.0005320864932067302,
+      "probability_all": 0.44927270762865706,
+      "mean_occupied": 3.29613595904842
+    },
+    {
+      "rank": 4,
+      "beta_a": 4.0,
+      "probability_none": 7.252169373515643e-18,
+      "probability_all": 0.9995037881316409,
+      "mean_occupied": 3.9995037441760113
+    },
+    {
+      "rank": 6,
+      "beta_a": 0.0,
+      "probability_none": 0.05857385398981325,
+      "probability_all": 0.05857385398981322,
+      "mean_occupied": 2.0
+    },
+    {
+      "rank": 6,
+      "beta_a": 1.0,
+      "probability_none": 7.772346305023965e-06,
+      "probability_all": 0.744955534636673,
+      "mean_occupied": 3.721634246045008
+    },
+    {
+      "rank": 6,
+      "beta_a": 4.0,
+      "probability_none": 3.916401097893581e-31,
+      "probability_all": 0.9999997661309039,
+      "mean_occupied": 3.999999766130894
+    }
+  ]
+}

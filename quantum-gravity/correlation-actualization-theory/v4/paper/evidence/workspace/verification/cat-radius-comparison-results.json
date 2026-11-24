@@ -1,0 +1,234 @@
+{
+  "static_sector": [
+    {
+      "momentum": [
+        1,
+        0
+      ],
+      "twist_integer": 1,
+      "lengths": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "shifts_over_B": [
+        -2,
+        0,
+        2
+      ],
+      "real_vector_multiplicities": [
+        2,
+        4,
+        2
+      ],
+      "ikkt_weyl_and_bfss_spin_multiplicities": [
+        4,
+        8,
+        4
+      ],
+      "lowest_mass_squared": 39.47841760435743
+    },
+    {
+      "momentum": [
+        2,
+        -3
+      ],
+      "twist_integer": 1,
+      "lengths": [
+        0.8,
+        1.3,
+        2.0
+      ],
+      "shifts_over_B": [
+        -2,
+        0,
+        2
+      ],
+      "real_vector_multiplicities": [
+        2,
+        4,
+        2
+      ],
+      "ikkt_weyl_and_bfss_spin_multiplicities": [
+        4,
+        8,
+        4
+      ],
+      "lowest_mass_squared": 801.90535758851
+    },
+    {
+      "momentum": [
+        0,
+        2
+      ],
+      "twist_integer": -2,
+      "lengths": [
+        2.0,
+        0.75,
+        1.5
+      ],
+      "shifts_over_B": [
+        -2,
+        0,
+        2
+      ],
+      "real_vector_multiplicities": [
+        2,
+        4,
+        2
+      ],
+      "ikkt_weyl_and_bfss_spin_multiplicities": [
+        4,
+        8,
+        4
+      ],
+      "lowest_mass_squared": 39.47841760435743
+    },
+    {
+      "momentum": [
+        0.5,
+        1
+      ],
+      "twist_integer": 2,
+      "lengths": [
+        1.0,
+        1.0,
+        2.0
+      ],
+      "shifts_over_B": [
+        -2,
+        0,
+        2
+      ],
+      "real_vector_multiplicities": [
+        2,
+        4,
+        2
+      ],
+      "ikkt_weyl_and_bfss_spin_multiplicities": [
+        4,
+        8,
+        4
+      ],
+      "lowest_mass_squared": 49.3480220054468
+    }
+  ],
+  "base_spin_twist": [
+    {
+      "base_lengths": [
+        1.0,
+        1.0
+      ],
+      "heat_integral": -1.5865207622039286,
+      "winding_cutoffs": [
+        12,
+        24,
+        48
+      ],
+      "winding_estimates": [
+        -1.58649980650734,
+        -1.5865193618857054,
+        -1.586520671807979
+      ],
+      "measured_scaling_weight": -15.000000000000002
+    },
+    {
+      "base_lengths": [
+        0.85,
+        1.3
+      ],
+      "heat_integral": -5.300898442716538,
+      "winding_cutoffs": [
+        12,
+        24,
+        48
+      ],
+      "winding_estimates": [
+        -5.300872721890839,
+        -5.300896747414247,
+        -5.300898334094147
+      ],
+      "measured_scaling_weight": -15.000000000000002
+    }
+  ],
+  "central_spin_twist": {
+    "center_shift": [
+      0.5,
+      0
+    ],
+    "minimum_even_twist": 2,
+    "zeta_cutoff": 80,
+    "winding_sums_Z10_Z8_Z6": [
+      4.252822891640777,
+      4.515571400066229,
+      5.0956867408145765
+    ],
+    "heat_moments": [
+      0.003424046740146131,
+      -0.02691138875315904,
+      0.06660599981523528
+    ],
+    "leading_Einstein_weights": [
+      -9,
+      -12,
+      -15
+    ],
+    "curvature_test": {
+      "maximum_aspect_parameter": 0.25,
+      "error_bounds": [
+        0.00015625,
+        0.006135222199675325,
+        0.016503772290809328
+      ],
+      "absolute_leading_lower_bound": 0.0263671875,
+      "strict_margin": 0.003571943009515348,
+      "direct_heat_integrals": [
+        -0.16141623631265317,
+        -0.16141623627301047
+      ],
+      "leading_value": -0.16146833251886952
+    },
+    "coefficients_after_powers_of_lengths_and_k": [
+      -1.3341331224622945,
+      0.17706984058497716,
+      -0.0011100999912015384
+    ]
+  },
+  "cat_contacts": {
+    "positive_relative_gaps": [
+      1.6753910294717442,
+      2.1031994878475375,
+      2.661187147923175,
+      3.3826846257046235,
+      4.3169058719193485,
+      5.554519806245991
+    ],
+    "common_projector_diagonal": 0.3333333333333333,
+    "readout_examples": [
+      {
+        "port_phase_winding": 0,
+        "mean_momentum_change": -8.881784197001252e-16,
+        "mean_square_momentum_change": 0.9999999999999964
+      },
+      {
+        "port_phase_winding": 2,
+        "mean_momentum_change": 0.8039215686274499,
+        "mean_square_momentum_change": 7.431372549019603
+      }
+    ]
+  },
+  "force_at_contact": {
+    "random_seed": 181,
+    "write_induced_force_difference": -0.787881734657359,
+    "lost_off_diagonal_force": 0.787881734657359,
+    "pair_forces_per_crossing_energy": [
+      3.000000000447089,
+      3.750000000868336
+    ],
+    "maximum_change_per_crossing_energy": 0.750000000421247,
+    "bulk_rest_force_ratios": [
+      3.000000000446729,
+      3.7500000008817325
+    ]
+  }
+}

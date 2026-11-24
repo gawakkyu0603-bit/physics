@@ -1,0 +1,386 @@
+{
+  "cochain": {
+    "trials": 96,
+    "uncompensated_sign_changes": 35,
+    "completed_exponent_max_error": 7.105427357601002e-15
+  },
+  "modulus": {
+    "hexagon_y": 0.8660254037844386,
+    "second_representative_y": 0.2886751345948129,
+    "dual_real_parts": [
+      -0.5000000000000001,
+      -1.4999999999999998
+    ],
+    "another_polarization_real": 0.35714285714285715,
+    "normalized_frozen_energy": 3.2237097954706257,
+    "physical_hessian_over_energy": [
+      0.3749999991312998,
+      0.3750000249607733
+    ],
+    "thermal_pairs": [
+      [
+        1.0,
+        0.9882892418338656,
+        0.9931310712786394,
+        0.9900949038179998
+      ],
+      [
+        2.0,
+        0.08632448268965942,
+        0.08972701009992501,
+        0.0875923326587782
+      ],
+      [
+        4.0,
+        0.0011106977491823766,
+        0.0013912555586788056,
+        0.0012157005140118748
+      ]
+    ],
+    "squared_scalar_charge_example": 0.036011080332409975
+  },
+  "material": {
+    "binding_fraction": 0.1339745962155614,
+    "relative_angle": 1.0471975511965976,
+    "critical_distance_in_string_lengths": 2.565099660323728,
+    "force_ratio_at_three": 0.009795918367346938,
+    "far_sign_success_for_perfect_midpoint": 0.5076933926896482,
+    "weber": [
+      [
+        -0.35,
+        3.002836760100807,
+        3.002836760621875,
+        1.4133805237293018e-10
+      ],
+      [
+        0.0,
+        0.9999999999260103,
+        1.0,
+        1.4681345028577653e-10
+      ],
+      [
+        0.45,
+        0.24323756140157216,
+        0.2432375614375329,
+        1.531456073067261e-10
+      ]
+    ]
+  },
+  "horizon": {
+    "rows": [
+      {
+        "h": 0.2,
+        "neutral": 0.9615299451156173,
+        "charged": 0.29276722536304733,
+        "neutral_over_leading": 0.7626975701273494,
+        "charged_over_leading": 16.89070698157611,
+        "ratio_over_h": 1.5224030559331363,
+        "mean_horizon_occupation": 0.0020196871753467073,
+        "odd_write": 0.2938464048937857,
+        "empty_odd": 0.0005905997692543079,
+        "pure_absorption_given_odd": 0.9971600857289207
+      },
+      {
+        "h": 0.05,
+        "neutral": 0.2716411609724199,
+        "charged": 0.001298870508318493,
+        "neutral_over_leading": 1.723753311876937,
+        "charged_over_leading": 2.397955974566551,
+        "ratio_over_h": 0.09563134715437097,
+        "mean_horizon_occupation": 0.05940844781410023,
+        "odd_write": 0.0015299018101981386,
+        "empty_odd": 7.715197411924254e-05,
+        "pure_absorption_given_odd": 0.8992878132624232
+      },
+      {
+        "h": 0.01,
+        "neutral": 0.017083367644377602,
+        "charged": 1.1805183726490972e-05,
+        "neutral_over_leading": 1.2120150968558874,
+        "charged_over_leading": 1.2183529262245463,
+        "ratio_over_h": 0.06910337570576278,
+        "mean_horizon_occupation": 0.39435490498519044,
+        "odd_write": 2.577104348935907e-05,
+        "empty_odd": 4.655388761100448e-06,
+        "pure_absorption_given_odd": 0.6387192889023666
+      },
+      {
+        "h": 0.002,
+        "neutral": 0.0013242691380729336,
+        "charged": 1.8116439938908817e-07,
+        "neutral_over_leading": 1.0504268316692085,
+        "charged_over_leading": 1.045197180722587,
+        "ratio_over_h": 0.06840165423348808,
+        "mean_horizon_occupation": 1.3242613899196836,
+        "odd_write": 9.008907079912064e-07,
+        "empty_odd": 2.399089042263387e-07,
+        "pure_absorption_given_odd": 0.4673965587106574
+      },
+      {
+        "h": 0.0004,
+        "neutral": 0.00011410200014698727,
+        "charged": 3.131160942716334e-09,
+        "neutral_over_leading": 1.0119005049124175,
+        "charged_over_leading": 1.0098474495990544,
+        "ratio_over_h": 0.06860442715032916,
+        "mean_horizon_occupation": 3.4990039934081145,
+        "odd_write": 3.599899353287375e-08,
+        "empty_odd": 1.095594440250253e-08,
+        "pure_absorption_given_odd": 0.3913194201872637
+      },
+      {
+        "h": 8e-05,
+        "neutral": 1.0113416940981796e-05,
+        "charged": 5.558523686990747e-11,
+        "neutral_over_leading": 1.0027610899892585,
+        "charged_over_leading": 1.002154898088034,
+        "ratio_over_h": 0.06870234510537164,
+        "mean_horizon_occupation": 8.40604074110876,
+        "odd_write": 1.4573405317806448e-09,
+        "empty_odd": 4.672517652959744e-10,
+        "pure_absorption_given_odd": 0.35876103814604776
+      },
+      {
+        "h": 1.6e-05,
+        "neutral": 9.026485340130705e-07,
+        "charged": 9.926664258433165e-13,
+        "neutral_over_leading": 1.0006293778260258,
+        "charged_over_leading": 1.0004692316802146,
+        "ratio_over_h": 0.06873290021241968,
+        "mean_horizon_occupation": 19.398397379510808,
+        "odd_write": 5.876107980348091e-11,
+        "empty_odd": 1.925613779306575e-11,
+        "pure_absorption_given_odd": 0.34459550924847593
+      },
+      {
+        "h": 3.2e-06,
+        "neutral": 8.069596226485011e-08,
+        "charged": 1.7750830932218296e-14,
+        "neutral_over_leading": 1.0001413413320832,
+        "charged_over_leading": 1.0001015538020122,
+        "ratio_over_h": 0.06874116759537624,
+        "mean_horizon_occupation": 43.9869610585249,
+        "odd_write": 2.3601661578419023e-12,
+        "empty_odd": 7.808051089707261e-13,
+        "pure_absorption_given_odd": 0.33834733933864364
+      }
+    ],
+    "matched_ratio_coefficient": 0.06874390235892353,
+    "matching_relative_error": 4.9887649566926484e-11,
+    "flux_absolute_error": 9.377865151094511e-11
+  },
+  "quantum": {
+    "fock_mode_checks": [
+      [
+        0.12,
+        0.8,
+        0.17981778464489312,
+        0.300121616143417
+      ],
+      [
+        0.38,
+        1.4,
+        0.3885771939272883,
+        0.5967114356108406
+      ],
+      [
+        0.77,
+        0.22,
+        0.686948812061189,
+        0.7451481641136295
+      ]
+    ],
+    "extremal_energy_thresholds": [
+      [
+        1e-05,
+        0.0008909038738308731,
+        0.9596971056325108
+      ],
+      [
+        1e-08,
+        9.245494147595738e-06,
+        0.995940665903351
+      ],
+      [
+        1e-11,
+        9.279406718433839e-08,
+        0.9995937868554394
+      ]
+    ]
+  },
+  "received_directions": [
+    {
+      "packets": 3,
+      "probabilities": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "rank_probabilities": [
+        0.015625,
+        0.328125,
+        0.65625
+      ],
+      "remaining_bits": 0.359375
+    },
+    {
+      "packets": 6,
+      "probabilities": [
+        0.6,
+        0.1,
+        0.2,
+        0.1
+      ],
+      "rank_probabilities": [
+        0.046655999999999996,
+        0.35747400000000007,
+        0.5958700000000049
+      ],
+      "remaining_bits": 0.4507860000000001
+    },
+    {
+      "packets": 7,
+      "probabilities": [
+        0.4,
+        0.6,
+        0.0,
+        0.0
+      ],
+      "rank_probabilities": [
+        0.0016384000000000008,
+        0.998361600000001,
+        0.0
+      ],
+      "remaining_bits": 1.001638400000001
+    },
+    {
+      "packets": 2,
+      "probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rank_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "remaining_bits": 2.0
+    }
+  ],
+  "continuous": {
+    "canonical_tails": [
+      {
+        "transmission": 0.31,
+        "thermal_mean": 0.82,
+        "cutoff": 5,
+        "tail": 0.004043025962544755
+      },
+      {
+        "transmission": 0.74,
+        "thermal_mean": 3.2,
+        "cutoff": 10,
+        "tail": 0.03914174289291982
+      },
+      {
+        "transmission": 0.08,
+        "thermal_mean": 0.15,
+        "cutoff": 3,
+        "tail": 0.00038058899674024585
+      }
+    ],
+    "continuum_widths": [
+      {
+        "pointer_sigma_over_momentum": 0.15,
+        "remaining_fraction": 0.0583551274836176,
+        "linear_bound": 0.06323185011709603,
+        "quadrature_difference": 1.3877787807814457e-17
+      },
+      {
+        "pointer_sigma_over_momentum": 1.0,
+        "remaining_fraction": 0.7475545779260573,
+        "linear_bound": 0.75,
+        "quadrature_difference": 4.718447854656915e-15
+      },
+      {
+        "pointer_sigma_over_momentum": 3.0,
+        "remaining_fraction": 0.9642755069953108,
+        "linear_bound": 0.9642857142857144,
+        "quadrature_difference": 7.716050021144838e-15
+      }
+    ]
+  },
+  "tensor": {
+    "angular_moments": [
+      [
+        1.0000000000000002,
+        0.6666666666666669,
+        0.5238095238095237
+      ],
+      [
+        1.0000000000000002,
+        -0.6666666666666669,
+        0.5238095238095237
+      ],
+      [
+        1.0000000000000002,
+        0.0,
+        0.5238095238095238
+      ]
+    ],
+    "overlap": 0.005,
+    "soft_fraction": 0.0049504950495049506,
+    "radial": [
+      {
+        "omega_radius": 0.12,
+        "transmission": 8.897560954093135e-08,
+        "relative_to_leading": 1.6761235280153508,
+        "check_relative": 1.059752285925697e-11,
+        "gain_given_odd": 0.021981219718751742,
+        "odd_excess": 6.978273864668301e-10
+      },
+      {
+        "omega_radius": 0.04,
+        "transmission": 8.402111905148159e-11,
+        "relative_to_leading": 1.1538544791615817,
+        "check_relative": 1.127897775177189e-11,
+        "gain_given_odd": 0.008157309796396669,
+        "odd_excess": 1.7065944158761862e-12
+      },
+      {
+        "omega_radius": 0.012,
+        "transmission": 5.522003887024762e-14,
+        "relative_to_leading": 1.0402357100545174,
+        "check_relative": 1.1321610315917496e-11,
+        "gain_given_odd": 0.0057516030718468385,
+        "odd_excess": 3.668829086235543e-15
+      },
+      {
+        "omega_radius": 0.003,
+        "transmission": 1.3084318544112686e-17,
+        "relative_to_leading": 1.0095924802556082,
+        "check_relative": 1.1234790875391809e-11,
+        "gain_given_odd": 0.005139709291203846,
+        "odd_excess": 3.47113433506125e-18
+      },
+      {
+        "omega_radius": 0.00075,
+        "transmission": 3.171553137194364e-21,
+        "relative_to_leading": 1.0023674112614285,
+        "check_relative": 1.134781157929865e-11,
+        "gain_given_odd": 0.00499713867068257,
+        "odd_excess": 3.365147303037155e-21
+      },
+      {
+        "omega_radius": 0.0001875,
+        "transmission": 7.729318014880727e-25,
+        "relative_to_leading": 1.0005897983668608,
+        "check_relative": 1.0788259174887571e-11,
+        "gain_given_odd": 0.004962115183191068,
+        "odd_excess": 3.2804259677745788e-24
+      }
+    ]
+  }
+}

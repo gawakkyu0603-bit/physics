@@ -1,0 +1,589 @@
+{
+  "cases": [
+    {
+      "body": "warm person",
+      "mass_kg": 70.0,
+      "area_m2": 1.7,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 3.0,
+      "early_seconds": 4.3999546207577505e-08,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 80752037979782.27,
+      "radial_upper": 1.1631097876116122e-06,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 8860.018146200635,
+      "finite_clock_256_radial_upper": 0.003906831554893806,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 4.277994668825128e-05,
+      "visible_tube_clock_budget_s": 7.89398627081805e-06
+    },
+    {
+      "body": "1 mm diameter",
+      "mass_kg": 1.3089969389957474e-06,
+      "area_m2": 3.141592653589793e-06,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 3.0,
+      "early_seconds": 4.3999546207577505e-08,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 149229417.22334585,
+      "radial_upper": 0.0008555989337650254,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 8860.018146200635,
+      "finite_clock_256_radial_upper": 0.004334049466882513,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 4.277994668825128e-05,
+      "visible_tube_clock_budget_s": 7.89398627081805e-06
+    },
+    {
+      "body": "0.1 mm diameter",
+      "mass_kg": 1.3089969389957475e-09,
+      "area_m2": 3.141592653589793e-08,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 3.0,
+      "early_seconds": 4.3999546207577505e-08,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 1492294.1722334581,
+      "radial_upper": 0.008555989337650257,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 8860.018146200635,
+      "finite_clock_256_radial_upper": 0.008184244668825127,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 4.277994668825128e-05,
+      "visible_tube_clock_budget_s": 7.89398627081805e-06
+    },
+    {
+      "body": "warm person",
+      "mass_kg": 70.0,
+      "area_m2": 1.7,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 10.0,
+      "early_seconds": 1.4666515402525834e-07,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 269173459932607.53,
+      "radial_upper": 6.37061467529923e-07,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 29533.393820668785,
+      "finite_clock_256_radial_upper": 0.003906568530733765,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 2.3431541810023655e-05,
+      "visible_tube_clock_budget_s": 2.6313287569393503e-05
+    },
+    {
+      "body": "1 mm diameter",
+      "mass_kg": 1.3089969389957474e-06,
+      "area_m2": 3.141592653589793e-06,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 10.0,
+      "early_seconds": 1.4666515402525834e-07,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 497431390.7444861,
+      "radial_upper": 0.00046863083620047306,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 29533.393820668785,
+      "finite_clock_256_radial_upper": 0.004140565418100236,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 2.3431541810023655e-05,
+      "visible_tube_clock_budget_s": 2.6313287569393503e-05
+    },
+    {
+      "body": "0.1 mm diameter",
+      "mass_kg": 1.3089969389957475e-09,
+      "area_m2": 3.141592653589793e-08,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 10.0,
+      "early_seconds": 1.4666515402525834e-07,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 4974313.90744486,
+      "radial_upper": 0.00468630836200473,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 29533.393820668785,
+      "finite_clock_256_radial_upper": 0.006249404181002365,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 2.3431541810023655e-05,
+      "visible_tube_clock_budget_s": 2.6313287569393503e-05
+    },
+    {
+      "body": "warm person",
+      "mass_kg": 70.0,
+      "area_m2": 1.7,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 1000000.0,
+      "early_seconds": 0.014666515402525835,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 2.6917345993260757e+19,
+      "radial_upper": 2.0145652469239586e-09,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 2953339382.0668783,
+      "finite_clock_256_radial_upper": 0.003906251007282624,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 7.409704120913915e-08,
+      "visible_tube_clock_budget_s": 2.63132875693935
+    },
+    {
+      "body": "1 mm diameter",
+      "mass_kg": 1.3089969389957474e-06,
+      "area_m2": 3.141592653589793e-06,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 1000000.0,
+      "early_seconds": 0.014666515402525835,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 49743139074448.61,
+      "radial_upper": 1.481940824182783e-06,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 2953339382.0668783,
+      "finite_clock_256_radial_upper": 0.003906990970412092,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 7.409704120913915e-08,
+      "visible_tube_clock_budget_s": 2.63132875693935
+    },
+    {
+      "body": "0.1 mm diameter",
+      "mass_kg": 1.3089969389957475e-09,
+      "area_m2": 3.141592653589793e-08,
+      "temperature_K": 300.0,
+      "emissivity_floor": 0.1,
+      "black_hole_solar_masses": 1000000.0,
+      "early_seconds": 0.014666515402525835,
+      "surface_band_flux_m2_s": 1.0795838345136403e+22,
+      "mean_absorbed": 497431390744.4861,
+      "radial_upper": 1.481940824182783e-05,
+      "constant": 10.45195319331723,
+      "gate_min_asymptotic_s": 2.4996057673782398e-14,
+      "radius_m": 2953339382.0668783,
+      "finite_clock_256_radial_upper": 0.003913659704120914,
+      "fourier_clock_bandwidth_J": 6.759657504000001e-18,
+      "min_radius_for_one_percent_m": 7.409704120913915e-08,
+      "visible_tube_clock_budget_s": 2.63132875693935
+    }
+  ],
+  "cold_small": {
+    "area_m2": 3.141592653589793e-08,
+    "temperature_K": 30.0,
+    "emissivity_floor": 0.01,
+    "black_hole_solar_masses": 10.0,
+    "early_seconds": 1.4666515402525834e-07,
+    "surface_band_flux_m2_s": 1.0795838345136407e+19,
+    "mean_absorbed": 497.43139074448624,
+    "radial_upper": 0.468630836200473,
+    "constant": 10.45195319331723,
+    "gate_min_asymptotic_s": 2.49960576737824e-13,
+    "radius_m": 29533.393820668785,
+    "finite_clock_256_radial_upper": 0.2382216681002365,
+    "fourier_clock_bandwidth_J": 6.759657504000001e-19,
+    "min_radius_for_one_percent_m": 0.002343154181002365,
+    "visible_tube_clock_budget_s": 2.6313287569393503e-05
+  },
+  "local_patches": [
+    {
+      "patch_radius_m": 5e-05,
+      "near_interval_s": 1.6678204759907603e-13,
+      "photons_within_footprint": 0.0782920555482672,
+      "minimum_lead_s": 7.817908481206689e-14
+    },
+    {
+      "patch_radius_m": 0.0005,
+      "near_interval_s": 1.6678204759907604e-12,
+      "photons_within_footprint": 78.29205554826719,
+      "minimum_lead_s": 7.817908481206688e-13
+    },
+    {
+      "patch_radius_m": 0.1,
+      "near_interval_s": 3.3356409519815207e-10,
+      "photons_within_footprint": 626336444.3861377,
+      "minimum_lead_s": 1.5635816962413376e-10
+    }
+  ],
+  "clock_checks": {
+    "split_error": 1.1102230246251565e-16,
+    "clock": [
+      [
+        0.4,
+        0.8798596188946419
+      ],
+      [
+        1.2,
+        0.531410654469084
+      ],
+      [
+        8.0,
+        0.14899817849578811
+      ],
+      [
+        25.0,
+        0.1365500178491417
+      ]
+    ],
+    "finite_clocks": [
+      [
+        16,
+        0.5320516259159689
+      ],
+      [
+        64,
+        0.5314505942723216
+      ],
+      [
+        256,
+        0.5314131502385632
+      ]
+    ]
+  },
+  "all_subextremal_axial": {
+    "exposure_in_2M": 0.0010770396201867443,
+    "spectral_ratio": 2.785588250306107,
+    "uniform_ratio_used": 2.8,
+    "maximal_transverse_angle": 0.06981480008011856,
+    "relay_in_rplus": 0.45379620052077063,
+    "lead_in_rplus": 0.5614366729678639,
+    "time_left_in_rplus": 0.1076404724470933,
+    "minimum_photons_grain_10_solar": 3598575.1692967783,
+    "maximum_radial_grain_10_solar": 0.006749447994770966,
+    "min_solar_for_one_percent": 4.5555048234117805
+  },
+  "active_body_tide": {
+    "source_mass_kg": 70.0,
+    "cutoff_in_GM_c2": 20.0,
+    "heat_J": 1.4007106746425523e-20,
+    "characteristic_frequency_s": 321.00171025955564
+  },
+  "precursor": [
+    {
+      "mass_kg": 70.0,
+      "length_m": 1.7,
+      "pulse_s": 5.810625263338452e-09,
+      "gate_s": 1.452656315834613e-09,
+      "free_time_s": 1e-07,
+      "minimum_position_spread_m": 3.8814058897079258e-22,
+      "minimum_timing_spread_s": 1.3266703011769139e-30,
+      "gaussian_clock_purity_bound": 1.7915900070118112e-22,
+      "inverse_purity_lower": 5.581634169013354e+21,
+      "finite_256_gaussian_bound": 0.003906250000000001,
+      "timing_support_s": 5.8106252633384527e-11,
+      "radial_upper": 7.250262102062999e-42,
+      "early_advantage_s": 2.5087448144422164e-06,
+      "lateral_light_s": 2.5985906161204774e-08,
+      "remaining_s": 2.4784009393335078e-06
+    },
+    {
+      "mass_kg": 1.3089969389957475e-09,
+      "length_m": 0.0001,
+      "pulse_s": 3.4180148607873247e-13,
+      "gate_s": 8.545037151968312e-14,
+      "free_time_s": 1e-07,
+      "minimum_position_spread_m": 8.975709022657737e-17,
+      "minimum_timing_spread_s": 3.0679106825547017e-25,
+      "gaussian_clock_purity_bound": 4.143032459831048e-17,
+      "inverse_purity_lower": 2.413690961139078e+16,
+      "finite_256_gaussian_bound": 0.0039062500000000425,
+      "timing_support_s": 3.418014860787325e-15,
+      "radial_upper": 6.591162778481484e-27,
+      "early_advantage_s": 2.5087448144422164e-06,
+      "lateral_light_s": 1.5285827153649868e-12,
+      "remaining_s": 2.508743029508386e-06
+    }
+  ],
+  "relative_circle": {
+    "warm": [
+      {
+        "body": "warm person",
+        "solar": 3.0,
+        "radial_at_first": 4.667183791349875e-06,
+        "radial_at_10ns": 2.1041760978774954e-11,
+        "damping_exponent": 276150332395.79614,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 1.4980672295297138e-13,
+        "sufficient_pair_gap_J": 6.576090603517816e-29,
+        "sufficient_radius_m": 209.82122784865408
+      },
+      {
+        "body": "1 mm diameter",
+        "solar": 3.0,
+        "radial_at_first": 0.0020213531629451904,
+        "radial_at_10ns": 1.194943180674089e-08,
+        "damping_exponent": 510324.62090647797,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 2.0364876443905722e-16,
+        "sufficient_pair_gap_J": 2.721354825997793e-26,
+        "sufficient_radius_m": 0.5070281139719425
+      },
+      {
+        "body": "0.1 mm diameter",
+        "solar": 3.0,
+        "radial_at_first": 0.01528830825327954,
+        "radial_at_10ns": 1.0718320131070234e-07,
+        "damping_exponent": 5103.246209064779,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 2.036487644390572e-17,
+        "sufficient_pair_gap_J": 0.0,
+        "sufficient_radius_m": null
+      },
+      {
+        "body": "warm person",
+        "solar": 10.0,
+        "radial_at_first": 2.6521974277435614e-06,
+        "radial_at_10ns": 1.1764698303420587e-11,
+        "damping_exponent": 920501107985.9869,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 2.735084047575645e-13,
+        "sufficient_pair_gap_J": 3.621451233883229e-29,
+        "sufficient_radius_m": 381.00841783103664
+      },
+      {
+        "body": "1 mm diameter",
+        "solar": 10.0,
+        "radial_at_first": 0.0011776680717862332,
+        "radial_at_10ns": 6.721263915132329e-09,
+        "damping_exponent": 1701082.0696882599,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 3.718100736377584e-16,
+        "sufficient_pair_gap_J": 1.7787503055771253e-26,
+        "sufficient_radius_m": 0.7757150627313145
+      },
+      {
+        "body": "0.1 mm diameter",
+        "solar": 10.0,
+        "radial_at_first": 0.009079024773980973,
+        "radial_at_10ns": 6.046956279559524e-08,
+        "damping_exponent": 17010.820696882594,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 3.718100736377584e-17,
+        "sufficient_pair_gap_J": 1.277157900286897e-26,
+        "sufficient_radius_m": 1.0803702537988056
+      },
+      {
+        "body": "warm person",
+        "solar": 1000000.0,
+        "radial_at_first": 1.1286177117628863e-08,
+        "radial_at_10ns": 4.445008077108895e-14,
+        "damping_exponent": 9.20501107985987e+16,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 8.649095182331371e-11,
+        "sufficient_pair_gap_J": 1.1629257167614832e-31,
+        "sufficient_radius_m": 118649.31568600809
+      },
+      {
+        "body": "1 mm diameter",
+        "solar": 1000000.0,
+        "radial_at_first": 5.8567977160422925e-06,
+        "radial_at_10ns": 2.6585372657050915e-11,
+        "damping_exponent": 170108206968.826,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 1.1757666896902438e-13,
+        "sufficient_pair_gap_J": 8.356483713922144e-29,
+        "sufficient_radius_m": 165.1177040619743
+      },
+      {
+        "body": "0.1 mm diameter",
+        "solar": 1000000.0,
+        "radial_at_first": 5.0037240034266466e-05,
+        "radial_at_10ns": 2.4453024684998074e-10,
+        "damping_exponent": 1701082069.6882596,
+        "max_frequency_error_at_10ns": 569027.4818947519,
+        "rms_energy_ceiling_J": 1.1757666896902436e-14,
+        "sufficient_pair_gap_J": 7.957960253459501e-28,
+        "sufficient_radius_m": 17.338656652303253
+      }
+    ],
+    "cold": [
+      {
+        "mass_kg": 70.0,
+        "circle_seed_purity": 4.6372544456754925e-21
+      },
+      {
+        "mass_kg": 1.3089969389957475e-09,
+        "circle_seed_purity": 8.165019134208363e-16
+      }
+    ],
+    "maximum_fft_error": 1.3701739334398355e-15,
+    "finite_gap_checks": [
+      [
+        0.6,
+        0.04,
+        0.008444026300032019,
+        0.00848528137423857
+      ],
+      [
+        3.0,
+        0.01,
+        0.0101040908998246,
+        0.010606601717798212
+      ],
+      [
+        8.0,
+        0.02,
+        0.055578317547132536,
+        0.056568542494923796
+      ],
+      [
+        3.0,
+        0.3,
+        0.30031553097793745,
+        0.3181980515339463
+      ]
+    ],
+    "band_area": 0.6322260501671491,
+    "continuum_damping_per_count": 0.0034197320501673945
+  },
+  "positive_momentum_blocks": {
+    "q": 128,
+    "total_positive_units": 256,
+    "minimum_q_for_below_one_percent": 101,
+    "minimum_weighted_delay_spacing": 0.00030115862539752,
+    "warm": [
+      {
+        "body": "warm person",
+        "solar": 3.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -138075166197.89807,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 2.8072929568478097e-43
+      },
+      {
+        "body": "1 mm diameter",
+        "solar": 3.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -255162.31045323898,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 1.5012296906523563e-35
+      },
+      {
+        "body": "0.1 mm diameter",
+        "solar": 3.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -2551.6231045323893,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 1.501229690652356e-32
+      },
+      {
+        "body": "warm person",
+        "solar": 10.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -460250553992.99347,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 2.8072929568478097e-43
+      },
+      {
+        "body": "1 mm diameter",
+        "solar": 10.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -850541.0348441299,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 1.5012296906523563e-35
+      },
+      {
+        "body": "0.1 mm diameter",
+        "solar": 10.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -8505.410348441297,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 1.501229690652356e-32
+      },
+      {
+        "body": "warm person",
+        "solar": 1000000.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -4.602505539929935e+16,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 2.8072929568478097e-43
+      },
+      {
+        "body": "1 mm diameter",
+        "solar": 1000000.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -85054103484.413,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 1.5012296906523563e-35
+      },
+      {
+        "body": "0.1 mm diameter",
+        "solar": 1000000.0,
+        "radial_floor": 0.0078125,
+        "radial_ceiling": 0.007812500000000002,
+        "log_offdiag_bound": -850541034.8441298,
+        "shortest_contact_s": 8.299964060729916e-11,
+        "contact_s": 1e-09,
+        "norm_tolerance_eV": 7.642928417833916e-09,
+        "budget_radius_m": 1.501229690652356e-32
+      }
+    ],
+    "cold": [
+      {
+        "mass_kg": 70.0,
+        "log_offdiag_bound": -8.876938728662686e+36,
+        "purity_bound": 0.007812500000000002
+      },
+      {
+        "mass_kg": 1.3089969389957475e-09,
+        "log_offdiag_bound": -1.6599836604960373e+26,
+        "purity_bound": 0.007812500000000002
+      }
+    ],
+    "path_spectrum_checks": [
+      [
+        2,
+        7.832041159795668e-16,
+        0.7071067811865476
+      ],
+      [
+        4,
+        6.497413668604471e-16,
+        0.2705980500730985
+      ],
+      [
+        9,
+        1.9142545830396683e-15,
+        0.0593911746138847
+      ],
+      [
+        16,
+        1.1364755910069913e-15,
+        0.01912219546999401
+      ],
+      [
+        32,
+        2.531127408884061e-15,
+        0.00480947312019571
+      ]
+    ]
+  }
+}

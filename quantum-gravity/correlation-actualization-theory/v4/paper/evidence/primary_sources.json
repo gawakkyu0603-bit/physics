@@ -1,0 +1,378 @@
+[
+  {
+    "id": "hawking",
+    "authors": "S. W. Hawking",
+    "title": "Particle creation by black holes",
+    "where": "Commun. Math. Phys. 43 (1975) 199",
+    "url": "https://doi.org/10.1007/BF02345020",
+    "support": "Field quantization on a collapsing background and the late thermal spectrum."
+  },
+  {
+    "id": "page",
+    "authors": "D. N. Page",
+    "title": "Particle emission rates from a black hole: massless particles from an uncharged, nonrotating hole",
+    "where": "Phys. Rev. D 13 (1976) 198",
+    "url": "https://doi.org/10.1103/PhysRevD.13.198",
+    "support": "Species and partial-wave emission rates in Schwarzschild, not recovery of an arbitrary logical state."
+  },
+  {
+    "id": "complement",
+    "authors": "L. Susskind, L. Thorlacius and J. Uglum",
+    "title": "The stretched horizon and black hole complementarity",
+    "where": "1993",
+    "url": "https://arxiv.org/abs/hep-th/9306069",
+    "support": "Exterior stretched horizon and operational complementarity."
+  },
+  {
+    "id": "amps",
+    "authors": "A. Almheiri, D. Marolf, J. Polchinski and J. Sully",
+    "title": "Black holes: complementarity or firewalls?",
+    "where": "2012",
+    "url": "https://arxiv.org/abs/1207.3123",
+    "support": "Tension between purity, exterior effective field theory and a smooth horizon."
+  },
+  {
+    "id": "relational",
+    "authors": "C. Rovelli",
+    "title": "Relational quantum mechanics",
+    "where": "1996",
+    "url": "https://arxiv.org/abs/quant-ph/9609002",
+    "support": "States and definite values are relative to another physical system."
+  },
+  {
+    "id": "horizondeco",
+    "authors": "D. L. Danielson, G. Satishchandran and R. M. Wald",
+    "title": "Killing horizons decohere quantum superpositions",
+    "where": "2023",
+    "url": "https://arxiv.org/abs/2301.00026",
+    "support": "Which-path information in long-range fields and horizon flux."
+  },
+  {
+    "id": "hm",
+    "authors": "G. T. Horowitz and J. Maldacena",
+    "title": "The black hole final state",
+    "where": "2003",
+    "url": "https://arxiv.org/abs/hep-th/0310281",
+    "support": "A proposed quantum final-state boundary condition at the singularity."
+  },
+  {
+    "id": "m2",
+    "authors": "S. Hyun, Y. Kiem and H. Shin",
+    "title": "Effective action for membrane dynamics in DLCQ \\(M\\) theory on a two-torus",
+    "where": "1998",
+    "url": "https://arxiv.org/abs/hep-th/9808183",
+    "support": "Membrane probe including metric and three-form contributions."
+  },
+  {
+    "id": "momentum",
+    "authors": "J. Polchinski and P. Pouliot",
+    "title": "Membrane scattering with M-momentum transfer",
+    "where": "1997",
+    "url": "https://arxiv.org/abs/hep-th/9704029",
+    "support": "Longitudinal momentum transfer in a specified membrane scattering regime."
+  },
+  {
+    "id": "datta",
+    "authors": "N. Datta",
+    "title": "Min- and max-relative entropies and a new entanglement monotone",
+    "where": "2008",
+    "url": "https://arxiv.org/abs/0803.2770",
+    "support": "Order comparisons of positive operators."
+  },
+  {
+    "id": "groth",
+    "authors": "A. Grothendieck",
+    "title": "Sur la classification des fibr\\'es holomorphes sur la sph\\`ere de Riemann",
+    "where": "Amer. J. Math. 79 (1957) 121",
+    "url": "https://doi.org/10.2307/2372388",
+    "support": "Classification on the Riemann sphere; the number of sections follows for the line bundle O(k)."
+  },
+  {
+    "id": "ikkt",
+    "authors": "N. Ishibashi, H. Kawai, Y. Kitazawa and A. Tsuchiya",
+    "title": "A large-N reduced model as superstring",
+    "where": "1996",
+    "url": "https://arxiv.org/abs/hep-th/9612115",
+    "support": "Ordinary ten-matrix action; its proposed IIB interpretation."
+  },
+  {
+    "id": "bfss",
+    "authors": "T. Banks, W. Fischler, S. H. Shenker and L. Susskind",
+    "title": "M theory as a matrix model: a conjecture",
+    "where": "1996",
+    "url": "https://arxiv.org/abs/hep-th/9610043",
+    "support": "Matrix quantum mechanics as a proposed microscopic description of M theory."
+  },
+  {
+    "id": "taylor",
+    "authors": "W. Taylor",
+    "title": "D-brane field theory on compact spaces",
+    "where": "1996",
+    "url": "https://arxiv.org/abs/hep-th/9611042",
+    "support": "Compactification by a matrix translation quotient."
+  },
+  {
+    "id": "witten",
+    "authors": "E. Witten",
+    "title": "String theory dynamics in various dimensions",
+    "where": "1995",
+    "url": "https://arxiv.org/abs/hep-th/9503124",
+    "support": "Strongly coupled IIA and eleven-dimensional supergravity."
+  },
+  {
+    "id": "berenstein",
+    "authors": "D. Berenstein and E. Dzienkowski",
+    "title": "Matrix embeddings on flat \\(R^3\\) and the geometry of membranes",
+    "where": "2012",
+    "url": "https://arxiv.org/abs/1204.2788",
+    "support": "Dirac probe, membrane orientation and index from matrices."
+  },
+  {
+    "id": "luders",
+    "authors": "G. L\\\"uders",
+    "title": "\\\"Uber die Zustands\\\"anderung durch den Me\\ss proze\\ss",
+    "where": "Ann. Phys. 443 (1950) 322; English translation",
+    "url": "https://arxiv.org/abs/quant-ph/0403007",
+    "support": "Projective state change, with degeneracy retained within a sector."
+  },
+  {
+    "id": "tilloy",
+    "authors": "A. Tilloy and L. Di\\'osi",
+    "title": "Sourcing semiclassical gravity from spontaneously localized quantum matter",
+    "where": "2015",
+    "url": "https://arxiv.org/abs/1509.08705",
+    "support": "Classical gravitational feedback sourced by a monitoring process."
+  },
+  {
+    "id": "oppenheim",
+    "authors": "J. Oppenheim",
+    "title": "A postquantum theory of classical gravity?",
+    "where": "2018",
+    "url": "https://arxiv.org/abs/1811.03116",
+    "support": "Consistent classical--quantum stochastic gravitational dynamics."
+  },
+  {
+    "id": "hall",
+    "authors": "M. J. W. Hall, D.-A. Deckert and H. M. Wiseman",
+    "title": "Quantum phenomena modelled by interactions between many classical worlds",
+    "where": "2014",
+    "url": "https://arxiv.org/abs/1402.6144",
+    "support": "Interacting classical configurations as an account of quantum phenomena."
+  },
+  {
+    "id": "cwl",
+    "authors": "P. C. E. Stamp",
+    "title": "Rationale for a correlated worldline theory of quantum gravity",
+    "where": "2015",
+    "url": "https://arxiv.org/abs/1506.05065",
+    "support": "Gravitational correlations between paths; a close comparison for interacting layers."
+  },
+  {
+    "id": "bps",
+    "authors": "T. Banks, L. Susskind and M. E. Peskin",
+    "title": "Difficulties for the evolution of pure states into mixed states",
+    "where": "Nucl. Phys. B 244 (1984) 125",
+    "url": "https://doi.org/10.1016/0550-3213(84)90184-6",
+    "support": "Locality and energy-conservation difficulties for changes to unitary evolution."
+  },
+  {
+    "id": "knill",
+    "authors": "E. Knill and R. Laflamme",
+    "title": "A theory of quantum error-correcting codes",
+    "where": "1996",
+    "url": "https://arxiv.org/abs/quant-ph/9604034",
+    "support": "Exact code-correction criterion for an error family."
+  },
+  {
+    "id": "gregoratti",
+    "authors": "M. Gregoratti and R. F. Werner",
+    "title": "Quantum lost and found",
+    "where": "2002",
+    "url": "https://arxiv.org/abs/quant-ph/0209025",
+    "support": "Recovery when a measurement on the environment gives an accessible classical flag."
+  },
+  {
+    "id": "pagewootters",
+    "authors": "D. N. Page and W. K. Wootters",
+    "title": "Evolution without evolution: dynamics described by stationary observables",
+    "where": "Phys. Rev. D 27 (1983) 2885",
+    "url": "https://doi.org/10.1103/PhysRevD.27.2885",
+    "support": "Relational correlations with a quantum clock."
+  },
+  {
+    "id": "steinacker",
+    "authors": "H. Steinacker",
+    "title": "Emergent gravity and noncommutative branes from Yang--Mills matrix models",
+    "where": "2008",
+    "url": "https://arxiv.org/abs/0806.2032",
+    "support": "Propagation metric from a noncommutative brane and matrix action."
+  },
+  {
+    "id": "kim",
+    "authors": "S.-W. Kim, J. Nishimura and A. Tsuchiya",
+    "title": "Expanding (3+1)-dimensional universe from a Lorentzian matrix model for superstring theory in (9+1)-dimensions",
+    "where": "2011",
+    "url": "https://arxiv.org/abs/1108.1540",
+    "support": "Evidence of an extended 3+1 phase in the Lorentzian matrix model studied."
+  },
+  {
+    "id": "demichelis",
+    "authors": "S. DeMichelis and M. H. Freedman",
+    "title": "Uncountably many exotic \\(\\mathbb R^4\\)'s in standard 4-space",
+    "where": "J. Differential Geom. 35 (1992) 219",
+    "url": "https://doi.org/10.4310/jdg/1214447810",
+    "support": "Uncountably many small exotic smoothings, a smooth-topological theorem."
+  },
+  {
+    "id": "cher",
+    "authors": "V. Chernov and S. Nemirovski",
+    "title": "Cosmic censorship of smooth structures",
+    "where": "2012",
+    "url": "https://arxiv.org/abs/1201.6070",
+    "support": "Constraint on a contractible globally hyperbolic smooth four-spacetime."
+  },
+  {
+    "id": "lqg",
+    "authors": "J. Engle, E. Livine, R. Pereira and C. Rovelli",
+    "title": "LQG vertex with finite Immirzi parameter",
+    "where": "2007",
+    "url": "https://arxiv.org/abs/0711.0146",
+    "support": "Four-dimensional spin-foam boundary Hilbert space and area."
+  },
+  {
+    "id": "causet",
+    "authors": "D. Rideout and R. D. Sorkin",
+    "title": "A classical sequential growth dynamics for causal sets",
+    "where": "1999",
+    "url": "https://arxiv.org/abs/gr-qc/9904062",
+    "support": "Consistency of sequential addition to a causal set."
+  },
+  {
+    "id": "cdt",
+    "authors": "J. Ambj\\o rn, J. Jurkiewicz and R. Loll",
+    "title": "Emergence of a 4D world from causal quantum gravity",
+    "where": "2004",
+    "url": "https://arxiv.org/abs/hep-th/0404156",
+    "support": "Extended geometries in causal dynamical triangulations."
+  },
+  {
+    "id": "denef",
+    "authors": "F. Denef and M. R. Douglas",
+    "title": "Distributions of flux vacua",
+    "where": "2004",
+    "url": "https://arxiv.org/abs/hep-th/0404116",
+    "support": "Vacuum statistics for specified flux ensembles."
+  },
+  {
+    "id": "microscope",
+    "authors": "P. Touboul et al.",
+    "title": "MICROSCOPE mission: final results of the test of the equivalence principle",
+    "where": "2022",
+    "url": "https://arxiv.org/abs/2209.15487",
+    "support": "Ti/Pt measurement, quoted statistical and systematic errors."
+  },
+  {
+    "id": "ixpe",
+    "authors": "S. Zane et al.",
+    "title": "A strong X-ray polarization signal from the magnetar 1RXS J170849.0-400910",
+    "where": "2023",
+    "url": "https://arxiv.org/abs/2301.12919",
+    "support": "Energy-resolved linear polarization, Table 1."
+  },
+  {
+    "id": "frb",
+    "authors": "Z. Kader et al.",
+    "title": "A high-time resolution search for compact objects using fast radio burst gravitational lens interferometry with CHIME/FRB",
+    "where": "2022",
+    "url": "https://arxiv.org/abs/2204.06014",
+    "support": "Voltage interferometry as an observational method; no CAT signal claimed."
+  },
+  {
+    "id": "neutrino",
+    "authors": "A. S. Dighe, M. T. Keil and G. G. Raffelt",
+    "title": "Identifying Earth matter effects on supernova neutrinos at a single detector",
+    "where": "2003",
+    "url": "https://arxiv.org/abs/hep-ph/0304150",
+    "support": "Modulation in inverse energy from Earth-matter propagation."
+  },
+  {
+    "id": "acoustic",
+    "authors": "W. Hu and M. White",
+    "title": "Acoustic signatures in the cosmic microwave background",
+    "where": "1996",
+    "url": "https://arxiv.org/abs/astro-ph/9602019",
+    "support": "Acoustic phase and characteristic spectra used as baseline."
+  },
+  {
+    "id": "pantheon",
+    "authors": "D. Brout et al.",
+    "title": "The Pantheon+ analysis: cosmological constraints",
+    "where": "2022",
+    "url": "https://arxiv.org/abs/2202.04077",
+    "support": "Distance moduli and covariance used for the local directional fit."
+  },
+  {
+    "id": "desi",
+    "authors": "DESI Collaboration",
+    "title": "DESI DR2 results II: measurements of baryon acoustic oscillations and cosmological constraints",
+    "where": "2025, v2",
+    "url": "https://arxiv.org/abs/2503.14738v2",
+    "support": "Table IV radial BAO data; 0.934 and 2.330 redshift bins."
+  },
+  {
+    "id": "aidisclosure",
+    "authors": "A. Michel, J. Scheinpflug and X. Yin",
+    "title": "99.9\\ldots\\% of the \\(SU(2)\\) BFSS ground state",
+    "where": "2026, v1, acknowledgments",
+    "url": "https://arxiv.org/html/2611.09837v1",
+    "support": "Acknowledgment explicitly describes AI-assisted coding and manuscript preparation."
+  },
+  {
+    "id": "beckman",
+    "authors": "D. Beckman, D. Gottesman, M. A. Nielsen and J. Preskill",
+    "title": "Causal and localizable quantum operations",
+    "where": "2001",
+    "url": "https://arxiv.org/abs/quant-ph/0102043",
+    "support": "Operational causality and locality of bipartite operations. Used to state the remote-algebra test."
+  },
+  {
+    "id": "way",
+    "authors": "Y. Kuramochi and H. Tajima",
+    "title": "Wigner-Araki-Yanase theorem for continuous and unbounded conserved observables",
+    "where": "2022; published in 2023",
+    "url": "https://arxiv.org/abs/2208.13494",
+    "support": "Conservation-law restrictions on quantum measurements. The effective CAT readout is tested on a joint system and compensator."
+  },
+  {
+    "id": "holoqec",
+    "authors": "A. Almheiri, X. Dong and D. Harlow",
+    "title": "Bulk Locality and Quantum Error Correction in AdS/CFT",
+    "where": "2014",
+    "url": "https://arxiv.org/abs/1411.7041",
+    "support": "Quantum error correction and operator reconstruction in AdS/CFT. The CAT example specifies an accessible carrier algebra and a logical code."
+  },
+  {
+    "id": "penington",
+    "authors": "G. Penington",
+    "title": "Entanglement Wedge Reconstruction and the Information Paradox",
+    "where": "2019",
+    "url": "https://arxiv.org/abs/1905.08255",
+    "support": "Entanglement-wedge reconstruction during evaporation in a holographic setting; compared to a conditioned surface channel."
+  },
+  {
+    "id": "islands",
+    "authors": "A. Almheiri, T. Hartman, J. Maldacena, E. Shaghoulian and A. Tajdini",
+    "title": "Replica Wormholes and the Entropy of Hawking Radiation",
+    "where": "2019",
+    "url": "https://arxiv.org/abs/1911.12333",
+    "support": "Replica-wormhole contributions to radiation entropy in specified gravitational models; distinct from recovery of a chosen unknown input."
+  },
+  {
+    "id": "networks",
+    "authors": "G. Chiribella, G. M. D'Ariano and P. Perinotti",
+    "title": "Theoretical framework for quantum networks",
+    "where": "Phys. Rev. A 80, 022339 (2009)",
+    "url": "https://arxiv.org/abs/0904.4483",
+    "support": "Quantum networks, composition and the deterministic sum of retained instruments (Definition 10, PDF p. 16). CAT's observer-specific domains are an additional prescription."
+  }
+]

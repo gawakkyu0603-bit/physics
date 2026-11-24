@@ -1,0 +1,457 @@
+{
+  "ordinary_and_quantized_tide": [
+    {
+      "angular_frequency": 1.0,
+      "left_charge_weights": [
+        0.15540686432089384,
+        0.14489855647777794,
+        1.5674129889852257
+      ],
+      "right_charge_weights": [
+        0.1554068643208938,
+        0.14489855647777788,
+        1.5674129889852253
+      ],
+      "three_link_left_charge_weights": [
+        0.41531617462833303,
+        0.3606590780688737
+      ],
+      "ordinary_overlaps_squared": [
+        1.2650474898338622e-32,
+        2.4512338184114186e-33
+      ],
+      "absorb_emit_internal_overlap_squared": 0.9999839149914794,
+      "north_edge_if_absorbed": {
+        "charged_law": [
+          0.0015649574893753628,
+          0.02580586252610717,
+          0.15652473203685124,
+          0.41369050365047333,
+          0.40241394429719296
+        ],
+        "sea_law": [
+          0.0018532871868231606,
+          0.02888380603539278,
+          0.16604392331007142,
+          0.4169655244474722,
+          0.3862534590202406
+        ],
+        "extra_edge_occupation": 0.03270055266108682
+      }
+    },
+    {
+      "angular_frequency": 4.0,
+      "left_charge_weights": [
+        0.12592074256292046,
+        0.09330321942651135,
+        1.5674129889852257
+      ],
+      "right_charge_weights": [
+        0.1259207425629204,
+        0.09330321942651129,
+        1.5674129889852253
+      ],
+      "three_link_left_charge_weights": [
+        0.37412150642105474,
+        0.204243517035805
+      ],
+      "ordinary_overlaps_squared": [
+        6.098735316391767e-35,
+        5.2676923910150976e-33
+      ],
+      "absorb_emit_internal_overlap_squared": 0.9997026978708415,
+      "north_edge_if_absorbed": {
+        "charged_law": [
+          0.0015652756477178677,
+          0.025809394779076313,
+          0.15653615786499303,
+          0.41369501889522375,
+          0.40239415281298885
+        ],
+        "sea_law": [
+          0.0018532871868231606,
+          0.02888380603539278,
+          0.16604392331007142,
+          0.4169655244474722,
+          0.3862534590202406
+        ],
+        "extra_edge_occupation": 0.03266131636777436
+      }
+    },
+    {
+      "angular_frequency": 8.0,
+      "left_charge_weights": [
+        0.04688331480618119,
+        0.0208948015770727,
+        1.5674129889852257
+      ],
+      "right_charge_weights": [
+        0.04688331480618116,
+        0.020894801577072693,
+        1.5674129889852253
+      ],
+      "three_link_left_charge_weights": [
+        0.16807776605309094,
+        0.03193481939769982
+      ],
+      "ordinary_overlaps_squared": [
+        6.552073230398035e-34,
+        2.2970943182388774e-33
+      ],
+      "absorb_emit_internal_overlap_squared": 0.9977586863708111,
+      "north_edge_if_absorbed": {
+        "charged_law": [
+          0.0015667513576094307,
+          0.025825420017425316,
+          0.1565867258654384,
+          0.413713589903726,
+          0.40230751285580113
+        ],
+        "sea_law": [
+          0.0018532871868231606,
+          0.02888380603539278,
+          0.16604392331007142,
+          0.4169655244474722,
+          0.3862534590202406
+        ],
+        "extra_edge_occupation": 0.032487630803769894
+      }
+    }
+  ],
+  "oscillator_fock_residual": 2.618455766672135e-16,
+  "stationary_resonant_receiver": {
+    "dressed_matrix_element_slope": 0.2973017785100487,
+    "analytic_slope": 0.2973017787506803,
+    "each_polarization_spin_summed_weight": 0.3535533905932739,
+    "matched_line": 3.414213564315904,
+    "source_link_frequency": 1.7071067836150589,
+    "source_antisymmetric_quadrupole_squared": 0.17157287476565453,
+    "receiver_recoil": 1.9428090437931183e-09,
+    "source_recoil": 2.9142135656896776e-09,
+    "near_given_one_of_two_in_nine_spatial_dimensions": 0.9961089494163424,
+    "near_given_one_of_two_in_three_spatial_dimensions": 0.8
+  },
+  "rotating_source_grids": [
+    {
+      "scaled_energy_release": 4.074777596537691,
+      "scaled_quadrupole": 0.14336906116560774
+    },
+    {
+      "scaled_energy_release": 4.07479410783183,
+      "scaled_quadrupole": 0.14337090580391385
+    },
+    {
+      "scaled_energy_release": 4.07479824137559,
+      "scaled_quadrupole": 0.14337136767223768
+    }
+  ],
+  "intrinsic_shear": [
+    {
+      "angular_frequency": 1.0,
+      "excitation_weight_per_eta2_inertia": 0.1148483297329832,
+      "times_inertia_vacuum_shape_variance": 0.6183435764472629,
+      "measured_mode_fraction": 0.9996786448803667,
+      "relative_shear_variance": 2.9993572897607335,
+      "negative_gap_vacuum": 0.31731050786291415,
+      "negative_gap_absorbed": 0.8010964398389498,
+      "optimal_difference": 0.48378593197603553
+    },
+    {
+      "angular_frequency": 4.0,
+      "excitation_weight_per_eta2_inertia": 0.094397558468425,
+      "times_inertia_vacuum_shape_variance": 0.6183435764472629,
+      "measured_mode_fraction": 0.9996719794925149,
+      "relative_shear_variance": 2.9993439589850297,
+      "negative_gap_vacuum": 0.31731050786291415,
+      "negative_gap_absorbed": 0.8010932141814944,
+      "optimal_difference": 0.48378270631858006
+    },
+    {
+      "angular_frequency": 8.0,
+      "excitation_weight_per_eta2_inertia": 0.03640882816290841,
+      "times_inertia_vacuum_shape_variance": 0.6183435764472629,
+      "measured_mode_fraction": 0.9995696764763563,
+      "relative_shear_variance": 2.999139352952713,
+      "negative_gap_vacuum": 0.31731050786291415,
+      "negative_gap_absorbed": 0.8010437055116136,
+      "optimal_difference": 0.4837331976486993
+    }
+  ],
+  "oriented_pole": [
+    {
+      "spin": 0.5,
+      "axial_second_order_coefficient": -0.9999999999595152
+    },
+    {
+      "spin": 1.0,
+      "axial_second_order_coefficient": -0.9999999999797168
+    },
+    {
+      "spin": 2.0,
+      "axial_second_order_coefficient": -1.000000000003653
+    },
+    {
+      "spin": 8.0,
+      "axial_second_order_coefficient": -0.999999999997807
+    }
+  ],
+  "finite_resolution_and_circle": {
+    "gauge_coupling_squared": 0.0001583143494411528,
+    "shape_variance": 2.447316525909104e-05,
+    "unsqueezed_free_point_minimum_width": 0.010273407401024998,
+    "relative_velocity_spread_at_unit_blur": 4.312597022497089,
+    "finite_resolution": [
+      {
+        "axial_noise_in_shape_variances": 0.1,
+        "vacuum": 0.31853122078874246,
+        "absorbed": 0.8010905546557106,
+        "difference": 0.48255933386696814,
+        "difference_bound": 7.976228383043162
+      },
+      {
+        "axial_noise_in_shape_variances": 1.0,
+        "vacuum": 0.4251385027535506,
+        "absorbed": 0.779641161508647,
+        "difference": 0.3545026587550965,
+        "difference_bound": 0.7976228383043164
+      },
+      {
+        "axial_noise_in_shape_variances": 10.0,
+        "vacuum": 0.4995147419541447,
+        "absorbed": 0.5757822614947193,
+        "difference": 0.07626751954057469,
+        "difference_bound": 0.07976228383043163
+      },
+      {
+        "axial_noise_in_shape_variances": 419.7825370058635,
+        "vacuum": 0.49999999280964125,
+        "absorbed": 0.5019000247026905,
+        "difference": 0.0019000318930492385,
+        "difference_bound": 0.0019000858015519955
+      }
+    ],
+    "finite_momentum_bands": [
+      {
+        "largest_exchange": 0,
+        "best_first_moment": 0.0,
+        "zero_transfer_probability": 1.0
+      },
+      {
+        "largest_exchange": 1,
+        "best_first_moment": 0.7071067811865475,
+        "zero_transfer_probability": 0.5000000000000001
+      },
+      {
+        "largest_exchange": 2,
+        "best_first_moment": 0.8660254037844386,
+        "zero_transfer_probability": 0.3333333333333333
+      },
+      {
+        "largest_exchange": 4,
+        "best_first_moment": 0.9510565162951533,
+        "zero_transfer_probability": 0.19999999999999998
+      },
+      {
+        "largest_exchange": 8,
+        "best_first_moment": 0.9848077530122077,
+        "zero_transfer_probability": 0.1111111111111111
+      }
+    ],
+    "circular_windows": [
+      {
+        "concentration": 1.0,
+        "angular_visibility": 0.697774657964008,
+        "squared_transfer": 0.34888732898200403,
+        "outside_positive_rank_3_plus_4": 0.00022222073392924618
+      },
+      {
+        "concentration": 3.0,
+        "angular_visibility": 0.9123593043529153,
+        "squared_transfer": 1.368538956529374,
+        "outside_positive_rank_3_plus_4": 0.017117927727238032
+      },
+      {
+        "concentration": 8.0,
+        "angular_visibility": 0.9682277554281596,
+        "squared_transfer": 3.872911021712635,
+        "outside_positive_rank_3_plus_4": 0.13483579919621844
+      }
+    ],
+    "seven_units_two_positive_ranks_visibility": 0.9009688679024191
+  },
+  "nonlinear_interiors": [
+    {
+      "initial_shape_asymmetry": 0.0,
+      "energy": 1.875,
+      "individual_angular_momenta": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "uniform_lower_matrix_radius": 0.2581988897471611,
+      "uniform_upper_matrix_radius": 7.5,
+      "north_area_proper_acceleration": 28.0,
+      "north_volume_proper_acceleration": 10.5,
+      "north_null_ricci": -28.000000000527592,
+      "richardson_input_difference": 7.223804887246388e-05,
+      "axis_null_ricci": [
+        -28.0,
+        -28.0,
+        -28.0
+      ],
+      "axis_ricci_from_metric": [
+        -28.000000000527592,
+        -28.000000000527592,
+        -28.000000000527592
+      ],
+      "off_axis_null_ricci_from_metric": -27.999999991980776,
+      "off_axis_null_ricci_from_optics": -28.0
+    },
+    {
+      "initial_shape_asymmetry": 0.15,
+      "energy": 1.8752531249999997,
+      "individual_angular_momenta": [
+        0.575,
+        0.425,
+        0.5
+      ],
+      "uniform_lower_matrix_radius": 0.21945424362355284,
+      "uniform_upper_matrix_radius": 8.824720588235293,
+      "north_area_proper_acceleration": 30.042148337595904,
+      "north_volume_proper_acceleration": 11.430339312603449,
+      "north_null_ricci": -30.042148341297658,
+      "richardson_input_difference": 7.95281317351737e-05,
+      "axis_null_ricci": [
+        -32.87756014705882,
+        -23.071614021739126,
+        -30.042148337595908
+      ],
+      "axis_ricci_from_metric": [
+        -32.87756014435716,
+        -23.071614021256224,
+        -30.042148341297658
+      ],
+      "off_axis_null_ricci_from_metric": -29.311207091823473,
+      "off_axis_null_ricci_from_optics": -29.31120710376813
+    },
+    {
+      "initial_shape_asymmetry": 0.3,
+      "energy": 1.8790499999999999,
+      "individual_angular_momenta": [
+        0.65,
+        0.35,
+        0.5
+      ],
+      "uniform_lower_matrix_radius": 0.18054434011558346,
+      "uniform_upper_matrix_radius": 10.737428571428572,
+      "north_area_proper_acceleration": 36.98813186813188,
+      "north_volume_proper_acceleration": 14.623882500786262,
+      "north_null_ricci": -36.98813186988546,
+      "richardson_input_difference": 0.00010611476744770698,
+      "axis_null_ricci": [
+        -38.62250285714288,
+        -17.68116307692308,
+        -36.98813186813188
+      ],
+      "axis_ricci_from_metric": [
+        -38.62250286261792,
+        -17.681163077738244,
+        -36.98813186988546
+      ],
+      "off_axis_null_ricci_from_metric": -33.15768056607293,
+      "off_axis_null_ricci_from_optics": -33.157680568924
+    },
+    {
+      "initial_shape_asymmetry": 0.5,
+      "energy": 1.90625,
+      "individual_angular_momenta": [
+        0.75,
+        0.25,
+        0.5
+      ],
+      "uniform_lower_matrix_radius": 0.12803687993289598,
+      "uniform_upper_matrix_radius": 15.25,
+      "north_area_proper_acceleration": 60.0,
+      "north_volume_proper_acceleration": 25.48148148148148,
+      "north_null_ricci": -60.00000000547749,
+      "richardson_input_difference": 0.00021027361949421675,
+      "axis_null_ricci": [
+        -51.25,
+        -9.75,
+        -60.0
+      ],
+      "axis_ricci_from_metric": [
+        -51.25000000575272,
+        -9.74999999899282,
+        -60.00000000547749
+      ],
+      "off_axis_null_ricci_from_metric": -44.17983183641541,
+      "off_axis_null_ricci_from_optics": -44.17983183287268
+    },
+    {
+      "initial_shape_asymmetry": 0.8,
+      "energy": 2.0798,
+      "individual_angular_momenta": [
+        0.9,
+        0.09999999999999998,
+        0.5
+      ],
+      "uniform_lower_matrix_radius": 0.04903139111963328,
+      "uniform_upper_matrix_radius": 41.59600000000001,
+      "north_area_proper_acceleration": 220.8533333333334,
+      "north_volume_proper_acceleration": 113.33544581618658,
+      "north_null_ricci": -220.8533335010085,
+      "richardson_input_difference": 0.00019697427018172675,
+      "axis_null_ricci": [
+        -129.77536,
+        1.515093333333335,
+        -220.8533333333334
+      ],
+      "axis_ricci_from_metric": [
+        -129.7753596449135,
+        1.5150933300112595,
+        -220.8533335010085
+      ],
+      "off_axis_null_ricci_from_metric": -82.62364067423015,
+      "off_axis_null_ricci_from_optics": -82.62364064389989
+    }
+  ],
+  "all_directions_defocus_until": 0.7521613101000868,
+  "all_magnetic_blocks": [
+    {
+      "spin": 1.0,
+      "matrix_colors": 3,
+      "left_absorbed_coefficient": 0.12592074256292035,
+      "highest_axial_block_coefficient": 0.009841931126146565,
+      "quadrature_nodes": 60
+    },
+    {
+      "spin": 4.0,
+      "matrix_colors": 9,
+      "left_absorbed_coefficient": 0.030457889229226903,
+      "highest_axial_block_coefficient": 0.005090309665799413,
+      "quadrature_nodes": 60
+    },
+    {
+      "spin": 8.0,
+      "matrix_colors": 17,
+      "left_absorbed_coefficient": 0.010226890474334116,
+      "highest_axial_block_coefficient": 0.0024379020851351546,
+      "quadrature_nodes": 60
+    },
+    {
+      "spin": 16.0,
+      "matrix_colors": 33,
+      "left_absorbed_coefficient": 0.00281036542537189,
+      "highest_axial_block_coefficient": 0.0006825268809198265,
+      "quadrature_nodes": 60
+    },
+    {
+      "spin": 32.0,
+      "matrix_colors": 65,
+      "left_absorbed_coefficient": 0.0006838065463001074,
+      "highest_axial_block_coefficient": 0.00010795734210570796,
+      "quadrature_nodes": 60
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "receipt": {
+    "cuts": [
+      {
+        "source_radius": 1.0,
+        "cut_radius": 0.5,
+        "availability_in_rs": 2.1511897114255008,
+        "availability_us_3_solar": 63.573992701609605,
+        "mean_field_times_rs": 0.3800395261599176,
+        "radial_gradient_times_rs2": 0.024071673573975782
+      },
+      {
+        "source_radius": 1.0,
+        "cut_radius": 0.95,
+        "availability_in_rs": 1.0159498742609423,
+        "availability_us_3_solar": 30.02431145352897,
+        "mean_field_times_rs": 0.403631142600487,
+        "radial_gradient_times_rs2": 0.05159073143770864
+      },
+      {
+        "source_radius": 0.5,
+        "cut_radius": 0.45,
+        "availability_in_rs": 4.010648080558666,
+        "availability_us_3_solar": 118.52646488960829,
+        "mean_field_times_rs": 0.2624497223866345,
+        "radial_gradient_times_rs2": 0.020663957034246453
+      },
+      {
+        "source_radius": 0.5,
+        "cut_radius": 1.0,
+        "availability_in_rs": 2.1511897114255008,
+        "availability_us_3_solar": 63.573992701609605,
+        "mean_field_times_rs": 0.0950098815399794,
+        "radial_gradient_times_rs2": -0.1078441737878329
+      }
+    ],
+    "spectrum_norm": [
+      3.869798193991452,
+      3.8697928975564144
+    ],
+    "time_norm": 3.8697908285052014,
+    "half_radius_source": {
+      "time_norm": 0.3951506226001241,
+      "spectral_norm": 0.3951511571720512,
+      "one_sided_error_floor": 0.6735785754512665
+    },
+    "scalar_only_equal_prior_error": 0.005243174088993343,
+    "one_sided_error_floor": 0.020862732857863407,
+    "compactness": 0.7071067811865475,
+    "comoving_deadline": -2.378414230005442
+  },
+  "schwarzschild": {
+    "transparent_edge_gradient": -0.10784417378783291,
+    "geometric_matching_error": 1.1102230246251565e-16,
+    "grids": [
+      {
+        "cells_per_star_radius": 64,
+        "deadline_interior_edge_gradient": -0.10943125638956563,
+        "least_negative_sampled_gradient": -0.014038184761239629,
+        "most_negative_sampled_gradient": -0.10943125638956563,
+        "final_scattered_reduced_field": -0.005891571777972548
+      },
+      {
+        "cells_per_star_radius": 128,
+        "deadline_interior_edge_gradient": -0.10943422256694676,
+        "least_negative_sampled_gradient": -0.014038333844149428,
+        "most_negative_sampled_gradient": -0.10943422256694676,
+        "final_scattered_reduced_field": -0.005889414626151658
+      },
+      {
+        "cells_per_star_radius": 256,
+        "deadline_interior_edge_gradient": -0.10943495754722693,
+        "least_negative_sampled_gradient": -0.013944235022300812,
+        "most_negative_sampled_gradient": -0.10943495754722693,
+        "final_scattered_reduced_field": -0.005888875229203296
+      },
+      {
+        "cells_per_star_radius": 512,
+        "deadline_interior_edge_gradient": -0.10943514058705486,
+        "least_negative_sampled_gradient": -0.013944244157502629,
+        "most_negative_sampled_gradient": -0.10943514058705486,
+        "final_scattered_reduced_field": -0.005888740373490518
+      }
+    ]
+  },
+  "shield": {
+    "interior_error": 4.440892098500626e-16,
+    "exterior_error": 1.1102230246251565e-16,
+    "exterior_frequency_error": 2.220446049250313e-16,
+    "max_interior_radial_field": 0.5000000000000007
+  },
+  "surface": {
+    "intake_first": -0.22798295585186304,
+    "release_first": -0.16809366379411167,
+    "curvature_area": 0.05988929205775142,
+    "order_difference": -0.05988929205775137,
+    "cycle_memory": -1.3784803575132472,
+    "zero_net_pressure_force": 1.0892013709322976,
+    "residual_pressure": 6.661338147750939e-16,
+    "residual_energy": 8.326672684688674e-17,
+    "residual_clock_power": 1.1102230246251565e-16,
+    "gaussian": [
+      {
+        "width": 0.01,
+        "overlap": 0.011294841872110668,
+        "reference_fidelity": 0.5056474209360553
+      },
+      {
+        "width": 0.03,
+        "overlap": 0.6076497877961429,
+        "reference_fidelity": 0.8038248938980714
+      },
+      {
+        "width": 0.1,
+        "overlap": 0.9561561033003071,
+        "reference_fidelity": 0.9780780516501535
+      }
+    ]
+  },
+  "port": {
+    "cap_length": 3.0,
+    "radius": 1.4142135623730951,
+    "stationary": [
+      {
+        "sample_count": 301,
+        "outer_radius": 30.0,
+        "radiated_norm": 0.9999810841829083,
+        "minimum_sampled_jost": 0.9059877664281083
+      },
+      {
+        "sample_count": 601,
+        "outer_radius": 65.0,
+        "radiated_norm": 0.9999811268802586,
+        "minimum_sampled_jost": 0.9060127543361439
+      }
+    ],
+    "final_cone": [
+      {
+        "cut": 1.0,
+        "residual_energy": 0.00625
+      },
+      {
+        "cut": 2.0,
+        "residual_energy": 0.0008230452674897119
+      },
+      {
+        "cut": 5.0,
+        "residual_energy": 2.5720164609053497e-05
+      },
+      {
+        "cut": 10.0,
+        "residual_energy": 1.2418426461183104e-06
+      }
+    ],
+    "hawking_duration_for_headroom_3rs": 7.962678741822633,
+    "added_depth_for_50rs": 24.000000000013888
+  },
+  "action_variations": {
+    "radius": 2.968545548265311e-12,
+    "intake": 4.885362080153666e-12,
+    "emission": 6.355491653786682e-12,
+    "dust_clock": 4.210859091968722e-12,
+    "null_clock": 2.919328841166635e-12,
+    "memory": 3.979363713546569e-12,
+    "conjugate": 1.486332758260378e-12,
+    "lapse": 1.7966184095996596e-12
+  },
+  "balanced_annulus": {
+    "outer_mass": 0.8665562206695644,
+    "outer_lapse": 0.8503367687760014,
+    "maximum_angular_Einstein_residual": 4.636324310580697e-11
+  },
+  "loaded_surface": [
+    {
+      "spring": 0.0,
+      "impedance": 1.0,
+      "radiated_mass": 1.1500000000002717,
+      "symplectic_area": 1.0000000000002036,
+      "mass_balance_error": 2.7200464103316335e-13
+    },
+    {
+      "spring": 0.7,
+      "impedance": 3.45631025349085,
+      "radiated_mass": 1.415400640542006,
+      "symplectic_area": 1.0000000000000124,
+      "mass_balance_error": 2.0228263508670352e-13
+    },
+    {
+      "spring": 0.7,
+      "impedance": 5.0,
+      "radiated_mass": 1.4154006405418706,
+      "symplectic_area": 0.9999999999999993,
+      "mass_balance_error": 6.683542608243442e-14
+    }
+  ],
+  "elastic_readout": {
+    "geometry_mass": 5.275043787166297,
+    "equilibrium_radius": 3.9999999999999996,
+    "curvature": 1.32,
+    "amplitude_decay_rates": [
+      0.029622829833417477,
+      0.029622829833417477,
+      0.6578771701665831,
+      0.6578771701665831
+    ],
+    "max_energy_form_error": 3.3937297416741785e-12,
+    "max_symplectic_form_error": 2.0108359422010835e-12,
+    "remaining_response_norm": 2.383478452989669e-11
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "half_oscillation": 2.62205755429212,
+  "finite_clock": [
+    {
+      "j": 8,
+      "offset": 0.0,
+      "contact": 2.62205755429212,
+      "amplitude": -1.0,
+      "instantaneous_frequency": 0.6114645442614713,
+      "particles": 0.32088998540503866,
+      "nonempty": 0.12990499346936857,
+      "frozen_local_nonempty": 0.12964950886576676,
+      "frequency_squared_error": 0.0026663977753620394,
+      "uniform_frequency_squared_bound": 0.006944444444444446,
+      "wronskian_error": 1.0397238625614591e-13
+    },
+    {
+      "j": 32,
+      "offset": 0.0,
+      "contact": 2.62205755429212,
+      "amplitude": -1.0,
+      "instantaneous_frequency": 0.6007886231420912,
+      "particles": 0.3391578178527358,
+      "nonempty": 0.13585997826799467,
+      "frozen_local_nonempty": 0.13584243951995978,
+      "frequency_squared_error": 0.00018220390223910865,
+      "uniform_frequency_squared_bound": 0.00047348484848484844,
+      "wronskian_error": 9.847678228425139e-14
+    },
+    {
+      "j": 128,
+      "offset": 0.0,
+      "contact": 2.62205755429212,
+      "amplitude": -1.0,
+      "instantaneous_frequency": 0.6000504662238867,
+      "particles": 0.34046227748428715,
+      "nonempty": 0.13628054592097016,
+      "frozen_local_nonempty": 0.13627942376269675,
+      "frequency_squared_error": 1.165434742533833e-05,
+      "uniform_frequency_squared_bound": 3.0281007751937987e-05,
+      "wronskian_error": 9.814371537686384e-14
+    },
+    {
+      "j": 32,
+      "offset": -0.005,
+      "contact": 2.6034432791812803,
+      "amplitude": -0.9996535687777099,
+      "instantaneous_frequency": 0.601939631156863,
+      "particles": 0.33837091333579516,
+      "nonempty": 0.13560597702031507,
+      "frozen_local_nonempty": 0.13558835890493748,
+      "frequency_squared_error": 0.00018221427399478518,
+      "uniform_frequency_squared_bound": 0.00047348484848484844,
+      "wronskian_error": 9.842127113302013e-14
+    },
+    {
+      "j": 32,
+      "offset": 0.005,
+      "contact": 2.643979353695616,
+      "amplitude": -0.9995195501491257,
+      "instantaneous_frequency": 0.6023839941752527,
+      "particles": 0.33811483607444537,
+      "nonempty": 0.13552327071624104,
+      "frozen_local_nonempty": 0.13550562990883042,
+      "frequency_squared_error": 0.0001822115728487006,
+      "uniform_frequency_squared_bound": 0.00047348484848484844,
+      "wronskian_error": 9.930944955272025e-14
+    }
+  ],
+  "local_recoil": [
+    {
+      "j": 8,
+      "offset": 0.0,
+      "g2": 1.0,
+      "contact": 2.6223792131276333,
+      "turn": 2.6217177040220387,
+      "radius_at_turn": -0.9999200230386619,
+      "min_kinetic_fraction": 0.9993319371730384,
+      "contact_radius": -0.9999195852911217,
+      "particles": 0.3201486914430871,
+      "nonempty": 0.12966073853839066,
+      "work_in_mode": 0.19576011579717437,
+      "work_from_matrix": 0.1957601153416917,
+      "energy_drift_per_inertia": 4.0915186997344015e-12
+    },
+    {
+      "j": 32,
+      "offset": 0.0,
+      "g2": 1.0,
+      "contact": 2.622063491066961,
+      "turn": 2.622051481100483,
+      "radius_at_turn": -0.9999985159505298,
+      "min_kinetic_fraction": 0.9999878752992253,
+      "contact_radius": -0.9999985158062896,
+      "particles": 0.33910409925019047,
+      "nonempty": 0.13584264581084515,
+      "work_in_mode": 0.2037298850842769,
+      "work_from_matrix": 0.20372985775007457,
+      "energy_drift_per_inertia": 4.129720755987355e-12
+    },
+    {
+      "j": 32,
+      "offset": -0.005,
+      "g2": 1.0,
+      "contact": 2.603447666774887,
+      "turn": 2.622051481100483,
+      "radius_at_turn": -0.9999985159505298,
+      "min_kinetic_fraction": 0.9999878752992253,
+      "contact_radius": -0.9996524718793083,
+      "particles": 0.33831787919214007,
+      "nonempty": 0.1355888503184467,
+      "work_in_mode": 0.2037298850842769,
+      "work_from_matrix": 0.20372985775007457,
+      "energy_drift_per_inertia": 4.129720755987355e-12
+    },
+    {
+      "j": 32,
+      "offset": 0.005,
+      "g2": 1.0,
+      "contact": 2.643987858270537,
+      "turn": 2.622051481100483,
+      "radius_at_turn": -0.9999985159505298,
+      "min_kinetic_fraction": 0.9999878752992253,
+      "contact_radius": -0.9995174240053957,
+      "particles": 0.3380594930802109,
+      "nonempty": 0.1355053932465915,
+      "work_in_mode": 0.2037298850842769,
+      "work_from_matrix": 0.20372985775007457,
+      "energy_drift_per_inertia": 4.129720755987355e-12
+    },
+    {
+      "j": 8,
+      "offset": 0.0,
+      "g2": 12.0,
+      "contact": 2.6261757651336524,
+      "turn": 2.6179822333545384,
+      "radius_at_turn": -0.9990378675267259,
+      "min_kinetic_fraction": 0.9919832460764599,
+      "contact_radius": -0.9989704472896169,
+      "particles": 0.3203931693543358,
+      "nonempty": 0.129741316270786,
+      "work_in_mode": 0.19599194237159692,
+      "work_from_matrix": 0.19599194233357897,
+      "energy_drift_per_inertia": 3.518579763063006e-12
+    },
+    {
+      "j": 8,
+      "offset": 0.0,
+      "g2": 48.0,
+      "contact": 2.6433042743527584,
+      "turn": 2.6057944511327897,
+      "radius_at_turn": -0.9961204804982218,
+      "min_kinetic_fraction": 0.9672133897394691,
+      "contact_radius": -0.9946883199848404,
+      "particles": 0.3189446756963017,
+      "nonempty": 0.12926357891658424,
+      "work_in_mode": 0.19670709318776305,
+      "work_from_matrix": 0.19670709318589355,
+      "energy_drift_per_inertia": 3.809902284724647e-12
+    }
+  ],
+  "charge_checks": [
+    {
+      "j": 2,
+      "half_signature": [
+        0,
+        null,
+        -1
+      ],
+      "other_gap_at_contact": 1.5615528128088303,
+      "volume_coefficient": 10.0
+    },
+    {
+      "j": 8,
+      "half_signature": [
+        0,
+        null,
+        -1
+      ],
+      "other_gap_at_contact": 3.531128874149275,
+      "volume_coefficient": 408.0
+    },
+    {
+      "j": 16,
+      "half_signature": [
+        0,
+        null,
+        -1
+      ],
+      "other_gap_at_contact": 5.1789083458002745,
+      "volume_coefficient": 2992.0
+    }
+  ]
+}

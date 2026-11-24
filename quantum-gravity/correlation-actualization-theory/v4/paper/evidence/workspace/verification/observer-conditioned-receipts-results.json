@@ -1,0 +1,90 @@
+{
+  "rotor_local_read": {
+    "wavelength_um": 28.220000000000002,
+    "charge_eV": 0.043934868332104984,
+    "minimum_gap": 6.29e-06,
+    "duration_window_s": 1e-06,
+    "dimensionless_min_phase": 419.85004813510585,
+    "uniform_mean_ceiling": 0.013825572244386571,
+    "exponential_mean_ceiling": 0.009110962291216251,
+    "uniform_pair_means": [
+      0.009104375599062858,
+      0.009105921429234526,
+      0.00910495788128677
+    ],
+    "exponential_pair_means": [
+      0.009105343255283206,
+      0.009105341558731451,
+      0.009105341244555178
+    ],
+    "two_read_average_error_ceiling": 0.000573439343654257,
+    "three_read_average_error_ceiling": 7.928127073465548e-06,
+    "exponential_two_read_error_ceiling": 0.0002490289016158935,
+    "three_fixed_read_errors": [
+      2.7835976590395717e-07,
+      3.349293534737896e-07,
+      3.34929353251745e-07,
+      2.78359766570091e-07
+    ],
+    "three_fixed_read_bounds": [
+      1.1133105392953278e-06,
+      1.3398884453525618e-06,
+      1.3398884453525616e-06,
+      1.1133105392953278e-06
+    ]
+  },
+  "prior": [
+    0.1,
+    0.2,
+    0.31,
+    0.39
+  ],
+  "matched_binary": [
+    [
+      1.5,
+      0.31714445600520513,
+      0.8662554001214706
+    ],
+    [
+      4.1000000000000005,
+      0.08554431203993051,
+      0.31290593087018226
+    ],
+    [
+      0.0,
+      0.5,
+      1.0
+    ]
+  ],
+  "bright_vertex": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.6204030947698439,
+      0.2013254100866127,
+      0.2013254100866127
+    ],
+    [
+      1.3033034949696098,
+      0.6873897441756758,
+      0.6873897441756758
+    ]
+  ],
+  "minimum_local_read": 0.9999999999999989,
+  "local_guess": 0.999999999999999,
+  "remote_guess": 0.3899999999999996,
+  "remote_with_side_information": 0.43209993355568177,
+  "maximum_remote_row_error": 1.3877787807814457e-17,
+  "example_remote_radial": 0.5640530470453838,
+  "split_normalization_error": 0.0,
+  "local_radial": 0.9999999999999989,
+  "initial_coherent_echo": 1.0,
+  "post_selection_coherent_echo": 0.2982000000000001,
+  "trace_distance_after_forgetting": 0.7116830559121397,
+  "detuning": 0.2,
+  "correct_at_detuning": 0.9968787737096229,
+  "analytic_lower": 0.9966711079379182
+}

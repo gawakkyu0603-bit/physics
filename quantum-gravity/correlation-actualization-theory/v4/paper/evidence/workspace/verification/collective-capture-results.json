@@ -1,0 +1,239 @@
+{
+  "occupation_checks": [
+    {
+      "source": 0.38,
+      "receiver": 0.38,
+      "fock_error": 3.774758283725532e-15,
+      "probability_zero": 0.8213159666718276,
+      "relative_work_quanta": 0.18200198409236443
+    },
+    {
+      "source": 0.65,
+      "receiver": 0.14,
+      "fock_error": 5.9896532178527195e-12,
+      "probability_zero": 0.8273567868730612,
+      "relative_work_quanta": 0.17636862494255076
+    },
+    {
+      "source": 0.41,
+      "receiver": 0.0,
+      "fock_error": 1.4432899320127035e-15,
+      "probability_zero": 0.9138261902586126,
+      "relative_work_quanta": 0.08681851758370566
+    }
+  ],
+  "isotropic_spectrum": {
+    "isotropic_on_resonance": 0.14222222222222192,
+    "integrated_response": 241.8053078266893,
+    "analytic_integral": 241.80530782668924,
+    "gaussian_ratio_at_24": 0.9912966110615221
+  },
+  "cloud": {
+    "length_m": 10.0,
+    "mass_kg": 2500000.0,
+    "speed_m_s": 10.0,
+    "omega_s": 300.0,
+    "temperature_K": 30.0,
+    "density_each_m3": 1e-09,
+    "cloud_edge_m": 3000000.0,
+    "counted_midpoints_s": 1000.0,
+    "impact_band_m": [
+      76.0,
+      84.0
+    ],
+    "detuning_sigma_s": 3.0,
+    "quadrupole_expansion": 0.017313019390581715,
+    "occupation": 13092033912.1989,
+    "central_mixing_angle": 2.0368347167968744e-13,
+    "completed_encounters": 1085734421.0806327,
+    "expected_activity": 222.05693119859495,
+    "band_correction_floor": 0.9567174515235457,
+    "largest_event_activity": 0.0003334667218410185,
+    "weak_write_floor": 0.9990009323836491,
+    "work_units": [
+      424.4669872981703,
+      444.1138623971899
+    ],
+    "work_joule": [
+      1.3428927669774583e-29,
+      1.4050498893301788e-29
+    ],
+    "maximum_work_per_event": 0.000666267132076193,
+    "poisson_variance_ceiling": 0.2958984694146567,
+    "mean_nonzero_bounds": [
+      424.04277483603545,
+      444.1138623971899
+    ],
+    "gravity_to_orbit": 4.3909868421052625e-08,
+    "crossing_light_s": 0.010006922855944561,
+    "parcel_mass_kg": 1.35e+17,
+    "time_5b_each_side_s": 84.0,
+    "flyby_quality_needed": 25200.0,
+    "single_mode_thermal_energy_J": 4.1419469998418142e-22
+  },
+  "routes": {
+    "work_window": [
+      419.02733225934054,
+      449.55351743601966
+    ],
+    "failure_each_side": 0.009900990099009901,
+    "thin_ceiling": 8.991070348720394,
+    "thick_floor": 377.12459903340647,
+    "energy_band": [
+      18.0,
+      36.0
+    ],
+    "falling_flux_floor": 0.9706452634355475,
+    "maximum_group_delay_s": 4.145910434754724e-05,
+    "packet_time_rms_s": 0.0005817764173314432,
+    "chance_outside_50ms": 0.0001360730628385241,
+    "allowed_unlocked_energy_joule": 1.0792211653394273e-29,
+    "all_heat_over_threshold": 3.769171222683922e+16
+  },
+  "hydrogen": {
+    "neutral_flux_constraint": {
+      "single_flux_radial": 0.007890065920640222,
+      "disjoint_half_apertures_radial": 0.011158784078666557,
+      "radial_log10_64": -76.70235485359906,
+      "cyclic_modulus_radial": {
+        "2": 0.5,
+        "16": 0.0625,
+        "64": 0.01562514057050303,
+        "128": 0.008530820070588797,
+        "256": 0.007890109151606484
+      },
+      "screened_radial": {
+        "0": 0.007890065920640224,
+        "1": 0.023667111578245158,
+        "10": 0.16451069631604875,
+        "50": 0.6820899451297823,
+        "100": 0.9531373425477404
+      },
+      "unshared_fraction_99": 3.930938824797706e-06
+    },
+    "line_m": 2.822e-05,
+    "omega_s": 66748815283800.61,
+    "graviton_decay_s": 4.149065520224622e-46,
+    "independent_angular_rate_s": 4.149065520224624e-46,
+    "black_hole_radius_m": 2953339382.0668783,
+    "temperature_K": 300.0,
+    "population_J2": 0.11775342294612903,
+    "gas_mass_kg": 5.9722e+24,
+    "mass_per_molecule_kg": 3.3474474982544496e-27,
+    "prompt_cones": [
+      {
+        "impact_fraction": 0.1,
+        "early_seconds": 0.014666515402525837,
+        "expected_hits": 1278.4134910080136,
+        "one_hit_mass_kg": 4.6715714766831763e+21,
+        "works": [
+          {
+            "bins": 1,
+            "relative_work_in_line_quanta": 20.171560726354794
+          },
+          {
+            "bins": 64,
+            "relative_work_in_line_quanta": 160.87302856870468
+          },
+          {
+            "bins": 1000000,
+            "relative_work_in_line_quanta": 1276.7812370937725
+          }
+        ]
+      },
+      {
+        "impact_fraction": 0.8,
+        "early_seconds": 0.9294637018227184,
+        "expected_hits": 81017.12664535004,
+        "one_hit_mass_kg": 7.371527783431669e+19,
+        "works": [
+          {
+            "bins": 1,
+            "relative_work_in_line_quanta": 160.58802126140247
+          },
+          {
+            "bins": 64,
+            "relative_work_in_line_quanta": 1284.641727650275
+          },
+          {
+            "bins": 1000000,
+            "relative_work_in_line_quanta": 74951.16857450006
+          }
+        ]
+      }
+    ],
+    "kerr_exposure_in_R_over_c": [
+      [
+        0.0,
+        0.95,
+        0.001679861088917882
+      ],
+      [
+        0.0,
+        1.0,
+        0.0014887928998329092
+      ],
+      [
+        0.0,
+        1.15,
+        0.0012076669822664624
+      ],
+      [
+        0.5,
+        0.95,
+        0.0016377166146577297
+      ],
+      [
+        0.5,
+        1.0,
+        0.0014661804535369488
+      ],
+      [
+        0.5,
+        1.15,
+        0.0011979407585977746
+      ],
+      [
+        0.9,
+        0.95,
+        0.001506197409326039
+      ],
+      [
+        0.9,
+        1.0,
+        0.0013856776795785938
+      ],
+      [
+        0.9,
+        1.15,
+        0.001158471699648836
+      ],
+      [
+        0.998,
+        0.95,
+        0.0013892197175915369
+      ],
+      [
+        0.998,
+        1.0,
+        0.001300559304571754
+      ],
+      [
+        0.998,
+        1.15,
+        0.0011078224333565324
+      ]
+    ],
+    "guaranteed_advance_in_R_over_c": 1.634389733288199,
+    "largest_angular_offset_rad": 0.08004056891797527,
+    "surface_1p05_advance_R_over_c": 1.6091616866624159,
+    "surface_light_relay_R_over_c": 0.3851315640206487,
+    "gravitational_fraction_among_radiative_decays": 1.4112467755866058e-35,
+    "static_energy_floor_J": 7.039141945956516e-21,
+    "greybody_geometric_optics": 657561254873049.2,
+    "all_spin_axial_lower_hits": 21.71551768271605,
+    "local_unknown_fraction_for_10_quanta": 0.009261890637198584,
+    "max_prompt_work_over_rest_energy": 2.644499341622784e-59,
+    "one_particle_source_70kg_hits": 1.4984251091818917e-20
+  }
+}

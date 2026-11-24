@@ -1,0 +1,325 @@
+{
+  "bao": {
+    "lapse_chi2": 21.49673610580805,
+    "t_at_minimum": 1.0,
+    "ordinary_dust_fraction": 0.280682802121781,
+    "distance_scale": 31.59823241059595,
+    "flux_and_mass_chi2": 10.538630544701542,
+    "total_matter": 0.29734515166897,
+    "flux_and_mass_scale": 29.521722554563446,
+    "distance_count": 13,
+    "profile_at_quarters": [
+      [
+        0,
+        1455.975034318643,
+        0.0,
+        40.68548250243461
+      ],
+      [
+        0.25,
+        64.5972934046401,
+        0.30633765384122336,
+        34.68969097366525
+      ],
+      [
+        0.5,
+        35.561737032402505,
+        0.2980335042375653,
+        33.24764524287412
+      ],
+      [
+        0.75,
+        25.99294210238595,
+        0.2888618297728931,
+        32.30729875546987
+      ],
+      [
+        1.0,
+        21.49673610580805,
+        0.280682802121781,
+        31.59823241059595
+      ]
+    ]
+  },
+  "cosine_contact": [
+    {
+      "phase": 1.0,
+      "neutral": 0.5855274995136641,
+      "signed_mean": -1.0425281514805929e-17,
+      "absolute_mean": 0.4424463273476218,
+      "second": 0.5,
+      "stable_patch_weight": 1.0
+    },
+    {
+      "phase": 4.0,
+      "neutral": 0.15772797147489015,
+      "signed_mean": -4.996003610813204e-16,
+      "absolute_mean": 2.488518701751747,
+      "second": 8.0,
+      "stable_patch_weight": 1.0000000000000002
+    },
+    {
+      "phase": 20.0,
+      "neutral": 0.027897238498084474,
+      "signed_mean": -2.1094237467877974e-15,
+      "absolute_mean": 12.722306391429548,
+      "second": 200.0,
+      "stable_patch_weight": 0.860269841413412
+    },
+    {
+      "phase": 40.0,
+      "neutral": 5.427107688012519e-05,
+      "signed_mean": -1.887379141862766e-15,
+      "absolute_mean": 25.466745485061512,
+      "second": 800.0,
+      "stable_patch_weight": 0.3132988691373984
+    }
+  ],
+  "einstein_frame": {
+    "casimir_over_flux": 1.45,
+    "wrapped_dust_over_flux": 0.04169278996865205,
+    "curvature_signed": -0.5597178683385577,
+    "vacuum_over_flux": 0.10971786833855779,
+    "curvature_stiffness": 16.630956112852658,
+    "radion_mass_over_H": 3.234340473166366,
+    "unscreened_force_to_Newton": 0.14285714285714285,
+    "fold_to_zero_flux": 1.039197925556686,
+    "minimum_continuous_k_for_both_unit_steps": 51.0231082792302,
+    "minimum_continuous_k_for_both_191_steps": 9745.413681332968,
+    "examples": [
+      [
+        970,
+        "negative minimum",
+        -0.01843782057339357
+      ],
+      [
+        980,
+        "zero minimum",
+        6.060772689865411e-17
+      ],
+      [
+        995,
+        "positive minimum",
+        0.037070303714193516
+      ],
+      [
+        1000,
+        "positive minimum",
+        0.05361517713720824
+      ],
+      [
+        1010,
+        "positive minimum",
+        0.10020588162208989
+      ],
+      [
+        1018,
+        "positive minimum",
+        0.191889692025605
+      ],
+      [
+        1019,
+        "no stationary point"
+      ],
+      [
+        1030,
+        "no stationary point"
+      ]
+    ]
+  },
+  "flux_kernel": {
+    "max_semigroup_error": 1.1102230246251565e-16,
+    "shared_face_integral": 1.4435339402325944,
+    "parity_jump_example": [
+      1.0,
+      2.0,
+      5.0
+    ],
+    "sharp_coefficients": [
+      1.0,
+      6.0,
+      825.0,
+      110902240.0
+    ]
+  },
+  "matrix": {
+    "plaquette_examples": [
+      [
+        13,
+        1,
+        1.0,
+        0.980684274562762
+      ],
+      [
+        29,
+        -5,
+        -5.0,
+        22.648754864082058
+      ],
+      [
+        47,
+        11,
+        11.000000000000002,
+        100.70761382203695
+      ]
+    ],
+    "first_rank_one_percent": 3458,
+    "conservative_rank": 3465,
+    "barrier_in_cell_energy_at_first": 350.36865303520403,
+    "relative_energy_error_at_first": 0.00999659108137918
+  },
+  "charged_exchange": [
+    {
+      "contact_phase": 4.0,
+      "flux_energy_time": 0.0,
+      "bare_neutral": 0.15772797147489018,
+      "linear_neutral": 0.15772797147488987,
+      "exact_neutral": 0.15772797147488987,
+      "mean_flux_work": 0.0,
+      "amplitude_error_bound": 0.0
+    },
+    {
+      "contact_phase": 4.0,
+      "flux_energy_time": 0.0015707963267948967,
+      "bare_neutral": 0.15772797147489018,
+      "linear_neutral": 0.005071709176974629,
+      "exact_neutral": 0.0050719184227987985,
+      "mean_flux_work": -0.005092925752906304,
+      "amplitude_error_bound": 0.0073516407897266395
+    },
+    {
+      "contact_phase": 4.0,
+      "flux_energy_time": 0.0031415926535897933,
+      "bare_neutral": 0.15772797147489018,
+      "linear_neutral": 0.9999999999999998,
+      "exact_neutral": 0.9999977973511006,
+      "mean_flux_work": -4.1933924590811985e-08,
+      "amplitude_error_bound": 0.014703281579453279
+    },
+    {
+      "contact_phase": 20.0,
+      "flux_energy_time": 0.0031415926535897933,
+      "bare_neutral": 0.02789723849808449,
+      "linear_neutral": 0.9999999999999991,
+      "exact_neutral": 0.9998233269791764,
+      "mean_flux_work": -2.2440094588383355e-05,
+      "amplitude_error_bound": 0.27872438072316463
+    }
+  ],
+  "compensated_exchange": [
+    {
+      "initial": 5,
+      "radius": 5,
+      "margin": 0,
+      "phase": 4.0,
+      "work_units": 0,
+      "neutral": 0.0010904302941063169,
+      "ideal_neutral": 0.15772797147489018,
+      "stable_volume_weight": null,
+      "uniform_distance_bound": 1.0
+    },
+    {
+      "initial": 5,
+      "radius": 7,
+      "margin": 2,
+      "phase": 4.0,
+      "work_units": 24,
+      "neutral": 0.12114731922955213,
+      "ideal_neutral": 0.15772797147489018,
+      "stable_volume_weight": null,
+      "uniform_distance_bound": 1.0
+    },
+    {
+      "initial": 5,
+      "radius": 17,
+      "margin": 12,
+      "phase": 4.0,
+      "work_units": 264,
+      "neutral": 0.15772797147488987,
+      "ideal_neutral": 0.15772797147489018,
+      "stable_volume_weight": null,
+      "uniform_distance_bound": 0.02988886432172063
+    },
+    {
+      "initial": 1000,
+      "radius": 1004,
+      "margin": 4,
+      "phase": 4.0,
+      "work_units": 8016,
+      "neutral": 0.15757308887730648,
+      "ideal_neutral": 0.15772797147489018,
+      "stable_volume_weight": 0.9999999999999866,
+      "uniform_distance_bound": 1.0
+    },
+    {
+      "initial": 1000,
+      "radius": 1016,
+      "margin": 16,
+      "phase": 4.0,
+      "work_units": 32256,
+      "neutral": 0.1577279714748891,
+      "ideal_neutral": 0.15772797147489018,
+      "stable_volume_weight": 0.9999999999999922,
+      "uniform_distance_bound": 0.0001237010115837784
+    },
+    {
+      "initial": 1000,
+      "radius": 1016,
+      "margin": 16,
+      "phase": 40.0,
+      "work_units": 32256,
+      "neutral": 0.0014395182360101794,
+      "ideal_neutral": 5.427107688012405e-05,
+      "stable_volume_weight": 0.6568962600212447,
+      "uniform_distance_bound": 1.0
+    },
+    {
+      "initial": 1000,
+      "radius": 1060,
+      "margin": 60,
+      "phase": 40.0,
+      "work_units": 123600,
+      "neutral": 5.4271076880124455e-05,
+      "ideal_neutral": 5.427107688012405e-05,
+      "stable_volume_weight": 0.3132988691373951,
+      "uniform_distance_bound": 1.0
+    }
+  ],
+  "external_M2": [
+    {
+      "k": 981,
+      "eta": 0.0020635204102731567,
+      "radius_in_Hubble_units": 0.03934469211960723,
+      "largest_symmetric_positive_margin": 0,
+      "example_bound_16": null
+    },
+    {
+      "k": 995,
+      "eta": 0.037070303714193516,
+      "radius_in_Hubble_units": 0.16461164751966495,
+      "largest_symmetric_positive_margin": 14,
+      "example_bound_16": null
+    },
+    {
+      "k": 1000,
+      "eta": 0.05361517713720824,
+      "radius_in_Hubble_units": 0.19677919003452454,
+      "largest_symmetric_positive_margin": 18,
+      "example_bound_16": 0.15309310892394862
+    },
+    {
+      "k": 1010,
+      "eta": 0.10020588162208977,
+      "radius_in_Hubble_units": 0.2646012512530012,
+      "largest_symmetric_positive_margin": 8,
+      "example_bound_16": null
+    },
+    {
+      "k": 1018,
+      "eta": 0.191889692025605,
+      "radius_in_Hubble_units": 0.3549650351285527,
+      "largest_symmetric_positive_margin": 0,
+      "example_bound_16": null
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "links": [
+    {
+      "source": 2,
+      "target": 1,
+      "kernel": 0,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.26794919243112275
+    },
+    {
+      "source": 2,
+      "target": 2,
+      "kernel": 1,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.4384471871911695
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "kernel": 2,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.5505102572168217
+    },
+    {
+      "source": 4,
+      "target": 3,
+      "kernel": 0,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.12701665379258287
+    },
+    {
+      "source": 4,
+      "target": 4,
+      "kernel": 1,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.22799812734123423
+    },
+    {
+      "source": 4,
+      "target": 5,
+      "kernel": 2,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.3095842401765702
+    },
+    {
+      "source": 8,
+      "target": 7,
+      "kernel": 0,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.06274606680622809
+    },
+    {
+      "source": 8,
+      "target": 8,
+      "kernel": 1,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.11847269287989472
+    },
+    {
+      "source": 8,
+      "target": 9,
+      "kernel": 2,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.168239133672153
+    },
+    {
+      "source": 12,
+      "target": 11,
+      "kernel": 0,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.041739256898601966
+    },
+    {
+      "source": 12,
+      "target": 12,
+      "kernel": 1,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.08025765162577923
+    },
+    {
+      "source": 12,
+      "target": 13,
+      "kernel": 2,
+      "cokernel": 0,
+      "minimum_positive_cost": 0.11590127327487433
+    }
+  ],
+  "spectrum": {
+    "fermi": {
+      "continuum": {
+        "I0": 0.018814656512429806,
+        "I1": 0.07815460578521406,
+        "single": 0.018083241877018888,
+        "eligible_per_entropy": 0.23137781446579858,
+        "missing_at_1000_nats_and_tenth_power": 8.941063808581374e-11
+      },
+      "rows": [
+        {
+          "number": 64,
+          "number_integral": 0.012612841324989927,
+          "energy_integral": 0.04082606165420233,
+          "relative_energy_error": -0.47762436718827206
+        },
+        {
+          "number": 256,
+          "number_integral": 0.01693956666797591,
+          "energy_integral": 0.06433018188336229,
+          "relative_energy_error": -0.17688559443117546
+        },
+        {
+          "number": 1024,
+          "number_integral": 0.01833022994799641,
+          "energy_integral": 0.0739076658259693,
+          "relative_energy_error": -0.05434023902463636
+        },
+        {
+          "number": 4096,
+          "number_integral": 0.018692791375674846,
+          "energy_integral": 0.07691701332319122,
+          "relative_energy_error": -0.015835182707261253
+        },
+        {
+          "number": 16384,
+          "number_integral": 0.018784153259180838,
+          "energy_integral": 0.07780250681926709,
+          "relative_energy_error": -0.00450515951567354
+        },
+        {
+          "number": 65536,
+          "number_integral": 0.01880703121217741,
+          "energy_integral": 0.07805598419402708,
+          "relative_energy_error": -0.0012618781733479967
+        },
+        {
+          "number": 262144,
+          "number_integral": 0.018812752698936154,
+          "energy_integral": 0.0781273086509287,
+          "relative_energy_error": -0.00034927096120696
+        },
+        {
+          "number": 1048576,
+          "number_integral": 0.018814183179216442,
+          "energy_integral": 0.07814712425652126,
+          "relative_energy_error": -9.572729102313993e-05
+        }
+      ]
+    },
+    "photon": {
+      "continuum": {
+        "I0": 0.003850724300462219,
+        "I1": 0.021802668169165373,
+        "single": 0.0037116802043847363,
+        "eligible_per_entropy": 0.170239723669877,
+        "missing_at_1000_nats_and_tenth_power": 4.041873721740847e-08
+      },
+      "rows": [
+        {
+          "number": 64,
+          "number_integral": 0.001093610326998462,
+          "energy_integral": 0.003927909104811107,
+          "relative_energy_error": -0.8198427332684819
+        },
+        {
+          "number": 256,
+          "number_integral": 0.0023860068279217958,
+          "energy_integral": 0.010923626852412167,
+          "relative_energy_error": -0.49897752111546567
+        },
+        {
+          "number": 1024,
+          "number_integral": 0.0033841620017442306,
+          "energy_integral": 0.017717878571528033,
+          "relative_energy_error": -0.1873527389374431
+        },
+        {
+          "number": 4096,
+          "number_integral": 0.0037296145350344985,
+          "energy_integral": 0.02057310119996255,
+          "relative_energy_error": -0.056395252161923426
+        },
+        {
+          "number": 16384,
+          "number_integral": 0.003820253832617135,
+          "energy_integral": 0.021450987586995953,
+          "relative_energy_error": -0.016130162576467932
+        },
+        {
+          "number": 65536,
+          "number_integral": 0.003843098296965299,
+          "energy_integral": 0.021704066615555365,
+          "relative_energy_error": -0.004522453529309689
+        },
+        {
+          "number": 262144,
+          "number_integral": 0.003848818181446583,
+          "energy_integral": 0.021775369785697784,
+          "relative_energy_error": -0.0012520661808813616
+        },
+        {
+          "number": 1048576,
+          "number_integral": 0.003850248582142063,
+          "energy_integral": 0.0217951842268804,
+          "relative_energy_error": -0.0003432580923998785
+        }
+      ]
+    }
+  },
+  "interference": [
+    {
+      "n": 256,
+      "dimension": 8,
+      "common_phase_dark_rate": 8.141602131757636e-07,
+      "common_phase_maximum": 7.999934837058926,
+      "walsh_minimum": 0.548511358893609,
+      "walsh_maximum": 1.8297667555465182,
+      "worst_correct_residue": 0.9999809044291841
+    },
+    {
+      "n": 2048,
+      "dimension": 8,
+      "common_phase_dark_rate": 1.396950787639778e-08,
+      "common_phase_maximum": 7.999998830595443,
+      "walsh_minimum": 0.9122753698106019,
+      "walsh_maximum": 1.0940467349581717,
+      "worst_correct_residue": 0.9999998311886225
+    },
+    {
+      "n": 8192,
+      "dimension": 16,
+      "common_phase_dark_rate": 8.828567192445697e-10,
+      "common_phase_maximum": 15.999999400753154,
+      "walsh_minimum": 0.9521363313336951,
+      "walsh_maximum": 1.0495041557172944,
+      "worst_correct_residue": 0.9999999598408291
+    },
+    {
+      "n": 32768,
+      "dimension": 16,
+      "common_phase_dark_rate": 5.533290785571499e-11,
+      "common_phase_maximum": 15.999999962391385,
+      "walsh_minimum": 0.987874343591733,
+      "walsh_maximum": 1.012208566841142,
+      "worst_correct_residue": 0.999999997607839
+    },
+    {
+      "n": 32768,
+      "dimension": 32,
+      "common_phase_dark_rate": 5.5333062554e-11,
+      "common_phase_maximum": 31.99999969840125,
+      "walsh_minimum": 0.9750548545424493,
+      "walsh_maximum": 1.025337018819957,
+      "worst_correct_residue": 0.999999990241796
+    }
+  ],
+  "handoff": [
+    {
+      "n": 512,
+      "stop": 8,
+      "number_mass": 0.008315319895297376,
+      "number_bound": 0.015625,
+      "energy_mass": 0.042715364195804566,
+      "energy_bound": 0.08060754817749487
+    },
+    {
+      "n": 4096,
+      "stop": 8,
+      "number_mass": 0.0018113069026155662,
+      "number_bound": 0.001953125,
+      "energy_mass": 0.01271401361862087,
+      "energy_bound": 0.014137352783280288
+    },
+    {
+      "n": 32768,
+      "stop": 8,
+      "number_mass": 0.0002424526773820987,
+      "number_bound": 0.000244140625,
+      "energy_mass": 0.002200031108780347,
+      "energy_bound": 0.0022748452555467146
+    }
+  ],
+  "inclusive": {
+    "massless": {
+      "neutrino": {
+        "power_M2": 0.00016366608457660264,
+        "number_times_M": 0.0009713637555980933,
+        "partial_powers": [
+          0.00015753787247468524,
+          6.008195018381951e-06,
+          1.1824734376897222e-07,
+          1.7697397664802488e-09
+        ],
+        "first_tagged_per_entropy": 0.23137781446579858,
+        "maximum_mode_entropy_over_own_area_loss": 1.6391114108099016,
+        "power_fraction": 0.8136868357166293,
+        "number_fraction": 0.8592987469343899,
+        "maximum_entropy_per_total_area_nat": 1.3337233772489288
+      },
+      "photon": {
+        "power_M2": 3.363854531058362e-05,
+        "number_times_M": 0.00014795966023720171,
+        "partial_powers": [
+          3.296107046219341e-05,
+          6.67275310344507e-07,
+          1.006782922937376e-08,
+          1.3017803868034179e-10,
+          1.5307776452358972e-12
+        ],
+        "first_tagged_per_entropy": 0.170239723669877,
+        "maximum_mode_entropy_over_own_area_loss": 1.5002632525558104,
+        "power_fraction": 0.1672383228491566,
+        "number_fraction": 0.13088974125906236,
+        "maximum_entropy_per_total_area_nat": 0.2509015101896544
+      },
+      "graviton": {
+        "power_M2": 3.836739731333932e-06,
+        "number_times_M": 1.1091075124343181e-05,
+        "partial_powers": [
+          3.800731225337696e-06,
+          3.565233341512826e-08,
+          3.5265008459700886e-10,
+          3.488472002454404e-12,
+          3.402450881656959e-14
+        ],
+        "first_tagged_per_entropy": 0.11505609910308041,
+        "maximum_mode_entropy_over_own_area_loss": 1.3481681593619712,
+        "power_fraction": 0.01907484143421415,
+        "number_fraction": 0.009811511806547773,
+        "maximum_entropy_per_total_area_nat": 0.02571609386648595
+      }
+    },
+    "entropy_budgets": {
+      "0": {
+        "by_species": {
+          "neutrino": 0.0,
+          "photon": 1.3466654981397277,
+          "graviton": 0.1380261774061943
+        },
+        "all_species": 1.484691675545922
+      },
+      "4": {
+        "by_species": {
+          "neutrino": 1.3337233772489288,
+          "photon": 0.2509015101896544,
+          "graviton": 0.02571609386648595
+        },
+        "all_species": 1.610340981305069
+      },
+      "6": {
+        "by_species": {
+          "neutrino": 1.4220381888120508,
+          "photon": 0.1783435931850968,
+          "graviton": 0.018279286479254694
+        },
+        "all_species": 1.6186610684764022
+      },
+      "12": {
+        "by_species": {
+          "neutrino": 1.5228782168484274,
+          "photon": 0.09549517562638327,
+          "graviton": 0.009787756551757471
+        },
+        "all_species": 1.6281611490265682
+      }
+    },
+    "hot_minimal_standard_model": {
+      "power_M2": {
+        "Higgs_components": 0.0002975474367104806,
+        "quarks": 0.0029459895223788476,
+        "charged_leptons": 0.0004909982537298079,
+        "active_neutrinos": 0.00024549912686490393,
+        "gauge_polarizations": 0.00040366254372700347,
+        "gravitons": 3.836739731333932e-06
+      },
+      "fraction": {
+        "Higgs_components": 0.0678165598870956,
+        "quarks": 0.6714454578399133,
+        "charged_leptons": 0.1119075763066522,
+        "active_neutrinos": 0.0559537881533261,
+        "gauge_polarizations": 0.09200215392033803,
+        "gravitons": 0.0008744638926746357
+      },
+      "total_power_M2": 0.004387533623142378,
+      "real_scalar_power_M2": 7.438685917762015e-05,
+      "graviton_fraction_three_right_handed_Weyl": 0.0008281270473056557
+    },
+    "coherent_rates": {
+      "none": {
+        "ideal": {
+          "difference_rate": 5.308495166838742e-11,
+          "minimum": -1.266514147994636e-15,
+          "maximum": 15.999999964076531
+        },
+        "gaussian": {
+          "difference_rate": 7.4677230416581e-08,
+          "minimum": -5.739255359178899e-17,
+          "maximum": 15.999949242575678
+        }
+      },
+      "graviton_only": {
+        "ideal": {
+          "difference_rate": 0.009736637469005585,
+          "minimum": 0.003899266580113138,
+          "maximum": 15.86028525470008
+        },
+        "gaussian": {
+          "difference_rate": 0.009736711681940081,
+          "minimum": 0.0038992720731757654,
+          "maximum": 15.860234806356287
+        }
+      },
+      "all": {
+        "ideal": {
+          "difference_rate": 1.0033810488128003,
+          "minimum": 0.9684768936461088,
+          "maximum": 1.062419332228453
+        },
+        "gaussian": {
+          "difference_rate": 1.0033810487197672,
+          "minimum": 0.9684769497213557,
+          "maximum": 1.0624192623960806
+        }
+      }
+    },
+    "massive": {
+      "scalar": [
+        {
+          "mass_over_T": 0,
+          "s_wave_power_M2": 6.700437581968516e-05,
+          "refinement_change": 1.9778648940871335e-08,
+          "fraction_of_massless_s_wave": 0.9999998702619513
+        },
+        {
+          "mass_over_T": 2,
+          "s_wave_power_M2": 4.842423859709734e-05,
+          "refinement_change": 1.0388593796317735e-06,
+          "fraction_of_massless_s_wave": 0.7227025358007231
+        },
+        {
+          "mass_over_T": 5,
+          "s_wave_power_M2": 9.554020151521424e-06,
+          "refinement_change": 2.149743393298209e-07,
+          "fraction_of_massless_s_wave": 0.14258798466703462
+        },
+        {
+          "mass_over_T": 10,
+          "s_wave_power_M2": 1.2579714295874067e-07,
+          "refinement_change": 2.37851811579759e-08,
+          "fraction_of_massless_s_wave": 0.001877446436880425
+        }
+      ],
+      "temperature_GeV_times_mass_kg": 10572611958.05805,
+      "mass_kg_at_T": {
+        "electron": 20690085484633.676,
+        "muon": 100064092945.36024,
+        "QCD_reference_0.2_GeV": 52863059790.290245,
+        "W_reference_80.4_GeV": 131500148.73206529
+      }
+    }
+  }
+}
