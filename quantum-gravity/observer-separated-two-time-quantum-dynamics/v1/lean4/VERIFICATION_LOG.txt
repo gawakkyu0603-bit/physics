@@ -1,0 +1,92 @@
+================================================================================
+OSTQD — Lean 4 Kernel Build & Axiom Verification Log
+================================================================================
+Date (UTC): 2026-11-26 13:22:02 UTC
+Toolchain:  leanprover/lean4:v4.36.0
+Lean:       Lean (version 4.36.0, x86_64-unknown-linux-gnu, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)
+Lake:       Lake version 5.0.0-src+611c117 (Lean version 4.36.0)
+
+--- Step 1: lake build OSTQD ---
+⚠ [6381/6485] Replayed OSTQD.Basic
+warning: OSTQD/Basic.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.Data.Matrix.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.Basic.Complex.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6382/6485] Ran OSTQD.Basic:irArts
+warning: OSTQD/Basic.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.Data.Matrix.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.Basic.Complex.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6557/6576] Replayed OSTQD.Theorem3_CrossPerspective
+warning: OSTQD/Theorem3_CrossPerspective.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6558/6576] Ran OSTQD.Theorem3_CrossPerspective:irArts
+warning: OSTQD/Theorem3_CrossPerspective.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6559/6576] Replayed OSTQD.Theorem5_Bottleneck
+warning: OSTQD/Theorem5_Bottleneck.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6560/6576] Ran OSTQD.Theorem5_Bottleneck:irArts
+warning: OSTQD/Theorem5_Bottleneck.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6570/6576] Replayed OSTQD.Theorem2_Horizon
+warning: OSTQD/Theorem2_Horizon.lean: imports `Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Theorem2_Horizon.lean: imports `Mathlib.Analysis.SpecialFunctions.ExpDeriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Theorem2_Horizon.lean:453:56: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: OSTQD/Theorem2_Horizon.lean:453:56: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6571/6576] Ran OSTQD.Theorem2_Horizon:irArts
+warning: OSTQD/Theorem2_Horizon.lean: imports `Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD/Theorem2_Horizon.lean: imports `Mathlib.Analysis.SpecialFunctions.ExpDeriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [6572/6576] Built OSTQD.Theorem4_DoubleUncertainty (17s)
+✔ [6574/6576] Built OSTQD (4.5s)
+Build completed successfully (6576 jobs).
+EXIT_CODE_BUILD=0
+
+--- Step 2: lake env lean OSTQD/AxiomCheck.lean (38 declarations) ---
+'OSTQD.trace_gksl_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.gksl_dual_adj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.carre_du_champ_eq_sum_comm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.carre_du_champ_trace_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.bps_immunity_iff_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.two_time_commutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.variance_deriv_exact_decomp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.eigenstate_variance_deriv_eq_carre_du_champ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.eigenbasis_sum_variance_deriv_eq_trace_carre_du_champ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.universal_actualization_nogo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.quantitative_horizon_heating_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.static_redshift_zero_conflict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.two_level_bogoliubov_incompatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_HB_bps_immune' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_energy_at_s' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_firewall_entropy_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.local_actualization_nogo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.local_dissipation_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_HA_comm_HB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_local_incompatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_local_nogo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.fermionic_hawking_ode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.projA_projB_projA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.joint_extension_fidelity_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.joint_extension_no_simultaneous_faithful' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.joint_extension_fidelity_bound_mixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.joint_extension_bound_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.observer_separated_cpl_consistency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.parisi_wu_purity_monotonicity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.double_uncertainty_pythagorean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.weak_gravity_invisibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.microcanonical_code_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.commuting_jumps_block_eigenvalue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.microcanonical_window_scrambling_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.bottleneck_entanglement_fidelity_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.bottleneck_bound_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.entanglement_fidelity_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD.bottleneck_entanglement_fidelity_min_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT_CODE_AXIOMCHECK=0
+
+--- Step 3: Static Forbidden-Token Audit (sorry / admit / axiom / constant / unsafe / sorryAx) ---
+AUDIT_RESULT=ZERO_SORRY_OR_CUSTOM_AXIOM
+
+--- Step 4: Declaration Count Check ---
+AxiomCheck #print axioms count: 38

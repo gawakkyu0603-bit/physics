@@ -20,6 +20,6 @@ An observer-indexed quantum framework separates reversible clock-time evolution 
 
 [General readers](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/general.html) · [STEM students and graduates](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/student.html) · [Specialists](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/expert.html)
 
-[Research materials and reproduction](v1/README.md)
+[Paper (PDF)](v1/paper/main.pdf) · [Research materials and reproduction](v1/README.md)
 
 The statements apply to specified finite-dimensional systems and do not establish a continuum gravitational mechanism. The physical rate, selective instruments, and emergent geometry remain open.

@@ -1,0 +1,586 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=teal!60!black,
+  urlcolor=blue!60!black,
+  pdftitle={Observer-Separated Two-Time Quantum Dynamics: Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds},
+  pdfauthor={Yohtaro Soga}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\normF}[1]{\|#1\|_F}
+\newcommand{\code}[1]{{\footnotesize\ttfamily #1}}
+
+\title{\textbf{Observer-Separated Two-Time Quantum Dynamics:\\
+Local Horizon Obstructions, Cross-Perspective Consistency,\\
+and Finite-Dimensional Evaporation Bounds}}
+
+\author{Yohtaro Soga\thanks{Independent researcher. Correspondence: \href{mailto:gawakkyu0603@gmail.com}{gawakkyu0603@gmail.com}. Author contributions and AI assistance are disclosed in the Author Contributions and AI Disclosure section.}}
+
+\date{November 26, 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1.2em}
+\begin{abstract}\footnotesize
+We pose a foundational operational tension of black hole evaporation as a structural clue toward quantum gravity: once Hawking radiation is included, an infalling observer $A$ crosses a macroscopic Schwarzschild horizon in finite proper time encountering locally smooth vacuum, whereas a distant asymptotic observer $B$'s directly accessible records contain only exponentially redshifted signals and outgoing Hawking radiation dispersing $A$'s degrees of freedom. Guided by this observer-dependent divergence of accessible futures, we introduce \emph{Observer-Separated Two-Time Quantum Dynamics} (OSTQD), a finite-dimensional algebraic framework separating reversible unitary evolution in physical/clock time ($t \in \bbR$) from non-selective, irreversible auxiliary-time dephasing ($s \in [0,\infty)$, analogous to Parisi--Wu stochastic time) indexed by observer perspectives $O$ and accessible subalgebras $\cA_O$.
+
+We prove five conditional finite-dimensional theorems whose algebraic core (38~public declarations) is machine-checked in Lean~4.36.0 with Mathlib4 (zero \texttt{sorry}, standard axioms only, with clean kernel build log) and audited numerically in Python:
+(1)~From the exact GKSL carr\'e du champ identity $\Gamma_{\cL}(H,H) = \sum_k [L_k,H]^\dagger [L_k,H]$, zero BPS energy-moment drift holds iff $[L_k,H]=0$ for all $k$, ensuring path-independent $(t,s)$ commutation $[\cL,\ad_H]=0$; moreover, $\frac{1}{d}\Tr(\Gamma_{\cL}(H,H))$ does not in general equal $\partial_s\mathrm{Var}_{\rho_{\mathrm{mm}}}(H)$ (where drift covariance may cancel it), but equals the exact eigenbasis-averaged initial variance injection rate $\frac{1}{d}\sum_j \partial_s \mathrm{Var}_{|E_j\rangle}(H)|_{s=0}$.
+(2)~Whenever $\cA_O \cap \{H_A,H_B\}' = \bbC\1$, no nontrivial BPS-immune generator in $\cA_O$ exists for both $H_A$ and $H_B$, and any $H_B$-BPS-immune flow in $\cA_O$ satisfies a dissipation-form / eigenbasis-averaged variance lower bound governed by $\gamma_{\mathrm{loc}}(H_A,H_B;\cA_O)$. While $[H_A,H_B]=0$ on the full two-sided $M_4(\bbC)$ Hawking-pair algebra, causal restriction to $\cA_B = M_2(\bbC)_R\otimes\1_L$ restores irreducibility for $T_H > 0$, gives $\gamma_{\mathrm{loc}} = 8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})$, yields the unified single-mode vacuum excitation rate $\partial_s\langle H_A\rangle|_{s=0} = 2\Gamma\omega\,n_\sigma(1+\sigma n_\sigma) = 2\Gamma\omega\,\mathrm{Var}_{|0_A\rangle}(N_R)$ ($\sigma=+1$ bosons, $\sigma=-1$ fermions), and saturates for fermions ($\Gamma>0$) at $\langle H_A\rangle_{\rho_B(\infty)}/(2\omega) = \normF{\rho_0 - \cP_B(\rho_0)}^2 = S_L(\rho_R^{\mathrm{Hawking}})$. Static proportional redshift ($H_B=\alpha H_A$) gives $\gamma_{\mathrm{loc}}=0$ (zero inter-observer clock conflict, while non-commuting observables outside $\{L_k\}'$ remain sensitive to $\Gamma_{\mathrm{eff}} = \Gamma_O\,ds/d\tau$ in Hermitian-jump flows).
+(3)~Any global joint CPTP extension on $(\bbC^{d_C})^{\otimes 3}$ obeys the sharp linear outer envelope $F_A+F_B \le 1+1/d_C$ (saturated by an explicit valid CPTP Choi state $\sigma_*$ with $\Tr_{A'B'}\sigma_*=\1_R/d_C$, compared with the Kay--Kaszlikowski--Ramanathan curved monogamy boundary), whereas observer-separated reversible channels with explicit decoders attain $F_A=F_B=1$ and expectation-value agreement on a chosen commuting subalgebra $\cA_{\mathrm{sh}}$.
+(4)~Hermitian-jump flows decrease purity monotonically ($\partial_s\Tr\rho^2 = -\sum_k\|[K_k,\rho]\|_F^2\le 0$), satisfy the linear-entropy Pythagorean identity $S_L(\cP(\rho)) = S_L(\rho)+\|\rho-\cP(\rho)\|_F^2$ with $\cP = \lim_{s\to\infty} e^{s\cL}$ proved for sector-separating commuting jumps, and reconcile non-stationary intra-window $t$-evolution with exact $s$-invariance inside a finite-width energy window $\Pi_{\mathrm{win}}=\1_{[E-\Delta,E+\Delta]}(H_B)$.
+(5)~Any CPTP encoding and decoding through an intermediate $d_f$-dimensional Hilbert space obeys the sharp bound $F_e(\cR\circ\cE) \le \min(1, d_f^2/d_C^2)$, illustrated alongside a piecewise time-dependent two-window $N=8$-qubit evaporation model and an independent Galerkin $SU(2)$ Yang--Mills matrix-spectrum benchmark. Throughout, we explicitly separate our constructions and conditional theorems from inherited mathematical tools, physical hypotheses, and open quantum-gravity problems.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\vspace{1em}
+
+%==============================================================================
+\section{Introduction}\label{sec:intro}
+%==============================================================================
+
+\subsection{Conceptual Origin: The Hawking-Evaporation Observer-Discrepancy Paradox}\label{sec:origin}
+
+The conceptual starting point of this work is a foundational physical question raised by black hole evaporation: \emph{when Hawking radiation is taken into account, the future of a physical object falling into a black hole does not match across different observers' viewpoints; how can this observer-dependent divergence itself be incorporated as a structural clue toward a theory of quantum gravity?}
+
+Concretely, consider an infalling observer $A$ carrying an unknown quantum system $C$ of Hilbert-space dimension $d_C \ge 2$ freely falling into a macroscopic Schwarzschild black hole of mass $M$, while a distant observer $B$ remains in the asymptotically flat exterior. In semiclassical general relativity, $A$ crosses the event horizon in finite proper time $\tau_A \sim r_s / c$, encountering locally inertial vacuum and curvature $\mathcal{O}(r_s^{-2})$, and continues smoothly into the interior. By contrast, signals sent from $A$ to $B$ suffer exponential gravitational redshift: while coordinate-time divergence $dt/d\tau \to \infty$ in static Schwarzschild coordinates is itself a coordinate artifact (regular advanced coordinates $v = t + r_*$ remain smooth across horizon crossing, and semiclassical causal diagrams of finite-time evaporation still contain an interior spacetime region \cite{UnruhWald2017}), once Hawking evaporation \cite{Hawking1975,Page1976,Page1993} is included, $B$'s \emph{directly accessible asymptotic records} contain no direct horizon-crossing observation---only redshifted radiation that eventually disperses the entire mass $M$ in finite asymptotic time $t_{\mathrm{evap}} \sim M^3$ (in Planck units) and, under exterior unitarity, carries away the quantum information of $C$ after the Page time \cite{HaydenPreskill2007,Penington2020,AlmheiriIslands2020}.
+
+In classical general relativity, differing coordinate slicings pose no logical contradiction because both worldlines embed smoothly into a single classical Lorentzian manifold. Once quantum mechanics and Hawking evaporation are combined, however, reconciling $A$'s locally smooth interior records with exterior unitarity and semiclassical effective field theory triggers sharp quantum-information tensions: the cloning/complementarity puzzle \cite{Susskind1993,Nomura2013,Nomura2013PRD} and the Almheiri--Marolf--Polchinski--Sully (AMPS) firewall paradox \cite{AMPS2013}.
+
+Treating this evaporation-induced mismatch between accessible interior and exterior futures not merely as an obstacle to be eliminated, but as a structural principle for dynamics, directly motivates the guiding hypothesis of OSTQD: \emph{quantum dynamics may require explicitly separating reversible unitary evolution (along physical/clock time $t \in \bbR$) from irreversible, observer-relative actualization/dephasing (along a directed auxiliary parameter $s \in [0,\infty)$, analogous in mathematical structure to Parisi--Wu fictitious stochastic time \cite{ParisiWu1981}), so that each observer's reversible dynamics and irreversible decoherence structure are indexed by that observer's accessible algebra $\cA_O$ and clock generator $H_O$.} Our strategy is to distill this conceptual proposal into a sequence of precise, finite-dimensional mathematical constructions and conditional theorems where every assumption, counterexample, and limitation can be tested rigorously.
+
+\subsection{Contemporary Theoretical Landscape (2022--2026)}\label{sec:landscape}
+
+Four major recent developments frame the mathematical context in which this hypothesis must be evaluated:
+\begin{enumerate}
+  \item \textbf{Observer-dependent gravitational algebras and entropies:} Dressing observables to a dynamical observer's clock via crossed products promotes semiclassical Type~$\mathrm{III}_1$ subalgebras to Type~$\mathrm{II}_1$ or Type~$\mathrm{II}_\infty$ factors with well-defined traces and observer-dependent generalized entropies \cite{CLPW2023,CPW2023,JensenSorceSperanza2023,KudlerFlam2023,DeVuyst2024,DeVuyst2025,delaHamette2026}.
+  \item \textbf{Firewall paradox as Wigner's friend paradox:} Extending no-go theorems on observer-independent facts \cite{FrauchigerRenner2018,Bong2020} and cross-perspective links (CPL) in relational quantum mechanics \cite{Rovelli1996,AdlamRovelli2022}, recent analyses \cite{HausmannRenner2025,Walleghem2025,Adlam2026} argue that the AMPS firewall paradox relies on an implicit perspective-combining rule already challenged in extended Wigner's friend scenarios.
+  \item \textbf{Non-isometric holographic encodings and matrix black holes:} Building on holographic quantum error correction \cite{AlmheiriDongHarlow2015}, late-time interior-to-exterior maps with more effective bulk states than fundamental black hole microstates are modeled as non-isometric linear codes \cite{Akers2022}, alongside microscopic matrix-model studies of black 0-branes \cite{BFSS1997,IKKT1997,Choudhury2024}.
+  \item \textbf{Conservation laws, decoherence--diffusion trade-offs, and precision bounds:} Banks, Susskind, and Peskin (BPS) \cite{BPS1984} demonstrated that universal pure-to-mixed master equations generically clash with energy conservation or locality; subsequent work established the continuous Wigner--Araki--Yanase (WAY) theorem \cite{KuramochiTajima2023}, decoherence--diffusion trade-offs in hybrid classical--quantum gravity \cite{Oppenheim2023PRX,Oppenheim2023NC,TilloyDiosi2016,Stamp2015}, horizon-induced decoherence \cite{DSW2023}, and stringent laboratory bounds on universal collapse \cite{Donadi2021,MICROSCOPE2022,Pedalino2025}.
+\end{enumerate}
+
+\subsection{Main Contributions, Inherited Tools, and Open Problems}\label{sec:novelty}
+
+To delineate the scientific contributions of this work clearly and avoid conflating established operator-algebraic tools with new constructions or unproven quantum-gravity claims, we organize our results into four tiers:
+
+\begin{enumerate}
+  \item \textbf{Conceptual Proposal, Concrete Constructions, and Formalized Synthesis} (distinguishing our conceptual framing, specific constructions, and observer-indexed synthesis from broader priority claims over general quantum-Markov, DFS, or cloning theory):
+  \begin{itemize}
+    \item \emph{Paradox-motivated conceptual formulation and $(t,s)$ synthesis:} Posing the operational divergence between an infalling observer's locally smooth interior evolution and an asymptotic observer's directly accessible evaporation records as a structural clue toward quantum gravity, and deriving from it an explicit observer-indexed two-time framework $(\cA_O, H_O, \cL_O)$ that unifies GKSL conservation obstructions, subalgebra-restricted horizon incompatibility, Bell-overlap monogamy, finite-width decoherence-free energy windows, and dimension bottlenecks in one consistent notation.
+    \item \emph{Exact eigenbasis-averaged variance-injection identity (Theorem~\ref{thm:bps}(e)--(f)):} Deriving the variance-derivative decomposition $\partial_s\mathrm{Var}_\rho(H) = \allowbreak \langle\Gamma_{\cL}(H,H)\rangle_\rho + \langle\{H,D\}\rangle_\rho - 2\langle H\rangle_\rho\langle D\rangle_\rho$, showing via explicit counterexample why $\langle\Gamma_{\cL}(H,H)\rangle_{\rho_{\mathrm{mm}}}$ does not in general equal $\partial_s\mathrm{Var}_{\rho_{\mathrm{mm}}}(H)$, and proving that $\frac{1}{d}\Tr(\Gamma_{\cL}(H,H))$ instead equals the eigenbasis-averaged initial variance rate $\frac{1}{d}\sum_j \partial_s\mathrm{Var}_{|E_j\rangle}(H)|_{s=0}$.
+    \item \emph{Subalgebra-restricted horizon incompatibility and exact 4D fermionic Hawking-pair identities (Theorem~\ref{thm:horizon}(a)--(b),(e)--(f)):} Proving explicitly that $[H_A,H_B]=0$ on the full two-sided algebra $M_4(\bbC)$ (so global irreducibility fails), then proving that causal restriction to the exterior local algebra $\cA_B = M_2(\bbC)_R\otimes\1_L$ restores irreducibility ($\cA_B\cap\{H_A,H_B\}'=\bbC\1$ for $T_H>0$), yields the closed-form local incompatibility $\gamma_{\mathrm{loc}}(H_A,H_B;\cA_B) = \allowbreak 8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})$, yields the unified bosonic/fermionic initial excitation rate $\partial_s\langle H_A\rangle|_{s=0} = \allowbreak 2\Gamma\omega\,n_\sigma(1+\sigma n_\sigma) = \allowbreak 2\Gamma\omega\,\mathrm{Var}_{|0_A\rangle}(N_R)$, and yields the $s\to\infty$ fermionic saturation identity $\langle H_A\rangle_{\rho_B(\infty)}/(2\omega) = \allowbreak \normF{\rho_0 - \cP_B(\rho_0)}^2 = \allowbreak S_L(\rho_R^{\mathrm{Hawking}})$ ($\rho_0 := |0_A\rangle\langle 0_A|$) together with an entrywise ODE proof.
+    \item \emph{Coarse-grained finite-width energy-window compatibility with $t$-evolution (Theorem~\ref{thm:double}(e)--(f) and Section~\ref{sec:matrix}):} Proving exact spectral block decay linking $\lim_{s\to\infty} e^{s\cL} = \cP$ for sector-separating commuting Hermitian jumps, demonstrating how a finite-width energy window $\Pi_{\mathrm{win}}=\1_{[E-\Delta,E+\Delta]}(H_B)$ reconciles non-stationary intra-window $t$-evolution with exact $s$-invariance (unlike a single exact eigenspace), and realizing both in one explicit piecewise time-dependent two-window $N=8$-qubit evaporation model.
+    \item \emph{Auditable formal and numerical verification:} Machine-checking the finite-dimensional algebraic core (38~public declarations) in Lean~4.36.0 + Mathlib4 (with clean kernel build log \code{lean4/\allowbreak VERIFICATION\_\allowbreak LOG.txt}) paired with a self-checking Python verification suite.
+  \end{itemize}
+  \item \textbf{Inherited Mathematical Tools (Explicitly Attributed):}
+  The GKSL master equation and BPS conservation criterion \cite{Lindblad1976,GKS1976,BPS1984} (Theorem~\ref{thm:bps}(a)--(d)); the exact curved singlet-monogamy / optimal cloning boundary of Kay, Kaszlikowski, and Ramanathan \cite{Kay2009} (compared directly against our linear sum outer envelope and valid CPTP Choi saturation witness in Theorem~\ref{thm:cpl}(a)--(b)); the relative-entropy coherence decomposition of Baumgratz, Cramer, and Plenio \cite{Baumgratz2014} and decoherence-free subspaces (DFS) of Lidar, Chuang, and Whaley \cite{Lidar1998} (Theorem~\ref{thm:double}(b),(d)); Schumacher entanglement fidelity \cite{Schumacher1996}, the Petz transpose map \cite{Petz1986}, and Hawking's classical area theorem \cite{Hawking1971} (Theorem~\ref{thm:bottleneck}).
+  \item \textbf{Explicit Physical Hypotheses (Not Derived from First Principles Here):}
+  (i)~Causal restriction of exterior jump operators to $\cA_B = M_2(\bbC)_R\otimes\1_L$; (ii)~the physical mapping between auxiliary parameter $s$, proper time $\tau$, and rate $\Gamma_O$ (yielding effective rate $\Gamma_{\mathrm{eff}}(\tau)=\Gamma_O\,ds/d\tau$); (iii)~the interpretive choice to waive a global joint CPTP extension when observers lack a common causal future; and (iv)~identifying finite-dimensional $\ln d_f$ with Bekenstein--Hawking entropy $S_{\mathrm{BH}}$.
+  \item \textbf{Open Nonperturbative Problems (Explicitly Unsolved Here):}
+  Extension to infinite-dimensional Type~$\mathrm{II}_1/\mathrm{II}_\infty$ crossed-product von Neumann algebras; continuum QFT stress-energy and Hadamard firewall analysis; selective single-shot quantum instruments $\{\cI_{O,x}\}$ and inter-observer record-merging rules; microscopic derivation of $\Gamma_O$ from large-$N$ BFSS/IKKT matrix dynamics; and emergence of a smooth 4D Lorentzian manifold.
+\end{enumerate}
+
+Table~\ref{tab:literature} summarizes this positioning relative to nearest prior frameworks.
+
+\begin{table}[!tb]
+\centering\footnotesize
+\caption{Positioning of OSTQD relative to nearest prior frameworks, explicitly distinguishing inherited tools, specific constructions and contributions presented here, and remaining physical assumptions.}
+\label{tab:literature}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.29\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}@{}}
+\toprule
+Prior framework & Inherited / established contribution & Specific constructions / contributions presented here & Explicit additional assumption / limit \\
+\midrule
+GKSL \& BPS / WAY \cite{Lindblad1976,GKS1976,BPS1984,KuramochiTajima2023} & GKSL structure and conservation obstructions for universal mixed evolution. & Exact eigenbasis-averaged variance-rate interpretation (Thm.~\ref{thm:bps}(e)--(f)) and subalgebra-restricted $\gamma_{\mathrm{loc}}$ (Thm.~\ref{thm:horizon}(a)--(b)). & Finite dimensions; jump locality $\cA_B$ imposed as physical axiom. \\
+Observer algebras \& Hawking/Unruh \cite{Hawking1975,Unruh1976,CLPW2023,DeVuyst2024,DeVuyst2025,DSW2023} & Observer-dressed Type~II algebras, Bogoliubov modes, horizon decoherence. & Explicit proof that $[H_A,H_B]=0$ on $M_4(\bbC)$ while $\cA_B$-restriction yields exact $\gamma_{\mathrm{loc}}=8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})$ and fermionic firewall--entropy saturation (Thm.~\ref{thm:horizon}(e)--(f)). & Single-mode pair; continuum stress tensor \& Type~II extension remain open. \\
+Cloning, Wigner's friend \& CPL \cite{Kay2009,FrauchigerRenner2018,Bong2020,AdlamRovelli2022,HausmannRenner2025,Walleghem2025,Adlam2026} & Exact curved singlet monogamy \cite{Kay2009}; AMPS linked to Wigner's friend; CPL concept. & Direct comparison of linear envelope $F_A+F_B\le 1+1/d_C$ (with Lean-verified Choi witness $\sigma_*$) against Kay~\cite{Kay2009} curved boundary + explicit decoder CPL witness (Thm.~\ref{thm:cpl}). & Expectation agreement on chosen $\cA_{\mathrm{sh}}$; single-shot instruments remain open. \\
+Coherence, DFS, non-isometric codes \& BH area \cite{Baumgratz2014,Lidar1998,Schumacher1996,Akers2022,Hawking1971} & Relative-entropy coherence, DFS, entanglement fidelity, non-isometric codes, area theorem. & Spectral block-decay link $\lim_{s\to\infty}e^{s\cL}=\cP$, finite-width energy-window scrambling compatibility (Thm.~\ref{thm:double}(e)--(f)), coupled two-window toy model, and elementary Lean-checked bottleneck bound (Thm.~\ref{thm:bottleneck}). & $\ln d_f \leftrightarrow S_{\mathrm{BH}}$ is a physical identification; distinct from non-isometric codes \cite{Akers2022}. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\section{Observer-Separated Two-Time Quantum Dynamics (OSTQD)}\label{sec:framework}
+%==============================================================================
+
+\paragraph{Conventions and units.}
+Throughout this paper we work in natural units $\hbar = k_B = 1$ unless explicitly noted. Logarithms in dimensional formulas ($\ln d_C$, $\ln d_f$) and analytic von Neumann entropies $S(\rho) := -\Tr(\rho\ln\rho)$ are natural logarithms (nats); in Figure~\ref{fig:matrix}(a) we explicitly divide by $\ln 2$ to display entanglement entropy in bits. The mode frequency $\omega$ and Hawking temperature $T_H$ carry energy units; the auxiliary dephasing parameter $s \ge 0$ and rate constant $\Gamma$ are chosen such that $\Gamma s$ is dimensionless (for instance, if $s$ has dimensions of time, $\Gamma$ has dimensions of inverse time). Whenever an asymptotic $s \to \infty$ limit is taken, we require strictly positive coupling $\Gamma > 0$. Whenever traceless incompatibility constants $\gamma$ or $\gamma_{\mathrm{loc}}$ are defined via an infimum over nonzero traceless operators, we require Hilbert-space dimension $d \ge 2$ (for $d = 1$ the traceless subspace is trivial).
+
+We formulate OSTQD in finite-dimensional Hilbert spaces $\cH \cong \bbC^d$ (with a truncated bosonic Fock-space extension in Section~\ref{sec:horizon}) so that every operator identity is unconditionally rigorous and free of unbounded-operator domain ambiguities.
+
+\begin{definition}[Observer Perspective, Integrable Two-Time Dynamics, and State Levels]\label{def:ostqd}
+Let $\cH \cong \bbC^d$ ($d \ge 2$) be a finite-dimensional Hilbert space equipped with the Hilbert--Schmidt inner product $\langle X, Y\rangle_{\mathrm{HS}} := \Tr(X^\dagger Y)$ and Frobenius norm $\normF{X}^2 := \Tr(X^\dagger X) = \sum_{i,j}|X_{ij}|^2$. An \emph{observer perspective} $O \in \mathcal{O}$ is specified by:
+\begin{enumerate}
+  \item an accessible observable $C^*$-subalgebra $\cA_O \subseteq M_d(\bbC)$ containing $\1$;
+  \item a Hermitian clock/energy Hamiltonian $H_O = H_O^\dagger \in M_d(\bbC)$ generating reversible unitary evolution $\cU_O(t)(\rho) := e^{-iH_O t}\rho\, e^{iH_O t}$ in physical/clock time $t \in \bbR$;
+  \item a finite family of jump operators $\{L_{O,k}\}_{k=1}^m \subset \cA_O$ defining the Gorini--Kossakowski--Sudarshan--Lindblad (GKSL) \cite{Lindblad1976,GKS1976} non-selective actualization generator
+  \begin{equation}\label{eq:gksl}
+    \cL_O(\rho) := \sum_{k=1}^m \left(L_{O,k}\rho L_{O,k}^\dagger - \tfrac{1}{2}\bigl\{L_{O,k}^\dagger L_{O,k},\,\rho\bigr\}\right),
+  \end{equation}
+  and its Heisenberg dual $\cL_O^\dagger(X) := \sum_{k=1}^m \bigl(L_{O,k}^\dagger X L_{O,k} - \frac{1}{2}\{L_{O,k}^\dagger L_{O,k}, X\}\bigr)$, generating the completely positive, trace-preserving (CPTP) semigroup $\Phi_O(s) = e^{s\cL_O}$ along a directed \emph{auxiliary parameter} $s \in [0,\infty)$.
+\end{enumerate}
+Whenever the \emph{integrability (commutation) condition}
+\begin{equation}\label{eq:integrability}
+  \bigl[\cL_O,\,\ad_{H_O}\bigr](\rho) := \cL_O\bigl([H_O,\rho]\bigr) - \bigl[H_O,\cL_O(\rho)\bigr] = 0 \qquad \forall \rho \in M_d(\bbC)
+\end{equation}
+holds, the two-parameter state $\rho_O(t,s) := (\cU_O(t)\circ\Phi_O(s))(\rho_O(0,0)) = (\Phi_O(s)\circ\cU_O(t))(\rho_O(0,0))$ is the unique path-independent solution of the simultaneous partial differential equations
+\begin{equation}\label{eq:two-time}
+  \partial_t \rho_O(t,s) = -i[H_O, \rho_O(t,s)], \qquad
+  \partial_s \rho_O(t,s) = \cL_O\bigl(\rho_O(t,s)\bigr).
+\end{equation}
+In OSTQD, we impose $H_O$-BPS immunity ($\cL_O^\dagger(H_O) = \cL_O^\dagger(H_O^2) = 0$, equivalently $[L_{O,k}, H_O]=0$ by Theorem~\ref{thm:bps}(c)) on each observer's \emph{own} perspective, which enforces \eqref{eq:integrability} automatically by Theorem~\ref{thm:bps}(d). More generally, if $H_O(t)$ is piecewise time-dependent and satisfies $[\cL_O, \ad_{H_O(t)}] = 0$ on every time interval while $\cL_O$ is $t$-independent, then the time-ordered unitary propagator $\cU_O(t,t_0)(\rho) := U_O(t,t_0)\rho U_O(t,t_0)^\dagger$ with $U_O(t,t_0) = \mathcal{T}\exp\bigl[-i\int_{t_0}^t H_O(u)\,du\bigr]$ likewise commutes with $\Phi_O(s)$: $\cU_O(t,t_0)\circ\Phi_O(s) = \Phi_O(s)\circ\cU_O(t,t_0)$.
+\end{definition}
+
+\begin{remark}[Necessity of integrability, closed vs.\ reduced states, and non-selective vs.\ selective evolution]\label{rem:def-precisions}
+Three structural distinctions are essential to prevent category errors:
+\begin{enumerate}
+  \item \emph{Integrability condition:} Without \eqref{eq:integrability}, the two equations in \eqref{eq:two-time} do not admit a common smooth two-variable solution for arbitrary initial states because mixed partial derivatives fail to commute. For example, taking $d=2$, $H = \sigma_z$, $L = \sigma_x$, and $\rho = |+\rangle\langle +|$ gives $\normF{\cL([H,\rho]) - [H,\cL(\rho)]} = 2\sqrt{2} \approx 2.8284$ (verified numerically in Section~\ref{sec:matrix}). Because Definition~\ref{def:ostqd} enforces $H_O$-BPS immunity on each observer's own perspective, \eqref{eq:integrability} holds automatically within perspective $O$; when evaluating $B$'s generator $\cL_B$ against a distinct observer's Hamiltonian $H_A$, one works strictly with fixed-$t$ auxiliary evolution $\Phi_B(s)$ or an explicitly ordered composition rather than assuming $[\cL_B, \ad_{H_A}]=0$.
+  \item \emph{Total unitary states vs.\ reduced open-system states:} Equation~\eqref{eq:two-time} acts on the \emph{total} Hilbert-space state $\rho_{\mathrm{tot},O}(t,s)$ (whose purity is preserved along $t$ at $s=0$). When observer $O$ accesses only a subsystem $\cH_O$ of a bipartite system $\cH_{\mathrm{tot}} = \cH_O \otimes \cH_{\bar O}$ evolving under a total unitary $U_{\mathrm{tot}}(t)$, the reduced state
+  \begin{equation}\label{eq:reduced-state}
+    \rho_O^{\mathrm{red}}(t,0) := \Tr_{\bar O}\!\left[U_{\mathrm{tot}}(t)\,\rho_{\mathrm{tot}}(0)\,U_{\mathrm{tot}}(t)^\dagger\right]
+  \end{equation}
+  generally acquires mixedness from entanglement with $\bar O$ (e.g., escaping soft gravitons or Hawking partners \cite{DSW2023}) and does \emph{not} satisfy a closed autonomous Liouville--von Neumann equation on $\cH_O$. We always distinguish $\rho_{\mathrm{tot},O}$ from $\rho_O^{\mathrm{red}}$ explicitly.
+  \item \emph{Non-selective GKSL dephasing vs.\ selective single-shot fact actualization:} The CPTP semigroup $\Phi_O(s) = e^{s\cL_O}$ describes \emph{non-selective ensemble dephasing} (e.g., mapping $|+\rangle\langle +| \mapsto \1_2/2$ as $s\to\infty$). By itself, a non-selective GKSL flow does not specify which individual classical outcome $x$ occurs in a single experimental run, nor is its stochastic unraveling unique. Selecting individual records requires supplementing $\Phi_O(s)$ with an explicit quantum instrument $\{\cI_{O,x}\}$ obeying $p_O(x) = \Tr[\cI_{O,x}(\rho)]$, $\rho_{O|x} = \cI_{O,x}(\rho)/p_O(x)$, and $\sum_x \cI_{O,x} = \Phi_O(s)$, together with an inter-observer record-merging rule. In this work we focus strictly on the ensemble-level CPTP structure $\Phi_O(s)$ and flag selective instruments as an explicit open problem.
+\end{enumerate}
+\end{remark}
+
+\paragraph{Physical motivation for the $(t,s)$ split.}
+The auxiliary parameter $s \ge 0$ is structurally analogous to the fictitious stochastic time of Parisi--Wu stochastic quantization \cite{ParisiWu1981} (though OSTQD does not claim equivalence to Euclidean Parisi--Wu gauge-fixing dynamics): $s$ is not an extra spatial dimension and is strictly one-sided ($s \ge 0$). Conceptually, the $(t,s)$ formalism allows us to separate \emph{Layer~1} mixedness arising from tracing out an entangled environment during reversible $t$-evolution \eqref{eq:reduced-state} from \emph{Layer~2} dephasing induced by observer $O$'s irreversible semigroup $\Phi_O(s)$ (with the caveat, noted in Section~\ref{sec:double-bottleneck}, that an entropy functional of a static density matrix $\rho$ alone cannot retrospectively identify the physical origin of its mixedness without knowing the preparation history). Notice also that OSTQD imposes no ad-hoc holomorphic line-bundle restriction on $S^2$, leaving spin-weighted spherical harmonics ${}_s Y_{\ell m}$ \cite{NewmanPenrose1966} unaffected.
+
+%==============================================================================
+\section{BPS Immunity, Exact Variance Decomposition, and Local Horizon Obstructions}\label{sec:horizon}
+%==============================================================================
+
+Any dynamical model introducing a GKSL dissipator must confront the Banks--Susskind--Peskin (BPS) energy-conservation obstruction \cite{BPS1984} and the Wigner--Araki--Yanase (WAY) theorem \cite{KuramochiTajima2023}. Define the quantum \emph{carr\'e du champ} (dissipation form)
+\begin{equation}\label{eq:cdc}
+  \Gamma_{\cL}(X, Y) := \cL^\dagger(X^\dagger Y) - X^\dagger \cL^\dagger(Y) - \cL^\dagger(X^\dagger) Y.
+\end{equation}
+For a general state $\rho$ and Hermitian observable $H = H^\dagger$, letting $D := \cL^\dagger(H)$ denote the mean-energy drift operator, the exact initial rate of change of the variance $\mathrm{Var}_\rho(H) := \Tr(H^2\rho) - [\Tr(H\rho)]^2$ under $\partial_s\rho = \cL(\rho)$ is
+\begin{equation}\label{eq:var-decomp-intro}
+\begin{aligned}
+  \left.\frac{\partial}{\partial s}\,\mathrm{Var}_{\rho(s)}(H)\right|_{s=0}
+  &= \Tr\bigl(\rho\,\cL^\dagger(H^2)\bigr) - 2\Tr(\rho H)\Tr(\rho D)\\
+  &= \Tr\bigl(\rho\,\Gamma_{\cL}(H,H)\bigr) + \Tr\bigl(\rho\{H,D\}\bigr) - 2\Tr(\rho H)\Tr(\rho D).
+\end{aligned}
+\end{equation}
+Crucially, the drift covariance $\Tr(\rho\{H,D\}) - 2\Tr(\rho H)\Tr(\rho D)$ vanishes identically in two broad situations: (i)~when $\cL^\dagger(H) = 0$ (zero mean-energy drift on all states), or (ii)~when $\rho = |E\rangle\langle E|$ is an \emph{eigenstate} of $H$ (even when $\cL^\dagger(H) \neq 0$). On a general mixed state, however, $\Tr(\rho\,\Gamma_{\cL}(H,H))$ and $\partial_s \mathrm{Var}_{\rho}(H)|_{s=0}$ cannot in general be identified without checking whether the drift covariance vanishes: for instance, on $\bbC^3$ with $H=\mathrm{diag}(0,1,2)$, $L=|2\rangle\langle 1|$, and $\rho=\1_3/3$, one has $D=|1\rangle\langle 1|\neq 0$ yet zero drift covariance and $\partial_s\mathrm{Var}_\rho(H)|_{s=0}=\langle\Gamma_{\cL}(H,H)\rangle_\rho=1/3$, whereas on $\rho_{\mathrm{mm}}=\1_2/2$ in Remark~\ref{rem:drift-counterexample} the drift term cancels $\langle\Gamma_{\cL}(H_A,H_A)\rangle_{\rho_{\mathrm{mm}}}=4$ completely.
+
+\begin{theorem}[Carr\'e du Champ Identity, Exact Variance Decomposition, BPS Equivalence, and $(t,s)$ Commutation]\label{thm:bps}
+Let $d \ge 1$, $H = H^\dagger \in M_d(\bbC)$, and let $\cL$ be any GKSL generator \eqref{eq:gksl} with jump operators $\{L_k\}$. Let $D := \cL^\dagger(H)$. Then:
+\begin{enumerate}
+  \item[(a)] \emph{(Exact operator identity)}
+  \begin{equation}\label{eq:cdc-id}
+    \Gamma_{\cL}(H, H) = \cL^\dagger(H^2) - H\cL^\dagger(H) - \cL^\dagger(H)H = \sum_k [L_k, H]^\dagger [L_k, H].
+  \end{equation}
+  \item[(b)] \emph{(Positive semidefiniteness)} For every positive semidefinite matrix $\rho = A^\dagger A$, $\Tr\bigl(\rho\,\Gamma_{\cL}(H,H)\bigr) = \sum_k \normF{[L_k, H] A^\dagger}^2 \ge 0$.
+  \item[(c)] \emph{(Exact BPS-immunity equivalence)} Zero first- and second-moment energy drift hold for all states iff every jump operator commutes with $H$:
+  \begin{equation}\label{eq:bps-iff}
+    \bigl(\cL^\dagger(H) = 0 \;\land\; \cL^\dagger(H^2) = 0\bigr) \;\Longleftrightarrow\; \forall k,\; [L_k, H] = 0.
+  \end{equation}
+  \item[(d)] \emph{(Automatic $(t,s)$ commutation)} Whenever $\forall k, [L_k, H] = 0$, the generators commute: $\cL([H,\rho]) = [H, \cL(\rho)]$ for all $\rho \in M_d(\bbC)$, whence $\cU(t)\circ\Phi(s) = \allowbreak \Phi(s)\circ\cU(t)$ for all $t \in \bbR, s \ge 0$.
+  \item[(e)] \emph{(Exact variance-derivative decomposition)} For every $\rho \in M_d(\bbC)$,
+  \begin{equation}\label{eq:var-decomp-thm}
+    \Tr\bigl(\cL^\dagger(H^2)\rho\bigr) - 2\Tr(H\rho)\Tr(D\rho)
+    = \Tr\bigl(\Gamma_{\cL}(H,H)\rho\bigr) + \Tr\bigl((HD + DH)\rho\bigr) - 2\Tr(H\rho)\Tr(D\rho).
+  \end{equation}
+  \item[(f)] \emph{(Eigenstate and eigenbasis-averaged initial variance rate)} If $\rho_E$ is a density matrix ($\rho_E \succeq 0$, $\Tr(\rho_E) = 1$) supported inside a single $H$-eigenspace ($H\rho_E = \lambda\rho_E = \rho_E H$, in particular any pure eigenstate $|E\rangle\langle E|$ of $H$ including an inertial vacuum $|0_A\rangle\langle 0_A|$), the drift terms in \eqref{eq:var-decomp-thm} cancel identically and (by part~(b))
+  \begin{equation}\label{eq:eigenstate-var}
+    \left.\frac{\partial}{\partial s}\,\mathrm{Var}_{\rho_E(s)}(H)\right|_{s=0} = \Tr\bigl(\Gamma_{\cL}(H,H)\rho_E\bigr) \;\ge\; 0.
+  \end{equation}
+  Consequently, for any orthonormal eigenbasis $\{|E_j\rangle\}_{j=1}^d$ of $H$ ($\sum_{j=1}^d |E_j\rangle\langle E_j| = \1$), the normalized trace of $\Gamma_{\cL}(H,H)$ equals the exact \emph{eigenbasis-averaged initial energy-variance injection rate}:
+  \begin{equation}\label{eq:eigenbasis-avg}
+    \frac{1}{d}\sum_{j=1}^d \left.\frac{\partial}{\partial s}\,\mathrm{Var}_{|E_j\rangle(s)}(H)\right|_{s=0}
+    = \frac{1}{d}\Tr\bigl(\Gamma_{\cL}(H,H)\bigr)
+    = \frac{1}{d}\sum_k \normF{[L_k, H]}^2.
+  \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Parts (a)--(d) follow from direct algebraic expansion of $\cL^\dagger$ and trace cyclicity (as in \cite{Lindblad1976,BPS1984}); specifically, for each $L$, $\cL_L^\dagger(H^2) - H\cL_L^\dagger(H) - \cL_L^\dagger(H)H = L^\dagger H^2 L - H L^\dagger H L - L^\dagger H L H + H L^\dagger L H = [L,H]^\dagger[L,H]$. Part~(e) rearranges \eqref{eq:cdc-id} inside the trace. For (f), $H\rho_E = \lambda\rho_E = \rho_E H$ and $\Tr(\rho_E)=1$ give $\Tr(H\rho_E)=\lambda$ and $\Tr((HD+DH)\rho_E) = \Tr(D\rho_E H) + \Tr(H\rho_E D) = 2\lambda\Tr(D\rho_E) = 2\Tr(H\rho_E)\Tr(D\rho_E)$, so the drift terms cancel identically; summing \eqref{eq:eigenstate-var} over $\sum_j |E_j\rangle\langle E_j| = \1$ yields \eqref{eq:eigenbasis-avg}. All parts (a)--(f) are formalized in \code{OSTQD/Theorem1\_BPS.lean}.
+\end{proof}
+
+\begin{remark}[Concrete counterexample separating $\langle\Gamma\rangle_{\rho_{\mathrm{mm}}}$ from $\partial_s\mathrm{Var}_{\rho_{\mathrm{mm}}}(H_A)$]\label{rem:drift-counterexample}
+Take $d=2$, $H_A = \sigma_x$, $H_B = \sigma_z$, $L = \sigma_z$, and $\rho_{\mathrm{mm}} = \1_2/2$. Then $\cL(\rho) = \sigma_z\rho\sigma_z - \rho$ is unital, so $\cL(\rho_{\mathrm{mm}}) = 0$ and the actual variance derivative on $\rho_{\mathrm{mm}}$ is $\partial_s \mathrm{Var}_{\rho_{\mathrm{mm}}}(H_A) = 0$. Yet $D = \cL^\dagger(H_A) = -2\sigma_x$ and $\cL^\dagger(H_A^2) = 0$, so $\Gamma_{\cL}(H_A,H_A) = 4\1_2$ and $\langle\Gamma_{\cL}(H_A,H_A)\rangle_{\rho_{\mathrm{mm}}} = 4$, cancelled by the drift term $\langle\{H_A,D\}\rangle_{\rho_{\mathrm{mm}}} = -4$. By Theorem~\ref{thm:bps}(f), the value $4$ instead measures the exact eigenbasis-averaged initial variance rate over the eigenstates $|\pm\rangle$ of $H_A=\sigma_x$: $\partial_s\mathrm{Var}_{|+\rangle}(H_A)|_{s=0} = \partial_s\mathrm{Var}_{|-\rangle}(H_A)|_{s=0} = 4$.
+\end{remark}
+
+\paragraph{Accessible-subalgebra restriction vs.\ full-algebra irreducibility.}
+We now turn to two observers $A$ and $B$ with Hermitian generators $H_A, H_B \in M_d(\bbC)$ ($d \ge 2$). First, observe that \emph{mere non-commutativity} $[H_A, H_B] \neq 0$ does \emph{not} preclude a common nontrivial BPS-immune dissipator: for instance, on $\bbC^3$, $H_A = \sigma_x \oplus 0$ and $H_B = \mathrm{diag}(-1,1,2)$ satisfy $[H_A,H_B]\neq 0$, yet $L = \mathrm{diag}(0,0,1)$ commutes with both and dephases coherences between the first two levels and the third. Second, even more critically, on the full two-sided Hawking-pair algebra $M_4(\bbC)$, Bogoliubov pair creation preserves particle-number difference $N_R - N_L$, so $[H_A, H_B] = 0$ identically!
+
+Consequently, horizon-forced incompatibility in a Hawking pair does \emph{not} arise from unconstrained global operators in $M_d(\bbC)$, but specifically from the \emph{causal locality restriction} that exterior observer $B$'s jump operators lie in $B$'s accessible subalgebra $\cA_B \subseteq M_d(\bbC)$. For any subspace/subalgebra $\cA \subseteq M_d(\bbC)$ and $d \ge 2$, define the \emph{traceless jump part} $\tilde{L}_k := L_k - \frac{\Tr(L_k)}{d}\1$ and the \emph{subalgebra-restricted incompatibility constant}
+\begin{equation}\label{eq:gamma-loc-def}
+  \gamma_{\mathrm{loc}}(H_A, H_B; \cA) := \inf\Bigl\{\frac{\normF{[X, H_A]}^2}{\normF{X}^2} \;:\; X \in \cA,\; X \neq 0,\; \Tr(X) = 0,\; [X, H_B] = 0\Bigr\} \ge 0
+\end{equation}
+(with the convention that the infimum is over a nonempty constraint set; when $\cA = M_d(\bbC)$ we write $\gamma(H_A, H_B)$).
+
+\begin{theorem}[Local Observer-Separation No-Go, Dissipation-Form Lower Bound, and Exact 4D Fermionic Hawking Pair]\label{thm:horizon}
+Let $d \ge 2$, let $H_A = H_A^\dagger$ and $H_B = H_B^\dagger$ in $M_d(\bbC)$, and let $\cA \subseteq M_d(\bbC)$ be a linear subspace closed under subtracting scalar multiples of $\1$ (in particular, any unital $*$-subalgebra $\cA_B$).
+\begin{enumerate}
+  \item[(a)] \emph{(Local no-go for universal actualization)} If $\cA \cap \{H_A, H_B\}' = \bbC\1$ (in particular, if $\{H_A,H_B\}'=\bbC\1$ for $\cA = M_d(\bbC)$), then every GKSL generator $\cL$ with jump operators $L_k \in \cA$ that is simultaneously BPS-immune for both $H_A$ and $H_B$ vanishes identically: $\cL(\rho) = 0$ for all $\rho$.
+  \item[(b)] \emph{(Quantitative dissipation-form / eigenbasis-averaged initial variance lower bound)} If $\cL_B$ has jump operators $L_{B,k} \in \cA$, is $H_B$-BPS-immune ($\cL_B^\dagger(H_B)=\cL_B^\dagger(H_B^2)=0$), and $\gamma \ge 0$ satisfies $\normF{[X,H_A]}^2 \ge \gamma\normF{X}^2$ for all traceless $X \in \cA \cap \{H_B\}'$, then
+  \begin{equation}\label{eq:heating-bound}
+    \frac{1}{d}\Tr\bigl(\Gamma_{\cL_B}(H_A, H_A)\bigr)
+    = \frac{1}{d}\sum_{j=1}^d \left.\frac{\partial}{\partial s}\,\mathrm{Var}_{|E_{A,j}\rangle(s)}(H_A)\right|_{s=0}
+    \;\ge\; \frac{\gamma}{d}\sum_k \normF{\tilde{L}_{B,k}}^2.
+  \end{equation}
+  \item[(c)] \emph{(Static proportional redshift: zero clock incompatibility)} If $H_B = \alpha H_A$ for any $\alpha \in \bbR\setminus\{0\}$, then $[X, H_B] = 0 \iff [X, H_A] = 0$, so $\gamma_{\mathrm{loc}}(H_A, H_B; \cA) = 0$ whenever $\cA \cap \{H_B\}'$ contains a nonzero traceless operator, and every $H_A$-BPS-immune actualization is automatically $H_B$-BPS-immune.
+  \item[(d)] \emph{(Exact two-level Bogoliubov toy incompatibility)} For $d=2$, $\cA = M_2(\bbC)$, $H_B = \frac{\omega}{2}\sigma_z$, and $H_A = \frac{\omega}{2}(\cos\theta\,\sigma_z + \sin\theta\,\sigma_x)$ ($\omega \neq 0$), every traceless $X \in \{H_B\}'$ satisfies $\normF{[X, H_A]}^2 = (\omega^2 \sin^2\theta)\normF{X}^2$, hence $\gamma(H_A, H_B) = \omega^2\sin^2\theta$.
+  \item[(e)] \emph{(Two-sided commutativity vs.\ exterior-local incompatibility in the 4D fermionic Hawking pair)} Consider a fermionic Hawking mode pair $(b_R, b_L)$ on $\bbC^4$ in the Jordan--Wigner basis $\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}$ with Killing boost generator $H_B = \omega(N_R - N_L)$, Bogoliubov-squeezed inertial modes $a_1 = \cos r\,b_R - \sin r\,b_L^\dagger$ and $a_2 = \cos r\,b_L + \sin r\,b_R^\dagger$ (where $\tan r = e^{-\omega/(2T_H)}$, Fermi--Dirac occupation $n_{\mathrm{FD}} = \sin^2 r = (e^{\omega/T_H}+1)^{-1}$, and $0 < r < \pi/4$ for $0 < T_H < \infty$), inertial Hamiltonian $H_A = \omega(a_1^\dagger a_1 + a_2^\dagger a_2)$, and exterior local subalgebra $\cA_B := M_2(\bbC)_R \otimes \1_L$. Then:
+  \begin{enumerate}
+    \item[(i)] On the full two-sided algebra $M_4(\bbC)$, $[H_A, H_B] = 0$ identically; consequently unconstrained $\gamma(H_A,H_B) = 0$ and the bilocal jump $L = H_B$ generates a nontrivial dissipator that is BPS-immune for both $H_A$ and $H_B$.
+    \item[(ii)] Restricted to exterior-local operators $X \in \cA_B$ with $\Tr(X) = 0$ and $[X, H_B] = 0$ ($\omega \neq 0$), one has $X = c(N_R - \frac{1}{2}\1_4)$ and the exact identity
+    \begin{equation}\label{eq:gamma-loc-ferm}
+      \normF{[X, H_A]}^2 = \bigl(8\omega^2\sin^2 r\cos^2 r\bigr)\normF{X}^2 = \bigl(8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})\bigr)\normF{X}^2,
+    \end{equation}
+    so $\gamma_{\mathrm{loc}}(H_A, H_B; \cA_B) = 8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})$.
+    \item[(iii)] Whenever $\omega \neq 0$, $\sin r \neq 0$, and $\cos r \neq 0$ (in particular, all $0 < T_H < \infty$), $\cA_B \cap \{H_A, H_B\}' = \bbC\1_4$, so no nontrivial exterior-local dissipator in $\cA_B$ is simultaneously BPS-immune for $H_A$ and $H_B$.
+  \end{enumerate}
+  \item[(f)] \emph{(Exact 4D fermionic Hawking-pair ODE trajectory and saturation identity)} Let $|0_A\rangle = \cos r|00\rangle + \sin r|11\rangle$ be the inertial vacuum ($a_1|0_A\rangle = a_2|0_A\rangle = 0$), and define $\cL_B(\rho) = \allowbreak -\frac{\Gamma}{2}[N_R,[N_R,\rho]]$ with $\Gamma \ge 0$ and $L = \sqrt{\Gamma}\,N_R \in \cA_B$. Then:
+  \begin{enumerate}
+    \item[(i)] $\cL_B^\dagger(H_B) = \cL_B^\dagger(H_B^2) = 0$ identically;
+    \item[(ii)] the explicit matrix curve
+    \[
+      \rho_B(s) = \cos^2 r\,|00\rangle\langle 00| + \sin^2 r\,|11\rangle\langle 11| + e^{-\Gamma s/2}\sin r\cos r\,(|00\rangle\langle 11| + |11\rangle\langle 00|)
+    \]
+    solves the GKSL differential equation $\frac{d}{ds}\rho_B(s) = \cL_B(\rho_B(s))$ identically entrywise for all $s \in \bbR$ with $\rho_B(0) = |0_A\rangle\langle 0_A|$, and carries exact inertial mean energy
+    \begin{equation}\label{eq:ferm-energy-s}
+      \Tr\bigl(H_A \rho_B(s)\bigr) = 4\omega\sin^2 r\cos^2 r\,\bigl(1 - e^{-\Gamma s/2}\bigr) = 4\omega\, n_{\mathrm{FD}}(1-n_{\mathrm{FD}})\bigl(1 - e^{-\Gamma s/2}\bigr);
+    \end{equation}
+    \item[(iii)] for strictly positive $\Gamma > 0$, in the dephased limit $s \to \infty$ ($\rho_B(\infty) = \cP_B(|0_A\rangle\langle 0_A|)$ with $\cP_B$ pinching in the $N_R$-eigenspaces), the excited inertial pair number equals both the destroyed horizon-entanglement coherence squared and the linear Hawking entropy $S_L(\rho_R^{\mathrm{Hawking}}) := 1 - \Tr(\rho_R^2)$:
+    \begin{equation}\label{eq:firewall-entropy}
+      \frac{\Tr\bigl(H_A \rho_B(\infty)\bigr)}{2\omega}
+      \;=\; \normF{|0_A\rangle\langle 0_A| - \cP_B(|0_A\rangle\langle 0_A|)}^2
+      \;=\; 2\,n_{\mathrm{FD}}(1-n_{\mathrm{FD}})
+      \;=\; S_L\bigl(\rho_R^{\mathrm{Hawking}}\bigr).
+    \end{equation}
+  \end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) By Theorem~\ref{thm:bps}(c), every $L_k \in \cA$ commutes with $H_A$ and $H_B$, so $L_k \in \cA \cap \{H_A,H_B\}' = \bbC\1$; scalar jumps yield $\cL_{c_k\1}(\rho) = |c_k|^2\rho - |c_k|^2\rho = 0$.
+(b) Since $L_{B,k} \in \cA$ commutes with $H_B$, its traceless part $\tilde{L}_{B,k}$ lies in $\cA \cap \{H_B\}'$ and obeys $[\tilde{L}_{B,k}, H_A] = [L_{B,k}, H_A]$. Applying Theorem~\ref{thm:bps}(a),(f) gives $\frac{1}{d}\Tr(\Gamma_{\cL_B}(H_A,H_A)) = \frac{1}{d}\sum_k \normF{[\tilde{L}_{B,k},H_A]}^2 \ge \frac{\gamma}{d}\sum_k\normF{\tilde{L}_{B,k}}^2$.
+(c)--(d) Direct commutator evaluation.
+(e) In the basis $\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}$, $H_B = \omega\,\mathrm{diag}(0,-1,1,0)$ and $H_A$ is block-diagonal on $\mathrm{span}\{|00\rangle,|11\rangle\}$ (where $H_B = 0$) and $\mathrm{span}\{|01\rangle,|10\rangle\}$ (where $H_A = \omega\1_2$), hence $[H_A,H_B]=0$ identically. An exterior-local operator $X \in M_2(\bbC)_R\otimes\1_L$ has block form $X = \begin{pmatrix} a\1_2 & b\1_2 \\ c\1_2 & d\1_2 \end{pmatrix}$; requiring $[X,H_B]=0$ with $\omega\neq 0$ forces $b=c=0$, and $\Tr(X)=2(a+d)=0$ forces $d=-a$, giving $X = -2a(N_R - \frac{1}{2}\1_4)$ and direct Frobenius evaluation of $[X,H_A]$ yields \eqref{eq:gamma-loc-ferm}. When $\omega\sin r\cos r \neq 0$, $[X,H_A]=0$ forces $\tilde{X}=0$, proving (iii).
+(f) Direct matrix differentiation verifies $\frac{d}{ds}\rho_B(s) = \cL_B(\rho_B(s))$ entrywise, and trace evaluation yields \eqref{eq:ferm-energy-s}--\eqref{eq:firewall-entropy} for $\Gamma > 0$. All parts (a)--(f) are formalized in \code{OSTQD/Theorem2\_Horizon.lean}.
+\end{proof}
+
+\paragraph{Bosonic Hawking pair and unified single-mode excitation law.}
+For a bosonic Hawking mode pair $(b_R, b_L)$ with $a_1 = \cosh r\,b_R - \sinh r\,b_L^\dagger$, $a_2 = \cosh r\,b_L - \sinh r\,b_R^\dagger$ ($\tanh r = e^{-\omega/(2T_H)}$, Bose--Einstein occupation $n_{\mathrm{BE}} = \sinh^2 r = (e^{\omega/T_H}-1)^{-1}$), one likewise has $[H_A, H_B] = 0$ globally on the two-mode Fock space, while $H_A = \omega[\cosh(2r)(N_R+N_L+1) - \sinh(2r)(b_R^\dagger b_L^\dagger + b_R b_L) - 1]$ fails to commute with the exterior-local operator $N_R$. On the common dense core of finite-support Fock vectors (extended by limit to the two-mode squeezed vacuum $|0_A\rangle$ for $0 \le \tanh r < 1$, and verified numerically at Fock cutoff $N_{\mathrm{cut}} = 18$), $\cL_B^\dagger(H_A) = -\frac{\Gamma}{2}[N_R,[N_R,H_A]] = +\frac{\Gamma\omega}{2}\sinh(2r)(b_R^\dagger b_L^\dagger + b_R b_L)$, whose expectation value in $|0_A\rangle$ is $2\Gamma\omega\,n_{\mathrm{BE}}(1+n_{\mathrm{BE}})$. Combining with the $s=0$ derivative of \eqref{eq:ferm-energy-s} yields the unified single-mode excitation law ($\sigma = +1$ bosons, $\sigma = -1$ fermions):
+\begin{equation}\label{eq:unified-heating}
+  \left.\frac{\partial}{\partial s}\langle H_A \rangle_{\rho_B(s)}\right|_{s=0,\,|0_A\rangle}
+  \;=\; 2\Gamma\omega\, n_\sigma(\omega)\bigl(1 + \sigma\, n_\sigma(\omega)\bigr)
+  \;=\; 2\Gamma\omega\,\mathrm{Var}_{|0_A\rangle}(N_R).
+\end{equation}
+Figure~\ref{fig:heating} confirms \eqref{eq:ferm-energy-s}--\eqref{eq:unified-heating} to $2.22\times 10^{-16}$ (exact 4D fermions) and $7.58\times 10^{-9}$ relative error (bosonic Fock truncation $N_{\mathrm{cut}}=18$).
+
+\begin{figure}[!tb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig1_horizon_heating.pdf}
+  \caption{Exact single-mode inertial vacuum excitation when $B$'s exterior-local Killing-conserving flow $\cL_B(\rho) = -\frac{\Gamma}{2}[N_R,[N_R,\rho]]$ ($\Gamma>0$) is applied to $|0_A\rangle$ (Theorem~\ref{thm:horizon}(f) and Eq.~\eqref{eq:unified-heating}). (a)~Initial excitation rate for bosons and fermions versus $T_H/\omega$. (b)~Auxiliary-time saturation of the excited fermionic pair number $\langle H_A\rangle_{\rho_B(s)}/(2\omega)$ to the exact linear Hawking entropy $S_L(\rho_R^{\mathrm{Hawking}})$ \eqref{eq:firewall-entropy}.}
+  \label{fig:heating}
+\end{figure}
+
+\begin{remark}[Physical scope: single-mode excitation vs.\ continuum firewalls, and static redshift vs.\ terrestrial experiments]\label{rem:horizon-scope}
+Two over-generalizations must be explicitly avoided:
+\begin{enumerate}
+  \item \emph{Single-mode excitation vs.\ continuum firewalls:} Equation~\eqref{eq:unified-heating} establishes exact energy excitation of a single Bogoliubov mode pair under the specific exterior-local dephasing $\cL_B$. Upgrading this to a full spacetime firewall calculation requires summing over the continuum of horizon modes, evaluating the renormalized stress-energy tensor $\langle T_{\mu\nu}\rangle$, checking Hadamard regularity, and modeling Unruh--DeWitt detector response—all beyond the finite-dimensional framework of this paper.
+  \item \emph{Static proportional redshift ($\gamma_{\mathrm{loc}}=0$) does NOT automatically guarantee terrestrial null tests:} Theorem~\ref{thm:horizon}(c) proves only that proportional clocks ($H_B = \alpha H_A$) create \emph{zero inter-observer clock incompatibility} ($\gamma_{\mathrm{loc}} = 0$). For Hermitian-jump (unital) flows, it does \emph{not} imply zero dephasing of observables outside the commutant fixed-point algebra $\cF_O = \{L_{O,k}\}'$. (Note that for general non-unital GKSL generators, expectation-value conservation $\cL^\dagger(M)=0$ need not coincide with $\{L_{O,k}\}'$: e.g., $H=\mathrm{diag}(0,0,0,1)$, $L_0=|0\rangle\langle 2|$, $L_1=|1\rangle\langle 2|$, $M=\mathrm{diag}(1,-1,0,0)$ satisfies $\cL^\dagger(H)=\cL^\dagger(H^2)=\cL^\dagger(M)=0$ while $\normF{[M,L_k]}=1$ and $\cL^\dagger(M^2)=2|2\rangle\langle 2|\neq 0$.) Explicitly, take $H_A = \frac{1}{2}\sigma_z$, $H_B = 2H_A$, $L = \sqrt{\Gamma}H_A$, and $\rho_0 = |+\rangle\langle +|$: here $\gamma = 0$ and all moments of $H_A$ and $H_B$ are strictly conserved, yet the interferometric observable $\sigma_x \notin \{H_A\}'$ decays exponentially as $\langle\sigma_x\rangle_s = e^{-\Gamma s/2}$ (at $\Gamma=1, s=2$: $\langle\sigma_x\rangle = e^{-1} \approx 0.3679$, purity $\Tr(\rho_s^2) = \frac{1+e^{-2}}{2} \approx 0.5677$). Likewise, linking Eq.~\eqref{eq:unified-heating} or laboratory dephasing to physical proper time $\tau$ requires specifying the jump operators, their normalization, target degrees of freedom, coupling to the measured signal, and physical mapping $s(\tau)$, yielding an effective rate $\Gamma_{\mathrm{eff}}(\tau) = \Gamma_O\,\frac{ds}{d\tau}$ (for instance, giving visibility $\mathcal{V}(\tau) = \exp[-\frac{1}{2}\int_0^\tau \Gamma_{\mathrm{eff}}(u)\,du]$ in the qubit dephasing model above). Consequently, precision equivalence-principle measurements (MICROSCOPE \cite{MICROSCOPE2022}, testing differential free-fall acceleration) and macroscopic matter-wave interferometry (Pedalino et al.\ \cite{Pedalino2025}) are not predicted parameter-free by $\gamma_{\mathrm{loc}}=0$; rather, once the jump operators and signal coupling are specified, such experiments may constrain the corresponding effective rate $\Gamma_{\mathrm{eff}}(\tau)$ in weak gravity.
+\end{enumerate}
+\end{remark}
+
+%==============================================================================
+\section{Joint-Extension Monogamy vs.\ Observer Separation}\label{sec:cpl}
+%==============================================================================
+
+If observers $A$ and $B$ carry observer-separated channels $(\Phi_A, \Phi_B)$, what consistency condition links their descriptions on causally shared observables? Following Adlam and Rovelli \cite{AdlamRovelli2022}, we consider \emph{expectation-value Cross-Perspective Consistency} (CPL) on a chosen commuting shared algebra $\cA_{\mathrm{sh}}$ (embedded via $j_A: \cA_{\mathrm{sh}} \to \cA_A$ and $j_B: \cA_{\mathrm{sh}} \to \cA_B$):
+\begin{equation}\label{eq:cpl}
+  \Tr\bigl(j_A(X)\,\Phi_A(\rho)\bigr) = \Tr\bigl(j_B(X)\,\Phi_B(\rho)\bigr) \qquad \forall X \in \cA_{\mathrm{sh}},\;\forall \rho.
+\end{equation}
+When $A$ and $B$ share a \emph{common causal future} in which both bring decoded copies $A'$ and $B'$ of an unknown logical system $C$ (dimension $d_C \ge 2$, maximally entangled with a reference $R$ in $|\Phi_{d_C}\rangle_{RC} = d_C^{-1/2}\sum_{i=0}^{d_C-1} |i\rangle_R |i\rangle_C$) into one joint laboratory, quantum mechanics requires a single normalized joint Choi state $\sigma_{RA'B'} \in \cD((\bbC^{d_C})^{\otimes 3})$ satisfying the CPTP marginal constraint $\Tr_{A'B'}(\sigma_{RA'B'}) = \1_R / d_C$. Define the Bell-overlap projections
+\begin{equation}
+  P_A := |\Phi_{d_C}\rangle\langle\Phi_{d_C}|_{RA'} \otimes \1_{B'}, \qquad
+  P_B := |\Phi_{d_C}\rangle\langle\Phi_{d_C}|_{RB'} \otimes \1_{A'},
+\end{equation}
+so that the two observers' Schumacher entanglement fidelities \cite{Schumacher1996} are $F_A(\sigma) := \Tr(P_A\sigma)$ and $F_B(\sigma) := \Tr(P_B\sigma)$.
+
+\begin{theorem}[Linear Joint-Extension Sum Ceiling, Valid Choi Witness, Kay Curved Tradeoff, and Reversible CPL]\label{thm:cpl}
+Let $d_C \ge 1$.
+\begin{enumerate}
+  \item[(a)] \emph{(Exact projection overlap algebra)} $P_A$ and $P_B$ are Hermitian projections ($P_A^\dagger = P_A = P_A^2$, $P_B^\dagger = P_B = P_B^2$) obeying
+  \begin{equation}\label{eq:papbpa}
+    P_A P_B P_A = \frac{1}{d_C^2}\, P_A, \qquad P_B P_A P_B = \frac{1}{d_C^2}\, P_B.
+  \end{equation}
+  \item[(b)] \emph{(Sharp linear outer envelope and valid CPTP Choi saturation witness)} For every normalized pure state $|\psi\rangle \in (\bbC^{d_C})^{\otimes 3}$ and every convex mixture $\sigma_{RA'B'} = \sum_k w_k |\psi_k\rangle\langle\psi_k|$ ($w_k \ge 0$, $\sum_k w_k = 1$),
+  \begin{equation}\label{eq:joint-bound}
+    F_A(\sigma) + F_B(\sigma) \;\le\; 1 + \frac{1}{d_C}.
+  \end{equation}
+  In particular, for every $d_C \ge 2$, no joint CPTP extension supports $F_A = F_B = 1$. Moreover, the linear sum bound \eqref{eq:joint-bound} is sharp even under the CPTP Choi marginal constraint $\Tr_{A'B'}(\sigma_*) = \1_R / d_C$: it is attained symmetrically by the mixed Choi state
+  \begin{equation}\label{eq:choi-witness}
+    \sigma_* := \frac{1}{d_C}\sum_{j=0}^{d_C-1} |\psi_j\rangle\langle\psi_j|, \qquad
+    |\psi_j\rangle := \frac{|\Phi_{d_C}\rangle_{RA'}|j\rangle_{B'} + |\Phi_{d_C}\rangle_{RB'}|j\rangle_{A'}}{\sqrt{2 + 2/d_C}},
+  \end{equation}
+  which satisfies $\Tr_{A'B'}(\sigma_*) = \1_R / d_C$ and $F_A(\sigma_*) = F_B(\sigma_*) = \frac{1 + 1/d_C}{2}$. (By contrast, the naive product state $|\Phi_{d_C}\rangle_{RA'}\otimes |0\rangle_{B'}$ attains only $(F_A, F_B) = (1, 1/d_C^2)$, strictly below the linear envelope for all $d_C \ge 2$.)
+  \item[(c)] \emph{(Comparison with the Kay--Kaszlikowski--Ramanathan curved boundary \cite{Kay2009})} The linear inequality \eqref{eq:joint-bound} is a sharp \emph{outer sum envelope}, not the full achievable $(F_A,F_B)$ boundary. From the constant-angle projection identity \eqref{eq:papbpa} (equivalently \cite[Eq.~(6)]{Kay2009}), every joint state obeys the strictly tighter concave curved tradeoff
+  \begin{equation}\label{eq:kay-curved}
+    F_B \;\le\; \left(\frac{\sqrt{F_A}}{d_C} + \sqrt{1 - \frac{1}{d_C^2}}\,\sqrt{1 - F_A}\right)^2,
+  \end{equation}
+  which meets the tangent line $F_A + F_B = 1 + 1/d_C$ precisely at the symmetric saturation point $F_A = F_B = (1 + 1/d_C)/2$ of \eqref{eq:choi-witness} and reduces to $F_B \le 1/d_C^2$ at $F_A = 1$. (For instance, at $d_C = 2$ and $F_A = 0.9$, \eqref{eq:kay-curved} gives $F_B \le 0.5598$, strictly tighter than the linear envelope $1.5 - 0.9 = 0.6$.)
+  \item[(d)] \emph{(Constructive observer-separated reversible channels with explicit decoders and CPL)} On $\cH_C \otimes \cH_{\mathrm{sh}} \cong \bbC^{d_C} \otimes \bbC^m$, for any unitary $V_B \in U(d_C)$, define the observer-separated reversible channels $\Phi_A(\rho) = \rho$ and $\Phi_B(\rho) = (V_B\otimes\1_{\mathrm{sh}})\rho(V_B\otimes\1_{\mathrm{sh}})^\dagger$, together with explicit decoders $\cR_A = \id$ and $\cR_B(\sigma) = (V_B^\dagger\otimes\1_{\mathrm{sh}})\sigma(V_B\otimes\1_{\mathrm{sh}})$. Then the decoded entanglement fidelities satisfy $F_e(\cR_A\circ\Phi_A) = 1$ and $F_e(\cR_B\circ\Phi_B) = |\Tr(V_B^\dagger V_B)|^2/d_C^2 = 1$ (note that without $\cR_B$, $F_e(\mathrm{Ad}_{V_B}) = |\Tr V_B|^2/d_C^2$ can vanish, e.g.\ $0$ for $V_B=\sigma_z$), while exact expectation-value CPL \eqref{eq:cpl} holds for every shared observable $\1_C \otimes X_{\mathrm{sh}} \in \cA_{\mathrm{sh}}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Direct index contraction on $(\mathrm{Fin}\,d_C)^3$ gives $(P_A P_B P_A)_{(r,a,b),(r',a',b')} = d_C^{-2}(P_A)_{(r,a,b),(r',a',b')}$.
+(b) For pure $|\psi\rangle$, let $u := P_A\psi$ and $w := P_B\psi$, so $\|u\|^2 = F_A$, $\|w\|^2 = F_B$, and $\|P_B u\|^2 = \langle\psi, P_A P_B P_A\psi\rangle = d_C^{-2}\|u\|^2$. Cauchy--Schwarz yields $|\mathrm{Re}\langle u,w\rangle| = |\mathrm{Re}\langle P_B u, w\rangle| \le d_C^{-1}\|u\|\,\|w\|$, so $\|u+w\|^2 \le (1+d_C^{-1})(\|u\|^2+\|w\|^2)$. Meanwhile $\|u\|^2+\|w\|^2 = \mathrm{Re}\langle\psi,u+w\rangle \le \|\psi\|\,\|u+w\|$, proving $F_A+F_B \le 1 + 1/d_C$; convex combinations extend this to all density matrices. For $\sigma_*$ in \eqref{eq:choi-witness}, direct summation over $(\mathrm{Fin}\,d_C)^3$ verifies $\|\psi_j\|^2 = 1$, $\langle\psi_j, P_A\psi_j\rangle = \langle\psi_j, P_B\psi_j\rangle = (1+1/d_C)/2$, and $\sum_{j,a,b} \psi_j(r,a,b)\overline{\psi_j(r',a,b)} = \delta_{r,r'}$, hence $\Tr_{A'B'}\sigma_* = \1_R/d_C$.
+(c) For pure $|\psi\rangle$ with $P_A\psi \neq 0$, maximizing $\langle\psi,P_B\psi\rangle$ at fixed $\langle\psi,P_A\psi\rangle = F_A$ inside the 2D subspace spanned by $P_A\psi/\|P_A\psi\|$ and $(1-P_A)P_B P_A\psi$ (using $P_A P_B P_A = d_C^{-2}P_A$) gives \eqref{eq:kay-curved}; at the boundary $P_A\psi = 0$ ($F_A=0$), writing $w := P_B\psi$ gives $\|P_A w\|^2 = d_C^{-2}\|w\|^2$ and $\|w\|^2 = \langle\psi, (\1-P_A)w\rangle \le \|\psi\|\sqrt{1-d_C^{-2}}\,\|w\|$, so $F_B = \|w\|^2 \le 1 - d_C^{-2}$, matching \eqref{eq:kay-curved}. Concavity of the RHS in $F_A$ extends the bound to all mixed states \cite{Kay2009}.
+(d) Unitarity of $V_B$ gives $(V_B\otimes\1_{\mathrm{sh}})^\dagger(\1_C\otimes X_{\mathrm{sh}})(V_B\otimes\1_{\mathrm{sh}}) = \1_C\otimes X_{\mathrm{sh}}$ and $|\Tr(V_B^\dagger V_B)|^2/d_C^2 = 1$. Parts (a), (b) (pure, mixed, and exact Choi witness $\sigma_*$), and (d) are formalized in \code{OSTQD/Theorem3\_CrossPerspective.lean}.
+\end{proof}
+
+\begin{remark}[Scope of Theorem~\ref{thm:cpl}(d) and explicit comparison with Wigner's friend no-go theorems]\label{rem:cpl-wigner}
+Theorem~\ref{thm:cpl}(d) is a strictly algebraic existence proof of two reversible channels with inverse decoders agreeing in expectation value on a \emph{chosen} commuting tensor factor $\cA_{\mathrm{sh}} = \1_C\otimes M_m(\bbC)$. Four limitations must be noted explicitly:
+(i)~Expectation-value agreement \eqref{eq:cpl} is weaker than single-shot outcome-record agreement: two bipartite states $\rho_{\mathrm{corr}} = \frac{1}{2}(|00\rangle\langle 00| + |11\rangle\langle 11|)$ and $\rho_{\mathrm{ind}} = \1_4/4$ share identical single-bit marginals yet yield record-disagreement probabilities $0$ and $1/2$, respectively; guaranteeing record agreement requires adding selective instruments $\{\cI_{O,x}\}$ and a record-merging rule.
+(ii)~Showing that physical pre-horizon and ADM observables lie inside a commuting factor $\cA_{\mathrm{sh}}$ is a modeling assumption, not proved from general relativity here.
+(iii)~Theorem~\ref{thm:cpl}(d) uses reversible channels alone; integrating it with irreversible $s$-actualization can be achieved via the finite-width decoherence-free energy window of Theorem~\ref{thm:double}(f) (realized in Section~\ref{sec:matrix}).
+(iv)~Relative to extended Wigner's friend no-go theorems \cite{FrauchigerRenner2018,Bong2020,HausmannRenner2025,Walleghem2025,Adlam2026}, OSTQD does \emph{not} claim to resolve all assumptions simultaneously: it retains unitary $t$-evolution within each observer's perspective and expectation-value CPL on $\cA_{\mathrm{sh}}$, while explicitly \emph{relaxing} the assumption of observer-independent absoluteness of facts (no global joint CPTP extension $\Psi_{AB}$ when $A$ and $B$ lack a common causal future). When a common causal future \emph{is} created (as in the AMPS delayed-jump scenario), a joint state is operationally reinstated and \eqref{eq:joint-bound}--\eqref{eq:kay-curved} apply; whether dynamical complexity (such as Harlow--Hayden \cite{HarlowHayden2013}) prevents operational violation in every gravitational initial state remains an open question beyond our finite-dimensional theorem.
+\end{remark}
+
+%==============================================================================
+\section{Parisi--Wu Arrow, Spectral Pinching, Energy Windows, and Dimension Bottlenecks}\label{sec:double-bottleneck}
+%==============================================================================
+
+We next formalize the directed monotonicity of Hermitian-jump $s$-flows, establish the exact connection between $\lim_{s\to\infty} e^{s\cL}$ and orthogonal pinching $\cP$, clarify the algebraic double-uncertainty decomposition relative to Baumgratz--Cramer--Plenio \cite{Baumgratz2014} and Lidar--Chuang--Whaley \cite{Lidar1998}, resolve the exact-eigenspace scrambling obstruction via finite-width energy windows, and state the sharp intermediate-dimension bottleneck bound.
+
+Let $\{K_k\}_{k=1}^m$ be Hermitian jump operators ($K_k^\dagger = K_k$) generating the unital actualization flow $\cL(\rho) = -\frac{1}{2}\sum_k [K_k, [K_k, \rho]]$. Denote the \emph{linear entropy} by $S_L(\rho) := 1 - \Tr(\rho^2)$ (distinct from the R\'enyi-2 entropy $S_2(\rho) := -\ln\Tr(\rho^2)$, although both are monotone functions of purity), and let $\cP(\rho) := \sum_{\alpha=1}^r \Pi_\alpha \rho \Pi_\alpha$ be the orthogonal pinching map associated with a complete family of orthogonal projections ($\Pi_\alpha^\dagger = \Pi_\alpha = \Pi_\alpha^2$, $\Pi_\alpha\Pi_\beta = \delta_{\alpha\beta}\Pi_\alpha$, $\sum_\alpha \Pi_\alpha = \1$).
+
+\begin{theorem}[Parisi--Wu Purity Arrow, Spectral Block Decay, Pinching Identity, and Finite-Width Energy Windows]\label{thm:double}
+For every Hermitian matrix $\rho = \rho^\dagger \in M_d(\bbC)$ (and, where von Neumann entropy is stated, every density matrix $\rho \succeq 0$ with $\Tr\rho = 1$):
+\begin{enumerate}
+  \item[(a)] \emph{(Directed Parisi--Wu purity arrow)}
+  \begin{equation}\label{eq:pw-arrow}
+    \left.\frac{\partial}{\partial s}\,\Tr\bigl(\rho(s)^2\bigr)\right|_{s=0} = 2\Tr\bigl(\rho\,\cL(\rho)\bigr) = -\sum_k \normF{[K_k, \rho]}^2 \;\le\; 0,
+  \end{equation}
+  with equality iff $[K_k, \rho] = 0$ for all $k$ (strict decrease outside the fixed-point algebra $\cF = \{K_k\}'$).
+  \item[(b)] \emph{(Exact linear-entropy Pythagorean identity)} For any orthogonal pinching $\cP$ and any Hermitian $\rho$,
+  \begin{equation}\label{eq:pythagorean}
+    S_L\bigl(\cP(\rho)\bigr) \;=\; S_L(\rho) \;+\; \normF{\rho - \cP(\rho)}^2.
+  \end{equation}
+  For any density matrix $\rho \succeq 0$ ($\Tr\rho=1$), the von Neumann analogue is $S(\cP(\rho)) = S(\rho) + D(\rho \,\|\, \cP(\rho))$ \cite{Baumgratz2014}.
+  \item[(c)] \emph{(Fixed-point observable invisibility)} Every observable $M \in \cF = \{K_k\}'$ satisfies $\cL^\dagger(M) = 0$, hence $\Tr(M\,e^{s\cL}(\rho)) = \Tr(M\rho)$ for all $s \ge 0$.
+  \item[(d)] \emph{(Decoherence-free sector preservation \cite{Lidar1998})} If $\rho$ is supported inside a single sector $\Pi_\alpha$ ($\Pi_\alpha\rho\Pi_\alpha = \rho$) on which each $K_k$ acts as a scalar $c_{k,\alpha}\Pi_\alpha$, then $\cL(\rho) = 0$ and $\cP(\rho) = \rho$ identically.
+  \item[(e)] \emph{(Spectral block decay linking $\lim_{s\to\infty} e^{s\cL} = \cP$)} Suppose the Hermitian jumps $\{K_k\}$ simultaneously act as scalars $\lambda_{k,\alpha} \in \bbR$ on each orthogonal sector $\Pi_\alpha$ ($K_k\Pi_\alpha = \Pi_\alpha K_k = \lambda_{k,\alpha}\Pi_\alpha$, i.e., commuting spectral jumps $K_k = \sum_\alpha \lambda_{k,\alpha}\Pi_\alpha$). Then every off-diagonal block $\Pi_\alpha\rho\Pi_\beta$ is an exact eigenvector of $\cL$:
+  \begin{equation}\label{eq:block-eigen}
+    \cL(\Pi_\alpha\rho\Pi_\beta) = -\frac{1}{2}\left(\sum_{k=1}^m (\lambda_{k,\alpha} - \lambda_{k,\beta})^2\right)\Pi_\alpha\rho\Pi_\beta.
+  \end{equation}
+  Consequently, $e^{s\cL}(\Pi_\alpha\rho\Pi_\beta) = \exp\!\bigl[-\frac{s}{2}\sum_k(\lambda_{k,\alpha}-\lambda_{k,\beta})^2\bigr]\Pi_\alpha\rho\Pi_\beta$. Whenever the eigenvalue tuples $(\lambda_{k,\alpha})_k$ separate distinct sectors ($\forall \alpha\neq\beta, \exists k, \lambda_{k,\alpha}\neq\lambda_{k,\beta}$), the exact long-time limit is $\lim_{s\to\infty} e^{s\cL}(\rho) = \cP(\rho)$, identifying $\normF{\rho-\cP(\rho)}^2$ in \eqref{eq:pythagorean} precisely with the coherence destroyed by the $s$-flow.
+  \item[(f)] \emph{(Finite-width microcanonical energy-window compatibility with non-stationary $t$-evolution)} Let $H = H^\dagger$ commute with a coarse-grained window projector $\Pi_{\mathrm{win}} = \1_{[E-\Delta, E+\Delta]}(H)$ (so $H$ may be \emph{non-scalar} inside $\Pi_{\mathrm{win}}$), and let coarse-grained jump operators $\{K_k\}$ satisfy $[K_k, H] = 0$ and $K_k\Pi_{\mathrm{win}} = \Pi_{\mathrm{win}}K_k = c_k\Pi_{\mathrm{win}}$ (piecewise constant on the energy window). Then for every state $\rho$ supported in $\Pi_{\mathrm{win}}$,
+  \begin{equation}\label{eq:window-compat}
+    \cL(\rho) = 0, \qquad \cL([H,\rho]) = [H,\cL(\rho)] = 0, \qquad \Pi_{\mathrm{win}}(-i[H,\rho])\Pi_{\mathrm{win}} = -i[H,\rho],
+  \end{equation}
+  so non-stationary unitary $t$-evolution proceeds inside $\Pi_{\mathrm{win}}$ for any state with $[H,\rho] \neq 0$ (whereas eigenstates or functions $f(H)$ remain stationary), while the $s$-actualization flow leaves the entire window trajectory pointwise invariant.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a)--(d) follow from $[K,\rho]^\dagger = -[K,\rho]$, trace cyclicity, and $\Tr(\cP(\rho)\rho) = \Tr(\cP(\rho)^2)$.
+(e) Using $K_k\Pi_\alpha = \lambda_{k,\alpha}\Pi_\alpha$ and $\Pi_\beta K_k = \lambda_{k,\beta}\Pi_\beta$, $[K_k, \Pi_\alpha\rho\Pi_\beta] = (\lambda_{k,\alpha}-\lambda_{k,\beta})\Pi_\alpha\rho\Pi_\beta$, and iterating the commutator gives $-\frac{1}{2}[K_k,[K_k,\Pi_\alpha\rho\Pi_\beta]] = -\frac{1}{2}(\lambda_{k,\alpha}-\lambda_{k,\beta})^2 \Pi_\alpha\rho\Pi_\beta$; summing over $k$ yields \eqref{eq:block-eigen} and its exact exponential.
+(f) Applying (d) gives $\cL(\rho) = 0$; Theorem~\ref{thm:bps}(d) gives $\cL([H,\rho]) = [H,\cL(\rho)] = 0$; and $[H,\Pi_{\mathrm{win}}]=0$ with $\Pi_{\mathrm{win}}\rho\Pi_{\mathrm{win}}=\rho$ gives $\Pi_{\mathrm{win}}(-i[H,\rho])\Pi_{\mathrm{win}} = -i[H,\rho]$. All algebraic parts (a)--(f) are formalized in \code{OSTQD/Theorem4\_DoubleUncertainty.lean}.
+\end{proof}
+
+\begin{remark}[Relation to coherence theory, non-commuting jumps, and why exact single eigenspaces fail]\label{rem:coherence-window}
+Three clarifications ensure strict alignment with quantum information theory:
+(1)~When $\{K_k\}$ and $\cP$ are chosen independently without the spectral alignment of Theorem~\ref{thm:double}(e), $\cP$ need \emph{not} equal $\lim_{s\to\infty} e^{s\cL}$: for $K = \sigma_x$, $\rho = |+\rangle\langle +|$, and $\sigma_z$-pinching $\cP_z$, one has $e^{s\cL}(\rho) = \rho$ for all $s \ge 0$ while $\normF{\rho-\cP_z(\rho)}^2 = 1/2$. For general \emph{non-commuting} Hermitian jumps (such as $K_1=\sigma_x, K_2=\sigma_z$), $\cL$ is Hilbert--Schmidt self-adjoint and negative semidefinite with kernel $\cF = \{K_k\}'$, so $\lim_{s\to\infty} e^{s\cL}$ is the trace-preserving Hilbert--Schmidt orthogonal conditional expectation $E_{\cF}$ onto $\cF$ (here $E_{\cF}(\rho) = \frac{\Tr\rho}{2}\1_2$, which is not a simple block pinching), and the same Pythagorean identity $S_L(E_{\cF}(\rho)) = S_L(\rho) + \normF{\rho - E_{\cF}(\rho)}^2$ holds.
+(2)~Following Baumgratz--Cramer--Plenio \cite{Baumgratz2014}, $S(\cP(\rho)) - S(\rho) = D(\rho\|\cP(\rho))$ is the standard relative entropy of coherence (generalized to block pinching), whereas the Hilbert--Schmidt quantity $\normF{\rho-\cP(\rho)}^2$ is a convenient $L^2$ algebraic measure rather than a universal coherence monotone under all incoherent operations. Furthermore, $S_L(\rho)$ is a function of the instantaneous state $\rho$ alone and cannot retrospectively distinguish environment entanglement from classical mixing without specifying the dynamical preparation.
+(3)~In a \emph{single exact energy eigenspace} ($H_B\Pi_E = E\Pi_E$), $[H_B,\rho]=0$ identically, forbidding any nontrivial $t$-scrambling generated by $H_B$ itself! Theorem~\ref{thm:double}(f) resolves this constructively by replacing a single exact eigenvalue with a \emph{finite-width microcanonical window} $\Pi_{\mathrm{win}} = \1_{[E-\Delta, E+\Delta]}(H_B)$ on which coarse-grained $K_k = f_k(H_B)$ are piecewise constant. Note carefully that decoherence-free protection (as in Lidar--Chuang--Whaley \cite{Lidar1998}) guarantees that $s$-actualization does not \emph{destroy} unitary $t$-scrambling or radiation recovery; it is a compatibility condition rather than a standalone proof of fast scrambling or Page-curve recovery.
+\end{remark}
+
+\paragraph{Intermediate-dimension bottleneck bound.}
+Finally, consider any CPTP encoding channel $\cE: M_{d_C}(\bbC) \to M_{d_f}(\bbC)$ (Kraus operators $\{E_\alpha\}$, $\sum_\alpha E_\alpha^\dagger E_\alpha = \1_{d_C}$) passing through an intermediate Hilbert space $\cH_f \cong \bbC^{d_f}$, followed by any CPTP decoding channel $\cR: M_{d_f}(\bbC) \to M_{d_C}(\bbC)$ (Kraus operators $\{R_\beta\}$, $\sum_\beta R_\beta^\dagger R_\beta = \1_{d_f}$) without access to any side register.
+
+\begin{theorem}[Exact Sharp Intermediate-Dimension Bottleneck Bound on Entanglement Fidelity]\label{thm:bottleneck}
+For all positive integers $d_C, d_f$ and all CPTP channels $\cE: M_{d_C}(\bbC) \to M_{d_f}(\bbC)$ and $\cR: M_{d_f}(\bbC) \to M_{d_C}(\bbC)$, the Schumacher entanglement fidelity \cite{Schumacher1996} obeys
+\begin{equation}\label{eq:bottleneck}
+  F_e(\cR \circ \cE) \;=\; \frac{1}{d_C^2}\sum_{\alpha,\beta}\bigl|\Tr(R_\beta E_\alpha)\bigr|^2 \;\le\; \min\!\left(1,\;\frac{d_f^2}{d_C^2}\right) \;=\; \min\!\left(1,\; e^{-2(S_C - S_f)}\right),
+\end{equation}
+where we define the mathematical log-dimensions $S_C := \ln d_C$ and $S_f := \ln d_f$ (in nats). Whenever $d_f \le d_C$, equality is attained by the explicit CPTP encoder with Kraus operators $E_0 = \sum_{a=0}^{d_f-1} |a\rangle_f\langle a|_C$ and complement-reset operators $E_j = |0\rangle_f\langle j|_C$ ($j = d_f,\dots,d_C-1$), together with the isometric decoder $R_0 = E_0^\dagger$.
+\end{theorem}
+
+\begin{proof}
+To show $F_e \le d_f^2/d_C^2$, write $w_{\beta,a} \in \bbC^{d_C}$ for column $a$ of $R_\beta$, so $\Tr(R_\beta E_\alpha) = \Tr(E_\alpha R_\beta) = \sum_{a=1}^{d_f}(E_\alpha w_{\beta,a})_a$. Cauchy--Schwarz over $a \in \{1,\dots,d_f\}$ yields $|\Tr(R_\beta E_\alpha)|^2 \le d_f \sum_{a=1}^{d_f} |(E_\alpha w_{\beta,a})_a|^2$. Summing over $\alpha$ and using $\sum_\alpha E_\alpha^\dagger E_\alpha = \1_{d_C}$ gives $\sum_\alpha |(E_\alpha w_{\beta,a})_a|^2 \le \sum_\alpha \|E_\alpha w_{\beta,a}\|^2 = \|w_{\beta,a}\|^2$; summing over $a$ and $\beta$ yields $\sum_{\alpha,\beta}|\Tr(R_\beta E_\alpha)|^2 \le d_f \sum_\beta \Tr(R_\beta^\dagger R_\beta) = d_f\Tr(\1_{d_f}) = d_f^2$. Independently, applying Hilbert--Schmidt Cauchy--Schwarz to $\Tr(R_\beta E_\alpha) = \langle \1_{d_C}, R_\beta E_\alpha\rangle_{\mathrm{HS}}$ yields $|\Tr(R_\beta E_\alpha)|^2 \le d_C \Tr((R_\beta E_\alpha)^\dagger R_\beta E_\alpha)$, and summing over $\beta$ then $\alpha$ using $\sum_\beta R_\beta^\dagger R_\beta = \1_{d_f}$ and $\sum_\alpha E_\alpha^\dagger E_\alpha = \1_{d_C}$ proves $F_e \le 1$. For sharpness ($d_f \le d_C$), $E_0^\dagger E_0 + \sum_{j=d_f}^{d_C-1} E_j^\dagger E_j = \1_{d_C}$, $R_0^\dagger R_0 = \1_{d_f}$, $\Tr(R_0 E_0) = d_f$, and $\Tr(R_0 E_j) = 0$ for $j \ge d_f$, giving $F_e = d_f^2/d_C^2$. Both bounds and exact sharpness are formalized in \code{OSTQD/Theorem5\_Bottleneck.lean}.
+\end{proof}
+
+\begin{remark}[Physical interpretation: Hawking evaporation vs.\ classical black hole mergers, and $F_e$ vs.\ re-observation probability]\label{rem:bottleneck-scope}
+Three physical distinctions are critical when applying Theorem~\ref{thm:bottleneck} to black holes:
+\begin{enumerate}
+  \item \emph{Entanglement fidelity is NOT single-event re-observation probability:} Equation~\eqref{eq:bottleneck} bounds the Schumacher entanglement fidelity $F_e$ of a quantum channel, which differs numerically from projection or detection probabilities. For example, at $(d_C, d_f) = (4, 2)$, the maximum entanglement fidelity is $d_f^2/d_C^2 = 1/4$, a complete erasure channel gives $F_e = 1/16$, whereas projecting a maximally mixed input onto a 2D subspace succeeds with probability $1/2$.
+  \item \emph{Mathematical log-dimension vs.\ Bekenstein--Hawking entropy:} The equality $d_f^2/d_C^2 = e^{-2(S_C - S_f)}$ is exact for $S_C := \ln d_C, S_f := \ln d_f$. Associating $d_f \sim e^{S_{\mathrm{BH}}}$ is an additional semiclassical physical hypothesis, and passing through a small CPTP bottleneck is structurally distinct from the post-selected / non-isometric holographic interior codes of Akers et al.\ \cite{Akers2022}.
+  \item \emph{Hawking evaporation vs.\ classical black hole mergers (Hawking's area theorem \cite{Hawking1971}):} During \emph{Hawking evaporation}, semiclassical radiation genuinely reduces the black hole's Bekenstein--Hawking entropy $S_i \to S_f < S_i$, so an exterior observer restricted strictly to the shrinking remnant (without collecting emitted Hawking radiation) faces an exponentially tightening fidelity ceiling once $S_f < S_C$. By contrast, in a \emph{classical black hole merger}, although gravitational waves carry away mass ($M_f < M_1 + M_2$), Hawking's classical area theorem \cite{Hawking1971} guarantees that the total horizon area—and hence total Bekenstein--Hawking entropy—\emph{increases}: $A_f \ge A_1 + A_2 \implies S_f \ge S_1 + S_2$. Thus classical black hole mergers must \emph{not} be conflated with remnant-entropy reduction; any bottleneck in a merger could apply only to restricted subregions or post-merger evaporation rather than total horizon area.
+\end{enumerate}
+\end{remark}
+
+\begin{figure}[!tb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig2_joint_vs_separated.pdf}
+  \caption{(a)~Theorem~\ref{thm:cpl}: exact Kay--Kaszlikowski--Ramanathan \cite{Kay2009} curved singlet-monogamy boundary \eqref{eq:kay-curved} ($d_C=2,3,8$), linear sum outer envelope $F_A+F_B\le 1+1/d_C$ for $d_C=2$ (dashed tangent), valid CPTP Choi saturation points $\sigma_*$ \eqref{eq:choi-witness} (filled circles at $((1+1/d_C)/2,(1+1/d_C)/2)$), and the observer-separated reversible CPL point $(1,1)$ (red star). (b)~Theorem~\ref{thm:bottleneck}: sharp intermediate-dimension bottleneck ceiling $\min(1, d_f^2/d_C^2)$ with exact complement-reset saturating CPTP channels (red circles) and maxima over 300 valid random CPTP channels per $(d_C,d_f)$ pair with $k_{\mathrm{enc}} = \max(2,\lceil d_C/d_f\rceil)$ (green triangles; all 1,500 trials satisfy TP residuals $\le 2.07\times 10^{-15}$).}
+  \label{fig:joint-bottleneck}
+\end{figure}
+
+%==============================================================================
+\section{Unified Two-Window Evaporation Model, Companion Matrix Spectrum, and Numerical Audit}\label{sec:matrix}
+%==============================================================================
+
+To test Theorems~\ref{thm:bps}--\ref{thm:bottleneck} numerically, our companion script (\code{scripts/verify\_ostqd.py}, fixed seed \code{20261126}, Python 3.14.7, NumPy 2.4.2, SciPy 1.17.1, Matplotlib 3.10.8; complete metadata and outputs in \code{docs/numerical\_verification.json}) performs three explicitly separated numerical verifications:
+
+\begin{enumerate}
+  \item \textbf{Direct theorem and boundary-example checks (Theorems~\ref{thm:bps}--\ref{thm:bottleneck}):}
+  We verify every identity and boundary example discussed in Sections~\ref{sec:framework}--\ref{sec:double-bottleneck}: maximally mixed drift cancellation ($\partial_s\mathrm{Var}_{\rho_{\mathrm{mm}}}(H_A)=0$ vs.\ $\langle\Gamma\rangle_{\rho_{\mathrm{mm}}}=4$ vs.\ eigenbasis average $4$), the nonzero-drift zero-covariance example ($H=\mathrm{diag}(0,1,2)$, $L=|2\rangle\langle 1|$, $\rho=\1_3/3$), the non-commuting PDE norm $2\sqrt{2}$, two-sided $[H_A,H_B]=0$ vs.\ exterior-local $\gamma_{\mathrm{loc}} = 8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})$, proportional-redshift visibility decay $\langle\sigma_x\rangle_{s=2}=e^{-1}$, the non-unital GKSL expectation-preservation check, the valid CPTP Choi witness $\sigma_*$ for $d=2,3,4,5$ (marginal error $\le 1.36\times 10^{-16}$) alongside Kay \cite{Kay2009} curved-bound checks (zero violations over 2,000 random pure states), and the 1,500-trial random CPTP bottleneck test using $k_{\mathrm{enc}} = \max(2, \lceil d_C/d_f\rceil)$ with strict shape and trace-preservation assertions ($\le 2.07\times 10^{-15}$). We also cross-check the Choi-matrix Petz formula $F_e(\cR_{\mathrm{Petz}}\circ\mathcal{N}) = \frac{1}{d_C}\Tr\bigl[((I\otimes\sigma^{-1/4})J(I\otimes\sigma^{-1/4}))^2\bigr]$ against explicit recovery Kraus operators $R_\alpha = d_C^{-1/2}E_\alpha^\dagger\sigma^{-1/2}$ over 100 random channels (maximum discrepancy $3.22\times 10^{-15}$).
+
+  \item \textbf{Piecewise time-dependent two-window $N=8$-qubit evaporation model (connecting Theorem~\ref{thm:double}(e)--(f) with Petz recovery):}
+  To realize non-stationary intra-window $t$-evolution, exact $s$-invariance, and inter-window dephasing inside a \emph{single} Hilbert space, we construct $\cH_{\mathrm{tot}} = \cH_{\mathrm{win},1} \oplus \cH_{\mathrm{win},2} \cong \bbC^{256} \oplus \bbC^4$ with reference window Hamiltonian $H_{\mathrm{tot}} = H_{\mathrm{win},1} \oplus H_{\mathrm{win},2}$, where $H_{\mathrm{win},1}$ is a non-scalar GUE chaotic matrix linearly rescaled so its spectrum lies inside $[E_1-\Delta, E_1+\Delta] = [0.8, 1.2]$ ($E_1=1.0, \Delta=0.2$) and $H_{\mathrm{win},2}$ has spectrum inside $[E_2-\Delta, E_2+\Delta] = [2.8, 3.2]$ ($E_2=3.0$). The coarse-grained actualization jump operator $K_B = E_1\Pi_1 + E_2\Pi_2$ is piecewise constant on each window, obeying $\normF{[K_B, H_{\mathrm{tot}}]} = 0.0$.
+  Inside Window~1 ($N=8$ qubits), we prepare a young black hole carrying one qubit maximally entangled with an external reference $R_{\mathrm{ref}}$ ($d_C=2$), with the joint BH--reference state initially pure: $|\Psi(0)\rangle = \frac{1}{\sqrt{2}}(|0\rangle_{\mathrm{ref}}|0\rangle_C + |1\rangle_{\mathrm{ref}}|1\rangle_C)\otimes|0\rangle^{\otimes 7}$ (so the 256-dimensional Window~1 reduced state $\rho_{\mathrm{win},1}(0) := \Tr_{R_{\mathrm{ref}}}|\Psi(0)\rangle\langle\Psi(0)|$ has rank~$2$, purity~$1/2$, and entropy $\ln 2$). Using the exact partial trace $\rho_{\mathrm{win},1}(k) := \Tr_{R_{\mathrm{ref}}}|\Psi(k)\rangle\langle\Psi(k)|$ (which contains both remaining black hole and emitted radiation degrees of freedom for $k>0$, cross-checked identically against explicit index contraction), we have $\normF{[H_{\mathrm{win},1}, \rho_{\mathrm{win},1}(0)]} = 0.0995 > 0$, confirming non-stationary intra-window $t$-evolution. Evolution across steps $k=1,\dots,8$ is generated by the piecewise time-dependent Hamiltonian
+  \[
+    H_{\mathrm{dyn}}(t) =
+    \begin{cases}
+      H_{\mathrm{win},1} \oplus H_{\mathrm{win},2}, & k = 1\;(\Delta t = 25),\\
+      \bigl(H_{\mathrm{loc},k} \otimes \1_{\mathrm{rad},k-1}\bigr) \oplus H_{\mathrm{win},2}, & k = 2,\dots,8\;(\Delta t = 2),
+    \end{cases}
+  \]
+  where $H_{\mathrm{loc},k}$ is a phenomenological local GUE scrambler on the remaining $8-k+1$ black hole qubits before emitting one radiation qubit per step. Because $[K_B, H_{\mathrm{dyn}}(t)] = 0$ on every interval (numerically $0.0$), the induced time-ordered unitary channel $\cU(t,t_0) := \mathrm{Ad}_{U(t,t_0)}$ (with $U(t,t_0) = \mathcal{T}\exp[-i\int_{t_0}^t H_{\mathrm{dyn}}(u)\,du]$) commutes identically with $\Phi_B(s) = e^{s\cL_B}$, i.e.\ $\cU(t,t_0)\circ\Phi_B(s) = \Phi_B(s)\circ\cU(t,t_0)$ (Definition~\ref{def:ostqd}), and preserves $\normF{\cL_B(\rho_{\mathrm{win},1}(k))} = 0.0$ across all $k=0,\dots,8$ (while on a coherent two-window state $\rho_{\mathrm{double}}$, $e^{s\cL_B}$ matches the exact spectral block decay to $1.94\times 10^{-25}$). Note that because $H_{\mathrm{dyn}}(t)$ is time-dependent for $k \ge 2$, the reference expectation $\langle H_{\mathrm{win},1}\rangle$ is conserved at $k=1$ (to $1.78\times 10^{-15}$) but varies slightly at $k \ge 2$ (e.g.\ $\Delta\langle H_{\mathrm{win},1}\rangle = +0.00236$ at $k=2$, with $\normF{[U_{\mathrm{loc},2}\otimes\1, H_{\mathrm{win},1}]} = 2.2985$); deriving sequential evaporation from a single time-independent autonomous Hamiltonian remains beyond this finite toy model.
+
+  \item \textbf{Independent companion $SU(2)$ Yang--Mills 2-matrix Galerkin spectrum benchmark:}
+  Clearly decoupled from the $N=8$-qubit evaporation curve above (we do \emph{not} feed this 4-level spectrum into the $N=8$ scrambler), we compute the exact low-lying $SO(3)$ gauge-singlet spectrum of the bosonic two-matrix $SU(2)$ Yang--Mills Hamiltonian \cite{BFSS1997,IKKT1997}
+  \[
+    H_{\mathrm{YM}} = \tfrac{1}{2}\sum_{a=1}^3\bigl(P_{1,a}^2 + P_{2,a}^2\bigr) + \tfrac{1}{2}g_{\mathrm{YM}}^2\sum_{a=1}^3 \bigl((X_1 \times X_2)_a\bigr)^2 + \tfrac{1}{2}m^2\sum_{a=1}^3\bigl(X_{1,a}^2 + X_{2,a}^2\bigr)
+  \]
+  ($g_{\mathrm{YM}}=0.8, m=0.35$) using a \emph{true Galerkin Fock projection}: we build the quartic polynomial Hamiltonian in the larger intermediate cutoff $N_{\mathrm{int}} = 5$ Fock space (verified identical to $N_{\mathrm{int}}=6$ to $0.0$ on the target subspace), project onto the 84-dimensional $N_{\mathrm{cut}} = 3$ subspace, and restrict to the 4-dimensional exact $SO(3)$ singlet kernel of $\mathbf{J}_{\mathrm{exact}}^2$ ($J_a^{\mathrm{exact}} = -i\epsilon_{abc}(a_{1,b}^\dagger a_{1,c} + a_{2,b}^\dagger a_{2,c})$). The exact Galerkin singlet eigenvalues are $\{2.1436, 3.6063, 3.6063, 4.2664\}$ (compared with the naive pre-truncated operator-product energies $\{2.1316, 2.8063, 2.8063, 3.4784\}$ because $P_3 X P_3 X P_3 \neq P_3 X^2 P_3$; the projected singlet Hamiltonian \emph{matrix} difference has Frobenius norm $1.3856$, while the eigenvalue-vector Euclidean difference is $1.3788$). We emphasize that a 4-level cutoff-3 spectrum with a degenerate doublet serves solely as a transparent matrix-model Galerkin benchmark and does \emph{not} by itself establish quantum chaos or the large-$N$ black-hole regime.
+\end{enumerate}
+
+\begin{figure}[!tb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig3_matrix_evaporation.pdf}
+  \caption{Piecewise time-dependent Window~1 ($N=8$ qubits; young black hole carrying one qubit maximally entangled with 1-qubit reference $R_{\mathrm{ref}}$, $d_C=2$, with the joint BH--reference state initially pure) sequential evaporation simulation with exact coarse-grained $s$-invariance ($\normF{\cL_B(\rho_{\mathrm{win},1}(k))}=0$ at all $k$). (a)~Radiation von Neumann entropy $S(R)/\ln 2$ (bits) bounded by the upper envelope $\min(k, N-k+1)$ (whose plateau spans $k=4,5$; the simulated curve attains $S(R)=3.5720$~bits at $k=4$ and $3.6294$~bits at $k=5$, ending at $1.0$~bit due to $R_{\mathrm{ref}}$). (b)~Petz transpose recovery fidelity $F_B(R)$ rising from $0.2500$ to $1.0000$ as remnant fidelity $F_{\mathrm{rem}}$ falls from $1.0000$ to $0.2500$; the joint sum stays $\le 1.2506 < 1.5000$ (observed maximum $1.250543$, obeying Theorem~\ref{thm:cpl}), while Theorem~\ref{thm:bottleneck}'s ceiling on $F_{\mathrm{rem}}$ (orange dashed step) equals $1.0$ for $k=0,\dots,7$ and binds at $0.25$ at $k=8$.}
+  \label{fig:matrix}
+\end{figure}
+
+As shown in Figure~\ref{fig:matrix}, because the 1-qubit external reference $R_{\mathrm{ref}}$ purifies the initial 8-qubit black hole state (so the joint BH+$R_{\mathrm{ref}}$ system is initially pure with $N+1=9$ qubits), the radiation entropy $S(R)/\ln 2$ tracks the symmetric envelope $\min(k, 9-k)$ (attaining $3.5720$~bits at $k=4$ and $3.6294$~bits at $k=5$, and ending at $1.0$~bit at $k=8$ rather than $0$ bits). Note that this setup illustrates information release from an initially young black hole (with seven unentangled interior qubits plus one reference-entangled qubit) across half-evaporation, distinct from Hayden and Preskill's \cite{HaydenPreskill2007} rapid-mirror protocol for a diary thrown into an already old maximally entangled black hole. Likewise, for $d_C = 2$ and $d_f = 2^{8-k}$, Theorem~\ref{thm:bottleneck}'s bottleneck ceiling $\min(1, d_f^2/d_C^2)$ equals $1$ throughout $k=0,\dots,7$ and binds strictly at $1/4$ at complete evaporation $k=8$ (shown explicitly in Figure~\ref{fig:matrix}(b)); the intermediate decrease of $F_{\mathrm{rem}}$ for $k=3,\dots,7$ reflects entanglement transfer to the radiation rather than the dimension ceiling alone. Table~\ref{tab:numerics} summarizes all numerical audit residuals.
+
+\begin{table}[!tb]
+\centering\scriptsize
+\caption{Summary of independent numerical checks (\code{scripts/verify\_\allowbreak ostqd.py}, seed \code{20261126}).}
+\label{tab:numerics}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.37\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}r@{}}
+\toprule
+Verification item & Theoretical identity / value & Observed error / value \\
+\midrule
+Thm.~\ref{thm:bps}(a,c,d): Carr\'e du champ \& BPS comm.\ ($d=2,4,6$) & $\Gamma_{\cL}=\sum [L_k,H]^\dagger[L_k,H]$, $[\cL,\ad_H]=0$ & $\le 1.70\times 10^{-13}$ \\
+Thm.~\ref{thm:bps}(e,f): Variance decomp.\ \& eigenbasis avg.\ & $\frac{1}{d}\sum_j\partial_s\mathrm{Var}_{|E_j\rangle}=\frac{1}{d}\Tr\Gamma_{\cL}$ & $\le 2.27\times 10^{-13}$ \\
+Drift cancellation ($\rho_{\mathrm{mm}}=I_2/2$, $H_A=\sigma_x$, $L=\sigma_z$) & $\partial_s\mathrm{Var}_{\mathrm{mm}}=0$, $\langle\Gamma\rangle_{\mathrm{mm}}=4$, eig-avg $=4$ & Exact ($<10^{-14}$) \\
+Nonzero $D$, zero drift cov.\ ($H=\mathrm{diag}(0,1,2)$, $L=|2\rangle\langle 1|$) & $\normF{D}=1$, cov.\ $=0$, $\partial_s\mathrm{Var}=\langle\Gamma\rangle=1/3$ & Exact ($<10^{-14}$) \\
+Non-commuting PDE ($H=\sigma_z$, $L=\sigma_x$, $|+\rangle\langle +|$) & $\normF{\cL([H,\rho])-[H,\cL(\rho)]}=2\sqrt{2}$ & $2.828427$ \\
+Thm.~\ref{thm:horizon}(d,e): 2-level $\gamma$ \& 4D ferm.\ $[H_A,H_B]=0$, $\gamma_{\mathrm{loc}}$ & $[H_A,H_B]=0$, $\gamma_{\mathrm{loc}}=8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}})$ & $\le 4.44\times 10^{-16}$ \\
+Thm.~\ref{thm:horizon}(f): 4D fermionic Hawking ODE \& saturation & Eqs.~\eqref{eq:ferm-energy-s}--\eqref{eq:firewall-entropy} & $2.22\times 10^{-16}$ \\
+Bosonic Hawking pair ($N_{\mathrm{cut}}=18$, $T_H/\omega \le 0.8$) & Eq.~\eqref{eq:unified-heating} ($\sigma=+1$) & $7.58\times 10^{-9}$ (rel.) \\
+Proportional redshift dephasing ($H_B=2H_A$, $L=H_A$, $s=2$) & $\gamma=0$, yet $\langle\sigma_x\rangle_2 = e^{-1}$ & $0.367879$ (exact) \\
+Thm.~\ref{thm:cpl}(a--c): Valid Choi $\sigma_*$ \& Kay \cite{Kay2009} ($d=2..5$) & $\Tr_{A'B'}\sigma_*=\1/d$, $F_A^*=F_B^*=\frac{1+1/d}{2}$ & marg.\ $\le 1.36\times 10^{-16}$ \\
+Thm.~\ref{thm:double}(a,b,e): Parisi--Wu, Pyth., spectral decay & Eq.~\eqref{eq:block-eigen} \& $S_L(\cP\rho)=S_L(\rho)+\normF{\rho-\cP\rho}^2$ & $\le 1.11\times 10^{-16}$ \\
+Thm.~\ref{thm:bottleneck}: 1,500 random CPTP trials ($k_{\mathrm{enc}}\ge\lceil d_C/d_f\rceil$) & $F_e \le (d_f/d_C)^2$, TP res.\ $\le 2.07\times 10^{-15}$ & 0 violations (opt.\ err.\ $0.0$) \\
+Petz Choi formula vs.\ explicit Kraus (100 random trials) & $F_e(\cR_{\mathrm{Petz}}\circ\mathcal{N})$ cross-check & $3.22\times 10^{-15}$ \\
+2-window BH ($N=8$): $[K_B,H_{\mathrm{dyn}}(t)]$, $\max_k \normF{\cL_B(\rho_{\mathrm{win},1}(k))}$ & $0.0$, nontrivial $\normF{[H_1,\rho_{\mathrm{win},1}(0)]}=0.0995$ & $\max F_{\mathrm{sum}} = 1.250543 < 1.5$ \\
+Companion $SU(2)$ YM Galerkin ($N_{\mathrm{int}}=5$ vs.\ $6 \to N_{\mathrm{cut}}=3$) & Singlet dim $4$: $\{2.1436, 3.6063, 3.6063, 4.2664\}$ & 5 vs.\ 6 diff $= 0.0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\section{Scope, Analog Tests, and Open Problems Toward Quantum Gravity}\label{sec:discussion}
+%==============================================================================
+
+Returning to the motivating Hawking-evaporation observer-discrepancy paradox, we summarize clearly the conceptual and mathematical contributions achieved by OSTQD alongside what remains open:
+\begin{itemize}
+  \item \textbf{Conceptual contribution:} Rather than treating the operational mismatch between an infalling observer's locally smooth interior evolution and an asymptotic observer's directly accessible Hawking-evaporation records merely as an inconsistency to eliminate, we use this observer-dependent divergence of futures as an organizing principle to construct an explicit observer-indexed $(t,s)$ algebraic framework separating reversible clock-time unitarity from irreversible auxiliary-time dephasing.
+  \item \textbf{What is rigorously proved (conditional finite-dimensional core):} Under the explicit hypotheses of Definition~\ref{def:ostqd} and Theorems~\ref{thm:bps}--\ref{thm:bottleneck}, (i)~BPS energy-moment conservation is equivalent to $[L_k,H]=0$ and ensures $(t,s)$ integrability, while $\frac{1}{d}\Tr\Gamma_{\cL}(H,H)$ measures the exact eigenbasis-averaged initial variance rate; (ii)~in the 4D fermionic Hawking pair, although $[H_A,H_B]=0$ globally, restricting exterior jumps to $\cA_B = M_2(\bbC)_R\otimes\1_L$ forces local incompatibility $\gamma_{\mathrm{loc}} = 8\omega^2 n_{\mathrm{FD}}(1-n_{\mathrm{FD}}) > 0$ for $T_H>0$ and excites $|0_A\rangle$ at the exact rate \eqref{eq:unified-heating}; (iii)~any global joint CPTP extension obeys both Kay's curved boundary \eqref{eq:kay-curved} and the sharp linear outer envelope $F_A+F_B \le 1+1/d_C$ (saturated by the valid Choi state $\sigma_*$), whereas observer-separated reversible channels with inverse decoders achieve $F_A=F_B=1$ and expectation-value CPL on $\cA_{\mathrm{sh}}$; (iv)~commuting spectral Hermitian jumps drive $e^{s\cL} \to \cP$ exponentially and preserve nontrivial intra-window $t$-scrambling inside a finite-width energy window $\Pi_{\mathrm{win}}$; and (v)~intermediate Hilbert spaces of dimension $d_f$ cap entanglement fidelity sharply at $\min(1, d_f^2/d_C^2)$.
+  \item \textbf{Analog quantum-simulator tests vs.\ genuine quantum-gravity predictions:} The conditional channel identities \eqref{eq:unified-heating} and \eqref{eq:joint-bound}--\eqref{eq:kay-curved} can be tested directly in controllable two-mode squeezing platforms (superconducting circuits or trapped ions) with engineered dephasing $\Gamma s$ on one mode. However, such experiments test the quantum-information channel model itself rather than proving gravitational actualization; testing gravitational $s$-actualization in nature requires a microscopic derivation of $\Gamma_{\mathrm{eff}}(\tau) = \Gamma_O\,ds/d\tau$ that predicts a measurable deviation from standard unitary quantum mechanics.
+  \item \textbf{Open nonperturbative problems:} Extending Theorems~\ref{thm:bps}--\ref{thm:bottleneck} to infinite-dimensional Type~$\mathrm{II}_1/\mathrm{II}_\infty$ crossed-product von Neumann algebras \cite{CLPW2023,DeVuyst2025}; computing renormalized continuum horizon stress-energy tensors and Hadamard regularity; formulating selective single-shot instruments $\{\cI_{O,x}\}$ and causal record-merging rules beyond expectation-value CPL; deriving $\Gamma_O$ and $s(\tau)$ microscopically from large-$N$ BFSS/IKKT matrix dynamics \cite{BFSS1997,IKKT1997,Choudhury2024} without external clock oracles; and clarifying how a smooth 4D Lorentzian spacetime manifold emerges from observer-indexed algebraic networks. These remain open research problems rather than solved claims of the present work.
+\end{itemize}
+
+%==============================================================================
+\section{Lean~4 Formal Verification and Honest Scope Audit}\label{sec:lean}
+%==============================================================================
+
+The finite-dimensional algebraic core of Theorems~\ref{thm:bps}--\ref{thm:bottleneck} is formalized over complex matrix algebras \code{Matrix (Fin d) (Fin d) $\bbC$} and \code{Matrix (TriIdx d) (TriIdx d) $\bbC$} in \textbf{Lean~4.36.0} with \textbf{Mathlib4} (\code{rev = v4.36.0}), comprising \textbf{38~public theorem/lemma declarations} across six modules (\code{Basic}, \code{Theorem1\_\allowbreak BPS}--\code{Theorem5\_\allowbreak Bottleneck}). A complete reproducible kernel build log (\code{lake build OSTQD}, \code{lake env lean OSTQD/\allowbreak AxiomCheck.lean}, and static forbidden-token audit) is bundled in \code{lean4/\allowbreak VERIFICATION\_\allowbreak LOG.txt}: all 38 declarations pass with zero errors, zero \code{sorry}/\allowbreak\code{admit}/\allowbreak\code{axiom}/\allowbreak\code{constant}/\allowbreak\code{unsafe}, and depend exclusively on Lean's three standard axioms (\code{propext}, \code{Classical.choice}, \code{Quot.sound}).
+
+Crucially, to avoid overstating what machine verification guarantees, Table~\ref{tab:lean} explicitly separates the \emph{Lean-verified algebraic core} from the \emph{standard analytic/hand-proved steps and physical hypotheses} that lie outside the Lean formalization.
+
+\begin{table}[!tb]
+\centering\scriptsize
+\caption{Exact three-tier correspondence between manuscript claims, Lean~4.36.0 formalized algebraic core (38 declarations; full kernel log in \code{lean4/\allowbreak VERIFICATION\_\allowbreak LOG.txt}), and analytic/physical steps outside Lean.}
+\label{tab:lean}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}@{}}
+\toprule
+Paper result & Lean~4.36.0 formalized algebraic core (module \& declarations) & Analytic / physical steps outside Lean \\
+\midrule
+GKSL basics (\S\ref{sec:framework}) & \code{Basic.lean} (2): \code{trace\_\allowbreak gksl\_\allowbreak eq\_\allowbreak zero}, \code{gksl\_\allowbreak dual\_\allowbreak adj}: generator trace preservation and Schr\"odinger--Heisenberg duality on $M_d(\bbC)$. & Matrix exponential $\Phi_O(s)=e^{s\cL_O}$, CPTP semigroup generation, selective instruments $\{\cI_{O,x}\}$. \\
+Theorem~\ref{thm:bps} & \code{Theorem1\_\allowbreak BPS.lean} (7): \code{carre\_\allowbreak du\_\allowbreak champ\_\allowbreak eq\_\allowbreak sum\_\allowbreak comm\_\allowbreak sq}, \code{carre\_\allowbreak du\_\allowbreak champ\_\allowbreak trace\_\allowbreak nonneg}, \code{bps\_\allowbreak immunity\_\allowbreak iff\_\allowbreak comm}, \code{two\_\allowbreak time\_\allowbreak commutation}, \code{variance\_\allowbreak deriv\_\allowbreak exact\_\allowbreak decomp}, \code{eigenstate\_\allowbreak variance\_\allowbreak deriv\_\allowbreak eq\_\allowbreak carre\_\allowbreak du\_\allowbreak champ}, \code{eigenbasis\_\allowbreak sum\_\allowbreak variance\_\allowbreak deriv\_\allowbreak eq\_\allowbreak trace\_\allowbreak carre\_\allowbreak du\_\allowbreak champ}. & Analytic passage from $[\cL,\ad_H]=0$ to $\cU(t)\circ\Phi(s)=\Phi(s)\circ\cU(t)$; chain-rule link (\code{HasDerivAt}) connecting algebraic \code{varianceDeriv} to $\partial_s \mathrm{Var}_{\rho(s)}(H)|_{s=0}$ along $e^{s\cL}$. \\
+Theorem~\ref{thm:horizon} & \code{Theorem2\_\allowbreak Horizon.lean} (13): \code{universal\_\allowbreak actualization\_\allowbreak nogo}, \code{local\_\allowbreak actualization\_\allowbreak nogo}, \code{quantitative\_\allowbreak horizon\_\allowbreak heating\_\allowbreak bound}, \code{local\_\allowbreak dissipation\_\allowbreak bound}, \code{static\_\allowbreak redshift\_\allowbreak zero\_\allowbreak conflict}, \code{two\_\allowbreak level\_\allowbreak bogoliubov\_\allowbreak incompatibility}, \code{fermionic\_\allowbreak hawking\_\allowbreak HA\_\allowbreak comm\_\allowbreak HB}, \code{fermionic\_\allowbreak hawking\_\allowbreak local\_\allowbreak incompatibility}, \code{fermionic\_\allowbreak hawking\_\allowbreak local\_\allowbreak nogo}, \code{fermionic\_\allowbreak hawking\_\allowbreak HB\_\allowbreak bps\_\allowbreak immune}, \code{fermionic\_\allowbreak hawking\_\allowbreak ode} (exact \code{HasDerivAt} GKSL ODE), \code{fermionic\_\allowbreak hawking\_\allowbreak energy\_\allowbreak at\_\allowbreak s}, \code{fermionic\_\allowbreak hawking\_\allowbreak firewall\_\allowbreak entropy\_\allowbreak identity}. & Infimum formalization of $\gamma_{\mathrm{loc}}$; $s\to\infty$ limit ($\Gamma>0$); bosonic infinite-dimensional Fock space \eqref{eq:unified-heating}; physical justification of $\cA_B$ and continuum firewalls. \\
+Theorem~\ref{thm:cpl} & \code{Theorem3\_\allowbreak CrossPerspective.lean} (6): \code{projA\_\allowbreak projB\_\allowbreak projA}, \code{joint\_\allowbreak extension\_\allowbreak fidelity\_\allowbreak bound} (pure), \code{joint\_\allowbreak extension\_\allowbreak fidelity\_\allowbreak bound\_\allowbreak mixed} (convex mixtures), \code{joint\_\allowbreak extension\_\allowbreak no\_\allowbreak simultaneous\_\allowbreak faithful}, \code{joint\_\allowbreak extension\_\allowbreak bound\_\allowbreak sharp} (valid Choi witness $\sigma_*$ with $\Tr_{A'B'}\sigma_*=\1_R/d$ and $F_A=F_B=(1+1/d)/2$), \code{observer\_\allowbreak separated\_\allowbreak cpl\_\allowbreak consistency} (with explicit inverse decoder $F_e=1$). & Kay \cite{Kay2009} curved boundary \eqref{eq:kay-curved} (hand-proved \& numerically verified); physical choice of $\cA_{\mathrm{sh}}$; single-shot record instruments. \\
+Theorem~\ref{thm:double} & \code{Theorem4\_\allowbreak DoubleUncertainty.lean} (6): \code{parisi\_\allowbreak wu\_\allowbreak purity\_\allowbreak monotonicity}, \code{double\_\allowbreak uncertainty\_\allowbreak pythagorean}, \code{weak\_\allowbreak gravity\_\allowbreak invisibility}, \code{microcanonical\_\allowbreak code\_\allowbreak invariance}, \code{commuting\_\allowbreak jumps\_\allowbreak block\_\allowbreak eigenvalue} (Eq.~\eqref{eq:block-eigen}), \code{microcanonical\_\allowbreak window\_\allowbreak scrambling\_\allowbreak compatible} (Eq.~\eqref{eq:window-compat}). & Analytic limit $e^{s\cL}\to\cP$ (or $E_{\cF}$ for non-commuting jumps); von Neumann version $S(\cP\rho)=S(\rho)+D(\rho\|\cP\rho)$; Page-curve scrambling dynamics. \\
+Theorem~\ref{thm:bottleneck} & \code{Theorem5\_\allowbreak Bottleneck.lean} (4): \code{bottleneck\_\allowbreak entanglement\_\allowbreak fidelity\_\allowbreak bound} ($F_e\le d_f^2/d_C^2$), \code{entanglement\_\allowbreak fidelity\_\allowbreak le\_\allowbreak one} ($F_e\le 1$), \code{bottleneck\_\allowbreak entanglement\_\allowbreak fidelity\_\allowbreak min\_\allowbreak bound} ($F_e\le\min(1, d_f^2/d_C^2)$), \code{bottleneck\_\allowbreak bound\_\allowbreak sharp} ($0<d_f\le d_C$, complement-reset CPTP witness). & Choi-state equivalence of Kraus $F_e$; $d_f > d_C$ isometric saturation ($F_e=1$, hand-proved); physical identification $\ln d_f \leftrightarrow S_{\mathrm{BH}}$ and distinction from BH mergers \cite{Hawking1971}. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\section*{Author Contributions and AI Disclosure}\label{sec:ai-disclosure}
+%==============================================================================
+\addcontentsline{toc}{section}{Author Contributions and AI Disclosure}
+
+Following the emerging practice of transparent AI task disclosure in theoretical high-energy and matrix-model research \cite{Michel2026}, we explicitly separate human and AI contributions:
+\begin{itemize}
+  \item \textbf{Human author (Yohtaro Soga):} Conceived the core physical motivation and research direction---taking the observer-dependent divergence of accessible futures of an infalling body under Hawking evaporation as a clue for quantum gravity, proposing the separation of reversible unitary evolution ($t$) from observer-relative irreversible actualization via a Parisi--Wu-like directed auxiliary parameter ($s$), specifying the distinction between Layer~1 open-system mixedness and Layer~2 actualization dephasing, setting strict mathematical and formal-verification standards, and directing the project.
+  \item \textbf{AI research assistant (Google Antigravity / Gemini):} Assisted with the 2022--2026 literature survey and positioning, formulated and proved Theorems~\ref{thm:bps}--\ref{thm:bottleneck} in their finite-dimensional algebraic form, wrote and executed the Python numerical verification and plotting scripts, authored and verified all Lean~4.36.0 / Mathlib4 formalization files, verified external bibliographic records, and assisted with LaTeX manuscript drafting and formatting.
+\end{itemize}
+All 38 finite-dimensional algebraic declarations are machine-checked by the Lean~4.36.0 kernel (see \code{lean4/VERIFICATION\_LOG.txt}), and all numerical tables and figures are independently reproducible from \code{scripts/verify\_ostqd.py}.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

@@ -2,6 +2,11 @@
   "schema_version": 1,
   "files": [
     {
+      "path": "downloads/ostqd.pdf",
+      "role": "document",
+      "sha256": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd"
+    },
+    {
       "path": "en/index.html",
       "role": "page",
       "sha256": "9b6fa17c40dd95ca774680c6024b3e950f27b12af48080a004fa71923bb6fc42"
@@ -14,22 +19,22 @@
     {
       "path": "en/quantum-gravity/ostqd/expert.html",
       "role": "page",
-      "sha256": "d63df75beb7a0227e42604eb2fd1aac1dbac6796a040e8c95725223f0f2a7702"
+      "sha256": "acb198c5a8166942bef82c4401f1fb00ead8f5749278af9924157496108d0140"
     },
     {
       "path": "en/quantum-gravity/ostqd/general.html",
       "role": "page",
-      "sha256": "8bff3dcab5073d5663f1441ff551d714e5b2d2f9ea4e0b7f4df68cebdc5a1411"
+      "sha256": "8819f0fa4f7c47bd451f4f8237cf792124b3480feec009a3783e431247fcfe77"
     },
     {
       "path": "en/quantum-gravity/ostqd/index.html",
       "role": "page",
-      "sha256": "f7a0717a6939bc5a500c33457b0de73f3df02aa6eae84b95b68fb68c97612350"
+      "sha256": "b1ad58e2910a78d6e79e5857a4182115716e6481838a03f3c1b6c028898b6449"
     },
     {
       "path": "en/quantum-gravity/ostqd/student.html",
       "role": "page",
-      "sha256": "730839b51ce693bb5b004f71984f6070e20b0774c685aabf48644e0ca2da99e7"
+      "sha256": "ae99f89916bf2844a4166ac8ed4b8edbd7bbd5ca5dfc634d7dd53c204dedcfac"
     },
     {
       "path": "index.html",

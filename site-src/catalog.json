@@ -56,8 +56,17 @@
         ]
       },
       "hero_figure": "ostqd-observer-domains",
-      "documents": [],
-      "downloads_intro": "The manuscript and accompanying source files are awaiting upload. The research overview is available below."
+      "documents": [
+        {
+          "id": "main",
+          "label": "Paper",
+          "path": "downloads/ostqd.pdf",
+          "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/paper/main.pdf",
+          "sha256": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd",
+          "page_count": 24
+        }
+      ],
+      "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials."
     }
   ],
   "languages": [

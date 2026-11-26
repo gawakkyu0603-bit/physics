@@ -2,14 +2,25 @@
   "checks": {
     "html_pages": 7,
     "article_pages": 3,
-    "local_links": 133,
+    "local_links": 140,
     "paper_source_links": 4,
     "site_verification_files": {
       "google6aa3895dea8c1557.html": "5b9c46fad26d3c7397473062d68e456b36bbd1efdd8d5e654828c89d64926f05",
       "BingSiteAuth.xml": "0641e41018c7090d26c0c43efad945042319990fc8a45b6e0591aee0112ec82e"
     },
-    "document_sha256": {},
-    "document_identity": {},
+    "document_sha256": {
+      "downloads/ostqd.pdf": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd"
+    },
+    "document_identity": {
+      "quantum-gravity/ostqd/v1/main": {
+        "path": "downloads/ostqd.pdf",
+        "identity": "verified",
+        "methods": [
+          "sha256",
+          "source_bytes"
+        ]
+      }
+    },
     "configured_languages": [
       "en"
     ],
