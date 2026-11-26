@@ -2,20 +2,43 @@
   "checks": {
     "html_pages": 7,
     "article_pages": 3,
-    "local_links": 243,
-    "paper_source_links": 42,
+    "local_links": 253,
+    "paper_source_links": 43,
+    "site_verification_files": {
+      "google0dbfbd45bd34f75a.html": "cec3db9db864c5d6619d7f31e8a4821d5a7969b569887b6281ec704ea4b86727",
+      "BingSiteAuth.xml": "0641e41018c7090d26c0c43efad945042319990fc8a45b6e0591aee0112ec82e"
+    },
+    "document_sha256": {
+      "downloads/cat-v4-main.pdf": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a",
+      "downloads/cat-v4-supplement.pdf": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+    },
+    "document_identity": {
+      "quantum-gravity/cat/v4/main": {
+        "path": "downloads/cat-v4-main.pdf",
+        "identity": "verified",
+        "methods": [
+          "sha256",
+          "source_bytes"
+        ]
+      },
+      "quantum-gravity/cat/v4/supplement": {
+        "path": "downloads/cat-v4-supplement.pdf",
+        "identity": "verified",
+        "methods": [
+          "sha256",
+          "source_bytes"
+        ]
+      }
+    },
     "configured_languages": [
       "en"
     ],
-    "site_verification_files": {
-      "google0dbfbd45bd34f75a.html": "cec3db9db864c5d6619d7f31e8a4821d5a7969b569887b6281ec704ea4b86727"
+    "selected_versions": {
+      "quantum-gravity/cat": "4"
     },
+    "sitemap_filename": "sitemap-pages.xml",
     "hreflang_links": 9,
-    "sitemap_urls": 9,
-    "pdf_sha256": {
-      "cat-v4-main.pdf": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a",
-      "cat-v4-supplement.pdf": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
-    }
+    "sitemap_urls": 7
   },
   "error_count": 0,
   "errors": []

@@ -52,18 +52,13 @@
     },
     {
       "path": "PUBLICATION_SCOPE.md",
-      "bytes": 8213,
-      "sha256": "8ad54efe8a74f9223d567d6484deb506342ba9c72f3442bc9cd523d60545971e"
+      "bytes": 2556,
+      "sha256": "bac54920e2d4d70b5d461a0503560eaa2eaa21b453c5bb8371b3c098d8ee6354"
     },
     {
       "path": "README.md",
-      "bytes": 10062,
-      "sha256": "09f9e595e9c201c0479ae9e80fe3d660ec2e166a2c46522a1749913fc514e7c7"
-    },
-    {
-      "path": "RELEASE_NOTES.md",
-      "bytes": 3301,
-      "sha256": "289f3ca0336e0cf4bbe611bd4a98ef671446ff552fbbd64adb65060892f02a4f"
+      "bytes": 4424,
+      "sha256": "1141ea10f002b88116d1683fb0767f6d32dc858ae678529b01d32b732df345ef"
     },
     {
       "path": "RIGHTS.md",
@@ -74,11 +69,6 @@
       "path": "THIRD_PARTY_NOTICES.md",
       "bytes": 8933,
       "sha256": "b78deab7955df68bd1383bd1ab2ffdc14789bdfbdbcdd918cdb39e881b2a6bfe"
-    },
-    {
-      "path": "VERIFICATION.md",
-      "bytes": 5317,
-      "sha256": "cc69daaa400815ab52cfcc649ebfebd0c964ce953644c3475947973835a0d9e0"
     },
     {
       "path": "citations/RIT_DATA_REFERENCES.md",
@@ -3637,24 +3627,14 @@
     },
     {
       "path": "reading-guides/COVERAGE.md",
-      "bytes": 14555,
-      "sha256": "08b89734c4935ca857cc6361d1f60e0bc8aecc4b2c3846333da157c55c191444"
-    },
-    {
-      "path": "reading-guides/SCIENTIFIC_QA.md",
-      "bytes": 18131,
-      "sha256": "0e53d813fbd1be61eae44ec793db58e24bd4c6d9a51a7478e48376ff789ef655"
+      "bytes": 13697,
+      "sha256": "6eb01b9d1f45ca6c120175c43af2da4505b778eade59752cdaaced5c4e825750"
     },
     {
       "path": "release-assets.json",
       "bytes": 1772,
       "sha256": "69d275f0f2b1dc4b165d3dd8b8c28d37b00bfe8a2ea14d1b195d58de06ea34af"
-    },
-    {
-      "path": "verification-summary.json",
-      "bytes": 1783,
-      "sha256": "2f53c426f305a6987e6459cd913a770dc45212f5cd37640a5816b2a83f6b8ae1"
     }
   ],
-  "maintenance_note": "This manifest describes the current version directory on main, including maintained publication and reading-guide documentation. The 709 original files in paper/ retain their supplied bytes. The cat-v4.0.0 tag, published Release assets, and manifests embedded in those assets remain frozen and describe their own distributions."
+  "maintenance_note": "This manifest describes the current public files in this version directory on main. The original research files in paper/ retain their supplied bytes. Fixed release tags and published assets identify their own distributions and retain their embedded manifests."
 }

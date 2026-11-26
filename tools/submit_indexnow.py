@@ -15,6 +15,11 @@ from urllib.parse import unquote, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 import xml.etree.ElementTree as ET
 
+try:
+    from .site_catalog import load_catalog, sitemap_filename
+except ImportError:
+    from site_catalog import load_catalog, sitemap_filename
+
 ROOT = Path(__file__).resolve().parents[1]
 ENDPOINT = "https://www.bing.com/indexnow"
 SITEMAP_NAMESPACE = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
@@ -25,7 +30,7 @@ class NoRedirect(HTTPRedirectHandler):
         return None
 
 
-def scoped_url(value, base):
+def scoped_url(value, base, root=ROOT):
     """Require a canonical static URL within the configured project directory."""
     parsed, scope = urlsplit(value), urlsplit(base)
     if (parsed.scheme != "https" or parsed.netloc != scope.netloc
@@ -34,8 +39,8 @@ def scoped_url(value, base):
             or any(part in {".", ".."} for part in unquote(parsed.path).split("/"))):
         raise ValueError("URL is outside the configured HTTPS project scope: " + value)
     relative = unquote(parsed.path[len(scope.path):])
-    local = (ROOT / "docs" / relative).resolve()
-    if not local.is_relative_to((ROOT / "docs").resolve()) or not local.is_file():
+    local = (root / "docs" / relative).resolve()
+    if not local.is_relative_to((root / "docs").resolve()) or not local.is_file():
         raise ValueError("URL does not map to a published local file: " + value)
     return local
 
@@ -51,9 +56,10 @@ def sitemap_urls(data):
     return urls
 
 
-def prepare(selected_urls=None):
-    catalog = json.loads((ROOT / "site-src/catalog.json").read_text())
-    config = json.loads((ROOT / "site-src/indexnow.json").read_text())
+def prepare(selected_urls=None, root=ROOT):
+    root = Path(root)
+    catalog = load_catalog(root)
+    config = json.loads((root / "site-src/indexnow.json").read_text())
     base = catalog["public_base_url"]
     scope = urlsplit(base)
     if (scope.scheme != "https" or not scope.netloc or scope.username or scope.password
@@ -66,13 +72,14 @@ def prepare(selected_urls=None):
     key_location = config["key_location"]
     if key_location != base + key + ".txt":
         raise ValueError("key_location must identify the key file at the project root")
-    key_path = scoped_url(key_location, base)
+    key_path = scoped_url(key_location, base, root)
     if key_path.read_text(encoding="utf-8").strip() != key:
         raise ValueError("The local verification file differs from the configured key")
-    sitemap_data = (ROOT / "docs/sitemap.xml").read_bytes()
+    sitemap_name = sitemap_filename(catalog)
+    sitemap_data = (root / "docs" / sitemap_name).read_bytes()
     urls = sitemap_urls(sitemap_data)
     for url in urls:
-        scoped_url(url, base)
+        scoped_url(url, base, root)
     if key_location in urls:
         raise ValueError("Do not include the verification key file in the sitemap")
     if selected_urls:
@@ -85,7 +92,7 @@ def prepare(selected_urls=None):
         raise ValueError("IndexNow allows at most 10,000 URLs per POST; select a smaller set")
     payload = {"host": scope.hostname, "key": key,
                "keyLocation": key_location, "urlList": urls}
-    return payload, base, sitemap_data
+    return payload, base, sitemap_data, base + sitemap_name
 
 
 def request_bytes(opener, request, limit):
@@ -96,21 +103,22 @@ def request_bytes(opener, request, limit):
         return response.status, data
 
 
-def main():
+def main(argv=None):
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true", help="Validate locally; make no network requests")
     parser.add_argument("--url", action="append", help="Submit only this sitemap URL; repeat for more URLs")
     parser.add_argument("--output", type=Path, help="Save the JSON result to this path")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     result = {"timestamp_utc": datetime.now(timezone.utc).isoformat(),
               "endpoint": ENDPOINT, "dry_run": args.dry_run,
               "submission_attempted": False, "http_status": None,
               "indexing_status": "not_checked", "automatic_retries": 0}
     exit_code = 1
     try:
-        payload, base, local_sitemap = prepare(args.url)
+        payload, base, local_sitemap, sitemap_url = prepare(args.url, ROOT)
         result.update({"site_url": base, "url_count": len(payload["urlList"]),
-                       "urls": payload["urlList"], "key_location": payload["keyLocation"]})
+                       "urls": payload["urlList"], "key_location": payload["keyLocation"],
+                       "sitemap_url": sitemap_url})
         if args.dry_run:
             result.update({"result": "dry_run_validated", "network_requests": 0})
             exit_code = 0
@@ -121,7 +129,7 @@ def main():
             if status != 200 or live_key.decode("utf-8").strip() != payload["key"]:
                 raise ValueError("The live public verification key does not match; deploy before submitting")
             result["key_verified_live"] = True
-            status, live_sitemap = request_bytes(opener, Request(base + "sitemap.xml", headers=headers), 50 * 1024 * 1024)
+            status, live_sitemap = request_bytes(opener, Request(sitemap_url, headers=headers), 50 * 1024 * 1024)
             if status != 200 or set(sitemap_urls(live_sitemap)) != set(sitemap_urls(local_sitemap)):
                 raise ValueError("The live sitemap differs from this checkout; finish deployment before submitting")
             result["sitemap_matches_live"] = True

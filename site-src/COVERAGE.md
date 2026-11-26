@@ -8,4 +8,4 @@ Coverage records map each paper's reading guides to that paper's original sectio
 
 For each future paper version with reading guides, maintain its own `reading-guides/COVERAGE.md` within the version directory and add a link here. Preserve that version's assumptions, results, open questions, and audience-specific coverage boundaries in its record.
 
-See the [scientific QA index](SCIENTIFIC_QA.md) for the corresponding consistency checks and resolution records.
+Use [ADDING_PAPERS.md](../ADDING_PAPERS.md) for the publication workflow and source-comparison requirements.

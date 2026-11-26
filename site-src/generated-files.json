@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "downloads/cat-v4-main.pdf",
+      "role": "document",
+      "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a"
+    },
+    {
+      "path": "downloads/cat-v4-supplement.pdf",
+      "role": "document",
+      "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8"
+    },
+    {
+      "path": "en/index.html",
+      "role": "page",
+      "sha256": "607413d83785ed502b4c370f4eca8d79a2410d5ce47f836190d24c45dea1df51"
+    },
+    {
+      "path": "en/quantum-gravity/cat/expert.html",
+      "role": "page",
+      "sha256": "ab582b4c23eae9743ac2b277ce424899b1135da3cc3e964035d8289a1b09b980"
+    },
+    {
+      "path": "en/quantum-gravity/cat/general.html",
+      "role": "page",
+      "sha256": "8840b337043ffd22a553e95de3c38a4e6b7922fe495d8f4864061033371a24f1"
+    },
+    {
+      "path": "en/quantum-gravity/cat/index.html",
+      "role": "page",
+      "sha256": "e224d965de92eb404e886836381441045ddb70c2e285c34950ea319008c19e2c"
+    },
+    {
+      "path": "en/quantum-gravity/cat/student.html",
+      "role": "page",
+      "sha256": "dedadaef63718c7bbad389d0cc54ec3943bf3126015d0862329be38d68d81a57"
+    },
+    {
+      "path": "en/quantum-gravity/index.html",
+      "role": "page",
+      "sha256": "7236b55cd52d15c82254e2f2a9fb541a2b57d6b6b5f5593a65e59161056d4973"
+    },
+    {
+      "path": "index.html",
+      "role": "page",
+      "sha256": "2e6dbcb73aaf594ba6f75a11d51e3c43c0849cd915be0c6c4e78b93593c91563"
+    },
+    {
+      "path": "sitemap-pages.xml",
+      "role": "sitemap",
+      "sha256": "22ef808b3fd8d1f4da9333a7fe394e7d4bcbe45f64a2be38fa1393eafd05bb15"
+    }
+  ]
+}

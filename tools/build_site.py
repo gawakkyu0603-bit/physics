@@ -7,6 +7,8 @@ Add papers through site-src/catalog.json and the matching HTML fragments.
 """
 from pathlib import Path
 from html import escape, unescape
+import argparse
+import hashlib
 import importlib.util
 import json
 import os
@@ -14,23 +16,31 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
+from urllib.parse import quote
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 
-ROOT=Path(__file__).resolve().parents[1]
+try:
+    from .site_catalog import (CatalogError, GENERATED_MANIFEST, document_for,
+                              generated_page_paths, is_ownership_file,
+                              load_catalog, paper_documents, paper_page_path,
+                              safe_relative_path, sitemap_filename)
+except ImportError:
+    from site_catalog import (CatalogError, GENERATED_MANIFEST, document_for,
+                             generated_page_paths, is_ownership_file,
+                             load_catalog, paper_documents, paper_page_path,
+                             safe_relative_path, sitemap_filename)
+
+DEFAULT_ROOT=Path(__file__).resolve().parents[1]
+ROOT=DEFAULT_ROOT
 DOCS=ROOT/'docs'
 SOURCE=ROOT/'site-src'
-CATALOG=json.loads((SOURCE/'catalog.json').read_text())
-LANGUAGES=CATALOG.get('languages',['en'])
-if LANGUAGES!=['en']:
-    raise ValueError('Public research introductions are configured for English only')
-for paper in CATALOG['papers']:
-    if paper.get('languages')!=LANGUAGES:
-        raise ValueError('Each paper must use the configured English publication language')
-FIELDS_BY_SLUG={field['slug']:field for field in CATALOG['fields']}
-spec=importlib.util.spec_from_file_location('figures',SOURCE/'figures.py')
-figures=importlib.util.module_from_spec(spec);spec.loader.exec_module(figures)
-REPO=f"https://github.com/{CATALOG['owner']}/{CATALOG['repository']}"
+CATALOG={}
+LANGUAGES=[]
+FIELDS_BY_SLUG={}
+figures=None
+REPO=''
 LABELS={
  'general':{'ja':'一般向け','en':'General readers'},
  'student':{'ja':'理工系の学生・卒業者向け','en':'STEM students & graduates'},
@@ -43,14 +53,38 @@ DEFAULT_DESCRIPTIONS={
 }
 BUILD_STATS={}
 GENERATED_PAGES=set()
+MANAGED_FILES={}
+
+def configure(root):
+    global ROOT,DOCS,SOURCE,CATALOG,LANGUAGES,FIELDS_BY_SLUG,figures,REPO
+    ROOT=Path(root).resolve();DOCS=ROOT/'docs';SOURCE=ROOT/'site-src'
+    CATALOG=load_catalog(ROOT)
+    LANGUAGES=CATALOG['languages']
+    FIELDS_BY_SLUG={field['slug']:field for field in CATALOG['fields']}
+    spec=importlib.util.spec_from_file_location('site_figures',SOURCE/'figures.py')
+    figures=importlib.util.module_from_spec(spec);spec.loader.exec_module(figures)
+    REPO=f"https://github.com/{CATALOG['owner']}/{CATALOG['repository']}"
+    BUILD_STATS.clear();GENERATED_PAGES.clear();MANAGED_FILES.clear()
 
 def tr(lang,ja,en):return ja if lang=='ja' else en
-def url(page,target):return os.path.relpath(DOCS/target,(DOCS/page).parent).replace(os.sep,'/')
-def papath(p,lang,name='index'):return f"{lang}/{p['field']}/{p['slug']}/{name}.html"
+def url(page,target):return quote(os.path.relpath(DOCS/target,(DOCS/page).parent).replace(os.sep,'/'),safe='/')
+def papath(p,lang,name='index'):return paper_page_path(p,lang,name)
 def ea(s):return escape(str(s),quote=True)
+
+def contained_path(base,relative):
+    relative=safe_relative_path(relative)
+    path=base/relative
+    if path.is_symlink() or not path.resolve().is_relative_to(base.resolve()):
+        raise CatalogError(f'Generated path escapes its root or is a symlink: {relative}')
+    return path
+
+def record_generated(path,role):
+    MANAGED_FILES[path]={'path':path,'role':role,'sha256':hashlib.sha256((DOCS/path).read_bytes()).hexdigest()}
+
 def write(page,html):
-    path=DOCS/page;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(html,encoding='utf-8')
+    path=contained_path(DOCS,page);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(html,encoding='utf-8')
     GENERATED_PAGES.add(page)
+    record_generated(page,'page')
 
 def language_alternates(page,lang):
     if page=='index.html' or page in {code+'/index.html' for code in LANGUAGES}:
@@ -64,14 +98,13 @@ def build_sitemap():
     namespace='http://www.sitemaps.org/schemas/sitemap/0.9'
     ET.register_namespace('',namespace)
     root=ET.Element('{'+namespace+'}urlset')
-    paths=set(GENERATED_PAGES)
-    for paper in CATALOG['papers']:
-        paths.update([paper['main_pdf'],paper['supplement_pdf']])
-    for path in sorted(paths):
+    for path in sorted(GENERATED_PAGES):
         entry=ET.SubElement(root,'{'+namespace+'}url')
         ET.SubElement(entry,'{'+namespace+'}loc').text=CATALOG['public_base_url']+path
     ET.indent(root,space='  ')
-    ET.ElementTree(root).write(DOCS/'sitemap.xml',encoding='utf-8',xml_declaration=True)
+    filename=sitemap_filename(CATALOG)
+    ET.ElementTree(root).write(DOCS/filename,encoding='utf-8',xml_declaration=True)
+    record_generated(filename,'sitemap')
 
 def audience_description(p,audience,lang):
     return p.get('audience_descriptions',{}).get(audience,{}).get(lang,DEFAULT_DESCRIPTIONS[audience][lang])
@@ -83,28 +116,35 @@ def reading_label(p,audience,lang,card=False):
         return tr(lang,'目安 ','Approx. ')+str(minutes)+tr(lang,'分 · 冒頭にTL;DR',' min · TL;DR first')
     return tr(lang,'精読の目安：','Reading guide: ')+str(minutes)+tr(lang,'分',' min')
 
-def pdf_label(p,kind,lang):
-    title=tr(lang,'論文本体','Paper') if kind=='main' else tr(lang,'補足資料','Supplement')
-    count=p.get('page_counts',{}).get(kind)
-    return title if count is None else title+' · '+str(count)+tr(lang,'ページ',' pages')
+def document_label(document):
+    label=document['label']
+    if 'page_count' in document:label+=f" · {document['page_count']} pages"
+    return label
 
-def collection_summary(papers,lang):
-    if len(papers)==1:
-        p=papers[0];name=p.get('short_title') or p['title']
-        collection=tr(lang,f'現在の収録論文は{name}第{p["version"]}版です。',f'The current collection contains {name} Version {p["version"]}. ')
-    elif papers:
-        collection=tr(lang,f'現在{len(papers)}件の論文を収録しています。',f'The current collection contains {len(papers)} papers. ')
-    else:
-        collection=tr(lang,'この分野の収録論文を準備しています。','Papers for this field are being prepared. ')
-    return 'Papers are organized by field, paper, and version. '+collection+'Three English introductions cover the same research at different reading levels.'
+def source_url(p,kind='blob'):
+    if not p.get('source_path'):return None
+    reference=p.get('source_ref') or p.get('release') or 'main'
+    return f"{REPO}/{kind}/{quote(reference,safe='')}/{quote(p['source_path'],safe='/')}"
 
-def root_collection_summary(papers):
-    if len(papers)==1:
-        p=papers[0];name=p.get('short_title') or p['title']
-        en=f'{name} Version {p["version"]} is available here as a research collection with three reading levels.'
-    else:
-        en=f'Explore {len(papers)} research papers through three reading levels.' if papers else 'Research papers and their reading guides are being prepared.'
-    return ea(en)
+def article_tokens(fragment,p,page,file):
+    def replace(match):
+        token=match.group(1)
+        literal='{{'+token+'}}'
+        if token=='SOURCE_ROOT':
+            target=source_url(p)
+            if target is None:
+                raise CatalogError(f'{file}: {{{{SOURCE_ROOT}}}} requires source_path for {p["field"]}/{p["slug"]} version {p["version"]}')
+            return target
+        identifier={'PAPER_PDF':'main','SUPP_PDF':'supplement'}.get(token)
+        if identifier is None and token.startswith('DOCUMENT:'):
+            identifier=token.split(':',1)[1]
+        if identifier is None:
+            raise CatalogError(f'{file}: unknown article token {literal}')
+        document=document_for(p,identifier)
+        if document is None:
+            raise CatalogError(f'{file}: {literal} requires registered document id {identifier!r} for {p["field"]}/{p["slug"]} version {p["version"]}')
+        return url(page,document['path'])
+    return re.sub(r'\{\{([^{}]+)\}\}',replace,fragment)
 
 def scope_section(p,lang):
     paragraphs=p.get('scope',{}).get(lang)
@@ -144,7 +184,7 @@ def shell(page,lang,title,description,body):
 <a class="skip" href="#main">{tr(lang,'本文へ移動','Skip to content')}</a><div class="progress" aria-hidden="true"></div>
 <header class="site-header"><div class="header-inner"><a class="brand" href="{home}"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14" fill="#15375e"/><ellipse cx="18" cy="18" rx="16" ry="7" fill="none" stroke="#17a4bf" stroke-width="2" transform="rotate(-25 18 18)"/><circle cx="28" cy="13" r="3" fill="#d9892c"/></svg>PHYSICS <small>{tr(lang,'研究と対話','Research & understanding')}</small></a><nav class="header-links" aria-label="{tr(lang,'共通ナビゲーション','Site navigation')}"><a href="{home}">{tr(lang,'論文一覧','Papers')}</a><a class="source-nav" href="{REPO}">GitHub</a></nav></div></header>
 {body}
-<footer class="site-footer"><div class="footer-inner"><div>PHYSICS · {tr(lang,'論文と再現資料を、分野ごとに。','Papers and reproduction materials, organized by field.')}<br>{tr(lang,'原論文・説明記事・検証記録を対応させた研究アーカイブ。','A research archive connecting papers, explanations, and verification records.')}</div><div><a href="{home}">{tr(lang,'論文一覧','Papers')}</a> · <a href="{REPO}">GitHub</a></div></div></footer></body></html>'''
+<footer class="site-footer"><div class="footer-inner"><div>PHYSICS · Papers and reading guides, organized by field.<br>Browse each paper for its current version and available materials.</div><div><a href="{home}">Papers</a> · <a href="{REPO}">GitHub</a></div></div></footer></body></html>'''
 
 def audience_nav(p,page,lang,current=None):
     result=f'<nav class="audience-bar" aria-label="Reading levels"><div class="audience-inner"><span class="audience-label">{tr(lang,"この論文を読む：","Read this paper:")}</span>'
@@ -155,13 +195,21 @@ def audience_nav(p,page,lang,current=None):
     return result
 
 def downloads(p,page,lang):
-    main=url(page,p['main_pdf']);supp=url(page,p['supplement_pdf'])
-    release=f"{REPO}/releases/tag/{p['release']}"
-    source=f"{REPO}/tree/{p['release']}/{p['source_path']}"
-    intro=tr(lang,f'説明記事は第{p["version"]}版に基づきます。証明の全展開、全コード、個別結果の追跡には原論文と補足資料を参照してください。PDFは投稿原稿と同じファイルです。',f'These explanations follow Version {p["version"]}. Consult the paper and supplement for complete derivations, source code, and individual result records. The PDFs are unchanged copies of the submitted manuscript.')
-    return f'''<section class="download-panel" id="downloads"><h2>{tr(lang,'原論文・再現資料を読む','Read the paper and reproduction materials')}</h2>
-<p>{ea(intro)}</p>
-<div class="button-row"><a class="button" href="{main}">{ea(pdf_label(p,'main',lang))} <span class="pdf-icon">PDF</span></a><a class="button secondary" href="{supp}">{ea(pdf_label(p,'supplement',lang))} <span class="pdf-icon">PDF</span></a><a class="button secondary" href="{source}">{tr(lang,'原稿・コード・データ','Source, code & data')}</a><a class="button secondary" href="{release}">{tr(lang,'版付き公開一式','Versioned release')}</a></div></section>'''
+    buttons=[]
+    for document in paper_documents(p):
+        extension=Path(document['path']).suffix.lstrip('.').upper()
+        badge=f' <span class="pdf-icon">{ea(extension)}</span>' if extension else ''
+        style='button' if not buttons else 'button secondary'
+        buttons.append(f'<a class="{style}" href="{url(page,document["path"])}">{ea(document_label(document))}{badge}</a>')
+    source=source_url(p,'tree')
+    if source:buttons.append(f'<a class="button secondary" href="{ea(source)}">Source files</a>')
+    if p.get('release'):
+        release=f"{REPO}/releases/tag/{quote(p['release'],safe='')}"
+        buttons.append(f'<a class="button secondary" href="{ea(release)}">Versioned release</a>')
+    if not buttons:return ''
+    intro=p.get('downloads_intro',f'These reading guides describe Version {p["version"]}. The registered materials for this version are listed below.')
+    return f'''<section class="download-panel" id="downloads"><h2>Paper materials</h2>
+<p>{ea(intro)}</p><div class="button-row">{''.join(buttons)}</div></section>'''
 
 def explorer(lang):
     points=' '.join(f'{60+560*(i/100):.2f},{230-180*((i/100)**2+(1-i/100)**2):.2f}' for i in range(101))
@@ -178,10 +226,12 @@ def build_article(p,lang,audience):
     soup=BeautifulSoup(file.read_text(), 'html.parser')
     source_text=soup.get_text(' ',strip=True)
     article=soup.article
+    if article is None or article.h1 is None:
+        raise CatalogError(f'{file}: an article element with an h1 heading is required')
     title=article.h1.get_text(' ',strip=True)
     header=article.find('header',class_='article-header')
     tldr=article.select_one('.tldr')
-    if tldr is None:raise ValueError(f'Missing TL;DR in {file}')
+    if tldr is None or tldr.h2 is None:raise CatalogError(f'{file}: a TL;DR section with an h2 heading is required')
     tldr.extract()
     tldr.h2.string=tr(lang,'TL;DR — 先に要点','TL;DR — The essentials')
     intro=[]
@@ -213,15 +263,19 @@ def build_article(p,lang,audience):
             h['id']=(parent.get('id')+'-heading') if parent and parent.get('id') else f'section-{i}'
         toc.append((h['id'],h.get_text(' ',strip=True)))
     fragment=str(article)
-    source=f"{REPO}/blob/{p['release']}/{p['source_path']}"
-    fragment=fragment.replace('{{PAPER_PDF}}',url(page,p['main_pdf'])).replace('{{SUPP_PDF}}',url(page,p['supplement_pdf'])).replace('{{SOURCE_ROOT}}',source)
+    fragment=article_tokens(fragment,p,page,file)
     fragment,mathcount=render_math(fragment)
     headings=''.join(f'<li><a href="#{ea(i)}">{ea(t)}</a></li>' for i,t in toc)
-    hero=f'''<section class="hero article-hero"><div class="hero-inner"><div class="path"><a href="{url(page,lang+'/index.html')}">Physics</a> / <a href="{url(page,lang+'/'+p['field']+'/index.html')}">{ea(FIELDS_BY_SLUG[p['field']]['name'][lang])}</a> / <a href="{url(page,papath(p,lang))}">{ea(p.get("short_title") or p["title"])}</a></div><p class="eyebrow">{ea(LABELS[audience][lang])} · Version {p['version']}</p><h1>{ea(title)}</h1><div class="meta"><span>{ea(p['author'])}</span><span>{ea(p['date'])}</span><span>{tr(lang,'研究プレプリント','Research preprint')}</span><span>{ea(reading_label(p,audience,lang))}</span></div></div></section>'''
+    metadata=''.join('<span>'+ea(p[key])+'</span>' for key in ('author','date','status_label') if p.get(key))
+    metadata+='<span>'+ea(reading_label(p,audience,lang))+'</span>'
+    hero=f'''<section class="hero article-hero"><div class="hero-inner"><div class="path"><a href="{url(page,lang+'/index.html')}">Physics</a> / <a href="{url(page,lang+'/'+p['field']+'/index.html')}">{ea(FIELDS_BY_SLUG[p['field']]['name'][lang])}</a> / <a href="{url(page,papath(p,lang))}">{ea(p.get("short_title") or p["title"])}</a></div><p class="eyebrow">{ea(LABELS[audience][lang])} · Version {ea(p['version'])}</p><h1>{ea(title)}</h1><div class="meta">{metadata}</div></div></section>'''
     top=hero+audience_nav(p,page,lang,audience)
     bottomlinks=''.join(f'<a href="{url(page,papath(p,lang,a))}"><strong>{ea(LABELS[a][lang])}</strong><span>{ea(audience_description(p,a,lang))}</span></a>' for a in p['audiences'])
-    provenance=tr(lang,f'本ページは第{p["version"]}版の説明記事です。原論文の仮定、結果、未解決課題を区別しています。著者の原稿と説明記事の範囲は公開資料で確認できます。',f'This page explains Version {p["version"]}, distinguishing its assumptions, results, and open problems. The paper and publication records document their scope.')
-    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol><div class="toc-tools"><a href="{url(page,p['main_pdf'])}">{tr(lang,'論文本体 PDF','Paper PDF')}</a><a href="{url(page,p['supplement_pdf'])}">{tr(lang,'補足資料 PDF','Supplement PDF')}</a></div></details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav><p class="status-line">{provenance} <a href="{REPO}/blob/{p['release']}/{p['field']}/{p['archive_slug']}/v{p['version']}/VERIFICATION.md">{tr(lang,'検証範囲','Verification scope')}</a></p></div></main>'''
+    materials=''.join(f'<a href="{url(page,document["path"])}">{ea(document_label(document))}</a>' for document in paper_documents(p))
+    toc_materials=f'<div class="toc-tools">{materials}</div>' if materials else ''
+    provenance=f'This page explains Version {p["version"]}, distinguishing its assumptions, results, and open problems.'
+    if p.get('publication_note'):provenance+=' '+p['publication_note']
+    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol>{toc_materials}</details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav><p class="status-line">{ea(provenance)}</p></div></main>'''
     write(page,shell(page,lang,title,p['summary'][lang],body))
     plain=BeautifulSoup(fragment,'html.parser').get_text(' ',strip=True)
     BUILD_STATS[page]={'source_text_characters_including_tex':len(source_text),'source_words_including_tex':len(source_text.split()),'math_expressions':mathcount,'display_equations':len(article.select('.equation')),'figures':len(article.select('figure.diagram')),'tables':len(article.select('table')),'h2_sections':len(toc)}
@@ -229,47 +283,185 @@ def build_article(p,lang,audience):
 def reader_cards(p,page,lang):
     return '<div class="catalog-grid">'+''.join(f'''<section class="reader-card {a}"><div class="eyebrow" style="color:var(--muted)">{tr(lang,'読み方','Reading level')} {i+1:02d}</div><h3>{ea(LABELS[a][lang])}</h3><p>{ea(audience_description(p,a,lang))}</p><p class="subtle">{ea(reading_label(p,a,lang,card=True))}</p><a href="{url(page,papath(p,lang,a))}">{tr(lang,'この説明を読む','Read this introduction')} →</a></section>''' for i,a in enumerate(p['audiences']))+'</div>'
 
-def catalog_page(lang,field=None,paper=None):
-    papers=[paper] if paper else [p for p in CATALOG['papers'] if field is None or p['field']==field['slug']]
-    if paper:page=papath(paper,lang);title=paper['title'];subtitle=paper['summary'][lang]
-    elif field:page=f"{lang}/{field['slug']}/index.html";title=field['name'][lang];subtitle=field['summary'][lang]
-    else:page=f'{lang}/index.html';title=tr(lang,'物理を、理解できるかたちで。','Physics, made understandable.');subtitle=tr(lang,'研究の核心から、数式と検証まで。前提知識に合った入口で読み、同じ論文を違う深さから確かめるためのアーカイブです。','From the central idea to the mathematics and tests. Choose an entry point that fits your background, then examine the same research at greater depth.')
-    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Physics / {tr(lang,'研究アーカイブ','Research archive')}</p><h1>{ea(title)}</h1><p class="lead">{ea(subtitle)}</p><div class="meta"><span>English research guides</span><span>{tr(lang,'3つの読み方','Three reading levels')}</span><span>{tr(lang,'原論文と再現資料','Papers & reproduction materials')}</span></div></div></section><main id="main" class="catalog">'''
-    body+=f'<section class="tldr catalog-summary"><h2>TL;DR</h2><p>{ea(collection_summary(papers,lang))}</p></section>'
+def paper_index_list(papers,page,lang):
+    if not papers:return '<p>No papers are currently listed in this field.</p>'
+    items=[]
     for p in papers:
-        graphic=figures.figure(p['hero_figure'],lang) if p.get('hero_figure') else ''
-        art=f'<div class="art">{graphic}</div>' if graphic else ''
-        feature_style='' if graphic else ' style="grid-template-columns:1fr"'
-        if not paper:
-            body+=f'''<section class="paper-feature"{feature_style}>{art}<div class="info"><span class="field-tag">{ea(FIELDS_BY_SLUG[p['field']]['name'][lang])}</span><h2>{ea(p['title'])}</h2><p>{ea(p['subtitle'])}</p><p>{ea(p['summary'][lang])}</p><p class="subtle">{ea(p['author'])} · Version {p['version']} · {p['date']}</p><a class="button" href="{url(page,papath(p,lang))}">{tr(lang,'論文の入口へ','Explore this paper')} →</a></div></section>'''
-        else:
-            body+=f'<p class="catalog-intro">{ea(p["subtitle"])}<br>{ea(p["author"])} · Version {p["version"]} · {p["date"]}</p>'
-        body+=reader_cards(p,page,lang)
-        if paper:
-            body+=scope_section(p,lang)+downloads(p,page,lang)
-    body+=f'<p class="status-line">{tr(lang,"論文は著者の研究プレプリントです。著者・AIの貢献と再現確認の範囲は原論文および公開資料に記載されています。","The paper is an author research preprint. The manuscript and publication records disclose the author’s and AI’s contributions and the scope of reproduction checks.")}</p></main>'
+        summary=p.get('summary',{}).get(lang,'')
+        description='<p>'+ea(summary)+'</p>' if summary else ''
+        items.append(f'<li><h3><a href="{url(page,papath(p,lang))}">{ea(p["title"])}</a></h3>{description}<p class="subtle">Current version: {ea(p["version"])}</p></li>')
+    return '<ul class="paper-index">'+''.join(items)+'</ul>'
+
+def collection_index(page,lang,field=None):
+    title=field['name'][lang] if field else 'Physics research'
+    subtitle=field['summary'][lang] if field else 'Research papers and reading guides, organized by field. Browse the current version of each paper and its available materials.'
+    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Physics / Research archive</p><h1>{ea(title)}</h1><p class="lead">{ea(subtitle)}</p></div></section><main id="main" class="catalog">'''
+    if field:
+        papers=[p for p in CATALOG['papers'] if p['field']==field['slug']]
+        body+='<section class="catalog-intro"><h2>Papers</h2>'+paper_index_list(papers,page,lang)+'</section>'
+    else:
+        body+='<section class="catalog-intro"><h2>Fields and papers</h2><p>Select a field or a paper to explore its reading guides and materials.</p></section>'
+        for item in CATALOG['fields']:
+            papers=[p for p in CATALOG['papers'] if p['field']==item['slug']]
+            body+=f'<section class="catalog-intro"><h2><a href="{url(page,lang+"/"+item["slug"]+"/index.html")}">{ea(item["name"][lang])}</a></h2>'
+            if item['summary'][lang]:body+='<p>'+ea(item['summary'][lang])+'</p>'
+            body+=paper_index_list(papers,page,lang)+'</section>'
+        if not CATALOG['fields']:body+='<p>No research fields are currently listed.</p>'
+    body+='</main>'
     write(page,shell(page,lang,title,subtitle,body))
 
+def catalog_page(lang,field=None,paper=None):
+    if paper is None:
+        page=f"{lang}/{field['slug']}/index.html" if field else f'{lang}/index.html'
+        collection_index(page,lang,field)
+        return
+    p=paper;page=papath(p,lang);title=p['title'];summary=p['summary'][lang]
+    subtitle=p.get('subtitle','')
+    body=f'''<section class="hero"><div class="hero-inner"><div class="path"><a href="{url(page,lang+'/index.html')}">Physics</a> / <a href="{url(page,lang+'/'+p['field']+'/index.html')}">{ea(FIELDS_BY_SLUG[p['field']]['name'][lang])}</a></div><h1>{ea(title)}</h1><p class="lead">{ea(subtitle)}</p></div></section><main id="main" class="catalog">'''
+    body+='<section class="tldr catalog-summary"><h2>TL;DR</h2>'
+    if summary:body+='<p>'+ea(summary)+'</p>'
+    body+='<p>Three English guides cover the same research at different reading levels, including its assumptions, results, and open questions.</p></section>'
+    metadata=[p[key] for key in ('author',) if p.get(key)]
+    metadata.append('Version '+p['version'])
+    metadata.extend(p[key] for key in ('date','status_label') if p.get(key))
+    graphic=figures.figure(p['hero_figure'],lang) if p.get('hero_figure') else ''
+    if graphic:
+        body+=f'<section class="paper-feature"><div class="art">{graphic}</div><div class="info"><h2>About this paper</h2><p>{ea(subtitle)}</p><p class="subtle">{ea(" · ".join(metadata))}</p></div></section>'
+    else:
+        body+='<p class="catalog-intro">'+ea(' · '.join(metadata))+'</p>'
+    body+=reader_cards(p,page,lang)+scope_section(p,lang)+downloads(p,page,lang)
+    if p.get('publication_note'):body+='<p class="status-line">'+ea(p['publication_note'])+'</p>'
+    body+='</main>'
+    write(page,shell(page,lang,title,summary or subtitle or title,body))
+
 def root_index():
-    page='index.html'
-    body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Open research / Three reading levels</p><h1>Physics, made understandable.</h1><p class="lead">Research papers, clear explanations, and reproduction materials.</p></div></section><main id="main" class="catalog"><section class="catalog-summary"><h2>TL;DR</h2><p>{root_collection_summary(CATALOG['papers'])}</p><p>Choose a guide for general readers, STEM students and graduates, or experts. Each guide connects the research question to its assumptions, results, and open problems.</p></section>'''
+    collection_index('index.html','en')
+
+def read_generated_manifest():
+    path=ROOT/GENERATED_MANIFEST
+    if not path.exists():return {}
+    try:manifest=json.loads(path.read_text(encoding='utf-8'))
+    except (OSError,json.JSONDecodeError) as exc:
+        raise CatalogError(f'Cannot read generated-file manifest {path}: {exc}') from exc
+    if not isinstance(manifest,dict) or manifest.get('schema_version')!=1 or not isinstance(manifest.get('files'),list):
+        raise CatalogError(f'{path}: expected schema_version 1 and a files list')
+    records={}
+    page_pattern=re.compile(r'(?:index\.html|en/index\.html|en/[a-z0-9-]+/index\.html|en/[a-z0-9-]+/[a-z0-9-]+/(?:index|general|student|expert)\.html)\Z')
+    for entry in manifest['files']:
+        if not isinstance(entry,dict):raise CatalogError(f'{path}: file records must be objects')
+        name=safe_relative_path(entry.get('path'),'generated manifest path')
+        role=entry.get('role');digest=entry.get('sha256')
+        if name in records or role not in {'page','document','sitemap'}:
+            raise CatalogError(f'{path}: duplicate path or invalid role for {name}')
+        if not isinstance(digest,str) or not re.fullmatch(r'[a-f0-9]{64}',digest):
+            raise CatalogError(f'{path}: invalid SHA-256 for {name}')
+        if is_ownership_file(name) or name=='.nojekyll' or name.startswith('assets/'):
+            raise CatalogError(f'{path}: protected manual or shared asset path {name}')
+        if role=='page' and not page_pattern.fullmatch(name):
+            raise CatalogError(f'{path}: unrecognized generated-page path {name}')
+        if role=='sitemap' and ('/' in name or not name.endswith('.xml')):
+            raise CatalogError(f'{path}: unrecognized sitemap path {name}')
+        records[name]=entry
+    return records
+
+def copy_documents(existing_docs):
     for paper in CATALOG['papers']:
-        body+=f'<section class="catalog-intro"><h2><a href="{url(page,papath(paper,"en"))}">{ea(paper["title"])}</a></h2><p>{ea(paper["summary"]["en"])}</p></section>'+reader_cards(paper,page,'en')
-    body+='<p><a class="button" href="en/index.html">Browse the research collection →</a></p></main>'
-    write(page,shell(page,'en','Physics · Research archive','Physics papers, English reading guides, and reproduction materials organized by field.',body))
+        for document in paper_documents(paper):
+            label=f'{paper["field"]}/{paper["slug"]} version {paper["version"]}, document {document["id"]}'
+            if document.get('source_path'):
+                origin=contained_path(ROOT,document['source_path'])
+            else:
+                origin=contained_path(existing_docs,document['path'])
+            if not origin.is_file():
+                raise CatalogError(f'{label}: registered document file is missing: {origin}')
+            data=origin.read_bytes()
+            actual=hashlib.sha256(data).hexdigest()
+            if document.get('sha256') and actual!=document['sha256']:
+                raise CatalogError(f'{label}: SHA-256 mismatch for {origin}; expected {document["sha256"]}, got {actual}')
+            destination=contained_path(DOCS,document['path'])
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            destination.write_bytes(data)
+            record_generated(document['path'],'document')
+
+def publish_generated_files(existing_docs,previous):
+    """Publish staged outputs; remove only unchanged, previously owned files."""
+    removed=[];stale=[]
+    # Validate every destination before replacing any existing output.
+    for relative in MANAGED_FILES:
+        contained_path(existing_docs,relative)
+    for relative in previous:
+        contained_path(existing_docs,relative)
+    # A changed obsolete output requires explicit reconciliation. Check the
+    # complete stale set before replacing even the first current output.
+    for relative,record in previous.items():
+        if relative in MANAGED_FILES:continue
+        target=contained_path(existing_docs,relative)
+        if not target.exists():continue
+        if not target.is_file() or hashlib.sha256(target.read_bytes()).hexdigest()!=record['sha256']:
+            raise CatalogError(f'Obsolete generated file was modified: {relative}. Reconcile it with {GENERATED_MANIFEST} before building; existing outputs and the manifest were left unchanged.')
+        stale.append((relative,target))
+    for relative in sorted(MANAGED_FILES):
+        source=DOCS/relative;target=contained_path(existing_docs,relative)
+        target.parent.mkdir(parents=True,exist_ok=True)
+        with tempfile.NamedTemporaryFile(dir=target.parent,prefix='.site-build-',delete=False) as stream:
+            temporary=Path(stream.name)
+            try:
+                stream.write(source.read_bytes())
+                stream.flush()
+            except BaseException:
+                temporary.unlink(missing_ok=True)
+                raise
+        try:os.replace(temporary,target)
+        finally:temporary.unlink(missing_ok=True)
+    for relative,target in stale:
+        target.unlink();removed.append(relative)
+        parent=target.parent
+        while parent!=existing_docs:
+            try:parent.rmdir()
+            except OSError:break
+            parent=parent.parent
+    manifest={'schema_version':1,'files':[MANAGED_FILES[path] for path in sorted(MANAGED_FILES)]}
+    (ROOT/GENERATED_MANIFEST).write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    return removed
+
+def build(root=DEFAULT_ROOT):
+    """Build a repository tree without network requests or changes to research."""
+    global DOCS
+    configure(root)
+    existing_docs=DOCS
+    previous=read_generated_manifest()
+    with tempfile.TemporaryDirectory(prefix='physics-site-build-') as directory:
+        DOCS=Path(directory)/'docs';DOCS.mkdir()
+        try:
+            copy_documents(existing_docs)
+            for paper in CATALOG['papers']:
+                for lang in paper['languages']:
+                    for audience in paper['audiences']:build_article(paper,lang,audience)
+                    catalog_page(lang,paper=paper)
+            for lang in LANGUAGES:
+                catalog_page(lang)
+                for field in CATALOG['fields']:catalog_page(lang,field=field)
+            root_index()
+            expected=generated_page_paths(CATALOG)
+            if GENERATED_PAGES!=expected:
+                raise CatalogError(f'Generated HTML pages differ from the selected catalog: {sorted(GENERATED_PAGES ^ expected)}')
+            build_sitemap()
+            removed=publish_generated_files(existing_docs,previous)
+        finally:
+            DOCS=existing_docs
+    (DOCS/'.nojekyll').touch()
+    (SOURCE/'build-stats.json').write_text(json.dumps(BUILD_STATS,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    return {'pages':len(GENERATED_PAGES),'sitemap':sitemap_filename(CATALOG),
+            'documents':sum(record['role']=='document' for record in MANAGED_FILES.values()),
+            'deleted_generated_files':removed,
+            'articles':dict(BUILD_STATS)}
 
 def main():
-    DOCS.mkdir(exist_ok=True)
-    for p in CATALOG['papers']:
-        for lang in p['languages']:
-            for audience in p['audiences']:build_article(p,lang,audience)
-            catalog_page(lang,paper=p)
-    for lang in LANGUAGES:
-        catalog_page(lang)
-        for field in CATALOG['fields']:catalog_page(lang,field=field)
-    root_index()
-    build_sitemap()
-    (DOCS/'.nojekyll').touch()
-    (SOURCE/'build-stats.json').write_text(json.dumps(BUILD_STATS,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps({'pages':len(GENERATED_PAGES),'articles':BUILD_STATS},ensure_ascii=False,indent=2))
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--root',type=Path,default=DEFAULT_ROOT,help='Repository root (defaults to the directory containing tools/)')
+    args=parser.parse_args()
+    try:result=build(args.root)
+    except (CatalogError,OSError) as exc:parser.exit(1,f'Build failed: {exc}\n')
+    print(json.dumps(result,ensure_ascii=False,indent=2))
+
 if __name__=='__main__':main()

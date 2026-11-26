@@ -2,8 +2,6 @@
 
 This record maps the specialist, STEM student, and general-reader guides to their original sources: **Yohtaro Soga, Correlation Actualization Theory, Version 4, 25 November 2026**. It does not revise the paper, calculations, or evidence files.
 
-At the author's instruction on 25 November 2026, the three Japanese articles were removed from publication, together with their source fragments and generated HTML. The three English reading levels remain the publication format for these guides. That change did not revise the scientific content of the English articles.
-
 ## Roles of the three English guides
 
 | Audience | English source fragment | Explanatory focus |
@@ -59,7 +57,7 @@ The table cells identify existing anchors in the currently published English art
 | Closest prior research and limits on originality | `supp-scope.tex` | `expert-comparisons` | `student-theories` | `matrices`, `next` |
 | Evidence classification, 91 individual summaries, and negative results | `supp-scope.tex`, `supp-results.tex` | `expert-evidence` | `student-verification` | `evidence`, `sources-heading` |
 
-At the earlier Japanese/English stage, the test lists were checked at each reading level in each language for 11 local rows and 12 astronomy/cosmology rows. All three current English guides retain these rows. The student and general-reader appendices supplement the explanations of principles; they do not reproduce the operators, derivations, and numerical records for every item.
+Each English guide includes 11 local and 12 astronomy/cosmology test rows. The student and general-reader appendices supplement the explanations of principles; they do not reproduce the operators, derivations, and numerical records for every item.
 
 Analogies in the general guide provide an entry into the corresponding mathematics. “Layers” are not observed parallel universes, “route count” is not a qubit count, and “inversion” does not mean that control of the entire actual environment has been achieved. Proofs, raw data, and detailed algorithms remain in the original PDFs and evidence index.
 
@@ -75,13 +73,12 @@ Analogies in the general guide provide an entry into the corresponding mathemati
 | Readout upper bound 0.659582 / lower bound 0.970227; at most 900 trials | A separate design with target p=8/9, positive and negative calibration, all-state Δ≤0.01, dark counts d≤0.01, and independent stationary trials | An effect already achieved in an actual gravitational experiment, or an error probability based on the signal tail alone |
 | `Tr K=0` for a specified wave | One vacuum Einstein wave read by a material probe | The Einstein equations for general matter, a common cone for every species, or full stability |
 | 115 flux orbits, 49 with linearized fixing, and 41 with O3 saturation | A particular orientifold with fixed coupling/tadpole, the primitive condition, and a finite quotient | The number of all CAT vacua or of realistic, fully stable vacua |
-| 59 groups and 1,195 floating-point values; 365 declarations | Reported v3 reruns of 9 selected drivers and 10 selected modules; v4 inherits identity and has limited checks | A new independent rerun of all 85 files, or empirical proof of the physical inputs |
+| Selected numerical and formal checks | Interpret the supplied execution records within their stated programs, mathematical assumptions, and environments | An independent verification of every supplied file or empirical proof of the physical inputs |
 
-## Scope and preservation of the three English guides
+## Scope of the three English guides
 
 - The specialist, STEM student, and general-reader articles address the same assumptions, results, and open questions. The amount of explanation, vocabulary, and mathematical detail varies with the audience.
 - For CAT v4, the specialist article has 12 display equations, the STEM article has 8, and the general-reader article has 0 standalone display equations. Their figure counts are 8, 9, and 9, respectively.
-- When the Japanese articles were removed, the English source fragments and the article portions of the generated HTML were checked by hash against their pre-change versions. Shared navigation, including language switching, was changed.
 - This record does not claim a new full review of the manuscript's mathematics, numerical research, or observations, or a new observational reanalysis. The explanations rely on the scope explicitly stated in Version 4.
 
 ## Original-source link checks
@@ -96,4 +93,4 @@ Checked directory: `physics/quantum-gravity/correlation-actualization-theory/v4/
 
 No incorrect original-source path was found among the 39 occurrences. All `#page=` anchors into the main paper and supplement were within pages 1–18. These checks establish the source-fragment destinations and page ranges. HTTP retrieval after GitHub Pages publication, layout, figure display, and equation rendering are separate generation/publication checks.
 
-The article fragments are in the shared [site-src/content](../../../../site-src/content/) directory. Their source links lead to the original paper and supplement. The English figures and captions are defined in the shared [figures.py](../../../../site-src/figures.py). [SCIENTIFIC_QA.md](SCIENTIFIC_QA.md) records the initial findings, their resolution, and the scope of the numerical and assumption checks. The shared [verification.json](../../../../site-src/verification.json) records checks of generated structure, links, equations, and PDF identity; it is a site-wide report and can also cover other papers as the site grows.
+The article fragments are in the shared [site-src/content](../../../../site-src/content/) directory. Their source links lead to the original paper and supplement. The English figures and captions are defined in the shared [figures.py](../../../../site-src/figures.py). The shared [verification.json](../../../../site-src/verification.json) records checks of generated structure, links, equations, and PDF identity; it is a site-wide report and can also cover other papers as the site grows.

@@ -2,10 +2,10 @@
 
 [Physics research index](../README.md) · [Published field page](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/index.html)
 
-Research papers on quantum theory and gravitation. Open a paper's entry for its overview, version history, original materials, reading guides, and verification records.
+Research on quantum theory, gravitation, spacetime, and their mathematical foundations.
 
 ## Papers
 
-| Paper | Published version |
-| --- | --- |
-| [Correlation Actualization Theory (CAT)](correlation-actualization-theory/README.md) | [Version 4](correlation-actualization-theory/v4/README.md) |
+| Paper | Research scope | Materials |
+| --- | --- | --- |
+| [Correlation Actualization Theory](correlation-actualization-theory/README.md) | A matrix-model proposal for observer-dependent records, conditional inward-channel closure, and quantum recovery. | [Paper](correlation-actualization-theory/v4/paper/main.pdf) · [Sources and reproduction](correlation-actualization-theory/v4/README.md) · [English introductions](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/index.html) |

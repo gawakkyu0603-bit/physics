@@ -2,6 +2,7 @@
   "owner": "gawakkyu0603-bit",
   "repository": "physics",
   "public_base_url": "https://gawakkyu0603-bit.github.io/physics/",
+  "sitemap_filename": "sitemap-pages.xml",
   "fields": [
     {
       "slug": "quantum-gravity",
@@ -26,8 +27,6 @@
       "release": "cat-v4.0.0",
       "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper",
       "content_prefix": "",
-      "main_pdf": "downloads/cat-v4-main.pdf",
-      "supplement_pdf": "downloads/cat-v4-supplement.pdf",
       "audiences": [
         "general",
         "student",
@@ -40,10 +39,6 @@
         "en": "Can gravitationally selected records change the routes matter can take? A research proposal connecting matrix models, quantum information, and black holes through conditional constructions and tests."
       },
       "short_title": "CAT",
-      "page_counts": {
-        "main": 18,
-        "supplement": 18
-      },
       "audience_descriptions": {
         "general": {
           "en": "Build intuition about observers, closed routes, quantum information, spacetime, and experiments through examples and diagrams."
@@ -67,7 +62,29 @@
         ]
       },
       "hero_figure": "expert-observer-domains",
-      "interactive_return": true
+      "interactive_return": true,
+      "documents": [
+        {
+          "id": "main",
+          "label": "Paper",
+          "path": "downloads/cat-v4-main.pdf",
+          "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper/main.pdf",
+          "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a",
+          "page_count": 18
+        },
+        {
+          "id": "supplement",
+          "label": "Technical supplement",
+          "path": "downloads/cat-v4-supplement.pdf",
+          "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper/supplement.pdf",
+          "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8",
+          "page_count": 18
+        }
+      ],
+      "source_ref": "cat-v4.0.0",
+      "status_label": "Research preprint",
+      "publication_note": "The manuscript describes the author's and AI's contributions.",
+      "downloads_intro": "The paper and technical supplement contain the detailed definitions, derivations, and source references. The PDFs are copied unchanged from the registered Version 4 materials."
     }
   ],
   "languages": [
