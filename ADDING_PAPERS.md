@@ -15,15 +15,15 @@ Organize supplied manuscripts, sources, data, and code as `field/paper/version/p
 | `stellar-physics/compact-star-modes/v1/README.md` | Instructions for this manuscript and its reproduction resources. |
 | `stellar-physics/compact-star-modes/v1/paper/` | Supplied original files. |
 
-These names describe a fictional example. Do not copy CAT's scientific statements, file counts, authorship, contribution history, or publication status into another paper.
+These names describe a fictional example. Do not copy another paper's scientific statements, file counts, authorship, or publication status.
 
-Keep supplied research files identifiable and preserve fixed tags and published assets. Use a new directory for a new manuscript version. Public READMEs should describe the current research and resources; they do not need reviewer correspondence, resolved-comment checklists, or a chronology of earlier revisions. Retain scientific assumptions and limitations that readers need to interpret the work. Do not infer peer review, a DOI, or a license from publication on GitHub.
+Keep supplied research files identifiable and preserve fixed tags and published assets unless the author withdraws a work. Use a new directory for a new manuscript version. Public READMEs should describe the current research and resources; they do not need reviewer correspondence, resolved-comment checklists, or a chronology of earlier revisions. Retain scientific assumptions and limitations that readers need to interpret the work. Do not infer peer review, a DOI, or a license from publication on GitHub.
 
 Maintain public documentation in English. Build and publishing commands belong in this guide, rather than the root README. Each paper retains its own contribution statements, citation metadata, rights notices, and third-party terms.
 
 ## 2. Register the field and manuscript
 
-Edit [site-src/catalog.json](site-src/catalog.json). Its top-level `owner`, `repository`, and `public_base_url` identify the publication destination. GitHub Pages serves `docs/` on `main` at `https://gawakkyu0603-bit.github.io/physics/`. Keep `languages` set to `["en"]` and `sitemap_filename` set to the configured sitemap filename, `sitemap-pages.xml`.
+Edit [site-src/catalog.json](site-src/catalog.json). Its top-level `owner`, `repository`, and `public_base_url` identify the publication destination. GitHub Pages serves `docs/` on `main` at `https://gawakkyu0603-bit.github.io/physics/`. Keep `languages` set to `["en"]` and `sitemap_filename` set to the configured sitemap filename, `sitemap.xml`.
 
 A field needs a unique slug and English name and summary:
 
@@ -82,7 +82,7 @@ Numeric dotted versions are compared numerically: `10` is later than `2`, and `2
 
 Pages URLs stay stable, for example `en/stellar-physics/star-modes/index.html`, and display the selected latest manuscript. Root and field pages provide compact research indexes. Paper-specific figures, download descriptions, and the three reading-level cards belong on the paper's landing page.
 
-[site-src/generated-files.json](site-src/generated-files.json) records the generated pages, registered downloads, and sitemap, with their hashes. On a later build, an obsolete recorded output is removed only when its bytes still match that record. If an obsolete output has been changed outside the build, generation stops before publishing any replacement files and preserves the old output manifest. Untracked files and ownership-verification files remain outside this cleanup. Resolve reported stale-file conflicts before publishing; do not erase the output manifest to bypass them. Earlier research directories, fixed tags, and Release assets remain on GitHub.
+[site-src/generated-files.json](site-src/generated-files.json) records the generated pages, registered downloads, and sitemap, with their hashes. On a later build, an obsolete recorded output is removed only when its bytes still match that record. If an obsolete output has been changed outside the build, generation stops before publishing any replacement files and preserves the old output manifest. Untracked files and ownership-verification files remain outside this cleanup. Resolve reported stale-file conflicts before publishing; do not erase the output manifest to bypass them. Earlier research directories, fixed tags, and Release assets may remain on GitHub unless the author withdraws a work.
 
 ## 4. Write three complete English introductions
 
@@ -128,23 +128,9 @@ The builder puts the TL;DR first, places the `h1` in the page header, and create
 
 ## 5. Prepare figures and other assets
 
-Use diagrams, quantitative plots, and tables where they help readers follow the argument. Show units, parameters, assumptions, and source locations for calculated values. Distinguish schematics, model calculations, and observations. Pair color with labels or line styles, and check narrow-screen readability.
+Register a complete accessible SVG in `site-src/figures/<id>.svg` and a JSON sidecar with the same identifier, containing `title` and `description`. The generic renderer in [site-src/figures.py](site-src/figures.py) embeds the drawing. Use `hero_figure` for a paper's landing page or `<div data-figure="<id>"></div>` inside an article fragment. Use unique figure IDs and title IDs, readable labels, and captions that distinguish schematic illustrations, calculations, and observations. Do not repurpose a figure's scientific claims without checking them against the new manuscript.
 
-Define SVG functions in [site-src/figures.py](site-src/figures.py). A function receives `lang` and returns `(inner_svg_markup, height)`; the common width is 880. Register the figure ID and the caption under the function name:
-
-```python
-MAP['star-modes-student-overview'] = star_modes_overview
-CAPTIONS['star_modes_overview'] = {
-    'en': {
-        'title': 'Example figure title',
-        'description': 'Explain the conditions, quantities, and interpretation.'
-    }
-}
-```
-
-Insert `<div data-figure="star-modes-student-overview"></div>` in the article. The generator adds accessible titles and captions. Do not reuse the same figure ID twice on a page. Legacy four-element caption tuples remain supported for existing figures; the English values are the second and fourth elements.
-
-`hero_figure` is optional and belongs on the paper landing page. `interactive_return` enables a particular ideal-return calculation and defaults to false; enable it only for a paper to which that model applies. Maintain shared CSS, JavaScript, fonts, and images under `docs/assets/` separately from the generated-page cleanup.
+Maintain shared CSS, JavaScript and fonts in `docs/assets/`. Keep paper-specific graphics in their own named SVGs; do not add paper-specific logic to the shared generator.
 
 ## 6. Build and verify
 
@@ -197,8 +183,16 @@ Confirm that the `main` / `docs` Pages deployment succeeds and that the public U
 
 ## 8. Sitemap and search registration
 
-The current sitemap is [sitemap-pages.xml](https://gawakkyu0603-bit.github.io/physics/sitemap-pages.xml), generated from the canonical HTML pages of the latest registered manuscripts. It excludes ownership files, older manuscript outputs, and download files. Downloadable manuscripts remain discoverable through their paper pages. The former `sitemap.xml` filename is retired.
+The current sitemap is [sitemap.xml](https://gawakkyu0603-bit.github.io/physics/sitemap.xml), generated from the canonical HTML pages of the latest registered manuscripts. It excludes ownership files, older manuscript outputs, and download files. Downloadable manuscripts remain discoverable through their paper pages. Use this stable filename for future publications.
 
 After deploying a changed sitemap filename, use the new absolute URL in the site's Google Search Console sitemap form. Search Console receives a URL; the XML file itself is hosted by GitHub Pages. The current change replaces the previously failing filename at the author's request. Do not describe the Google-side error as resolved until Search Console reports successful retrieval. See Google's [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) and [Sitemaps report help](https://support.google.com/webmasters/answer/7451001).
 
 Service-issued ownership files go under `docs/`, so `docs/BingSiteAuth.xml` is served as `https://gawakkyu0603-bit.github.io/physics/BingSiteAuth.xml`. Use the exact filename and bytes issued for the correct site. Existing Google and Bing ownership registrations do not need to be repeated for an ordinary content update. No periodic monitoring or automatic resubmission is part of this publication workflow. The separate IndexNow script is manual and requires its configured verification file; it is not run by a site build.
+
+## Public presentation
+
+Use a research index organized by field, with a concise result/scope/materials entry for each work. Display the title, author, date where useful, scientific assumptions, and resource links. Keep internal version ordering in the catalog and exact citation paths; do not automatically display version badges, review correspondence, revision history, or generic review-related labels. Preserve substantive scientific limitations and the supplied manuscript. A withdrawn work must be removed from the active catalog, public research indexes, generated pages and downloads, and any author-designated repository archives, release assets and tags. Preserve search ownership files.
+
+### Importing the approved research bundle
+
+The current OSTQD upload is explicitly pinned in `site-src/imports/ostqd.json`. Upload `OSTQD_public_materials.zip` at the repository root. The one-time publication workflow validates the archive and all approved files before copying them, registers the original manuscript PDF, rebuilds and verifies the site, and removes the temporary uploaded ZIP from the current tree. Never upload an internal working archive containing private correspondence. For future papers, prepare a new explicitly approved manifest or use the ordinary Git workflow above. No search-engine notifications are sent by this import.

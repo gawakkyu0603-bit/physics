@@ -1,0 +1,30 @@
+name: Withdraw archived research distribution
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/withdraw-cat.yml']
+permissions:
+  contents: write
+jobs:
+  withdraw:
+    if: github.repository == 'gawakkyu0603-bit/physics'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Delete only the withdrawn research distribution and tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="$GITHUB_REPOSITORY"
+          tag="cat-v4.0.0"
+          release_id=457385359
+          expected_commit=6598cfc2469613ffd75a3548b947199b45cb638a
+          actual_id="$(gh api "repos/$repo/releases/tags/$tag" --jq .id)"
+          actual_sha="$(gh api "repos/$repo/git/ref/tags/$tag" --jq .object.sha)"
+          test "$actual_id" = "$release_id"
+          test "$actual_sha" = "$expected_commit"
+          gh api --method DELETE "repos/$repo/releases/$release_id"
+          gh api --method DELETE "repos/$repo/git/refs/tags/$tag"
+          echo 'Withdrawn release and tag deleted.'

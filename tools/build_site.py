@@ -184,7 +184,7 @@ def shell(page,lang,title,description,body):
 <a class="skip" href="#main">{tr(lang,'本文へ移動','Skip to content')}</a><div class="progress" aria-hidden="true"></div>
 <header class="site-header"><div class="header-inner"><a class="brand" href="{home}"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14" fill="#15375e"/><ellipse cx="18" cy="18" rx="16" ry="7" fill="none" stroke="#17a4bf" stroke-width="2" transform="rotate(-25 18 18)"/><circle cx="28" cy="13" r="3" fill="#d9892c"/></svg>PHYSICS <small>{tr(lang,'研究と対話','Research & understanding')}</small></a><nav class="header-links" aria-label="{tr(lang,'共通ナビゲーション','Site navigation')}"><a href="{home}">{tr(lang,'論文一覧','Papers')}</a><a class="source-nav" href="{REPO}">GitHub</a></nav></div></header>
 {body}
-<footer class="site-footer"><div class="footer-inner"><div>PHYSICS · Papers and reading guides, organized by field.<br>Browse each paper for its current version and available materials.</div><div><a href="{home}">Papers</a> · <a href="{REPO}">GitHub</a></div></div></footer></body></html>'''
+<footer class="site-footer"><div class="footer-inner"><div>PHYSICS · Papers and reading guides, organized by field.<br>Browse each paper for its research and available materials.</div><div><a href="{home}">Papers</a> · <a href="{REPO}">GitHub</a></div></div></footer></body></html>'''
 
 def audience_nav(p,page,lang,current=None):
     result=f'<nav class="audience-bar" aria-label="Reading levels"><div class="audience-inner"><span class="audience-label">{tr(lang,"この論文を読む：","Read this paper:")}</span>'
@@ -205,20 +205,11 @@ def downloads(p,page,lang):
     if source:buttons.append(f'<a class="button secondary" href="{ea(source)}">Source files</a>')
     if p.get('release'):
         release=f"{REPO}/releases/tag/{quote(p['release'],safe='')}"
-        buttons.append(f'<a class="button secondary" href="{ea(release)}">Versioned release</a>')
+        buttons.append(f'<a class="button secondary" href="{ea(release)}">Release downloads</a>')
     if not buttons:return ''
-    intro=p.get('downloads_intro',f'These reading guides describe Version {p["version"]}. The registered materials for this version are listed below.')
+    intro=p.get('downloads_intro','The available research materials are listed below.')
     return f'''<section class="download-panel" id="downloads"><h2>Paper materials</h2>
 <p>{ea(intro)}</p><div class="button-row">{''.join(buttons)}</div></section>'''
-
-def explorer(lang):
-    points=' '.join(f'{60+560*(i/100):.2f},{230-180*((i/100)**2+(1-i/100)**2):.2f}' for i in range(101))
-    return f'''<section class="explorer return-explorer" id="ideal-return"><h2>{tr(lang,'動かして確かめる：理想的な二群の帰還','Explore the ideal return of two groups')}</h2>
-<p>{tr(lang,'初期状態を純粋状態とし、各群の可逆操作をすべて戻して元の状態への帰還を測ります。位相を保った通常の全体反転では帰還確率は1です。二つの直交する荷の群の間の位相が選択によって失われる理想模型では、重みの偏りによって帰還率が変わります。','Start from a pure state, undo all reversible operations in each group, and project onto the initial state. An ideal full ordinary inverse returns it with probability one. If selection removes phase coherence between two orthogonal charge groups, the ideal return probability depends on their relative weights.')}</p>
-<div class="controls"><div><label for="group-weight">{tr(lang,'第1群の重み','Weight of group 1')} <strong data-weight>0.50</strong></label><input id="group-weight" type="range" min="0" max="1" step="0.01" value="0.5"><div>{tr(lang,'第2群の重み：','Weight of group 2: ')}<strong data-other>0.50</strong></div></div><div class="result"><span>{tr(lang,'選択後の理想帰還確率','Ideal return after selection')}</span><output for="group-weight" aria-live="polite">0.5000</output><small>{tr(lang,'0.5 = 50%、1 = 100%','0.5 = 50%; 1 = 100%')}</small></div></div>
-<svg class="mini-plot" viewBox="0 0 680 275" role="img" aria-labelledby="return-plot-title"><title id="return-plot-title">{tr(lang,'二群の重みと理想帰還確率。等しい重みで最小の0.5、片群だけなら1。','Ideal return versus the two group weights. Minimum 0.5 at equal weights; one when only one group is present.')}</title><path d="M60 35V230H630" fill="none" stroke="#6a8c9c" stroke-width="2"/><path d="M60 50H620" fill="none" stroke="#8b6bb9" stroke-width="2" stroke-dasharray="7 5"/><polyline points="{points}" fill="none" stroke="#007d94" stroke-width="4"/><circle data-curve-dot cx="340" cy="140" r="7" fill="#c36615" stroke="white" stroke-width="2"/><g fill="#264d63" font-size="17"><text x="42" y="56" text-anchor="end">1</text><text x="42" y="146" text-anchor="end">0.5</text><text x="42" y="235" text-anchor="end">0</text><text x="60" y="257" text-anchor="middle">0</text><text x="340" y="257" text-anchor="middle">0.5</text><text x="620" y="257" text-anchor="middle">1</text><text x="350" y="31" text-anchor="middle">{tr(lang,'紫の破線：通常の理想反転','Purple dashed line: ideal ordinary inverse')}</text></g></svg>
-<details><summary>{tr(lang,'計算の式を見る','Show the calculation')}</summary><p class="formula">\\(F=w^2+(1-w)^2\\)</p><p>{tr(lang,'たとえば w = 0.5 なら 0.25 + 0.25 = 0.5。これは群の重みの式であり、別に述べた装置の吸収確率ではありません。','For example, w = 0.5 gives 0.25 + 0.25 = 0.5. Here w is a group weight, not the absorption probability in the separate device protocol.')}</p></details>
-<p class="tiny">{tr(lang,'説明用の理想計算です。約66%／97%という較正付き実験設計の上限・下限とは別の値で、観測結果ではありません。','An ideal mathematical illustration, separate from the approximately 66% / 97% bounds of the calibrated experimental design; these are not measurements.')}</p><noscript><p>{tr(lang,'スライダーにはJavaScriptが必要です。等しい重みの場合は0.5000です。','The slider requires JavaScript. At equal weights the value is 0.5000.')}</p></noscript></section>'''
 
 def build_article(p,lang,audience):
     page=papath(p,lang,audience)
@@ -245,13 +236,6 @@ def build_article(p,lang,audience):
         fid=placeholder['data-figure']
         replacement=BeautifulSoup(figures.figure(fid,lang),'html.parser')
         placeholder.replace_with(replacement)
-    if p.get('interactive_return',False):
-        target=article.find(id='figure-general-echo') if audience=='general' else article.find(id='figure-expert-readout-design') if audience=='expert' else article.find(id='student-test')
-        if target is None:
-            target=article.find(id='student-return')
-        if target is None:
-            target=article.find_all('section')[-2]
-        target.insert_after(BeautifulSoup(explorer(lang),'html.parser'))
     for table in list(article.find_all('table')):
         if 'table-scroll' not in table.parent.get('class',[]):
             wrap=soup.new_tag('div',attrs={'class':'table-scroll','tabindex':'0'})
@@ -266,16 +250,14 @@ def build_article(p,lang,audience):
     fragment=article_tokens(fragment,p,page,file)
     fragment,mathcount=render_math(fragment)
     headings=''.join(f'<li><a href="#{ea(i)}">{ea(t)}</a></li>' for i,t in toc)
-    metadata=''.join('<span>'+ea(p[key])+'</span>' for key in ('author','date','status_label') if p.get(key))
+    metadata=''.join('<span>'+ea(p[key])+'</span>' for key in ('author','date') if p.get(key))
     metadata+='<span>'+ea(reading_label(p,audience,lang))+'</span>'
-    hero=f'''<section class="hero article-hero"><div class="hero-inner"><div class="path"><a href="{url(page,lang+'/index.html')}">Physics</a> / <a href="{url(page,lang+'/'+p['field']+'/index.html')}">{ea(FIELDS_BY_SLUG[p['field']]['name'][lang])}</a> / <a href="{url(page,papath(p,lang))}">{ea(p.get("short_title") or p["title"])}</a></div><p class="eyebrow">{ea(LABELS[audience][lang])} · Version {ea(p['version'])}</p><h1>{ea(title)}</h1><div class="meta">{metadata}</div></div></section>'''
+    hero=f'''<section class="hero article-hero"><div class="hero-inner"><div class="path"><a href="{url(page,lang+'/index.html')}">Physics</a> / <a href="{url(page,lang+'/'+p['field']+'/index.html')}">{ea(FIELDS_BY_SLUG[p['field']]['name'][lang])}</a> / <a href="{url(page,papath(p,lang))}">{ea(p.get("short_title") or p["title"])}</a></div><p class="eyebrow">{ea(LABELS[audience][lang])}</p><h1>{ea(title)}</h1><div class="meta">{metadata}</div></div></section>'''
     top=hero+audience_nav(p,page,lang,audience)
     bottomlinks=''.join(f'<a href="{url(page,papath(p,lang,a))}"><strong>{ea(LABELS[a][lang])}</strong><span>{ea(audience_description(p,a,lang))}</span></a>' for a in p['audiences'])
     materials=''.join(f'<a href="{url(page,document["path"])}">{ea(document_label(document))}</a>' for document in paper_documents(p))
     toc_materials=f'<div class="toc-tools">{materials}</div>' if materials else ''
-    provenance=f'This page explains Version {p["version"]}, distinguishing its assumptions, results, and open problems.'
-    if p.get('publication_note'):provenance+=' '+p['publication_note']
-    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol>{toc_materials}</details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav><p class="status-line">{ea(provenance)}</p></div></main>'''
+    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol>{toc_materials}</details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav></div></main>'''
     write(page,shell(page,lang,title,p['summary'][lang],body))
     plain=BeautifulSoup(fragment,'html.parser').get_text(' ',strip=True)
     BUILD_STATS[page]={'source_text_characters_including_tex':len(source_text),'source_words_including_tex':len(source_text.split()),'math_expressions':mathcount,'display_equations':len(article.select('.equation')),'figures':len(article.select('figure.diagram')),'tables':len(article.select('table')),'h2_sections':len(toc)}
@@ -289,12 +271,12 @@ def paper_index_list(papers,page,lang):
     for p in papers:
         summary=p.get('summary',{}).get(lang,'')
         description='<p>'+ea(summary)+'</p>' if summary else ''
-        items.append(f'<li><h3><a href="{url(page,papath(p,lang))}">{ea(p["title"])}</a></h3>{description}<p class="subtle">Current version: {ea(p["version"])}</p></li>')
+        items.append(f'<li><h3><a href="{url(page,papath(p,lang))}">{ea(p["title"])}</a></h3>{description}</li>')
     return '<ul class="paper-index">'+''.join(items)+'</ul>'
 
 def collection_index(page,lang,field=None):
     title=field['name'][lang] if field else 'Physics research'
-    subtitle=field['summary'][lang] if field else 'Research papers and reading guides, organized by field. Browse the current version of each paper and its available materials.'
+    subtitle=field['summary'][lang] if field else 'Research papers and reading guides, organized by field. Explore each paper and its available materials.'
     body=f'''<section class="hero"><div class="hero-inner"><p class="eyebrow">Physics / Research archive</p><h1>{ea(title)}</h1><p class="lead">{ea(subtitle)}</p></div></section><main id="main" class="catalog">'''
     if field:
         papers=[p for p in CATALOG['papers'] if p['field']==field['slug']]
@@ -322,15 +304,13 @@ def catalog_page(lang,field=None,paper=None):
     if summary:body+='<p>'+ea(summary)+'</p>'
     body+='<p>Three English guides cover the same research at different reading levels, including its assumptions, results, and open questions.</p></section>'
     metadata=[p[key] for key in ('author',) if p.get(key)]
-    metadata.append('Version '+p['version'])
-    metadata.extend(p[key] for key in ('date','status_label') if p.get(key))
+    metadata.extend(p[key] for key in ('date',) if p.get(key))
     graphic=figures.figure(p['hero_figure'],lang) if p.get('hero_figure') else ''
     if graphic:
         body+=f'<section class="paper-feature"><div class="art">{graphic}</div><div class="info"><h2>About this paper</h2><p>{ea(subtitle)}</p><p class="subtle">{ea(" · ".join(metadata))}</p></div></section>'
     else:
         body+='<p class="catalog-intro">'+ea(' · '.join(metadata))+'</p>'
     body+=reader_cards(p,page,lang)+scope_section(p,lang)+downloads(p,page,lang)
-    if p.get('publication_note'):body+='<p class="status-line">'+ea(p['publication_note'])+'</p>'
     body+='</main>'
     write(page,shell(page,lang,title,summary or subtitle or title,body))
 

@@ -1,15 +1,11 @@
-# Physics
+# Physics research
 
-Research papers, original sources, and supporting materials across physics.
+A collection of physics research papers, mathematical constructions, numerical calculations, and supporting materials. Explore the [reading site](https://gawakkyu0603-bit.github.io/physics/en/index.html) for English explanations at three reading levels.
 
-Browse the [Physics reading site](https://gawakkyu0603-bit.github.io/physics/en/index.html) for English introductions at three levels: general readers, STEM students and graduates, and specialists. The site presents the latest published version of each paper.
+## Quantum gravity
 
-## Research index
-
-| Field | Paper and scope | Materials |
+| Research | Scope | Materials |
 | --- | --- | --- |
-| [Quantum gravity](quantum-gravity/README.md) | [Correlation Actualization Theory](quantum-gravity/correlation-actualization-theory/README.md): a matrix-model proposal connecting observer-dependent records, quantum recovery, and conditional inward-channel closure. | [Paper](quantum-gravity/correlation-actualization-theory/v4/paper/main.pdf) · [Sources and reproduction](quantum-gravity/correlation-actualization-theory/v4/README.md) · [English introductions](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/index.html) |
+| [Observer-Separated Two-Time Quantum Dynamics (OSTQD)](quantum-gravity/observer-separated-two-time-quantum-dynamics/README.md) | Observer-indexed two-time quantum dynamics; conditional local horizon obstructions, channel recovery and finite-dimensional information bounds. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html) · [Research materials](quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/README.md) |
 
-## Using the materials
-
-Each paper's entry describes its research scope and links to the available manuscripts, sources, data, code, and reading guides. Materials are organized by field and paper, with version directories for reproducible citations. Check the corresponding paper's instructions and rights notices before using its files.
+Research statements have the assumptions and limitations given in the corresponding paper. See each entry for available resources, citation, and instructions.

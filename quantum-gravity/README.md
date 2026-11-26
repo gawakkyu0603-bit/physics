@@ -1,11 +1,9 @@
 # Quantum gravity
 
-[Physics research index](../README.md) · [Published field page](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/index.html)
+Research on quantum theory, gravitation, spacetime, and quantum information.
 
-Research on quantum theory, gravitation, spacetime, and their mathematical foundations.
-
-## Papers
-
-| Paper | Research scope | Materials |
+| Research | Scope | Materials |
 | --- | --- | --- |
-| [Correlation Actualization Theory](correlation-actualization-theory/README.md) | A matrix-model proposal for observer-dependent records, conditional inward-channel closure, and quantum recovery. | [Paper](correlation-actualization-theory/v4/paper/main.pdf) · [Sources and reproduction](correlation-actualization-theory/v4/README.md) · [English introductions](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/cat/index.html) |
+| [Observer-Separated Two-Time Quantum Dynamics](observer-separated-two-time-quantum-dynamics/README.md) | Local observer algebras, two-time dynamics, quantum recovery, entropy and evaporation bounds. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html) · [Materials](observer-separated-two-time-quantum-dynamics/v1/README.md) |
+
+[Physics research index](../README.md)

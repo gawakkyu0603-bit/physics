@@ -28,8 +28,10 @@ Public documentation is maintained in English. Original research files retain th
 
 ## Sources, citation, and rights
 
-Keep original research and published distributions identifiable. Use a version directory, release tag, or exact commit when citing a particular distribution. Existing fixed tags and Release assets identify their original contents; later website maintenance does not revise those distributions.
+Keep original research and published distributions identifiable. Use a version directory, release tag, or exact commit when citing a particular distribution. Fixed tags and Release assets identify their original contents; later website maintenance does not revise those distributions unless the author explicitly withdraws the work.
 
-Each paper retains its own contribution statements, rights, and third-party notices. Inclusion in this repository does not create a blanket license or imply journal acceptance.
+Each paper retains its own contribution statements, rights, and third-party notices in its research materials. Inclusion in this repository does not create a blanket license or imply journal acceptance.
 
 For adding papers, building the site, and publishing updates, use [ADDING_PAPERS.md](../ADDING_PAPERS.md). The [site source reference](../site-src/README.md) describes the catalog and generator.
+
+The public templates do not display internal version numbers or review-related metadata by default. Version identifiers remain available where needed for precise source paths and citation. The canonical site map is `sitemap.xml`.

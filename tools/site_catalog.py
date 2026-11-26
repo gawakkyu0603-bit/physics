@@ -123,7 +123,7 @@ def generated_page_paths(catalog):
 
 
 def sitemap_filename(catalog):
-    value = safe_relative_path(catalog.get('sitemap_filename', 'sitemap-pages.xml'), 'sitemap_filename')
+    value = safe_relative_path(catalog.get('sitemap_filename', 'sitemap.xml'), 'sitemap_filename')
     if '/' in value or not value.endswith('.xml') or is_ownership_file(value):
         raise CatalogError('sitemap_filename must be a root-level XML filename distinct from ownership files')
     return value

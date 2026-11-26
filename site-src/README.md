@@ -10,7 +10,7 @@ The reading site is a general physics research index with a dedicated landing pa
 | --- | --- |
 | [catalog.json](catalog.json) | Fields, manuscripts, optional resources, publication metadata, and the sitemap filename. |
 | `content/` | Three English article fragments per registered manuscript. |
-| [figures.py](figures.py) | Figure functions, IDs, and captions. |
+| [figures.py](figures.py) | Generic SVG loader; named SVGs and caption sidecars in `figures/`. |
 | [render-math.cjs](render-math.cjs) | KaTeX rendering into HTML and MathML. |
 | [COVERAGE.md](COVERAGE.md) | Index of current source-to-guide maps. |
 | [../tools/site_catalog.py](../tools/site_catalog.py) | Shared catalog validation, version selection, document normalization, and expected-page paths. |
@@ -24,7 +24,7 @@ The reading site is a general physics research index with a dedicated landing pa
 
 ## Catalog and resources
 
-The top-level catalog identifies `owner`, `repository`, `public_base_url`, `languages`, `fields`, `papers`, and `sitemap_filename`. The public base URL ends in `/`. The current language is `["en"]`; the current sitemap filename is `sitemap-pages.xml`.
+The top-level catalog identifies `owner`, `repository`, `public_base_url`, `languages`, `fields`, `papers`, and `sitemap_filename`. The public base URL ends in `/`. The current language is `["en"]`; the current sitemap filename is `sitemap.xml`.
 
 A field has a unique `slug` and English `name` and `summary`. A manuscript entry requires a registered `field`, a site `slug`, its `title`, and a `version`. The same field and slug identify successive versions of one paper. The archive directory can have a longer name and is specified by the source paths.
 
@@ -41,12 +41,11 @@ A field has a unique `slug` and English `name` and `summary`. A manuscript entry
 | `reading_times` | Optional reading-time estimates by audience. No estimate is displayed when absent. |
 | `scope.en` | Optional array of paragraphs on the paper landing page. |
 | `hero_figure` | Optional registered figure on the paper landing page. An unknown figure ID is an error. |
-| `status_label` | Optional publication-status label. The template does not assume that all papers are preprints. |
-| `publication_note` | Optional paper-specific public note. There is no automatic AI-contribution statement. |
+| `status_label` | Optional internal metadata; not rendered by shared templates. |
+| `publication_note` | Optional internal metadata; not rendered by shared templates. |
 | `downloads_intro` | Optional introduction to that paper's available downloads. |
-| `interactive_return` | Defaults to false. Enables the existing two-group ideal-return interactive explanation only where that model applies. |
 
-The three publication-text fields `status_label`, `publication_note`, and `downloads_intro` accept an English string or an `en` dictionary. They should state facts about the actual paper, without review-response chronology or generic claims of verification.
+The optional text fields accept English strings or `en` dictionaries. Only `downloads_intro` is rendered by the shared presentation; status and publication notes are not automatically displayed.
 
 Each document is declared independently:
 
@@ -79,7 +78,7 @@ The builder records managed paths in `generated-files.json`:
   "files": [
     {"path": "en/index.html", "role": "page", "sha256": "the actual SHA-256"},
     {"path": "downloads/example.pdf", "role": "document", "sha256": "the actual SHA-256"},
-    {"path": "sitemap-pages.xml", "role": "sitemap", "sha256": "the actual SHA-256"}
+    {"path": "sitemap.xml", "role": "sitemap", "sha256": "the actual SHA-256"}
   ]
 }
 ```
@@ -132,3 +131,7 @@ The build and verification commands accept `--root PATH` for an isolated checkou
 The structural verifier checks configured pages, current manuscript selection, local links and anchors, source targets, language and canonical metadata, TL;DR structure, mathematics, figure labels, sitemap coverage, and declared document identity. The regression tests use temporary fixtures for different paper/resource/version configurations. Scientific accuracy still requires comparison with the actual manuscript; mechanical checks are not a review of the research.
 
 Ownership-verification files are maintained manually under `docs/`. Ordinary builds preserve them and do not restore the removed IndexNow key. [indexnow.json](indexnow.json) is configuration for the separate manual notification script, which reads the catalog's sitemap filename and requires a valid key before sending anything. Search registration instructions are in [ADDING_PAPERS.md](../ADDING_PAPERS.md#8-sitemap-and-search-registration).
+
+## Figure sources
+
+Each named SVG is stored in `site-src/figures/<id>.svg` with a JSON sidecar containing `title` and `description`. The generic `figures.py` renderer embeds these with accessible captions. Set `hero_figure` or place a `data-figure` element in a guide. Reuse a scientific figure only when its labels and assumptions fit the new work. Public templates omit automatic version badges and review metadata. The internal latest-version ordering is unchanged.

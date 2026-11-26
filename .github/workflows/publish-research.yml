@@ -1,0 +1,62 @@
+name: Build and publish research materials
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-research.yml'
+      - 'OSTQD_public_materials.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: research-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'gawakkyu0603-bit/physics' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Install site build dependencies
+        run: |
+          python3 -m pip install -r site-src/requirements.txt
+          npm ci
+      - name: Import approved research files if present
+        run: python3 tools/import_public_bundle.py site-src/imports/ostqd.json
+      - name: Test publication behavior and generate site
+        run: |
+          python3 -m unittest discover -s tests -p 'test_site_publication.py'
+          python3 tools/build_site.py
+          python3 tools/verify_site.py
+      - name: Commit checked site and imported originals
+        id: commit
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- docs site-src quantum-gravity README.md
+          if git ls-files --error-unmatch OSTQD_public_materials.zip >/dev/null 2>&1; then
+            git add -u -- OSTQD_public_materials.zip
+          fi
+          if git diff --cached --quiet; then
+            echo 'No changes to publish'
+            echo 'pushed=false' >> "$GITHUB_OUTPUT"
+          else
+            git commit -m 'Publish checked research materials and reading pages'
+            git push origin HEAD:main
+            echo 'pushed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Request Pages build after checked update
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

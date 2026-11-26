@@ -2,7 +2,7 @@
   "owner": "gawakkyu0603-bit",
   "repository": "physics",
   "public_base_url": "https://gawakkyu0603-bit.github.io/physics/",
-  "sitemap_filename": "sitemap-pages.xml",
+  "sitemap_filename": "sitemap.xml",
   "fields": [
     {
       "slug": "quantum-gravity",
@@ -10,23 +10,22 @@
         "en": "Quantum gravity"
       },
       "summary": {
-        "en": "Explore the meeting of quantum theory and gravity through papers, explanations, and reproduction materials."
+        "en": "Research on quantum theory, gravitation, spacetime, and quantum information."
       }
     }
   ],
   "papers": [
     {
-      "slug": "cat",
+      "slug": "ostqd",
       "field": "quantum-gravity",
-      "archive_slug": "correlation-actualization-theory",
-      "title": "Correlation Actualization Theory",
-      "subtitle": "A nonperturbative matrix proposal with observer-dependent layers",
+      "archive_slug": "observer-separated-two-time-quantum-dynamics",
+      "title": "Observer-Separated Two-Time Quantum Dynamics",
+      "subtitle": "Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds",
       "author": "Yohtaro Soga",
-      "version": "4",
-      "date": "2026-11-25",
-      "release": "cat-v4.0.0",
-      "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper",
-      "content_prefix": "",
+      "version": "1",
+      "date": "2026-11-26",
+      "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1",
+      "content_prefix": "ostqd-",
       "audiences": [
         "general",
         "student",
@@ -36,55 +35,29 @@
         "en"
       ],
       "summary": {
-        "en": "Can gravitationally selected records change the routes matter can take? A research proposal connecting matrix models, quantum information, and black holes through conditional constructions and tests."
+        "en": "An observer-indexed quantum framework separates reversible clock-time evolution from auxiliary-time dephasing, with conditional results on energy conservation, local horizon incompatibility, quantum recovery, entropy, and information bottlenecks."
       },
-      "short_title": "CAT",
+      "short_title": "OSTQD",
       "audience_descriptions": {
         "general": {
-          "en": "Build intuition about observers, closed routes, quantum information, spacetime, and experiments through examples and diagrams."
+          "en": "Explore horizons, observer records, two kinds of quantum evolution, and information recovery through examples."
         },
         "student": {
-          "en": "Use linear algebra and introductory quantum mechanics to connect channels, mode counts, recovery, and matrix models."
+          "en": "Work through matrix generators, energy variance, a Hawking pair, channel fidelity, pinching, and evaporation models."
         },
         "expert": {
-          "en": "Examine the parent action, instruments, domain control, recovery conditions, geometry, vacua, and the full test catalogue."
+          "en": "Read the assumptions, conditional theorem statements, mathematical constructions, and the limits of the finite models."
         }
-      },
-      "reading_times": {
-        "general": "25–40",
-        "student": "35–50",
-        "expert": "45–65"
       },
       "scope": {
         "en": [
-          "Each introduction covers the motivation and action choice; receipts, histories and route closure; common preparation and quantum recovery; material clocks; spacetime and vacua; matter and scales; experiments, astronomy and cosmology; verification and open problems. General readers receive examples and intuition, students the key equations, and experts the definitions, conditions and quantitative comparisons.",
-          "Diagrams identify conditional models and explanatory schematics. The text distinguishes mathematical results from mechanisms that remain unconfirmed in nature."
+          "All guides cover the two-time framework, the five conditional results, the two-window evaporation example, the independent matrix-spectrum benchmark, and open questions.",
+          "The mathematical statements concern specified finite-dimensional systems. No continuum gravitational dephasing, observed firewall, or experimentally measured departure from standard quantum mechanics is asserted."
         ]
       },
-      "hero_figure": "expert-observer-domains",
-      "interactive_return": true,
-      "documents": [
-        {
-          "id": "main",
-          "label": "Paper",
-          "path": "downloads/cat-v4-main.pdf",
-          "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper/main.pdf",
-          "sha256": "5b3539369c18b900a207c1bf8e55e3261a7e9599b6cd8be8181f7c814c68fc7a",
-          "page_count": 18
-        },
-        {
-          "id": "supplement",
-          "label": "Technical supplement",
-          "path": "downloads/cat-v4-supplement.pdf",
-          "source_path": "quantum-gravity/correlation-actualization-theory/v4/paper/supplement.pdf",
-          "sha256": "96c59915ad3bdafbad4da6b79bb9974f3ba7a644544205070691383fa16b46a8",
-          "page_count": 18
-        }
-      ],
-      "source_ref": "cat-v4.0.0",
-      "status_label": "Research preprint",
-      "publication_note": "The manuscript describes the author's and AI's contributions.",
-      "downloads_intro": "The paper and technical supplement contain the detailed definitions, derivations, and source references. The PDFs are copied unchanged from the registered Version 4 materials."
+      "hero_figure": "ostqd-observer-domains",
+      "documents": [],
+      "downloads_intro": "The manuscript and accompanying source files are awaiting upload. The research overview is available below."
     }
   ],
   "languages": [
