@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "html_pages": 7,
+    "article_pages": 3,
+    "local_links": 133,
+    "paper_source_links": 4,
+    "site_verification_files": {
+      "google6aa3895dea8c1557.html": "5b9c46fad26d3c7397473062d68e456b36bbd1efdd8d5e654828c89d64926f05",
+      "BingSiteAuth.xml": "0641e41018c7090d26c0c43efad945042319990fc8a45b6e0591aee0112ec82e"
+    },
+    "document_sha256": {},
+    "document_identity": {},
+    "configured_languages": [
+      "en"
+    ],
+    "selected_versions": {
+      "quantum-gravity/ostqd": "1"
+    },
+    "sitemap_filename": "sitemap.xml",
+    "hreflang_links": 9,
+    "sitemap_urls": 7
+  },
+  "error_count": 0,
+  "errors": []
+}
