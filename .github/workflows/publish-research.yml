@@ -5,7 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/publish-research.yml'
-      - 'OSTQD_public_materials.zip'
+      - '*.zip'
+      - 'site-src/imports/**'
   workflow_dispatch:
 
 permissions:
@@ -30,8 +31,17 @@ jobs:
         run: |
           python3 -m pip install -r site-src/requirements.txt
           npm ci
+          if ! command -v pdftocairo >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y poppler-utils
+          fi
       - name: Import approved research files if present
-        run: python3 tools/import_public_bundle.py site-src/imports/ostqd.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          for manifest in site-src/imports/*.json; do
+            python3 tools/import_public_bundle.py "$manifest"
+          done
       - name: Test publication behavior and generate site
         run: |
           python3 -m unittest discover -s tests -p 'test_site_publication.py'
@@ -44,8 +54,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A -- docs site-src quantum-gravity README.md
-          if git ls-files --error-unmatch OSTQD_public_materials.zip >/dev/null 2>&1; then
-            git add -u -- OSTQD_public_materials.zip
+          if [[ -n "$(git ls-files --deleted -- '*.zip')" ]]; then
+            git add -u -- '*.zip'
           fi
           if git diff --cached --quiet; then
             echo 'No changes to publish'

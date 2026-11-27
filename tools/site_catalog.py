@@ -102,6 +102,19 @@ def select_latest_papers(papers):
         else:
             latest = max(versions, key=lambda p: _numeric_version(str(p['version'])))
         selected.append(latest)
+    # Preserve the position of each research series in the catalogue while
+    # ordering its members by scientific sequence, independently of versions.
+    series = {}
+    for index, paper in enumerate(selected):
+        if paper.get('series'):
+            series.setdefault(paper['series'], []).append(index)
+    for name, positions in series.items():
+        members = [selected[i] for i in positions]
+        orders = [p['series_order'] for p in members]
+        if len(set(orders)) != len(orders):
+            raise CatalogError(f'Duplicate research-series position in {name!r}')
+        for index, paper in zip(positions, sorted(members, key=lambda p: p['series_order'])):
+            selected[index] = paper
     return selected
 
 
@@ -255,6 +268,11 @@ def normalize_catalog(data):
         for key in ('subtitle', 'author', 'date', 'short_title'):
             if key in paper and not isinstance(paper[key], str):
                 raise CatalogError(f'{label}.{key} must be a string')
+        if 'series' in paper or 'series_order' in paper:
+            _slug(paper.get('series'), f'{label}.series')
+            order = paper.get('series_order')
+            if isinstance(order, bool) or not isinstance(order, int) or order < 1:
+                raise CatalogError(f'{label}.series_order must be a positive integer')
         for key in ('status_label', 'publication_note', 'downloads_intro'):
             if key in paper:
                 paper[key] = _english(paper[key], f'{label}.{key}')

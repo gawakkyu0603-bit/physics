@@ -192,6 +192,23 @@ class PublicationRegressionTests(unittest.TestCase):
         self.assertNotIn("/releases/tag/", second_html)
         self.assertNotIn("AI’s contributions", second_html)
 
+    def test_research_series_is_ordered_independently_of_manuscript_versions(self):
+        later = self.fixture.paper("follow-up", "1")
+        earlier = self.fixture.paper("foundation", "9")
+        later.update(series="linked-research", series_order=2)
+        earlier.update(series="linked-research", series_order=1)
+        self.build_successfully()
+        report = self.verify_successfully()
+        self.assertEqual(report["checks"]["html_pages"], 11)
+        for index in ("docs/index.html", "docs/en/index.html", "docs/en/stellar-physics/index.html"):
+            page = (self.fixture.root / index).read_text()
+            self.assertLess(page.index("Paper 1 — Foundation research"), page.index("Paper 2 — Follow-Up research"))
+        first = (self.fixture.root / "docs/en/stellar-physics/foundation/index.html").read_text()
+        second = (self.fixture.root / "docs/en/stellar-physics/follow-up/index.html").read_text()
+        self.assertIn('../follow-up/index.html', first)
+        self.assertIn('../foundation/index.html', second)
+        self.assertNotIn("Current version:", first)
+
     def test_latest_numeric_version_wins_and_previous_download_is_retired(self):
         older = self.fixture.paper("modes", "2")
         self.build_successfully()

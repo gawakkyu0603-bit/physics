@@ -135,3 +135,7 @@ Ownership-verification files are maintained manually under `docs/`. Ordinary bui
 ## Figure sources
 
 Each named SVG is stored in `site-src/figures/<id>.svg` with a JSON sidecar containing `title` and `description`. The generic `figures.py` renderer embeds these with accessible captions. Set `hero_figure` or place a `data-figure` element in a guide. Reuse a scientific figure only when its labels and assumptions fit the new work. Public templates omit automatic version badges and review metadata. The internal latest-version ordering is unchanged.
+
+## Related papers and approved archives
+
+An optional `series` slug and positive integer `series_order` identify distinct works in a scientific reading sequence, not revisions. The selected manuscripts retain catalogue group placement and are sorted within each series; the landing pages and reading guides link other members. Duplicate active sequence positions are rejected. An approved archive manifest may activate a new catalogue entry only after its ZIP and per-file identities match. An optional `web_figures` list converts original PDF figures with `pdftocairo` into accessible SVGs with unique IDs, retaining original PDF bytes. See [ADDING_PAPERS.md](../ADDING_PAPERS.md) for the workflow.

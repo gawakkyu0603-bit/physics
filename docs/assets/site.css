@@ -20,3 +20,6 @@
 .katex{position:relative}.katex .katex-mathml{left:0;top:0}
 .article-content .tldr h2{margin-top:0;border:0;padding-top:0}
 @media(max-width:600px){.article-hero .hero-inner{padding:1.25rem 1.1rem 1.15rem}.article-hero .path{font-size:.78rem;line-height:1.5;margin-bottom:.5rem}.article-hero .eyebrow{font-size:.78rem;margin-bottom:.55rem}.article-hero h1{font-size:1.75rem;line-height:1.5;margin-bottom:.8rem}.article-hero .meta{line-height:1.7}.toc details:not([open]) summary{margin-bottom:0}}
+
+/* Research-series navigation; paper sequence is independent of manuscript revisions. */
+.series-nav{margin:2rem 0;padding:1.2rem 1.5rem;background:#f1f6fc;border:1px solid #cbd9eb;border-radius:8px}.series-nav h2{font-size:1.3rem!important;margin:0 0 .75rem!important}.series-list{margin:0;padding-left:1.5rem}.series-list li+li{margin-top:.5rem}.series-list [aria-current="page"]{font-weight:650;color:#35506e}

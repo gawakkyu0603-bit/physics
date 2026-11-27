@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" role="img" aria-labelledby="skjt-overview-title">
+<title id="skjt-overview-title">Finite-dimensional OSTQD and three conditional low-energy investigations</title>
+<rect x="20" y="20" width="840" height="400" rx="18" fill="#f6f9fe" stroke="#ccdaed"/>
+<text x="440" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="#23466e">From OSTQD to open gravity</text>
+<rect x="242" y="87" width="396" height="79" rx="12" fill="#173a62"/>
+<text x="440" y="118" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">Finite-dimensional OSTQD</text>
+<text x="440" y="144" text-anchor="middle" font-size="18" fill="#d9e9fc">Relax subsystem energy immunity</text>
+<g stroke="#6586ae" stroke-width="3" fill="none"><path d="M440 166V204H160V233"/><path d="M440 166V233"/><path d="M440 204H720V233"/></g>
+<g fill="#6586ae"><path d="M154 225L160 237L166 225Z"/><path d="M434 225L440 237L446 225Z"/><path d="M714 225L720 237L726 225Z"/></g>
+<rect x="34" y="238" width="252" height="125" rx="12" fill="white" stroke="#245edb" stroke-width="2"/><rect x="314" y="238" width="252" height="125" rx="12" fill="white" stroke="#007e95" stroke-width="2"/><rect x="594" y="238" width="252" height="125" rx="12" fill="white" stroke="#7547bc" stroke-width="2"/>
+<g text-anchor="middle" font-size="21" font-weight="650"><text x="160" y="274" fill="#245edb">Thermal channels</text><text x="440" y="274" fill="#007e95">JT evaporation</text><text x="720" y="274" fill="#7547bc">Horizon correlations</text></g>
+<g text-anchor="middle" fill="#35506e" font-size="18"><text x="160" y="310">KMS covariance</text><text x="160" y="336">and time dependence</text><text x="440" y="310">Non-Gaussian</text><text x="440" y="336">energy fluctuations</text><text x="720" y="310">Smooth-band defect</text><text x="720" y="336">and positivity floor</text></g>
+<text x="440" y="397" text-anchor="middle" fill="#4e6583" font-size="17">Separate conditional models; no unified microscopic completion asserted</text></svg>

@@ -257,7 +257,7 @@ def build_article(p,lang,audience):
     bottomlinks=''.join(f'<a href="{url(page,papath(p,lang,a))}"><strong>{ea(LABELS[a][lang])}</strong><span>{ea(audience_description(p,a,lang))}</span></a>' for a in p['audiences'])
     materials=''.join(f'<a href="{url(page,document["path"])}">{ea(document_label(document))}</a>' for document in paper_documents(p))
     toc_materials=f'<div class="toc-tools">{materials}</div>' if materials else ''
-    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol>{toc_materials}</details></aside><div class="article-content" lang="{lang}">{fragment}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav></div></main>'''
+    body=top+f'''<main id="main" class="reading-layout"><aside class="toc"><details open><summary>{tr(lang,'このページの目次','On this page')}</summary><ol>{headings}</ol>{toc_materials}</details></aside><div class="article-content" lang="{lang}">{fragment}{series_navigation(p,page,lang)}{downloads(p,page,lang)}<nav class="end-nav" aria-label="{tr(lang,'他の読み方','Other reading levels')}">{bottomlinks}</nav></div></main>'''
     write(page,shell(page,lang,title,p['summary'][lang],body))
     plain=BeautifulSoup(fragment,'html.parser').get_text(' ',strip=True)
     BUILD_STATS[page]={'source_text_characters_including_tex':len(source_text),'source_words_including_tex':len(source_text.split()),'math_expressions':mathcount,'display_equations':len(article.select('.equation')),'figures':len(article.select('figure.diagram')),'tables':len(article.select('table')),'h2_sections':len(toc)}
@@ -265,13 +265,27 @@ def build_article(p,lang,audience):
 def reader_cards(p,page,lang):
     return '<div class="catalog-grid">'+''.join(f'''<section class="reader-card {a}"><div class="eyebrow" style="color:var(--muted)">{tr(lang,'読み方','Reading level')} {i+1:02d}</div><h3>{ea(LABELS[a][lang])}</h3><p>{ea(audience_description(p,a,lang))}</p><p class="subtle">{ea(reading_label(p,a,lang,card=True))}</p><a href="{url(page,papath(p,lang,a))}">{tr(lang,'この説明を読む','Read this introduction')} →</a></section>''' for i,a in enumerate(p['audiences']))+'</div>'
 
+def series_navigation(p,page,lang):
+    if not p.get('series'):return ''
+    members=[item for item in CATALOG['papers'] if item.get('series')==p['series']]
+    if len(members)<2:return ''
+    items=[]
+    for item in members:
+        label=f"Paper {item['series_order']} — {item['title']}"
+        if (item['field'],item['slug'])==(p['field'],p['slug']):
+            items.append(f'<li><span aria-current="page">{ea(label)}</span></li>')
+        else:
+            items.append(f'<li><a href="{url(page,papath(item,lang))}">{ea(label)}</a></li>')
+    return '<section class="series-nav"><h2>Research series</h2><ol class="series-list">'+''.join(items)+'</ol></section>'
+
 def paper_index_list(papers,page,lang):
     if not papers:return '<p>No papers are currently listed in this field.</p>'
     items=[]
     for p in papers:
         summary=p.get('summary',{}).get(lang,'')
         description='<p>'+ea(summary)+'</p>' if summary else ''
-        items.append(f'<li><h3><a href="{url(page,papath(p,lang))}">{ea(p["title"])}</a></h3>{description}</li>')
+        label=(f"Paper {p['series_order']} — " if p.get('series') else '')+p['title']
+        items.append(f'<li><h3><a href="{url(page,papath(p,lang))}">{ea(label)}</a></h3>{description}</li>')
     return '<ul class="paper-index">'+''.join(items)+'</ul>'
 
 def collection_index(page,lang,field=None):
@@ -310,7 +324,7 @@ def catalog_page(lang,field=None,paper=None):
         body+=f'<section class="paper-feature"><div class="art">{graphic}</div><div class="info"><h2>About this paper</h2><p>{ea(subtitle)}</p><p class="subtle">{ea(" · ".join(metadata))}</p></div></section>'
     else:
         body+='<p class="catalog-intro">'+ea(' · '.join(metadata))+'</p>'
-    body+=reader_cards(p,page,lang)+scope_section(p,lang)+downloads(p,page,lang)
+    body+=series_navigation(p,page,lang)+reader_cards(p,page,lang)+scope_section(p,lang)+downloads(p,page,lang)
     body+='</main>'
     write(page,shell(page,lang,title,summary or subtitle or title,body))
 
