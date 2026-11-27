@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity: KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions"
+message: "If you use this manuscript, Lean 4 formalization, or numerical verification suite, please cite it as below."
+type: software
+authors:
+  - family-names: Soga
+    given-names: Yohtaro
+date-released: 2026-11-27

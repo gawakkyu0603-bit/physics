@@ -66,6 +66,63 @@
           "page_count": 24
         }
       ],
+      "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials.",
+      "series": "ostqd",
+      "series_order": 1
+    },
+    {
+      "slug": "ostqd-sk-jt",
+      "field": "quantum-gravity",
+      "archive_slug": "observer-separated-open-dynamics-2d-dilaton-gravity",
+      "title": "Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity",
+      "subtitle": "KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions",
+      "author": "Yohtaro Soga",
+      "date": "2026-11-27",
+      "version": "1",
+      "series": "ostqd",
+      "series_order": 2,
+      "source_path": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1",
+      "content_prefix": "ostqd-sk-jt-",
+      "audiences": [
+        "general",
+        "student",
+        "expert"
+      ],
+      "languages": [
+        "en"
+      ],
+      "short_title": "OSTQD–SK/JT",
+      "summary": {
+        "en": "The continuation of OSTQD extends its finite-dimensional framework to thermal open systems and conditional low-energy gravity models. It derives frozen-coefficient JT fluctuation cumulants and a smooth-band chiral-horizon obstruction, with separate checks of KMS covariance, greybody scattering and quantum-channel bottlenecks."
+      },
+      "audience_descriptions": {
+        "general": {
+          "en": "Follow the physical questions behind thermal baths, fluctuating black holes, horizon correlations, and information recovery."
+        },
+        "student": {
+          "en": "Work through thermal channel equations, energy cumulants, point-split correlations, and controlled model comparisons."
+        },
+        "expert": {
+          "en": "Examine the hypotheses, proof strategies, analytic obstructions, quantitative controls, and formalization boundaries."
+        }
+      },
+      "scope": {
+        "en": [
+          "The paper builds on the preceding finite-dimensional OSTQD study by relaxing strict subsystem energy conservation for reduced open systems. The guides cover SK normalization, KMS covariance and its time-dependent limits, Ward identities and JT fluctuation closures, bosonic and chiral-horizon diagnostics, per-port thermal locking, greybody scattering, and separated information benchmarks.",
+          "The focused analytical results are conditional: a specified free chiral-boson smooth-band defect and the frozen-coefficient JT cumulant closure. A positive global continuum state, a microscopic rate, observer-separated outcome instruments and a unified evaporation endpoint remain open."
+        ]
+      },
+      "hero_figure": "ostqd-sk-jt-overview",
+      "documents": [
+        {
+          "id": "main",
+          "label": "Paper",
+          "path": "downloads/ostqd-sk-jt.pdf",
+          "source_path": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1/paper/main.pdf",
+          "sha256": "8799bcb5c0e2e21ea75b426a4d16d11a5b5d041ea43aaa84364c5c8c069c051a",
+          "page_count": 34
+        }
+      ],
       "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials."
     }
   ],

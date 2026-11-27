@@ -1,0 +1,68 @@
+=== LEAN VERSION ===
+Lean (version 4.36.0, x86_64-unknown-linux-gnu, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)
+=== FORBIDDEN TOKEN SCAN ===
+ZERO FORBIDDEN TOKENS FOUND.
+=== LAKE BUILD ===
+⚠ [6562/6574] Built OSTQD_SK.Basic (12s)
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Data.Matrix.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Analysis.SpecialFunctions.ExpDeriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6563/6574] Ran OSTQD_SK.Basic:irArts
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Data.Matrix.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Analysis.SpecialFunctions.ExpDeriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [6564/6574] Built OSTQD_SK.Theorem3_HorizonHadamard (3.8s)
+✔ [6566/6574] Built OSTQD_SK.Theorem1_CovariantKMS (8.8s)
+⚠ [6568/6574] Built OSTQD_SK.Theorem4_NonIsometricThroat (2.8s)
+warning: OSTQD_SK/Theorem4_NonIsometricThroat.lean: imports `Mathlib.LinearAlgebra.FiniteDimensional.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Theorem4_NonIsometricThroat.lean: imports `Mathlib.LinearAlgebra.Matrix.ToLin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Theorem4_NonIsometricThroat.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6569/6574] Ran OSTQD_SK.Theorem4_NonIsometricThroat:irArts
+warning: OSTQD_SK/Theorem4_NonIsometricThroat.lean: imports `Mathlib.LinearAlgebra.FiniteDimensional.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Theorem4_NonIsometricThroat.lean: imports `Mathlib.LinearAlgebra.Matrix.ToLin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_SK/Theorem4_NonIsometricThroat.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6570/6574] Built OSTQD_SK.Theorem2_WardAndFDT (6.8s)
+warning: OSTQD_SK/Theorem2_WardAndFDT.lean: imports `Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6571/6574] Ran OSTQD_SK.Theorem2_WardAndFDT:irArts
+warning: OSTQD_SK/Theorem2_WardAndFDT.lean: imports `Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [6572/6574] Built OSTQD_SK (1.4s)
+Build completed successfully (6574 jobs).
+=== AXIOM CHECK ===
+'OSTQD_SK.trace_gksl_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.gksl_dual_adj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.sk_quadratic_tp_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.sk_quadratic_conjugation_symmetry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.sk_quadratic_im_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.sk_fdt_wightman_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.layer2_unraveling_gauge_nonuniqueness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.eigenoperator_two_time_commutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.eigenoperator_energy_drift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.eigenoperator_carre_du_champ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.kms_detailed_balance_stationarity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.kms_gns_monotonicity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.kms_symmetric_intertwining' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.nonsecular_redfield_kossakowski_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.multitime_qrt_exterior_nogo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.bipartite_energy_ward_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.bipartite_ward_from_commuting_jumps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.mean_energy_conservation_nonzero_diffusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.jt_evaporation_ward_ode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.jt_equilibrium_fdt_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.jt_evaporating_variance_ode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.jt_evaporating_nongaussian_cumulants_ode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.jt_equilibrium_nongaussian_fdt_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.jt_bernard_doyon_hj_canonical_fdt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.truncated_bosonic_hawking_ode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.bosonic_exterior_diagonal_cpl_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.bosonic_tridiagonal_all_s_excitation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.continuum_hadamard_firewall_vs_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.single_shot_number_projection_firewall_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.kms_inward_port_locking_nogo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.exterior_interior_algebra_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.nonisometric_kernel_nontrivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.throat_closure_complete_erasure_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_SK.throat_closure_complete_erasure_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

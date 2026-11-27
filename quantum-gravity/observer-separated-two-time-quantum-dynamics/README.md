@@ -16,6 +16,10 @@ An observer-indexed quantum framework separates reversible clock-time evolution 
 | Spectral pinching | Hermitian jumps decrease purity; commuting sector-separating jumps give explicit block decay. |
 | Dimension bottleneck | Encoding and decoding through dimension $d_f$ have entanglement fidelity at most $\min(1,d_f^2/d_C^2)$. |
 
+## Continuation
+
+[Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity: KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions](../observer-separated-open-dynamics-2d-dilaton-gravity/README.md) extends this study to thermal open systems, 2D JT fluctuations and conditional horizon obstructions.
+
 ## Reading guides
 
 [General readers](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/general.html) · [STEM students and graduates](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/student.html) · [Specialists](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/expert.html)
