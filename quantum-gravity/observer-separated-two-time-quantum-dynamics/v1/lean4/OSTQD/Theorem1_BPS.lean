@@ -1,4 +1,5 @@
 import OSTQD.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 /-!
 # OSTQD.Theorem1_BPS
@@ -292,5 +293,167 @@ theorem eigenbasis_sum_variance_deriv_eq_trace_carre_du_champ
     eigenstate_variance_deriv_eq_carre_du_champ Ls H (ρ j) (E j) (hL j) (hR j) (htr j)
   simp_rw [hterm]
   rw [← Complex.re_sum, ← Matrix.trace_sum, ← Finset.mul_sum, hsum, Matrix.mul_one]
+
+/-!
+### Structural Counterexamples: Non-Closure of `A_O` under `H_O` and Sufficiency of BPS
+-/
+
+/-- Membership predicate for the subalgebra `D_2 ⊗ M_2(ℂ) ⊂ M_4(ℂ)` in the tensor basis
+`{|00⟩, |01⟩, |10⟩, |11⟩}`: off-diagonal `2×2` blocks vanish. -/
+def inAlgD2xM2 (X : Matrix (Fin 4) (Fin 4) ℂ) : Prop :=
+  (∀ i j : Fin 4, i.val < 2 → 2 ≤ j.val → X i j = 0) ∧
+  (∀ i j : Fin 4, 2 ≤ i.val → j.val < 2 → X i j = 0)
+
+/-- Counterexample Hamiltonian `H_O = σ_x ⊗ I_2` on `ℂ⁴`. -/
+def nonclosedHO : Matrix (Fin 4) (Fin 4) ℂ :=
+  !![0, 0, 1, 0;
+     0, 0, 0, 1;
+     1, 0, 0, 0;
+     0, 1, 0, 0]
+
+/-- Counterexample jump `L_O = I_2 ⊗ σ_z ∈ D_2 ⊗ M_2(ℂ)`. -/
+def nonclosedLO : Matrix (Fin 4) (Fin 4) ℂ :=
+  Matrix.diagonal ![1, -1, 1, -1]
+
+/-- Exact unitary `U(t) = exp(-i t (σ_x ⊗ I_2)) = cos(t) I_4 - i sin(t) (σ_x ⊗ I_2)`. -/
+noncomputable def nonclosedU (t : ℝ) : Matrix (Fin 4) (Fin 4) ℂ :=
+  let c : ℂ := Real.cos t
+  let is : ℂ := -Complex.I * (Real.sin t : ℂ)
+  !![c, 0, is, 0;
+     0, c, 0, is;
+     is, 0, c, 0;
+     0, is, 0, c]
+
+/-- Two initial states `ρ_± = ((I ± σ_y)/2) ⊗ |0⟩⟨0|` agreeing on all of `D_2 ⊗ M_2(ℂ)`. -/
+noncomputable def nonclosedRho (sgn : ℝ) : Matrix (Fin 4) (Fin 4) ℂ :=
+  !![(2⁻¹ : ℂ), 0, -((sgn : ℂ) * Complex.I / 2), 0;
+     0, 0, 0, 0;
+     ((sgn : ℂ) * Complex.I / 2), 0, (2⁻¹ : ℂ), 0;
+     0, 0, 0, 0]
+
+/-- Shared observable `Z_O = σ_z ⊗ I_2 ∈ D_2 ⊗ M_2(ℂ)`. -/
+def nonclosedZO : Matrix (Fin 4) (Fin 4) ℂ :=
+  Matrix.diagonal ![1, 1, -1, -1]
+
+/-- **Definition 1 Counterexample** (`[L_O, H_O] = 0` does NOT preserve `A_O` under `U_O(t)`):
+On `M_4(ℂ)` with `A_O = D_2 ⊗ M_2(ℂ)`, `H_O = σ_x ⊗ I_2`, and `L_O = I_2 ⊗ σ_z`:
+1. `L_O ∈ A_O` and `L_O` is strictly `H_O`-BPS-immune (`[L_O, H_O] = 0`), while `L_O` is
+   nontrivial (`gksl [L_O]` does not vanish on `|+⟩⟨+|_2`).
+2. `ρ_+` and `ρ_-` have unit trace and agree identically on every observable `X ∈ A_O`.
+3. `U(t)` is unitary (`U(t)ᴴ U(t) = 1`), `Z_O ∈ A_O`, yet the Heisenberg-evolved expectations
+   at time `t` split as `Re Tr(U(t)ᴴ Z_O U(t) ρ_+) = sin(2t)` and
+   `Re Tr(U(t)ᴴ Z_O U(t) ρ_-) = -sin(2t)`. -/
+theorem algebra_nonclosure_counterexample (t : ℝ) :
+    inAlgD2xM2 nonclosedLO ∧
+    inAlgD2xM2 nonclosedZO ∧
+    comm nonclosedLO nonclosedHO = 0 ∧
+    (nonclosedRho 1).trace = 1 ∧
+    (nonclosedRho (-1)).trace = 1 ∧
+    (∀ X : Matrix (Fin 4) (Fin 4) ℂ, inAlgD2xM2 X →
+      (X * nonclosedRho 1).trace = (X * nonclosedRho (-1)).trace) ∧
+    (nonclosedU t)ᴴ * nonclosedU t = 1 ∧
+    (((nonclosedU t)ᴴ * nonclosedZO * nonclosedU t * nonclosedRho 1).trace).re = Real.sin (2 * t) ∧
+    (((nonclosedU t)ᴴ * nonclosedZO * nonclosedU t * nonclosedRho (-1)).trace).re =
+      -Real.sin (2 * t) := by
+  have htrig : (Real.cos t) ^ 2 + (Real.sin t) ^ 2 = 1 := by
+    rw [add_comm]; exact Real.sin_sq_add_cos_sq t
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · constructor <;> intro i j hi hj <;> fin_cases i <;> fin_cases j <;> simp_all [nonclosedLO]
+  · constructor <;> intro i j hi hj <;> fin_cases i <;> fin_cases j <;> simp_all [nonclosedZO]
+  · ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [comm, nonclosedLO, nonclosedHO, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Matrix.diagonal_apply]
+  · simp [Matrix.trace, Fin.sum_univ_four, nonclosedRho]; norm_num
+  · simp [Matrix.trace, Fin.sum_univ_four, nonclosedRho]; norm_num
+  · intro X hX
+    have h02 : X 0 2 = 0 := hX.1 0 2 (by decide) (by decide)
+    have h20 : X 2 0 = 0 := hX.2 2 0 (by decide) (by decide)
+    simp [Matrix.trace, Matrix.mul_apply, Fin.sum_univ_four, nonclosedRho, h02, h20]
+  · ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [-Complex.ofReal_cos, -Complex.ofReal_sin, nonclosedU, Matrix.mul_apply,
+        Fin.sum_univ_four, Matrix.conjTranspose_apply, Complex.ext_iff] <;>
+      nlinarith [htrig]
+  · rw [Real.sin_two_mul]
+    simp [-Complex.ofReal_cos, -Complex.ofReal_sin, nonclosedU, nonclosedZO, nonclosedRho,
+      Matrix.trace, Matrix.mul_apply, Fin.sum_univ_four, Matrix.conjTranspose_apply]
+    ring
+  · rw [Real.sin_two_mul]
+    simp [-Complex.ofReal_cos, -Complex.ofReal_sin, nonclosedU, nonclosedZO, nonclosedRho,
+      Matrix.trace, Matrix.mul_apply, Fin.sum_univ_four, Matrix.conjTranspose_apply]
+    ring
+
+/-- **Theorem 1(d) Precision** (BPS Immunity Is Sufficient, Not Necessary, for `(t,s)` Commutation):
+For `d = 2`, `H = ω |1⟩⟨1|` (`ω ≠ 0`), and amplitude-damping jump `L = |0⟩⟨1|`, the GKSL
+generator commutes identically with `ad_H` (`L([H, ρ]) = [H, L(ρ)]` for all `ρ`), yet
+mean-energy conservation fails (`L†(H) = -H ≠ 0`). -/
+theorem bps_sufficient_not_necessary_for_commutation (ω : ℝ) (hω : ω ≠ 0) :
+    (∀ ρ : Matrix (Fin 2) (Fin 2) ℂ,
+      gksl [!![(0 : ℂ), 1; 0, 0]] (comm (!![(0 : ℂ), 0; 0, (ω : ℂ)]) ρ) =
+        comm (!![(0 : ℂ), 0; 0, (ω : ℂ)]) (gksl [!![(0 : ℂ), 1; 0, 0]] ρ)) ∧
+    gkslDual [!![(0 : ℂ), 1; 0, 0]] (!![(0 : ℂ), 0; 0, (ω : ℂ)]) =
+      -(!![(0 : ℂ), 0; 0, (ω : ℂ)]) ∧
+    gkslDual [!![(0 : ℂ), 1; 0, 0]] (!![(0 : ℂ), 0; 0, (ω : ℂ)]) ≠ 0 := by
+  have hdual : gkslDual [!![(0 : ℂ), 1; 0, 0]] (!![(0 : ℂ), 0; 0, (ω : ℂ)]) =
+      -(!![(0 : ℂ), 0; 0, (ω : ℂ)]) := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [gkslDual, gkslDualOne, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Fin.sum_univ_two, Matrix.conjTranspose_apply]
+    ring
+  refine ⟨?_, hdual, ?_⟩
+  · intro ρ
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [gksl, gkslOne, comm, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Fin.sum_univ_two, Matrix.conjTranspose_apply] <;>
+      ring
+  · intro h0
+    rw [hdual] at h0
+    have h11 := congrFun (congrFun h0 1) 1
+    simp at h11
+    exact hω h11
+
+/-- **Definition 1 Precision** (Non-Hermitian BPS-Immune Jump in a Degenerate Eigenspace Can Increase Purity):
+Definition 1 permits non-Hermitian jump operators `L_k`. Even under strict self-clock BPS immunity
+`[L, H] = 0`, population transfer inside a degenerate energy eigenspace can increase purity rather
+than acting as pure dephasing: for `H = diag(0, 0, 1)`, `L = |0⟩⟨1|`, and `ρ = diag(3/4, 1/4, 0)`,
+`[L, H] = 0` and `gkslDual [L] H = 0`, yet `L(ρ) = diag(1/4, -1/4, 0)` and the initial purity rate is
+`2 Re Tr(ρ L(ρ)) = +1/4 > 0`. -/
+theorem nonhermitian_bps_degenerate_purity_increase :
+    let H : Matrix (Fin 3) (Fin 3) ℂ := Matrix.diagonal ![0, 0, 1]
+    let L : Matrix (Fin 3) (Fin 3) ℂ := !![0, 1, 0; 0, 0, 0; 0, 0, 0]
+    let ρ : Matrix (Fin 3) (Fin 3) ℂ := Matrix.diagonal ![(3 / 4 : ℂ), (1 / 4 : ℂ), 0]
+    comm L H = 0 ∧
+    gkslDual [L] H = 0 ∧
+    ρ.trace = 1 ∧
+    gksl [L] ρ = Matrix.diagonal ![(1 / 4 : ℂ), (-1 / 4 : ℂ), 0] ∧
+    (2 * (ρ * gksl [L] ρ).trace).re = (1 / 4 : ℝ) := by
+  dsimp only
+  have hcomm : comm (!![(0 : ℂ), 1, 0; 0, 0, 0; 0, 0, 0]) (Matrix.diagonal ![(0 : ℂ), 0, 1]) = 0 := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [comm, Matrix.mul_apply, Matrix.vecMul, dotProduct, Matrix.diagonal_apply]
+  have hdual : gkslDual [!![(0 : ℂ), 1, 0; 0, 0, 0; 0, 0, 0]]
+      (Matrix.diagonal ![(0 : ℂ), 0, 1]) = 0 := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [gkslDual, gkslDualOne, Matrix.mul_apply, Fin.sum_univ_three, Matrix.conjTranspose_apply]
+  have htr : (Matrix.diagonal ![(3 / 4 : ℂ), (1 / 4 : ℂ), 0]).trace = 1 := by
+    simp [Matrix.trace, Fin.sum_univ_three]
+    norm_num
+  have hgksl : gksl [!![(0 : ℂ), 1, 0; 0, 0, 0; 0, 0, 0]]
+      (Matrix.diagonal ![(3 / 4 : ℂ), (1 / 4 : ℂ), 0]) =
+      Matrix.diagonal ![(1 / 4 : ℂ), (-1 / 4 : ℂ), 0] := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [gksl, gkslOne, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Fin.sum_univ_three, Matrix.conjTranspose_apply, Matrix.diagonal_apply]
+    norm_num
+  refine ⟨hcomm, hdual, htr, hgksl, ?_⟩
+  rw [hgksl]
+  simp [Matrix.trace, Fin.sum_univ_three]
+  norm_num
 
 end OSTQD

@@ -148,7 +148,12 @@ Ahmed Almheiri, Xi~Dong, and Daniel Harlow.
 Chris Akers, Netta Engelhardt, Daniel Harlow, Geoff Penington, and Shreya
   Vardhan.
 \newblock The black hole interior from non-isometric codes and complexity.
-\newblock arXiv:2207.06536 [hep-th], 2022.
+\newblock {\em Journal of High Energy Physics}, 2024(06):155, 2024.
+
+\bibitem{FarberGour2026}
+Omri Farber and Gilad Gour.
+\newblock Classical communication helps single-shot quantum compression.
+\newblock arXiv:2610.14785 [quant-ph], 2026.
 
 \bibitem{BFSS1997}
 T.~Banks, W.~Fischler, S.~H. Shenker, and L.~Susskind.
@@ -199,6 +204,12 @@ P.~C.~E. Stamp.
 \newblock Rationale for a correlated worldline theory of quantum gravity.
 \newblock {\em New Journal of Physics}, 17:065017, 2015.
 
+\bibitem{UnruhWald1984}
+W.~G. Unruh and Robert~M. Wald.
+\newblock What happens when an accelerating observer detects a {R}indler
+  particle.
+\newblock {\em Physical Review D}, 29:1047--1056, 1984.
+
 \bibitem{DSW2023}
 Daine~L. Danielson, Gautam Satishchandran, and Robert~M. Wald.
 \newblock Killing horizons decohere quantum superpositions.
@@ -210,17 +221,28 @@ Sandro Donadi, Kristian Piscicchia, Catalina Curceanu, Lajos Di{\'o}si,
 \newblock Underground test of gravity-related wave function collapse.
 \newblock {\em Nature Physics}, 17:74--78, 2021.
 
+\bibitem{Pedalino2025}
+Sebastian Pedalino, Bruno~E. Ram{\'i}rez-Galindo, Richard Ferstl, Klaus
+  Hornberger, Markus Arndt, and Stefan Gerlich.
+\newblock Probing quantum mechanics using nanoparticle {S}chr{\"o}dinger cats.
+\newblock arXiv:2507.21211 [quant-ph], 2025.
+
 \bibitem{MICROSCOPE2022}
 Pierre Touboul et~al.
 \newblock {MICROSCOPE} mission: final results of the test of the equivalence
   principle.
 \newblock {\em Physical Review Letters}, 129:121102, 2022.
 
-\bibitem{Pedalino2025}
-Sebastian Pedalino, Bruno~E. Ram{\'i}rez-Galindo, Richard Ferstl, Klaus
-  Hornberger, Markus Arndt, and Stefan Gerlich.
-\newblock Probing quantum mechanics using nanoparticle {S}chr{\"o}dinger cats.
-\newblock arXiv:2507.21211 [quant-ph], 2025.
+\bibitem{Kay2009}
+Alastair Kay, Dagomir Kaszlikowski, and Ravishankar Ramanathan.
+\newblock Optimal cloning and singlet monogamy.
+\newblock {\em Physical Review Letters}, 103:050501, 2009.
+
+\bibitem{Nechita2021}
+Ion Nechita, Cl{\'e}ment Pellegrini, and Denis Rochette.
+\newblock A geometrical description of the universal {$1 \to 2$} asymmetric
+  quantum cloning region.
+\newblock {\em Quantum Information Processing}, 20:333, 2021.
 
 \bibitem{Lindblad1976}
 G.~Lindblad.
@@ -231,11 +253,6 @@ G.~Lindblad.
 Vittorio Gorini, Andrzej Kossakowski, and E.~C.~G. Sudarshan.
 \newblock Completely positive dynamical semigroups of {$N$}-level systems.
 \newblock {\em Journal of Mathematical Physics}, 17:821--825, 1976.
-
-\bibitem{Kay2009}
-Alastair Kay, Dagomir Kaszlikowski, and Ravishankar Ramanathan.
-\newblock Optimal cloning and singlet monogamy.
-\newblock {\em Physical Review Letters}, 103:050501, 2009.
 
 \bibitem{Baumgratz2014}
 T.~Baumgratz, M.~Cramer, and M.~B. Plenio.

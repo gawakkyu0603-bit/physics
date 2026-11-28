@@ -1,52 +1,26 @@
-# OSTQD research materials
+# Research materials
 
 **Observer-Separated Two-Time Quantum Dynamics: Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds**
 
-Yohtaro Soga · 26 November 2026
+Yohtaro Soga · November 28, 2026
 
-[Research overview](../README.md) · [English reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html)
+[Research overview](../README.md) · [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html)
 
-## Materials
-
-| Resource | Description |
+| Resource | Contents |
 | --- | --- |
-| [Manuscript (PDF)](paper/main.pdf) | 24-page paper, including the mathematical results and finite-model calculations. |
-| [LaTeX source](paper/main.tex) · [Bibliography](paper/references.bib) | Source and references for the manuscript. |
-| [Lean sources](lean4/OSTQD/) · [Recorded kernel build and axiom checks](lean4/VERIFICATION_LOG.txt) | Finite-dimensional algebraic core, 38 public declarations. |
-| [Numerical code](scripts/verify_ostqd.py) · [Recorded results](docs/numerical_verification.json) | Matrix identities, channel examples, evaporation model, and Galerkin benchmark. |
-| [Horizon heating](paper/figures/fig1_horizon_heating.pdf) · [Joint recovery and bottleneck](paper/figures/fig2_joint_vs_separated.pdf) · [Evaporation model](paper/figures/fig3_matrix_evaporation.pdf) | Original figures. |
-| [SHA-256 checksums](SHA256SUMS) | Original research-file identities. |
+| [Manuscript (PDF)](paper/main.pdf) | 29 pages; 56 cited references. |
+| [LaTeX source](paper/main.tex) · [Bibliography](paper/references.bib) | Original source and 3 vector PDF figures. |
+| [Lean sources](lean4/) · [Kernel and axiom log](lean4/VERIFICATION_LOG.txt) | 50 audited public declarations in the supplied build. |
+| [Numerical code](scripts/verify_ostqd.py) · [Recorded data](docs/numerical_verification.json) | 451 scientific numeric fields, seed 20261126. |
+| [Prior literature](PRIOR_ART.md) · [Verification scope](VERIFICATION.md) · [Checksums](SHA256SUMS) | Attribution, analytical boundaries and current file identities. |
 
-## Reproduce the calculations
+## Reproduction
 
-The numerical code requires Python 3.10 or later, NumPy, SciPy and Matplotlib. Run on a working copy, because the script regenerates the recorded JSON and figures:
+Run on a working copy because Python regenerates the data and figures.
 
 ```sh
-python -m pip install numpy scipy matplotlib
+python -m pip install -r scripts/requirements.txt
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/verify_ostqd.py
 ```
 
-The Lean toolchain and Mathlib dependency are pinned by the supplied configuration. With elan installed:
-
-```sh
-cd lean4
-lake exe cache get
-lake build OSTQD
-lake env lean OSTQD/AxiomCheck.lean
-```
-
-The original log records the kernel build and standard axioms. Section 8 of the manuscript distinguishes the algebraic statements checked in Lean from analytic and physical steps outside that formalization.
-
-To compile the manuscript with TeX Live:
-
-```sh
-cd paper
-pdflatex -interaction=nonstopmode main.tex
-bibtex main
-pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode main.tex
-```
-
-## Citation and use
-
-Cite Yohtaro Soga, *Observer-Separated Two-Time Quantum Dynamics: Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds*, 26 November 2026. The paper contains the author contribution statement and the research's assumptions and limitations. No new blanket license is assigned to the original materials.
+With elan and the supplied Lean/Mathlib configuration, run `bash verify_lean.sh` from `lean4/`. Compile from `paper/` using `pdflatex main.tex`, `bibtex main`, and two further `pdflatex main.tex` runs. See the verification scope for the exact mathematical hypotheses and analytical boundaries. Cite the manuscript and stable PDF URL (https://gawakkyu0603-bit.github.io/physics/downloads/ostqd.pdf). No new blanket license is assigned.

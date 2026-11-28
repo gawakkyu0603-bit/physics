@@ -64,6 +64,7 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 SEED = 20261126
 FLOAT_TOL = 1e-12
 rng = np.random.default_rng(SEED)
+rng_extra = np.random.default_rng(SEED + 100)
 
 
 def comm(A: np.ndarray, B: np.ndarray) -> np.ndarray:
@@ -115,8 +116,14 @@ def linear_entropy(rho: np.ndarray) -> float:
 
 
 def kay_curved_bound(fa: np.ndarray | float, d: int) -> np.ndarray | float:
-    """Exact curved singlet-monogamy / cloning bound (Kay et al., PRL 103, 050501, 2009)."""
+    """Exact curved upper singlet-monogamy / cloning bound (Kay et al., PRL 103, 050501, 2009)."""
     return (np.sqrt(fa) / d + np.sqrt(1.0 - 1.0 / (d * d)) * np.sqrt(np.maximum(0.0, 1.0 - fa))) ** 2
+
+
+def kay_curved_lower_bound(fa: np.ndarray | float, d: int) -> np.ndarray | float:
+    """Exact reverse-triangle-inequality lower bound on F_B given F_A for joint 3-party states."""
+    val = np.sqrt(fa) / d - np.sqrt(1.0 - 1.0 / (d * d)) * np.sqrt(np.maximum(0.0, 1.0 - fa))
+    return np.maximum(0.0, val) ** 2
 
 
 # ==============================================================================
@@ -243,6 +250,63 @@ def verify_theorem_1() -> dict:
     ))
     assert abs(noncomm_pde_norm - 2.0 * math.sqrt(2.0)) < FLOAT_TOL
 
+    # Definition 1 algebra non-closure counterexample:
+    # A_O = D_2 x M_2, H_O = sigma_x x I_2, L_O = I_2 x sigma_z
+    sy = np.array([[0, -1j], [1j, 0]], dtype=complex)
+    I2 = np.eye(2, dtype=complex)
+    e00 = np.array([[1, 0], [0, 0]], dtype=complex)
+    HO_nc = np.kron(sx, I2)
+    LO_nc = np.kron(I2, sz)
+    ZO_nc = np.kron(sz, I2)
+    rho_p_nc = np.kron(0.5 * (I2 + sy), e00)
+    rho_m_nc = np.kron(0.5 * (I2 - sy), e00)
+    assert float(np.linalg.norm(comm(LO_nc, HO_nc))) < FLOAT_TOL
+    max_alg_eq_err = 0.0
+    for _ in range(20):
+        B0 = rng_extra.normal(size=(2, 2)) + 1j * rng_extra.normal(size=(2, 2))
+        B1 = rng_extra.normal(size=(2, 2)) + 1j * rng_extra.normal(size=(2, 2))
+        X_alg = np.zeros((4, 4), dtype=complex)
+        X_alg[:2, :2] = B0
+        X_alg[2:, 2:] = B1
+        max_alg_eq_err = max(max_alg_eq_err, abs(np.trace(X_alg @ rho_p_nc) - np.trace(X_alg @ rho_m_nc)))
+    assert max_alg_eq_err < FLOAT_TOL
+    t_nc = 0.35
+    U_nc = expm(-1j * t_nc * HO_nc)
+    exp_p_nc = float(np.real(np.trace(ZO_nc @ (U_nc @ rho_p_nc @ dag(U_nc)))))
+    exp_m_nc = float(np.real(np.trace(ZO_nc @ (U_nc @ rho_m_nc @ dag(U_nc)))))
+    assert abs(exp_p_nc - math.sin(2.0 * t_nc)) < FLOAT_TOL
+    assert abs(exp_m_nc + math.sin(2.0 * t_nc)) < FLOAT_TOL
+
+    # BPS sufficiency vs necessity for (t,s) commutation:
+    # H = omega |1><1|, L = |0><1| commutes with ad_H yet L^\dagger(H) = -H != 0
+    omega_ad = 1.3
+    H_ad = np.diag([0.0, omega_ad]).astype(complex)
+    L_ad = np.array([[0.0, 1.0], [0.0, 0.0]], dtype=complex)
+    max_ad_comm_err = 0.0
+    for _ in range(10):
+        R_ad = rng_extra.normal(size=(2, 2)) + 1j * rng_extra.normal(size=(2, 2))
+        max_ad_comm_err = max(
+            max_ad_comm_err,
+            float(np.linalg.norm(gksl(comm(H_ad, R_ad), [L_ad]) - comm(H_ad, gksl(R_ad, [L_ad]))))
+        )
+    ad_drift_err = float(np.linalg.norm(gksl_dual(H_ad, [L_ad]) + H_ad))
+    assert max_ad_comm_err < FLOAT_TOL
+    assert ad_drift_err < FLOAT_TOL
+
+    # Definition 1 non-Hermitian BPS jump in degenerate eigenspace can increase purity:
+    # H = diag(0, 0, 1), L = |0><1|, rho = diag(3/4, 1/4, 0) => [L, H] = 0, 2 Tr(rho L(rho)) = +1/4
+    H_deg = np.diag([0.0, 0.0, 1.0]).astype(complex)
+    L_deg = np.zeros((3, 3), dtype=complex)
+    L_deg[0, 1] = 1.0
+    rho_deg = np.diag([0.75, 0.25, 0.0]).astype(complex)
+    deg_comm_norm = float(np.linalg.norm(comm(L_deg, H_deg)))
+    deg_dual_H_norm = float(np.linalg.norm(gksl_dual(H_deg, [L_deg])))
+    L_rho_deg = gksl(rho_deg, [L_deg])
+    deg_purity_rate = float(np.real(2.0 * np.trace(rho_deg @ L_rho_deg)))
+    assert deg_comm_norm < FLOAT_TOL
+    assert deg_dual_H_norm < FLOAT_TOL
+    assert abs(deg_purity_rate - 0.25) < FLOAT_TOL
+
     return {
         "max_carre_du_champ_error": max_id_err,
         "max_bps_commutation_error": max_comm_err,
@@ -265,6 +329,24 @@ def verify_theorem_1() -> dict:
         "noncommuting_pde_example": {
             "L_adH_minus_adH_L_frob_norm": noncomm_pde_norm,
             "exact_2_sqrt_2": 2.0 * math.sqrt(2.0),
+        },
+        "algebra_nonclosure_counterexample": {
+            "t_eval": t_nc,
+            "max_initial_subalgebra_diff": max_alg_eq_err,
+            "Z_expectation_rho_plus_t": exp_p_nc,
+            "Z_expectation_rho_minus_t": exp_m_nc,
+            "exact_sin_2t": math.sin(2.0 * t_nc),
+        },
+        "bps_sufficient_not_necessary_amplitude_damping": {
+            "omega": omega_ad,
+            "max_commutation_error": max_ad_comm_err,
+            "dual_H_plus_H_error": ad_drift_err,
+            "dual_H_norm": float(np.linalg.norm(gksl_dual(H_ad, [L_ad]))),
+        },
+        "nonhermitian_bps_degenerate_purity_increase": {
+            "comm_L_H_norm": deg_comm_norm,
+            "dual_H_norm": deg_dual_H_norm,
+            "purity_rate_initial": deg_purity_rate,
         },
     }
 
@@ -371,13 +453,78 @@ def verify_theorem_2() -> dict:
         coh_sq = frob_sq(rho0 - rho_inf)
         S_L_hawking = linear_entropy(rho_R)
         max_ferm_err = max(max_ferm_err, abs(E_inf_pairs - coh_sq), abs(E_inf_pairs - S_L_hawking))
+        dE_direct = float(np.real(np.trace(HA @ gksl(rho0, Ls_B))))
+        dE_analytic = 2.0 * Gamma * omega_h * n_FD * (1.0 - n_FD)
+        assert abs(dE_direct - dE_analytic) < FLOAT_TOL
+        # Verify exterior reduced state invariance across all s >= 0
+        for s_chk in [0.5, 2.0, 10.0]:
+            rho_s_chk = gksl_flow(rho0, Ls_B, s_chk)
+            rho_R_s = np.array([
+                [rho_s_chk[0, 0] + rho_s_chk[1, 1], rho_s_chk[0, 2] + rho_s_chk[1, 3]],
+                [rho_s_chk[2, 0] + rho_s_chk[3, 1], rho_s_chk[2, 2] + rho_s_chk[3, 3]],
+            ])
+            assert float(np.linalg.norm(rho_R_s - rho_R)) < FLOAT_TOL
         ferm_curves[str(T_over_w)] = {
             "n_FD": n_FD,
             "gamma_loc": gamma_loc_num,
             "E_A_inf_over_2omega": E_inf_pairs,
             "S_L_hawking": S_L_hawking,
-            "dE_A_ds_0": 2.0 * Gamma * omega_h * n_FD * (1.0 - n_FD),
+            "dE_A_ds_0": dE_direct,
+            "dE_A_ds_0_analytic": dE_analytic,
+            "dE_A_ds_0_direct_err": abs(dE_direct - dE_analytic),
         }
+
+    # (b') Reduced-state invariance (left side for arbitrary state), random phase-noise
+    # equivalence, positive gamma_loc with fixed ground state counterexample, and s < 0 non-PSD
+    max_left_inv_err = 0.0
+    for _ in range(15):
+        R_rand = rng_extra.normal(size=(4, 4)) + 1j * rng_extra.normal(size=(4, 4))
+        rho_rand = dag(R_rand) @ R_rand
+        rho_rand /= np.trace(rho_rand)
+        Y_rand = rng_extra.normal(size=(2, 2)) + 1j * rng_extra.normal(size=(2, 2))
+        obs_L = np.kron(I2, Y_rand)
+        max_left_inv_err = max(max_left_inv_err, abs(np.trace(obs_L @ gksl(rho_rand, [NR]))))
+    assert max_left_inv_err < FLOAT_TOL
+
+    # Phase-noise equivalence via Gauss-Hermite quadrature for theta ~ N(0, Gamma*s)
+    r_pn, s_pn = math.pi / 6.0, 1.7
+    vac_A_pn = np.array([math.cos(r_pn), 0.0, 0.0, math.sin(r_pn)], dtype=complex)
+    rho0_pn = np.outer(vac_A_pn, vac_A_pn.conj())
+    gh_x, gh_w = np.polynomial.hermite.hermgauss(40)
+    rho_pn_avg = np.zeros((4, 4), dtype=complex)
+    for xk, wk in zip(gh_x, gh_w):
+        theta = math.sqrt(2.0 * Gamma * s_pn) * xk
+        U_th = np.diag([1.0, 1.0, np.exp(-1j * theta), np.exp(-1j * theta)])
+        rho_pn_avg += (wk / math.sqrt(math.pi)) * (U_th @ rho0_pn @ dag(U_th))
+    phase_noise_equiv_err = float(np.linalg.norm(rho_pn_avg - gksl_flow(rho0_pn, [math.sqrt(Gamma) * NR], s_pn)))
+    assert phase_noise_equiv_err < FLOAT_TOL
+
+    # Positive gamma_loc = 2, eigenbasis avg = 1/2, yet ground state |00> fixed by L = N_R
+    HB_fg = NR + NL
+    HA_fg = np.diag([0.0, 2.0, 2.0, 3.0]).astype(complex)
+    HA_fg[1, 2] = 1.0
+    HA_fg[2, 1] = 1.0
+    assert float(np.linalg.norm(comm(HA_fg, HB_fg))) < FLOAT_TOL
+    evals_fg = np.linalg.eigvalsh(HA_fg)
+    assert abs(evals_fg[0]) < FLOAT_TOL
+    X_fg = NR - 0.5 * np.eye(4, dtype=complex)
+    gamma_loc_fg = frob_sq(comm(X_fg, HA_fg)) / frob_sq(X_fg)
+    D_fg = gksl_dual(HA_fg, [NR])
+    Gam_fg = gksl_dual(HA_fg @ HA_fg, [NR]) - HA_fg @ D_fg - D_fg @ HA_fg
+    eig_avg_fg = float(np.real(np.trace(Gam_fg))) / 4.0
+    rho00_fg = np.diag([1.0, 0.0, 0.0, 0.0]).astype(complex)
+    fg_diss_norm = float(np.linalg.norm(gksl(rho00_fg, [NR])))
+    fg_mean_drift = float(np.real(np.trace(D_fg @ rho00_fg)))
+    fg_var_drift = float(np.real(np.trace(gksl_dual(HA_fg @ HA_fg, [NR]) @ rho00_fg) - 2.0 * np.trace(HA_fg @ rho00_fg) * fg_mean_drift))
+    assert abs(gamma_loc_fg - 2.0) < FLOAT_TOL
+    assert abs(eig_avg_fg - 0.5) < FLOAT_TOL
+    assert fg_diss_norm < FLOAT_TOL and abs(fg_mean_drift) < FLOAT_TOL and abs(fg_var_drift) < FLOAT_TOL
+
+    # Negative s subdeterminant violation check (r = pi/6, Gamma = 1, s = -0.5)
+    s_neg = -0.5
+    n_fd_pi6 = math.sin(r_pn) ** 2
+    neg_s_even_det = n_fd_pi6 * (1.0 - n_fd_pi6) * (1.0 - math.exp(-Gamma * s_neg))
+    assert neg_s_even_det < -0.1
 
     # (c) Static proportional redshift dephasing example: H_B = 2 H_A (gamma = 0)
     # still damps non-commuting observable <sigma_x> = e^{-Gamma s / 2} on |+><+|
@@ -442,13 +589,19 @@ def verify_theorem_2() -> dict:
         rate_num = float(np.real(psi.conj() @ (Ldag_HA @ psi)))
         rate_exact = 2.0 * Gamma * omega_h * n_BE * (1.0 + n_BE)
         rel_err = abs(rate_num - rate_exact) / max(rate_exact, 1e-15)
+        q_b = math.exp(-1.0 / T_over_w)
+        rel_err_analytic = Ncut * (1.0 - q_b) * (q_b ** (Ncut - 1)) / (1.0 - q_b ** Ncut)
+        assert abs(rel_err - rel_err_analytic) < 1e-13
         max_boson_rel_err = max(max_boson_rel_err, rel_err)
         boson_checks[str(T_over_w)] = {
             "n_BE": n_BE,
             "rate_num": rate_num,
             "rate_exact": rate_exact,
             "rel_err": rel_err,
+            "rel_err_analytic_formula": rel_err_analytic,
         }
+    q_hi = math.exp(-1.0 / 2.5)
+    boson_rel_err_T25 = Ncut * (1.0 - q_hi) * (q_hi ** (Ncut - 1)) / (1.0 - q_hi ** Ncut)
 
     return {
         "max_two_level_gamma_error": max_2lvl_err,
@@ -458,6 +611,18 @@ def verify_theorem_2() -> dict:
         "max_fermionic_HB_conservation_error": max_ferm_hb_err,
         "max_bosonic_HA_HB_commutator": max_boson_comm_HA_HB,
         "max_bosonic_trunc_rel_error": max_boson_rel_err,
+        "bosonic_trunc_rel_error_T2p5_analytic": boson_rel_err_T25,
+        "max_interior_reduced_invariance_error": max_left_inv_err,
+        "phase_noise_channel_equivalence_error": phase_noise_equiv_err,
+        "positive_gamma_loc_fixed_ground_state_counterexample": {
+            "gamma_loc": gamma_loc_fg,
+            "eigenbasis_avg_var_rate": eig_avg_fg,
+            "ground_eigenvalue": float(evals_fg[0]),
+            "ground_state_dissipation_norm": fg_diss_norm,
+            "ground_state_mean_drift": fg_mean_drift,
+            "ground_state_var_drift": fg_var_drift,
+        },
+        "fermionic_neg_s_even_subdeterminant_s_m0p5": neg_s_even_det,
         "bilocal_vs_local_hawking_pi_over_6": {
             "comm_HA_HB_norm": bilocal_comm_norm,
             "bilocal_HB_jump_BPS_residual": bilocal_bps_res,
@@ -527,9 +692,10 @@ def verify_theorem_3() -> dict:
         assert abs(FA_prod - 1.0) < FLOAT_TOL
         assert abs(FB_prod - 1.0 / (d * d)) < FLOAT_TOL
 
-        # Check 500 random pure states against BOTH linear sum bound AND Kay (2009) curved bound
+        # Check 500 random pure states against linear sum bound AND Kay upper/lower curved bounds
         max_sum = 0.0
         max_kay_violation = 0.0
+        max_kay_lower_violation = 0.0
         for _ in range(500):
             v = rng.normal(size=dim) + 1j * rng.normal(size=dim)
             v /= np.linalg.norm(v)
@@ -537,8 +703,33 @@ def verify_theorem_3() -> dict:
             fb = float(np.real(v.conj() @ (PB @ v)))
             max_sum = max(max_sum, fa + fb)
             fb_kay = float(kay_curved_bound(fa, d))
+            fb_low = float(kay_curved_lower_bound(fa, d))
             max_kay_violation = max(max_kay_violation, fb - fb_kay)
+            max_kay_lower_violation = max(max_kay_lower_violation, fb_low - fb)
         assert max_kay_violation < FLOAT_TOL
+        assert max_kay_lower_violation < FLOAT_TOL
+
+        # Asymmetric valid CPTP Choi saturation along the full Kay upper curve x in [0, 1]
+        a_d = 1.0 / d
+        b_d = math.sqrt(1.0 - a_d * a_d)
+        max_asym_marg_err = 0.0
+        max_asym_fid_err = 0.0
+        for x_val in [0.0, 0.25, 0.5, 0.9, 1.0]:
+            sig_x = np.zeros((dim, dim), dtype=complex)
+            for j in range(d):
+                ej = np.eye(d, dtype=complex)[j]
+                u_j = np.kron(Phi, ej)
+                v_j = u_j.reshape(d, d, d).transpose(0, 2, 1).ravel()
+                w_j = (v_j - a_d * u_j) / b_d
+                psi_x = math.sqrt(x_val) * u_j + math.sqrt(1.0 - x_val) * w_j
+                sig_x += np.outer(psi_x, psi_x.conj()) / d
+            marg_x = np.einsum("rabsab->rs", sig_x.reshape(d, d, d, d, d, d))
+            max_asym_marg_err = max(max_asym_marg_err, float(np.linalg.norm(marg_x - Id / d)))
+            fa_x = float(np.real(np.trace(PA @ sig_x)))
+            fb_x = float(np.real(np.trace(PB @ sig_x)))
+            max_asym_fid_err = max(max_asym_fid_err, abs(fa_x - x_val), abs(fb_x - float(kay_curved_bound(x_val, d))))
+        assert max_asym_marg_err < FLOAT_TOL
+        assert max_asym_fid_err < FLOAT_TOL
 
         results[f"d={d}"] = {
             "P_A_P_B_P_A_error": alg_err,
@@ -548,10 +739,13 @@ def verify_theorem_3() -> dict:
             "valid_choi_saturation_FA": FA_star,
             "valid_choi_saturation_FB": FB_star,
             "valid_choi_marginal_error": choi_marg_err,
+            "asymmetric_choi_max_marginal_error": max_asym_marg_err,
+            "asymmetric_choi_max_fidelity_error": max_asym_fid_err,
             "product_state_FA": FA_prod,
             "product_state_FB_actual_1_over_d2": FB_prod,
             "random_max_FA_plus_FB": max_sum,
             "random_max_kay_curved_violation": max_kay_violation,
+            "random_max_kay_lower_violation": max_kay_lower_violation,
         }
 
     # Explicit decoder check: V = sigma_z (d=2) has F_e(Ad_V) = 0 without decoder,
@@ -562,15 +756,160 @@ def verify_theorem_3() -> dict:
     assert abs(Fe_no_dec) < FLOAT_TOL
     assert abs(Fe_with_dec - 1.0) < FLOAT_TOL
 
+    # Causal shared-record preparation-decoding-readout instrument audit (H_C x H_rec = C^2 x C^2)
+    I2 = np.eye(2, dtype=complex)
+    M_rec = [np.kron(I2, np.diag([1.0, 0.0])), np.kron(I2, np.diag([0.0, 1.0]))]
+    inst_tp_err = float(np.linalg.norm(sum(dag(M) @ M for M in M_rec) - np.eye(4)))
+    assert inst_tp_err < FLOAT_TOL
+    G_v = rng_extra.normal(size=(2, 2)) + 1j * rng_extra.normal(size=(2, 2))
+    V_scr, _ = np.linalg.qr(G_v)
+    U_scr = np.kron(V_scr, I2)
+    R_in = rng_extra.normal(size=(4, 4)) + 1j * rng_extra.normal(size=(4, 4))
+    rho_in = dag(R_in) @ R_in
+    rho_in /= np.trace(rho_in)
+    p_disagree = 0.0
+    for x in range(2):
+        for y in range(2):
+            if x != y:
+                branch = M_rec[y] @ U_scr @ M_rec[x] @ rho_in @ dag(M_rec[x]) @ dag(U_scr) @ dag(M_rec[y])
+                p_disagree += float(np.real(np.trace(branch)))
+    rho_non_sel = sum(M @ (U_scr @ rho_in @ dag(U_scr)) @ dag(M) for M in M_rec)
+    obs_rec_cl = np.kron(I2, np.diag([0.7, -1.3]))
+    marg_rec_err = abs(float(np.real(np.trace(obs_rec_cl @ rho_non_sel) - np.trace(obs_rec_cl @ rho_in))))
+    assert abs(p_disagree) < FLOAT_TOL
+    assert marg_rec_err < FLOAT_TOL
+
+    # Complete shaded-region Choi achievability audit across d in {2, 3, 5, 8} (deterministic):
+    # upper boundary sigma^+(x), lower curved/flat boundary sigma_min(x), and interior mixture
+    region_dims = [2, 3, 5, 8]
+    region_max_marg_err = 0.0
+    region_max_fid_err = 0.0
+    region_dx_count = 0
+    region_point_count = 0
+    for d_reg in region_dims:
+        dim_r = d_reg ** 3
+        a_r = 1.0 / d_reg
+        b2_r = 1.0 - a_r * a_r
+        b_r = math.sqrt(b2_r)
+        Id_r = np.eye(d_reg, dtype=complex)
+        Phi_r = Id_r.ravel() / math.sqrt(d_reg)
+        P_phi_r = np.outer(Phi_r, Phi_r.conj())
+        PA_r = np.kron(P_phi_r, Id_r)
+        PB_r = PA_r.reshape(d_reg, d_reg, d_reg, d_reg, d_reg, d_reg).transpose(0, 2, 1, 3, 5, 4).reshape(dim_r, dim_r)
+
+        # Precompute u_j, w_j, and (0,0) shift measure-and-prepare Choi state sigma_00
+        u_list, w_list = [], []
+        sigma_00 = np.zeros((dim_r, dim_r), dtype=complex)
+        for j in range(d_reg):
+            ej = Id_r[j]
+            u_j = np.kron(Phi_r, ej)
+            v_j = u_j.reshape(d_reg, d_reg, d_reg).transpose(0, 2, 1).ravel()
+            w_j = (v_j - a_r * u_j) / b_r
+            u_list.append(u_j)
+            w_list.append(w_j)
+            es = Id_r[(j + 1) % d_reg]
+            phi_j = np.kron(np.kron(ej, es), es)
+            sigma_00 += np.outer(phi_j, phi_j.conj()) / d_reg
+
+        def build_boundary_choi(x_val: float, sign: float) -> np.ndarray:
+            sig = np.zeros((dim_r, dim_r), dtype=complex)
+            sx_v = math.sqrt(x_val)
+            s1x_v = math.sqrt(max(0.0, 1.0 - x_val))
+            for j in range(d_reg):
+                psi_v = sx_v * u_list[j] + sign * s1x_v * w_list[j]
+                sig += np.outer(psi_v, psi_v.conj()) / d_reg
+            return sig
+
+        sigma_corner = build_boundary_choi(b2_r, -1.0)
+        x_grid = sorted(set(
+            list(np.linspace(0.0, 1.0, 41))
+            + [b2_r, 0.5 * (1.0 + a_r), 0.9]
+        ))
+        for x_val in x_grid:
+            region_dx_count += 1
+            sig_hi = build_boundary_choi(x_val, +1.0)
+            if x_val >= b2_r:
+                sig_lo = build_boundary_choi(x_val, -1.0)
+            else:
+                wt = x_val / b2_r
+                sig_lo = (1.0 - wt) * sigma_00 + wt * sigma_corner
+            lam_int = 0.37
+            sig_int = lam_int * sig_hi + (1.0 - lam_int) * sig_lo
+            fb_hi_exp = float(kay_curved_bound(x_val, d_reg))
+            fb_lo_exp = float(kay_curved_lower_bound(x_val, d_reg))
+            fb_int_exp = lam_int * fb_hi_exp + (1.0 - lam_int) * fb_lo_exp
+            for sig_test, fb_exp in ((sig_hi, fb_hi_exp), (sig_lo, fb_lo_exp), (sig_int, fb_int_exp)):
+                region_point_count += 1
+                marg_t = np.einsum("rabsab->rs", sig_test.reshape(d_reg, d_reg, d_reg, d_reg, d_reg, d_reg))
+                region_max_marg_err = max(region_max_marg_err, float(np.linalg.norm(marg_t - Id_r / d_reg)))
+                fa_t = float(np.real(np.trace(PA_r @ sig_test)))
+                fb_t = float(np.real(np.trace(PB_r @ sig_test)))
+                region_max_fid_err = max(region_max_fid_err, abs(fa_t - x_val), abs(fb_t - fb_exp))
+    assert region_max_marg_err < FLOAT_TOL
+    assert region_max_fid_err < FLOAT_TOL
+
+    # Finite-s weak Z-record measurement vs ideal projective readout contrast (deterministic, Gamma*s = 1)
+    gamma_s_wk = 1.0
+    c_wk = math.exp(-0.5 * gamma_s_wk)
+    eta_wk = math.sqrt(1.0 - c_wk * c_wk)
+    p_wk = math.sqrt(0.5 * (1.0 + eta_wk))
+    q_wk = math.sqrt(0.5 * (1.0 - eta_wk))
+    Mp_wk = np.diag([p_wk, q_wk]).astype(complex)
+    Mm_wk = np.diag([q_wk, p_wk]).astype(complex)
+    assert float(np.linalg.norm(dag(Mp_wk) @ Mp_wk + dag(Mm_wk) @ Mm_wk - I2)) < FLOAT_TOL
+    rho_wk = np.array([[0.63, 0.21 - 0.17j], [0.21 + 0.17j, 0.37]], dtype=complex)
+    non_sel_wk = Mp_wk @ rho_wk @ dag(Mp_wk) + Mm_wk @ rho_wk @ dag(Mm_wk)
+    phase_damp_exact = np.array(
+        [[rho_wk[0, 0], c_wk * rho_wk[0, 1]], [c_wk * rho_wk[1, 0], rho_wk[1, 1]]],
+        dtype=complex,
+    )
+    wk_vs_deph_err = float(np.linalg.norm(non_sel_wk - phase_damp_exact))
+    wk_disagree_num = float(np.real(
+        np.trace(Mm_wk @ Mp_wk @ rho_wk @ dag(Mp_wk) @ dag(Mm_wk))
+        + np.trace(Mp_wk @ Mm_wk @ rho_wk @ dag(Mm_wk) @ dag(Mp_wk))
+    ))
+    wk_disagree_exact = 0.5 * (1.0 - eta_wk * eta_wk)
+    plus_wk = 0.5 * np.ones((2, 2), dtype=complex)
+    plus_wk_finite_s = Mp_wk @ plus_wk @ dag(Mp_wk) + Mm_wk @ plus_wk @ dag(Mm_wk)
+    P0_wk = np.diag([1.0, 0.0]).astype(complex)
+    P1_wk = np.diag([0.0, 1.0]).astype(complex)
+    plus_wk_proj = P0_wk @ plus_wk @ P0_wk + P1_wk @ plus_wk @ P1_wk
+    assert wk_vs_deph_err < FLOAT_TOL
+    assert abs(wk_disagree_num - wk_disagree_exact) < FLOAT_TOL
+    assert abs(float(np.real(plus_wk_finite_s[0, 1])) - 0.5 * c_wk) < FLOAT_TOL
+    assert abs(float(np.real(plus_wk_proj[0, 1]))) < FLOAT_TOL
+
     results["kay_2009_reference_point_d2_FA09"] = {
         "d": 2,
         "FA": 0.9,
         "kay_curved_FB_max": float(kay_curved_bound(0.9, 2)),
+        "kay_curved_FB_min": float(kay_curved_lower_bound(0.9, 2)),
         "linear_sum_FB_max": 0.6,
     }
     results["decoder_fidelity_check"] = {
         "V_sigma_z_Fe_without_decoder": Fe_no_dec,
         "V_sigma_z_Fe_with_inverse_decoder": Fe_with_dec,
+    }
+    results["causal_shared_record_instrument"] = {
+        "kraus_completeness_error": inst_tp_err,
+        "single_trial_disagreement_prob": p_disagree,
+        "classical_record_marginal_error": marg_rec_err,
+    }
+    results["complete_region_achievability_audit"] = {
+        "dimensions": region_dims,
+        "num_dx_pairs": region_dx_count,
+        "num_choi_points": region_point_count,
+        "max_marginal_error": region_max_marg_err,
+        "max_fidelity_error": region_max_fid_err,
+    }
+    results["weak_measurement_vs_projective_readout"] = {
+        "gamma_s": gamma_s_wk,
+        "eta": eta_wk,
+        "nonselective_vs_phase_damping_err": wk_vs_deph_err,
+        "disagreement_prob_num": wk_disagree_num,
+        "disagreement_prob_exact": wk_disagree_exact,
+        "plus_offdiag_finite_s": float(np.real(plus_wk_finite_s[0, 1])),
+        "plus_offdiag_projective": float(np.real(plus_wk_proj[0, 1])),
     }
     return results
 
@@ -694,6 +1033,29 @@ def verify_matrix_bh_and_theorems_4_5() -> dict:
             "saturation_error": abs(float(Fe_opt) - bound),
         }
 
+    # Theorem 5 d_f > d_C isometric saturation + classical-flag resource counterexample (dC=4, df=2)
+    large_df_checks = {}
+    for dC, df in [(2, 4), (3, 5)]:
+        V_emb = np.zeros((df, dC), dtype=complex)
+        for i in range(dC):
+            V_emb[i, i] = 1.0
+        Rs_emb = [dag(V_emb)]
+        for k_res in range(dC, df):
+            Rk = np.zeros((dC, df), dtype=complex)
+            Rk[0, k_res] = 1.0
+            Rs_emb.append(Rk)
+        tp_E_emb = float(np.linalg.norm(dag(V_emb) @ V_emb - np.eye(dC)))
+        tp_R_emb = float(np.linalg.norm(sum(dag(R) @ R for R in Rs_emb) - np.eye(df)))
+        Fe_emb = float(sum(abs(np.trace(R @ V_emb)) ** 2 for R in Rs_emb) / (dC ** 2))
+        assert tp_E_emb < FLOAT_TOL and tp_R_emb < FLOAT_TOL and abs(Fe_emb - 1.0) < FLOAT_TOL
+        large_df_checks[f"dC={dC},df={df}"] = {"Fe_isometric_saturation": Fe_emb, "max_TP_err": max(tp_E_emb, tp_R_emb)}
+
+    P0_cf = np.diag([1.0, 1.0, 0.0, 0.0]).astype(complex)
+    P1_cf = np.diag([0.0, 0.0, 1.0, 1.0]).astype(complex)
+    cf_tp_err = float(np.linalg.norm(dag(P0_cf) @ P0_cf + dag(P1_cf) @ P1_cf - np.eye(4)))
+    cf_Fe = float((abs(np.trace(P0_cf)) ** 2 + abs(np.trace(P1_cf)) ** 2) / 16.0)
+    assert cf_tp_err < FLOAT_TOL and abs(cf_Fe - 0.5) < FLOAT_TOL
+
     # Independent Petz Choi-formula vs explicit Kraus-operator cross-check (100 random trials)
     max_petz_kraus_diff = 0.0
     for dc, dout, k_cr in [(2, 1, 2), (2, 2, 3), (2, 4, 2), (3, 2, 3), (3, 5, 2)]:
@@ -736,6 +1098,18 @@ def verify_matrix_bh_and_theorems_4_5() -> dict:
     ym_naive_evals = np.linalg.eigvalsh(H_YM_sing_naive)
     naive_vs_galerkin_singlet_matrix_diff = float(np.linalg.norm(H_YM_sing_naive - H_YM_sing_galerkin))
     naive_vs_galerkin_eval_l2_diff = float(np.linalg.norm(ym_galerkin_evals - ym_naive_evals))
+
+    # Additional N_cut = 4 Galerkin check (using H6, since N_cut + 2 = 6 is exact for quartic YM)
+    b4, ix4, _, Jex4 = build_ym_fock_hamiltonian(cutoff=4)
+    sel4_in_6 = [ix6[st] for st in b4]
+    H_galerkin_4 = H6[sel4_in_6, :][:, sel4_in_6].toarray()
+    J2_exact4 = sum((j @ j) for j in Jex4).toarray()
+    evals_J2_4, evecs_J2_4 = np.linalg.eigh(0.5 * (J2_exact4 + dag(J2_exact4)))
+    U_sing4 = evecs_J2_4[:, np.abs(evals_J2_4) < 1e-9]
+    H_YM_sing4 = dag(U_sing4) @ H_galerkin_4 @ U_sing4
+    H_YM_sing4 = 0.5 * (H_YM_sing4 + dag(H_YM_sing4))
+    ym_galerkin4_evals = np.linalg.eigvalsh(H_YM_sing4)
+    assert int(U_sing4.shape[1]) == 10
 
     # --- Part C: Unified Finite-Width Two-Window N=8-Qubit Evaporating BH Model ---
     # Piecewise time-dependent driving on H_tot = H_win1 (+) H_win2 (dim = 256 + 4 = 260):
@@ -920,8 +1294,74 @@ def verify_matrix_bh_and_theorems_4_5() -> dict:
     assert unrelated_flow_diff < FLOAT_TOL
     assert abs(unrelated_pinch_coh_sq - 0.5) < FLOAT_TOL
 
+    # --- Part E: Inter-window logical encoding contrast (s=0 vs s>0) & d_C=4 intermediate bottleneck ---
+    # Encode 1 logical qubit across Window 1 (|0>) and Window 2 (|1>): H_L = span{|0_w1>, |0_w2>}
+    # Under K_B = E1 Pi_1 + E2 Pi_2, off-diagonal coherence decays as exp(-(E1-E2)^2 s / 2),
+    # giving exact F_e(s) = (1 + exp(-(E1-E2)^2 s / 2)) / 2, vs 1.0 for intra-window encoding.
+    KB_2lvl = np.diag([E1, E2]).astype(complex)
+    Phi_2 = np.array([1.0, 0.0, 0.0, 1.0], dtype=complex) / math.sqrt(2.0)
+    inter_win_contrast = {}
+    for s_val in [0.0, 0.25, 0.5, 1.0, 3.0]:
+        # Choi matrix of id_R x Phi_B(s) acting on |Phi_2><Phi_2|
+        J_inter = np.zeros((4, 4), dtype=complex)
+        for a in range(2):
+            for b in range(2):
+                E_ab = np.zeros((2, 2), dtype=complex)
+                E_ab[a, b] = 1.0
+                out_ab = gksl_flow(E_ab, [KB_2lvl], s_val)
+                ket_ab = np.zeros((2, 2), dtype=complex)
+                ket_ab[a, b] = 1.0
+                J_inter += 0.5 * np.kron(ket_ab, out_ab)
+        Fe_inter = float(np.real(Phi_2.conj() @ (J_inter @ Phi_2)))
+        Fe_inter_exact = 0.5 * (1.0 + math.exp(-0.5 * ((E1 - E2) ** 2) * s_val))
+        assert abs(Fe_inter - Fe_inter_exact) < FLOAT_TOL
+        inter_win_contrast[f"s={s_val}"] = {"Fe_inter_window": Fe_inter, "Fe_exact": Fe_inter_exact}
+
+    # d_C = 4 (2 logical qubits) N=8 evaporation contrast exercising nontrivial bottleneck at k=7
+    rng_dc4 = np.random.default_rng(SEED + 4)
+    psi_dc4 = np.zeros((4, d1), dtype=complex)
+    for j in range(4):
+        psi_dc4[j, j] = 0.5
+    F_rad_dc4 = []
+    F_rem_dc4 = []
+    F_cap_dc4 = []
+    for k in k_vals:
+        if k == 1:
+            psi_dc4 = psi_dc4 @ U_win1_step.T
+        elif k >= 2:
+            n_rem_prev = n_bh_init - k + 1
+            d_rem_prev = 2 ** n_rem_prev
+            d_rad_prev = 2 ** (k - 1)
+            G_loc4 = rng_dc4.normal(size=(d_rem_prev, d_rem_prev)) + 1j * rng_dc4.normal(size=(d_rem_prev, d_rem_prev))
+            H_loc4 = 0.5 * (G_loc4 + dag(G_loc4)) / math.sqrt(d_rem_prev)
+            U_loc4 = expm(-1j * 2.0 * H_loc4)
+            psi_3_4 = psi_dc4.reshape(4, d_rem_prev, d_rad_prev)
+            psi_dc4 = np.einsum("ab,rbc->rac", U_loc4, psi_3_4).reshape(4, d1)
+        d_rem = 2 ** (n_bh_init - k)
+        d_rad = 2 ** k
+        psi_3_4 = psi_dc4.reshape(4, d_rem, d_rad)
+        rho_ref_rad4 = np.einsum("rba,sbd->rasd", psi_3_4, psi_3_4.conj()).reshape(4 * d_rad, 4 * d_rad)
+        rho_ref_rem4 = np.einsum("rba,sda->rbsd", psi_3_4, psi_3_4.conj()).reshape(4 * d_rem, 4 * d_rem)
+        fr4 = petz_entanglement_fidelity(rho_ref_rad4, d_ref=4)
+        fb4 = petz_entanglement_fidelity(rho_ref_rem4, d_ref=4)
+        cap4 = min(1.0, (d_rem / 4.0) ** 2)
+        assert fb4 <= cap4 + FLOAT_TOL
+        F_rad_dc4.append(fr4)
+        F_rem_dc4.append(fb4)
+        F_cap_dc4.append(cap4)
+    assert F_cap_dc4[7] == 0.25 and F_rem_dc4[7] <= 0.25 + FLOAT_TOL
+    assert abs(F_rem_dc4[8] - 0.0625) < FLOAT_TOL
+
     return {
         "bottleneck_checks": bottleneck_checks,
+        "bottleneck_large_df_saturation": large_df_checks,
+        "classical_flag_dC4_df2_counterexample": {
+            "dC": 4,
+            "df": 2,
+            "TP_residual": cf_tp_err,
+            "Fe_with_1bit_classical_flag": cf_Fe,
+            "unassisted_bottleneck_bound": 0.25,
+        },
         "dC4_df2_fidelity_vs_prob_distinction": {
             "max_entanglement_fidelity": 0.25,
             "complete_erasure_entanglement_fidelity": 0.0625,
@@ -929,7 +1369,7 @@ def verify_matrix_bh_and_theorems_4_5() -> dict:
         },
         "petz_formula_vs_explicit_kraus_max_diff": max_petz_kraus_diff,
         "su2_ym_companion_galerkin": {
-            "note": "Independent companion 2-matrix SU(2) YM spectrum benchmark (decoupled from N=8 Page curve).",
+            "note": "Independent companion 2-matrix SU(2) YM fixed-cutoff Galerkin benchmark (decoupled from N=8 Page curve).",
             "g_YM": 0.8,
             "m_reg": 0.35,
             "fock_cutoff": 3,
@@ -938,6 +1378,8 @@ def verify_matrix_bh_and_theorems_4_5() -> dict:
             "galerkin_cutoff_5_vs_6_diff": galerkin_5_vs_6_diff,
             "exact_singlet_dim": d_sing,
             "galerkin_singlet_energies": [float(x) for x in ym_galerkin_evals],
+            "galerkin_cutoff4_singlet_dim": int(U_sing4.shape[1]),
+            "galerkin_cutoff4_lowest4_energies": [float(x) for x in ym_galerkin4_evals[:4]],
             "naive_pretruncated_singlet_energies": [float(x) for x in ym_naive_evals],
             "naive_vs_galerkin_singlet_matrix_frob_diff": naive_vs_galerkin_singlet_matrix_diff,
             "naive_vs_galerkin_eigenvalue_vec_l2_diff": naive_vs_galerkin_eval_l2_diff,
@@ -963,6 +1405,15 @@ def verify_matrix_bh_and_theorems_4_5() -> dict:
             "F_sum_bh_plus_rad": [a + b for a, b in zip(F_bh_petz, F_rad_petz)],
             "F_bottleneck_bh_bound": F_bottleneck_bh,
             "max_F_sum": max(a + b for a, b in zip(F_bh_petz, F_rad_petz)),
+            "inter_window_coherence_s_contrast": inter_win_contrast,
+            "dC4_two_qubit_diary_contrast": {
+                "F_rad_petz": F_rad_dc4,
+                "F_rem_petz": F_rem_dc4,
+                "F_bottleneck_cap": F_cap_dc4,
+                "k7_F_rem": F_rem_dc4[7],
+                "k7_cap": F_cap_dc4[7],
+                "k8_F_rem": F_rem_dc4[8],
+            },
         },
         "double_uncertainty": {
             "S_L_initial_layer1": linear_entropy(rho_double),
@@ -1010,11 +1461,11 @@ def make_figures(res2: dict, res45: dict) -> None:
     rb = [res2["bosonic_samples"][k]["rate_num"] for k in res2["bosonic_samples"]]
     Tf = [float(k) for k in res2["fermionic_samples"] if float(k) <= 2.5]
     rf = [res2["fermionic_samples"][k]["dE_A_ds_0"] for k in res2["fermionic_samples"] if float(k) <= 2.5]
-    ax1.scatter(Tb, rb, color="#1f4e79", s=26, zorder=5, label=r"Boson Fock check ($N_{\mathrm{cut}}=18$)")
-    ax1.scatter(Tf, rf, color="#c0392b", marker="s", s=24, zorder=5, label="Fermion 4D exact check")
+    ax1.scatter(Tb, rb, color="#1f4e79", s=26, zorder=5, label=r"Boson Fock ($N_{\mathrm{cut}}=18$, $T_H/\omega\leq 0.8$)")
+    ax1.scatter(Tf, rf, color="#c0392b", marker="s", s=24, zorder=5, label=r"Fermion direct $\mathrm{Tr}[H_A\mathcal{L}_B(\rho_0)]$")
     ax1.set_xlabel(r"Hawking temperature $T_H / \omega$")
     ax1.set_ylabel(r"Initial excitation rate $(\Gamma\omega)^{-1}\partial_s\langle H_A\rangle|_{s=0}$")
-    ax1.set_title(r"(a) Exterior-local $\mathcal{L}_B$ excites $|0_A\rangle$ ($T_H>0, \Gamma>0$)")
+    ax1.set_title(r"(a) Two-sided $\langle H_A\rangle$ rate under $\mathcal{L}_B$ ($T_H>0, \Gamma>0$)")
     ax1.set_ylim(1e-5, 3e1)
     ax1.grid(True, which="both", alpha=0.25)
     ax1.legend(loc="lower right", frameon=True, framealpha=0.93)
@@ -1042,35 +1493,40 @@ def make_figures(res2: dict, res45: dict) -> None:
     for dC, col, ls in [(2, "#1f4e79", "-"), (3, "#2e7d32", "-."), (8, "#8e44ad", ":")]:
         fb_kay = kay_curved_bound(fa, dC)
         ax1.plot(fa, fb_kay, color=col, lw=2.0, ls=ls,
-                 label=rf"Kay (2009) curved bound ($d_C={dC}$)")
+                 label=rf"Upper bound, Eq. (23) ($d_C={dC}$)")
         # Symmetric Choi saturation tangent point ((1+1/d)/2, (1+1/d)/2)
         sym_pt = 0.5 * (1.0 + 1.0 / dC)
         ax1.scatter([sym_pt], [sym_pt], color=col, s=34, zorder=6)
-    # Linear sum outer envelope for d_C = 2 (tangent to curved bound at (0.75, 0.75))
+    # Linear sum outer envelope and exact lower boundary for d_C = 2
     fb_lin2 = np.minimum(1.0, 1.5 - fa)
-    ax1.plot(fa, fb_lin2, color="#1f4e79", lw=1.4, ls="--", alpha=0.85,
-             label=r"Thm. 3 linear sum envelope ($d_C=2$: $F_A+F_B\leq 1.5$)")
-    ax1.fill_between(fa, 0, kay_curved_bound(fa, 2), color="#1f4e79", alpha=0.09)
+    fb_low2 = kay_curved_lower_bound(fa, 2)
+    ax1.plot(fa, fb_lin2, color="#1f4e79", lw=1.3, ls="--", alpha=0.85,
+             label=r"Linear sum envelope ($d_C=2$: $F_A+F_B\leq 1.5$)")
+    ax1.plot(fa, fb_low2, color="#1f4e79", lw=1.2, ls=":", alpha=0.9,
+             label=r"Lower bound ($d_C=2$: $F_B\geq 1/4$ at $F_A=1$)")
+    ax1.fill_between(fa, fb_low2, kay_curved_bound(fa, 2), color="#1f4e79", alpha=0.11,
+                     label=r"Exact achievable joint region ($d_C=2$)")
     ax1.scatter([0.75], [0.75], color="#1f4e79", s=34, zorder=6, label=r"Valid Choi saturation $\sigma_*$")
     ax1.scatter([1.0], [1.0], color="#c0392b", s=85, marker="*", zorder=7,
-                label="Separated reversible + CPL")
+                label="Separated reversible (separate conditions)")
     ax1.annotate("Forbidden for any\njoint CPTP extension",
                  xy=(0.86, 0.74), xytext=(0.66, 1.04),
-                 fontsize=7.8, ha="center", va="center", color="#922b21",
+                 fontsize=7.6, ha="center", va="center", color="#922b21",
                  bbox=dict(boxstyle="round,pad=0.22", fc="white", ec="#c0392b", alpha=0.94, lw=0.7),
                  arrowprops=dict(arrowstyle="->", color="#922b21", lw=0.95))
     ax1.set_xlabel(r"Infalling recovery fidelity $F_A$")
     ax1.set_ylabel(r"Exterior recovery fidelity $F_B$")
-    ax1.set_title(r"(a) Theorem 3: Curved tradeoff, linear sum & separation")
+    ax1.set_title(r"(a) Theorem 3: Achievable joint band & separation")
     ax1.set_xlim(0.0, 1.06)
     ax1.set_ylim(0.0, 1.15)
     ax1.grid(True, alpha=0.25)
-    ax1.legend(loc="lower left", frameon=True, framealpha=0.93, fontsize=7.4)
+    ax1.legend(loc="lower left", frameon=True, framealpha=0.94, fontsize=6.1,
+               labelspacing=0.25, handlelength=1.8, borderpad=0.35)
 
-    # Panel (b): Corrected Theorem 5 bottleneck ceiling
+    # Panel (b): Corrected Theorem 5 bottleneck ceiling (Farber-Gour 2026 unassisted special case)
     dS = np.linspace(-0.6, 2.5, 250)
     ceil_curve = np.minimum(1.0, np.exp(-2.0 * dS))
-    ax2.plot(dS, ceil_curve, color="#1f4e79", lw=2.2, label=r"Theorem 5 ceiling $\min(1, d_f^2/d_C^2)$")
+    ax2.plot(dS, ceil_curve, color="#1f4e79", lw=2.2, label=r"Theorem 5 ceiling $\min(1, d_f^2/d_C^2)$ (unassisted)")
     ax2.fill_between(dS, 0, ceil_curve, color="#1f4e79", alpha=0.10)
     pts_x, pts_y_opt, pts_y_rnd = [], [], []
     for vals in res45["bottleneck_checks"].values():
@@ -1079,14 +1535,18 @@ def make_figures(res2: dict, res45: dict) -> None:
         pts_y_rnd.append(vals["max_random_Fe"])
     ax2.scatter(pts_x, pts_y_opt, color="#c0392b", marker="o", s=36, zorder=5, label="Exact saturating CPTP channels")
     ax2.scatter(pts_x, pts_y_rnd, color="#2e7d32", marker="^", s=34, zorder=5, label=r"Max over 300 valid CPTP trials ($k_{\mathrm{enc}}\geq \lceil d_C/d_f\rceil$)")
+    cf_info = res45["classical_flag_dC4_df2_counterexample"]
+    ax2.scatter([math.log(cf_info["dC"] / cf_info["df"])], [cf_info["Fe_with_1bit_classical_flag"]],
+                facecolors="none", edgecolors="#8e44ad", marker="D", s=46, lw=1.6, zorder=6,
+                label=r"With 1-bit classical flag ($d_C=4, d_f=2$: $F_e=0.5$)")
     ax2.axvline(0.0, color="#7f8c8d", ls="--", lw=1.0)
     ax2.set_xlabel(r"Dimension deficit $\ln(d_C / d_f)$ (nats)")
     ax2.set_ylabel(r"Entanglement fidelity $F_e(\mathcal{R}\circ\mathcal{E})$")
-    ax2.set_title(r"(b) Theorem 5: Intermediate-dimension bottleneck")
+    ax2.set_title(r"(b) Theorem 5: Unassisted bottleneck vs. classical flag")
     ax2.set_xlim(-0.5, 2.3)
     ax2.set_ylim(-0.03, 1.08)
     ax2.grid(True, alpha=0.25)
-    ax2.legend(loc="upper right", frameon=True, framealpha=0.93, fontsize=7.4)
+    ax2.legend(loc="upper right", frameon=True, framealpha=0.94, fontsize=6.7)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "fig2_joint_vs_separated.pdf")
     plt.close(fig)
@@ -1103,7 +1563,7 @@ def make_figures(res2: dict, res45: dict) -> None:
     ax1.axvline(4.0, color="#c0392b", ls=":", lw=1.2, label="Half-evaporation ($k = N/2$)")
     ax1.set_xlabel(r"Emitted radiation qubits $k$")
     ax1.set_ylabel(r"Entanglement entropy (bits)")
-    ax1.set_title(r"(a) Finite-width window $t$-scrambling ($N=8$, young BH)")
+    ax1.set_title(r"(a) Window-1 $t$-scrambling with exact $s$-invariance ($N=8$)")
     ax1.set_xticks(k)
     ax1.set_ylim(-0.15, 4.35)
     ax1.grid(True, alpha=0.25)
@@ -1117,7 +1577,7 @@ def make_figures(res2: dict, res45: dict) -> None:
     ax2.axhline(1.5, color="#8e44ad", ls="-.", lw=1.3, label=r"Thm. 3 linear bound $1 + 1/d_C = 1.5$")
     ax2.set_xlabel(r"Emitted radiation qubits $k$")
     ax2.set_ylabel(r"Entanglement fidelity")
-    ax2.set_title(r"(b) Petz recovery & Theorem 3/5 ceilings ($d_C=2$)")
+    ax2.set_title(r"(b) Petz decoder values & Thm. 3/5 ceilings ($d_C=2$)")
     ax2.set_xticks(k)
     ax2.set_ylim(0.15, 2.08)
     ax2.grid(True, alpha=0.25)
@@ -1137,7 +1597,7 @@ def main() -> None:
     summary = {
         "metadata": {
             "framework": "OSTQD",
-            "date": "2026-11-26",
+            "date": "2026-11-28",
             "seed": SEED,
             "float_tolerance": FLOAT_TOL,
             "python_version": platform.python_version(),

@@ -1,10 +1,12 @@
 import OSTQD_SK.Theorem1_CovariantKMS
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 /-!
 # OSTQD_SK.Theorem2_WardAndFDT
 
-Theorem 2 of Paper 2:
+Theorem 2 and Proposition 2 (Composite Ward Identities, Semiclassical JT Saddle,
+and Beyond-Gaussian Stochastic Schwarzian Cumulants):
   (a) Composite Gravity–Matter Energy Ward Identity (Strictly Two-Tiered):
       (a.1) Mean energy conservation `L_tot†(H_BH + H_rad) = 0` implies exact subsystem
             energy-flux balance `L_tot†(H_BH) = -L_tot†(H_rad)` (but NOT zero diffusion).
@@ -19,6 +21,9 @@ Theorem 2 of Paper 2:
       algebraic leading-order equilibrium FDT `S_eq / (2 γ_E) = T_0² C_V(T_0) = 4 π² C T_0³`
       and exact `HasDerivAt` solution of the linearized evaporating variance ODE
       `dV/du = -2 γ_E V + (π c / 6) T_H(u)³`.
+  (d) Beyond-Gaussian Bernard–Doyon JT Cumulants and Constructive `E ≥ 0` Detailed-Balance
+      Jump Process (separating naive finite-`q` detailed-balance violation from the exact
+      entropy-difference jump kernel on `E ≥ 0`).
 -/
 
 open scoped Matrix BigOperators ComplexConjugate
@@ -464,5 +469,185 @@ theorem jt_bernard_doyon_hj_canonical_fdt (C c T0 βE β0 p : ℝ)
   · dsimp only [D2_1, D2_2, D3_1, D4_0, E0, κ2, κ3, γE, jtEnergyRate]
     field_simp [hCne, hcne, hpine, hT0ne]
     ring
+
+/-- Classical JT microcanonical black-hole entropy above extremality `S_BH(E) = 2 π √(2 C E)`. -/
+noncomputable def jtEntropyOfEnergy (C E : ℝ) : ℝ :=
+  2 * Real.pi * Real.sqrt (2 * C * E)
+
+/-- Classical JT inverse Hawking temperature `β(E) = S_BH'(E) = π √(2 C / E)`. -/
+noncomputable def jtBetaOfEnergy (C E : ℝ) : ℝ :=
+  Real.pi * Real.sqrt (2 * C / E)
+
+/-- Classical JT canonical equilibrium weight `π(E) = exp(S_BH(E) - β_0 E)` on `E ≥ 0`. -/
+noncomputable def jtCanonicalWeight (C β0 E : ℝ) : ℝ :=
+  Real.exp (jtEntropyOfEnergy C E - β0 * E)
+
+/-- **Proposition 2(e.1)** (Finite-`q` Detailed-Balance Obstruction for Naive State-Dependent
+Bernard–Doyon Jump Rates):
+For `C > 0, β_0 > 0, α > 0, E > 0, q > 0`, the strict concavity of `S_BH(E) = 2 π √(2 C E)` forces
+  `q β(E + q) < S_BH(E + q) - S_BH(E) < q β(E)`.
+Consequently, even when jumps `q > E` are rejected at the `E = 0` boundary, the naive emission rate
+`w_-^{naive}(E, q) = α exp(-q β(E))` paired with `w_+(E, q) = α exp(-q β_0)` strictly violates
+finite-`q` detailed balance for the canonical equilibrium weight `π(E) = exp(S_BH(E) - β_0 E)`:
+  `π(E) w_+(E, q) ≠ π(E + q) w_-^{naive}(E + q, q)`. -/
+theorem jt_naive_bd_finite_q_detailed_balance_obstruction
+    (C β0 α E q : ℝ) (hC : 0 < C) (hα : 0 < α) (hE : 0 < E) (hq : 0 < q) :
+    q * jtBetaOfEnergy C (E + q) < jtEntropyOfEnergy C (E + q) - jtEntropyOfEnergy C E ∧
+    jtEntropyOfEnergy C (E + q) - jtEntropyOfEnergy C E < q * jtBetaOfEnergy C E ∧
+    jtCanonicalWeight C β0 E * (α * Real.exp (-q * β0)) ≠
+      jtCanonicalWeight C β0 (E + q) * (α * Real.exp (-q * jtBetaOfEnergy C (E + q))) := by
+  have hpi : 0 < Real.pi := Real.pi_pos
+  have h2C : 0 < 2 * C := by linarith
+  have hEq : 0 < E + q := by linarith
+  have hs2C : 0 < Real.sqrt (2 * C) := Real.sqrt_pos.mpr h2C
+  have hsE : 0 < Real.sqrt E := Real.sqrt_pos.mpr hE
+  have hsEq : 0 < Real.sqrt (E + q) := Real.sqrt_pos.mpr hEq
+  have hlt_sq : Real.sqrt E < Real.sqrt (E + q) := Real.sqrt_lt_sqrt (le_of_lt hE) (by linarith)
+  have hsum_pos : 0 < Real.sqrt (E + q) + Real.sqrt E := by linarith
+  have hdiff_sqrt : Real.sqrt (E + q) - Real.sqrt E = q / (Real.sqrt (E + q) + Real.sqrt E) := by
+    rw [eq_div_iff (ne_of_gt hsum_pos)]
+    have h1 : Real.sqrt (E + q) ^ 2 = E + q := Real.sq_sqrt (le_of_lt hEq)
+    have h2 : Real.sqrt E ^ 2 = E := Real.sq_sqrt (le_of_lt hE)
+    nlinarith
+  have hSdiff : jtEntropyOfEnergy C (E + q) - jtEntropyOfEnergy C E =
+      2 * Real.pi * Real.sqrt (2 * C) * (q / (Real.sqrt (E + q) + Real.sqrt E)) := by
+    unfold jtEntropyOfEnergy
+    rw [Real.sqrt_mul (le_of_lt h2C) (E + q), Real.sqrt_mul (le_of_lt h2C) E, ← hdiff_sqrt]
+    ring
+  have hqβEq : q * jtBetaOfEnergy C (E + q) =
+      2 * Real.pi * Real.sqrt (2 * C) * (q / (2 * Real.sqrt (E + q))) := by
+    unfold jtBetaOfEnergy
+    rw [Real.sqrt_div (le_of_lt h2C) (E + q)]
+    have hne : Real.sqrt (E + q) ≠ 0 := ne_of_gt hsEq
+    field_simp [hne]
+  have hqβE : q * jtBetaOfEnergy C E =
+      2 * Real.pi * Real.sqrt (2 * C) * (q / (2 * Real.sqrt E)) := by
+    unfold jtBetaOfEnergy
+    rw [Real.sqrt_div (le_of_lt h2C) E]
+    have hne : Real.sqrt E ≠ 0 := ne_of_gt hsE
+    field_simp [hne]
+  have hpref : 0 < 2 * Real.pi * Real.sqrt (2 * C) := by positivity
+  have hlow : q * jtBetaOfEnergy C (E + q) <
+      jtEntropyOfEnergy C (E + q) - jtEntropyOfEnergy C E := by
+    rw [hSdiff, hqβEq]
+    apply mul_lt_mul_of_pos_left _ hpref
+    exact div_lt_div_of_pos_left hq hsum_pos (by linarith)
+  have hhigh : jtEntropyOfEnergy C (E + q) - jtEntropyOfEnergy C E <
+      q * jtBetaOfEnergy C E := by
+    rw [hSdiff, hqβE]
+    apply mul_lt_mul_of_pos_left _ hpref
+    exact div_lt_div_of_pos_left hq (by linarith) (by linarith)
+  refine ⟨hlow, hhigh, ?_⟩
+  intro heq
+  have hcancel : Real.exp (jtEntropyOfEnergy C E - β0 * E) * Real.exp (-q * β0) =
+      Real.exp (jtEntropyOfEnergy C (E + q) - β0 * (E + q)) *
+        Real.exp (-q * jtBetaOfEnergy C (E + q)) := by
+    unfold jtCanonicalWeight at heq
+    have hαne : α ≠ 0 := ne_of_gt hα
+    have h1 : α * (Real.exp (jtEntropyOfEnergy C E - β0 * E) * Real.exp (-q * β0)) =
+        α * (Real.exp (jtEntropyOfEnergy C (E + q) - β0 * (E + q)) *
+          Real.exp (-q * jtBetaOfEnergy C (E + q))) := by
+      linarith
+    exact mul_left_cancel₀ hαne h1
+  rw [← Real.exp_add, ← Real.exp_add] at hcancel
+  have hexp_eq := Real.exp_injective hcancel
+  linarith
+
+/-- Constructive `E ≥ 0` entropy-difference emission jump kernel `w_-(E, q)` vanishing for `q > E`. -/
+noncomputable def jtEntropyDiffEmissionRate (C α E q : ℝ) : ℝ :=
+  if q ≤ E then α * Real.exp (jtEntropyOfEnergy C (E - q) - jtEntropyOfEnergy C E) else 0
+
+/-- **Proposition 2(e.2)** (Constructive `E ≥ 0` Exact Finite-`q` Detailed-Balance Jump Process
+and Large-`C` Curvature Expansion):
+Replacing the naive emission rate by `w_-(E, q) = α exp(S_BH(E - q) - S_BH(E))` for `0 < q ≤ E`
+(and `0` for `q > E`) with incoming rate `w_+(E, q) = α exp(-q β_0)` satisfies:
+  (1) **Exact finite-`q` detailed balance** on `E ≥ 0`:
+      `π(E) w_+(E, q) = π(E + q) w_-(E + q, q)` for all `E ≥ 0, q > 0`,
+  (2) **Strict positivity** `w_+(E, q) > 0` and `w_-(E + q, q) > 0`,
+  (3) **Boundary preservation**: for `0 ≤ E < q`, `w_-(E, q) = 0` (the process cannot exit `E ≥ 0`),
+  (4) **Exact thermodynamic first and second derivatives** for `E > 0`:
+      `S_BH'(E) = β(E)` and `S_BH''(E) = -β(E) / (2 E) < 0`, matching the large-`C` exponent
+      `S_BH(E - q) - S_BH(E) = -q β(E) + (1/2) S_BH''(E) q² + O(q³ / E²)`. -/
+theorem jt_entropy_diff_jump_exact_detailed_balance
+    (C β0 α E q : ℝ) (hC : 0 < C) (hα : 0 < α) (hE : 0 ≤ E) (_hq : 0 < q) :
+    jtCanonicalWeight C β0 E * (α * Real.exp (-q * β0)) =
+      jtCanonicalWeight C β0 (E + q) * jtEntropyDiffEmissionRate C α (E + q) q ∧
+    0 < α * Real.exp (-q * β0) ∧
+    0 < jtEntropyDiffEmissionRate C α (E + q) q ∧
+    (E < q → jtEntropyDiffEmissionRate C α E q = 0) ∧
+    (0 < E →
+      HasDerivAt (fun x => jtEntropyOfEnergy C x) (jtBetaOfEnergy C E) E ∧
+      HasDerivAt (fun x => jtBetaOfEnergy C x) (-jtBetaOfEnergy C E / (2 * E)) E ∧
+      -jtBetaOfEnergy C E / (2 * E) < 0) := by
+  have hle : q ≤ E + q := by linarith
+  have hdb : jtCanonicalWeight C β0 E * (α * Real.exp (-q * β0)) =
+      jtCanonicalWeight C β0 (E + q) * jtEntropyDiffEmissionRate C α (E + q) q := by
+    unfold jtCanonicalWeight jtEntropyDiffEmissionRate
+    simp only [hle, ↓reduceIte]
+    have hsub : E + q - q = E := by ring
+    rw [hsub]
+    calc Real.exp (jtEntropyOfEnergy C E - β0 * E) * (α * Real.exp (-q * β0))
+        = α * (Real.exp (jtEntropyOfEnergy C E - β0 * E) * Real.exp (-q * β0)) := by ring
+      _ = α * Real.exp ((jtEntropyOfEnergy C E - β0 * E) + (-q * β0)) := by rw [← Real.exp_add]
+      _ = α * Real.exp ((jtEntropyOfEnergy C (E + q) - β0 * (E + q)) +
+            (jtEntropyOfEnergy C E - jtEntropyOfEnergy C (E + q))) := by congr 2; ring
+      _ = α * (Real.exp (jtEntropyOfEnergy C (E + q) - β0 * (E + q)) *
+            Real.exp (jtEntropyOfEnergy C E - jtEntropyOfEnergy C (E + q))) := by rw [Real.exp_add]
+      _ = Real.exp (jtEntropyOfEnergy C (E + q) - β0 * (E + q)) *
+            (α * Real.exp (jtEntropyOfEnergy C E - jtEntropyOfEnergy C (E + q))) := by ring
+  have hw_plus : 0 < α * Real.exp (-q * β0) := mul_pos hα (Real.exp_pos _)
+  have hw_minus : 0 < jtEntropyDiffEmissionRate C α (E + q) q := by
+    unfold jtEntropyDiffEmissionRate
+    simp only [hle, ↓reduceIte]
+    exact mul_pos hα (Real.exp_pos _)
+  have hbdry : E < q → jtEntropyDiffEmissionRate C α E q = 0 := by
+    intro hlt
+    unfold jtEntropyDiffEmissionRate
+    simp only [not_le.mpr hlt, ↓reduceIte]
+  refine ⟨hdb, hw_plus, hw_minus, hbdry, ?_⟩
+  intro hEpos
+  have h2C : 0 < 2 * C := by linarith
+  have h2CE_ne : 2 * C * E ≠ 0 := ne_of_gt (mul_pos h2C hEpos)
+  have h2CdivE_ne : 2 * C / E ≠ 0 := ne_of_gt (div_pos h2C hEpos)
+  have hEne : E ≠ 0 := ne_of_gt hEpos
+  have hsE : 0 < Real.sqrt E := Real.sqrt_pos.mpr hEpos
+  have hsEne : Real.sqrt E ≠ 0 := ne_of_gt hsE
+  have hs2C : 0 < Real.sqrt (2 * C) := Real.sqrt_pos.mpr h2C
+  have hS_deriv : HasDerivAt (fun x => jtEntropyOfEnergy C x) (jtBetaOfEnergy C E) E := by
+    have hlin : HasDerivAt (fun x => 2 * C * x) (2 * C) E := by
+      simpa using (hasDerivAt_id E).const_mul (2 * C)
+    have hsqrt : HasDerivAt (fun x => Real.sqrt (2 * C * x))
+        (2 * C / (2 * Real.sqrt (2 * C * E))) E := hlin.sqrt h2CE_ne
+    have hfull := hsqrt.const_mul (2 * Real.pi)
+    unfold jtEntropyOfEnergy jtBetaOfEnergy
+    convert hfull using 1
+    rw [Real.sqrt_mul (le_of_lt h2C) E, Real.sqrt_div (le_of_lt h2C) E]
+    have hsq : Real.sqrt (2 * C) ^ 2 = 2 * C := Real.sq_sqrt (le_of_lt h2C)
+    have hs2Cne : Real.sqrt (2 * C) ≠ 0 := ne_of_gt hs2C
+    field_simp [hs2Cne, hsEne]
+    rw [hsq]
+  have hβ_deriv : HasDerivAt (fun x => jtBetaOfEnergy C x) (-jtBetaOfEnergy C E / (2 * E)) E := by
+    have hdiv : HasDerivAt (fun x => 2 * C / x) (-(2 * C) / E ^ 2) E := by
+      have h := (hasDerivAt_const E (2 * C)).div (hasDerivAt_id E) hEne
+      convert h using 1
+      · funext x; simp
+      · simp
+    have hsqrt : HasDerivAt (fun x => Real.sqrt (2 * C / x))
+        ((-(2 * C) / E ^ 2) / (2 * Real.sqrt (2 * C / E))) E := hdiv.sqrt h2CdivE_ne
+    have hfull := hsqrt.const_mul Real.pi
+    unfold jtBetaOfEnergy
+    convert hfull using 1
+    have hsq : Real.sqrt (2 * C / E) ^ 2 = 2 * C / E :=
+      Real.sq_sqrt (le_of_lt (div_pos h2C hEpos))
+    have hsne : Real.sqrt (2 * C / E) ≠ 0 := ne_of_gt (Real.sqrt_pos.mpr (div_pos h2C hEpos))
+    field_simp [hEne, hsne]
+    rw [hsq]
+    field_simp [hEne]
+  have hβ_neg : -jtBetaOfEnergy C E / (2 * E) < 0 := by
+    have hβpos : 0 < jtBetaOfEnergy C E := by
+      unfold jtBetaOfEnergy
+      exact mul_pos Real.pi_pos (Real.sqrt_pos.mpr (div_pos h2C hEpos))
+    exact div_neg_of_neg_of_pos (neg_lt_zero.mpr hβpos) (by linarith)
+  exact ⟨hS_deriv, hβ_deriv, hβ_neg⟩
 
 end OSTQD_SK

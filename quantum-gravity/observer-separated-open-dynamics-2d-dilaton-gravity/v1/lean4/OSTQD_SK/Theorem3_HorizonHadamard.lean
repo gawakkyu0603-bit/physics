@@ -3,9 +3,10 @@ import OSTQD_SK.Basic
 /-!
 # OSTQD_SK.Theorem3_HorizonHadamard
 
-Theorem 3 of Paper 2:
+Theorem 3 and Propositions 3–4 (Horizon Non-Hadamard Defect, Mellin Positive-Type Extension,
+and Single-Shot Number-Projection Excitation Floor):
   (a) Arbitrary-`N` Bosonic Two-Mode Squeezed All-`s` Exact GKSL ODE (`HasDerivAt`):
-      extending Paper 1's 4D fermionic ODE to arbitrary Fock truncation dimension `N`.
+      extending the 4D fermionic ODE to arbitrary Fock truncation dimension `N`.
   (b) Exact Exterior-Diagonal CPL Invariance (`Tr(D ρ^(N)(s)) = Tr(D ρ^(N)(0))`)
       juxtaposed with exact nearest-neighbor cross-horizon attenuation `exp(-Γ s / 2)`
       and universal `(1 - exp(-Γ s / 2))` all-`s` inertial energy excitation law for
@@ -14,8 +15,11 @@ Theorem 3 of Paper 2:
       real-analytic asymptotic lemma taking the continuum cross-horizon point-split defect
       `ΔW_J(-ε, +ε) = (1 - e^{-Γ s/2}) / (16 π ε²)` as input: for any `Γ > 0, s > 0`, it exceeds
       every finite bound `M` as `ε → 0⁺`, whereas at `s = 0` (`S_SK^(A)`) it vanishes identically
-      for all `ε > 0`. (Positive-definite continuum field-state construction and distributional
-      detector pullbacks lie outside Lean.)
+      for all `ε > 0`.
+  (d) Mellin positive-type kernel PSD and sharp point-contact threshold `c_00 ≥ c_*`
+      (Proposition 3).
+  (e) Single-shot number-projection firewall floor and projector non-commutativity
+      (Proposition 4).
 -/
 
 open scoped Matrix BigOperators ComplexConjugate
@@ -359,5 +363,88 @@ theorem single_shot_number_projection_firewall_floor (ω r : ℝ) (n : ℕ)
   rcases mul_eq_zero.mp hreal with h0 | h1
   · exact hc0 h0
   · exact hc1 h1
+
+/-- **Proposition 3 (Mellin Positive-Type Frequency Kernel PSD and Sharp Contact Threshold
+`c_00 ≥ c_*`)**:
+In Mellin frequency space `k ∈ ℝ` with attenuation factor `b ∈ [-1, 1]` (covering
+`b(k) = exp(-Γ(κ |k|) s / 2) ∈ (0, 1]`):
+  (1) The `2 × 2` Hermitian Mellin frequency matrix `[[e^{πk}, -b], [-b, e^{-πk}]]` has strictly
+      positive diagonal entries and non-negative determinant `e^{πk} e^{-πk} - b² = 1 - b² ≥ 0`.
+  (2) For ALL complex Mellin amplitudes `zR, zL ∈ ℂ`, the frequency-resolved quadratic form
+      satisfies the exact Schur-complement sum-of-squares identity
+        `e^{πk}|zR|² + e^{-πk}|zL|² - 2 b Re(zR zL*) = |e^{πk/2} zR - b e^{-πk/2} zL|² + (1 - b²) e^{-πk} |zL|² ≥ 0`.
+  (3) For any point-contact extension `T_{c_00} = T_M + (c_00 - c_*) δ ⊗ δ`:
+      (a) sufficiency: `c_00 ≥ c_*` implies `m + (c_00 - c_*) |q0|² ≥ 0` for all `m ≥ 0, q0 ∈ ℂ`;
+      (b) sharp necessity: if a scale-averaged test sequence satisfies `m_ℓ → 0` and
+          `0 ≤ m_ℓ + (c_00 - c_*)` for all `ℓ : ℕ`, then necessarily `c_00 ≥ c_*`. -/
+theorem mellin_contact_kernel_psd_and_extension_positivity
+    (k b : ℝ) (hb : |b| ≤ 1) (zR zL : ℂ) :
+    0 < Real.exp (Real.pi * k) ∧
+    0 < Real.exp (-(Real.pi * k)) ∧
+    Real.exp (Real.pi * k) * Real.exp (-(Real.pi * k)) - b ^ 2 = 1 - b ^ 2 ∧
+    0 ≤ 1 - b ^ 2 ∧
+    Real.exp (Real.pi * k) * Complex.normSq zR +
+        Real.exp (-(Real.pi * k)) * Complex.normSq zL -
+        2 * b * (zR * star zL).re =
+      Complex.normSq (((Real.exp (Real.pi * k / 2) : ℝ) : ℂ) * zR -
+        ((b * Real.exp (-(Real.pi * k / 2)) : ℝ) : ℂ) * zL) +
+      (1 - b ^ 2) * Real.exp (-(Real.pi * k)) * Complex.normSq zL ∧
+    0 ≤ Real.exp (Real.pi * k) * Complex.normSq zR +
+        Real.exp (-(Real.pi * k)) * Complex.normSq zL -
+        2 * b * (zR * star zL).re ∧
+    (∀ (c00 cstar m : ℝ) (q0 : ℂ), cstar ≤ c00 → 0 ≤ m →
+      0 ≤ m + (c00 - cstar) * Complex.normSq q0) ∧
+    (∀ (c00 cstar : ℝ) (m : ℕ → ℝ),
+      Filter.Tendsto m Filter.atTop (nhds 0) →
+      (∀ l : ℕ, 0 ≤ m l + (c00 - cstar)) →
+      cstar ≤ c00) := by
+  have hb2 : b ^ 2 ≤ 1 := by
+    have h1 := abs_le.mp hb
+    nlinarith
+  have h1mb2 : 0 ≤ 1 - b ^ 2 := by linarith
+  have hexp_prod : Real.exp (Real.pi * k) * Real.exp (-(Real.pi * k)) = 1 := by
+    rw [← Real.exp_add, add_neg_cancel, Real.exp_zero]
+  have hhalf_pos : Real.exp (Real.pi * k / 2) * Real.exp (Real.pi * k / 2) =
+      Real.exp (Real.pi * k) := by
+    rw [← Real.exp_add]; congr 1; ring
+  have hhalf_neg : Real.exp (-(Real.pi * k / 2)) * Real.exp (-(Real.pi * k / 2)) =
+      Real.exp (-(Real.pi * k)) := by
+    rw [← Real.exp_add]; congr 1; ring
+  have hhalf_cancel : Real.exp (Real.pi * k / 2) * Real.exp (-(Real.pi * k / 2)) = 1 := by
+    rw [← Real.exp_add]; simp
+  have hsos : Real.exp (Real.pi * k) * Complex.normSq zR +
+        Real.exp (-(Real.pi * k)) * Complex.normSq zL -
+        2 * b * (zR * star zL).re =
+      Complex.normSq (((Real.exp (Real.pi * k / 2) : ℝ) : ℂ) * zR -
+        ((b * Real.exp (-(Real.pi * k / 2)) : ℝ) : ℂ) * zL) +
+      (1 - b ^ 2) * Real.exp (-(Real.pi * k)) * Complex.normSq zL := by
+    simp only [Complex.normSq_apply, Complex.sub_re, Complex.sub_im, Complex.mul_re,
+      Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, Complex.star_def,
+      Complex.conj_re, Complex.conj_im]
+    linear_combination
+      (zR.re * zR.re + zR.im * zR.im) * hhalf_pos.symm +
+      (b ^ 2 * (zL.re * zL.re + zL.im * zL.im)) * hhalf_neg.symm -
+      (2 * b * (zR.re * zL.re + zR.im * zL.im)) * hhalf_cancel.symm
+  have hquad_nn : 0 ≤ Real.exp (Real.pi * k) * Complex.normSq zR +
+      Real.exp (-(Real.pi * k)) * Complex.normSq zL -
+      2 * b * (zR * star zL).re := by
+    rw [hsos]
+    have h1 : 0 ≤ Complex.normSq (((Real.exp (Real.pi * k / 2) : ℝ) : ℂ) * zR -
+        ((b * Real.exp (-(Real.pi * k / 2)) : ℝ) : ℂ) * zL) := Complex.normSq_nonneg _
+    have h2 : 0 ≤ (1 - b ^ 2) * Real.exp (-(Real.pi * k)) * Complex.normSq zL :=
+      mul_nonneg (mul_nonneg h1mb2 (le_of_lt (Real.exp_pos _))) (Complex.normSq_nonneg _)
+    linarith
+  refine ⟨Real.exp_pos _, Real.exp_pos _, by rw [hexp_prod], h1mb2, hsos, hquad_nn, ?_, ?_⟩
+  · intro c00 cstar m q0 hc hm
+    have hdiff : 0 ≤ c00 - cstar := sub_nonneg.mpr hc
+    have hterm : 0 ≤ (c00 - cstar) * Complex.normSq q0 :=
+      mul_nonneg hdiff (Complex.normSq_nonneg _)
+    linarith
+  · intro c00 cstar m hm hpos
+    have htend : Filter.Tendsto (fun l => m l + (c00 - cstar)) Filter.atTop
+        (nhds (0 + (c00 - cstar))) := hm.add_const (c00 - cstar)
+    have hge : 0 ≤ 0 + (c00 - cstar) :=
+      ge_of_tendsto' htend hpos
+    linarith
 
 end OSTQD_SK

@@ -9,9 +9,11 @@ import Mathlib.Tactic
 
 Core finite-dimensional matrix GKSL superoperator definitions and Schwinger–Keldysh (SK)
 influence-functional algebraic axioms (trace-preservation normalization, conjugation
-symmetry, necessary probability-decay positivity `Im S_IF ≥ 0`, and dynamical KMS / FDT
-Wightman rate positivity under the full-anticommutator Keldysh kernel `D_K = 2 N`)
-for Paper 2 (Observer-Separated Schwinger–Keldysh Effective Action in 2D Dilaton Gravity).
+symmetry, necessary probability-decay positivity `Im S_IF ≥ 0`, dynamical KMS / FDT
+Wightman rate positivity under the full-anticommutator Keldysh kernel `D_K = 2 N`,
+Layer-2 unraveling non-uniqueness, and separation of remote no-signaling from
+Layer-1 channel model-compatibility) for the observer-separated Schwinger–Keldysh
+effective action in 2D dilaton gravity.
 -/
 
 open scoped Matrix BigOperators ComplexConjugate
@@ -307,5 +309,86 @@ theorem layer2_unraveling_gauge_nonuniqueness {d : ℕ}
       norm_num
     rw [h1, h2]
     norm_num
+
+/-- **No-Signaling vs. Layer-1 Model-Compatibility Separation (Remark 2 & Proposition 4)**:
+  (1) On any bipartite finite-dimensional factorization `Fin dR × Fin dL`, conjugating by ANY
+      local exterior unitary `U ⊗ I_L` (`U† U = 1`) leaves every interior-local observable
+      `I_R ⊗ Y_L` invariant in the Heisenberg picture (`(U ⊗ I_L)† (I_R ⊗ Y_L) (U ⊗ I_L) = I_R ⊗ Y_L`)
+      and therefore preserves every interior expectation value `Tr((I_R ⊗ Y_L) ·)` (remote marginal
+      no-signaling), completely independent of any target exterior channel `Φ_B`.
+  (2) Conversely, on a qubit (`Fin 2`), the local Pauli-`X` unitary satisfies `X† X = 1` (hence
+      no-signaling) while strictly differing from the target exterior dephasing channel
+      `Φ_B(ρ) = P_0 ρ P_0 + P_1 ρ P_1` on `|0⟩⟨0|`. Thus `∑_x I_{B,x} = Φ_B` is a model-compatibility
+      constraint to reproduce a specified Layer-1 channel, distinct from remote no-signaling. -/
+theorem local_unitary_preserves_remote_marginal_vs_channel {dR dL : ℕ}
+    (U : Matrix (Fin dR) (Fin dR) ℂ) (hU : Uᴴ * U = 1)
+    (Y : Matrix (Fin dL) (Fin dL) ℂ)
+    (ρ : Matrix (Fin dR × Fin dL) (Fin dR × Fin dL) ℂ) :
+    let Uext : Matrix (Fin dR × Fin dL) (Fin dR × Fin dL) ℂ :=
+      Matrix.of fun p q => if p.2 = q.2 then U p.1 q.1 else 0
+    let Yint : Matrix (Fin dR × Fin dL) (Fin dR × Fin dL) ℂ :=
+      Matrix.of fun p q => if p.1 = q.1 then Y p.2 q.2 else 0
+    Uextᴴ * Yint * Uext = Yint ∧
+    (Yint * (Uext * ρ * Uextᴴ)).trace = (Yint * ρ).trace ∧
+    (let X2 : Matrix (Fin 2) (Fin 2) ℂ := Matrix.of fun i j => if i = j then 0 else 1
+     let P0 : Matrix (Fin 2) (Fin 2) ℂ := Matrix.of fun i j => if i = 0 ∧ j = 0 then 1 else 0
+     let P1 : Matrix (Fin 2) (Fin 2) ℂ := Matrix.of fun i j => if i = 1 ∧ j = 1 then 1 else 0
+     X2ᴴ * X2 = 1 ∧ X2 * P0 * X2ᴴ ≠ P0 * P0 * P0ᴴ + P1 * P0 * P1ᴴ) := by
+  intro Uext Yint
+  have hUext_adj : ∀ p q : Fin dR × Fin dL,
+      Uextᴴ p q = if p.2 = q.2 then Uᴴ p.1 q.1 else 0 := by
+    intro p q
+    simp only [Matrix.conjTranspose_apply, Uext, Matrix.of_apply]
+    by_cases h : p.2 = q.2
+    · simp [h]
+    · have h' : q.2 ≠ p.2 := Ne.symm h
+      simp [h, h']
+  have hYU : ∀ p q : Fin dR × Fin dL,
+      (Yint * Uext) p q = Y p.2 q.2 * U p.1 q.1 := by
+    intro p q
+    simp only [Matrix.mul_apply, Yint, Uext, Matrix.of_apply, Fintype.sum_prod_type]
+    rw [Finset.sum_eq_single p.1]
+    · rw [Finset.sum_eq_single q.2]
+      · simp
+      · intro l _ hlq; simp [hlq]
+      · intro hq; exact (hq (Finset.mem_univ q.2)).elim
+    · intro r _ hrp
+      apply Finset.sum_eq_zero
+      intro l _; simp [Ne.symm hrp]
+    · intro hp; exact (hp (Finset.mem_univ p.1)).elim
+  have hheis : Uextᴴ * Yint * Uext = Yint := by
+    rw [Matrix.mul_assoc]
+    ext p q
+    simp only [Matrix.mul_apply, Fintype.sum_prod_type, hUext_adj, hYU]
+    have hinner : ∑ r : Fin dR, ∑ l : Fin dL,
+        (if p.2 = l then Uᴴ p.1 r else 0) * (Y l q.2 * U r q.1) =
+        Y p.2 q.2 * (Uᴴ * U) p.1 q.1 := by
+      rw [Matrix.mul_apply, Finset.mul_sum]
+      refine Finset.sum_congr rfl fun r _ => ?_
+      rw [Finset.sum_eq_single p.2]
+      · simp; ring
+      · intro l _ hlp; simp [Ne.symm hlp]
+      · intro hp; exact (hp (Finset.mem_univ p.2)).elim
+    rw [hinner, hU]
+    simp only [Yint, Matrix.of_apply, Matrix.one_apply]
+    by_cases h1 : p.1 = q.1
+    · simp [h1]
+    · simp [h1]
+  have htr : (Yint * (Uext * ρ * Uextᴴ)).trace = (Yint * ρ).trace := by
+    calc (Yint * (Uext * ρ * Uextᴴ)).trace
+        = ((Yint * Uext * ρ) * Uextᴴ).trace := by simp only [Matrix.mul_assoc]
+      _ = (Uextᴴ * (Yint * Uext * ρ)).trace := Matrix.trace_mul_comm _ _
+      _ = ((Uextᴴ * Yint * Uext) * ρ).trace := by simp only [Matrix.mul_assoc]
+      _ = (Yint * ρ).trace := by rw [hheis]
+  refine ⟨hheis, htr, ?_⟩
+  intro X2 P0 P1
+  constructor
+  · ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [X2, Matrix.mul_apply, Matrix.conjTranspose_apply, Fin.sum_univ_two]
+  · intro heq
+    have h00 := congrFun (congrFun heq (0 : Fin 2)) (0 : Fin 2)
+    simp [X2, P0, P1, Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.add_apply,
+      Fin.sum_univ_two] at h00
 
 end OSTQD_SK

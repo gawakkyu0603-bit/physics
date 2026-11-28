@@ -23,20 +23,22 @@ Bernard~S. Kay and Robert~M. Wald.
   horizon.
 \newblock {\em Physics Reports}, 207:49--136, 1991.
 
+\bibitem{Radzikowski1996}
+Marek~J. Radzikowski.
+\newblock Micro-local approach to the {H}adamard condition in quantum field
+  theory on curved space-time.
+\newblock {\em Communications in Mathematical Physics}, 179:529--553, 1996.
+
 \bibitem{UnruhWald2017}
 W.~G. Unruh and Robert~M. Wald.
 \newblock Information loss.
 \newblock {\em Reports on Progress in Physics}, 80(9):092002, 2017.
 
-\bibitem{Susskind1993}
-Leonard Susskind, L{\'a}rus Thorlacius, and John Uglum.
-\newblock The stretched horizon and black hole complementarity.
-\newblock {\em Physical Review D}, 48:3743--3761, 1993.
-
-\bibitem{AMPS2013}
-Ahmed Almheiri, Donald Marolf, Joseph Polchinski, and James Sully.
-\newblock Black holes: complementarity or firewalls?
-\newblock {\em Journal of High Energy Physics}, 2013(02):062, 2013.
+\bibitem{AEMM2019}
+Ahmed Almheiri, Netta Engelhardt, Donald Marolf, and Henry Maxfield.
+\newblock The entropy of bulk quantum fields and the entanglement wedge of an
+  evaporating black hole.
+\newblock arXiv:1905.08762 [hep-th], 2019.
 
 \bibitem{Penington2020}
 Geoffrey Penington.
@@ -48,6 +50,22 @@ Ahmed Almheiri, Thomas Hartman, Juan Maldacena, Edgar Shaghoulian, and
   Amirhossein Tajdini.
 \newblock Replica wormholes and the entropy of {H}awking radiation.
 \newblock {\em Journal of High Energy Physics}, 2020(05):013, 2020.
+
+\bibitem{Susskind1993}
+Leonard Susskind, L{\'a}rus Thorlacius, and John Uglum.
+\newblock The stretched horizon and black hole complementarity.
+\newblock {\em Physical Review D}, 48:3743--3761, 1993.
+
+\bibitem{AMPS2013}
+Ahmed Almheiri, Donald Marolf, Joseph Polchinski, and James Sully.
+\newblock Black holes: complementarity or firewalls?
+\newblock {\em Journal of High Energy Physics}, 2013(02):062, 2013.
+
+\bibitem{Akers2022}
+Chris Akers, Netta Engelhardt, Daniel Harlow, Geoff Penington, and Shreya
+  Vardhan.
+\newblock The black hole interior from non-isometric codes and complexity.
+\newblock {\em Journal of High Energy Physics}, 2024(06):155, 2024.
 
 \bibitem{Soga2026OSTQD}
 Yohtaro Soga.
@@ -71,6 +89,11 @@ Alastair Kay, Dagomir Kaszlikowski, and Ravishankar Ramanathan.
 \newblock Optimal cloning and singlet monogamy.
 \newblock {\em Physical Review Letters}, 103:050501, 2009.
 
+\bibitem{FarberGour2026}
+Omri Farber and Gilad Gour.
+\newblock Classical communication helps single-shot quantum compression.
+\newblock arXiv:2610.14785 [quant-ph], 2026.
+
 \bibitem{LoukoSatz2008}
 Jorma Louko and Alejandro Satz.
 \newblock Transition rate of the {U}nruh--{D}e{W}itt detector in curved
@@ -93,6 +116,12 @@ Tullio Regge and John~A. Wheeler.
 \newblock Stability of a {S}chwarzschild singularity.
 \newblock {\em Physical Review}, 108:1063--1069, 1957.
 
+\bibitem{Zerilli1970}
+Frank~J. Zerilli.
+\newblock Effective potential for even-parity {R}egge--{W}heeler gravitational
+  perturbation equations.
+\newblock {\em Physical Review Letters}, 24:737--738, 1970.
+
 \bibitem{Teukolsky1973}
 Saul~A. Teukolsky.
 \newblock Perturbations of a rotating black hole. {I}. {F}undamental equations
@@ -109,11 +138,12 @@ Sumit~R. Das, Gary~W. Gibbons, and Samir~D. Mathur.
 \newblock Universality of low energy absorption cross sections for black holes.
 \newblock {\em Physical Review Letters}, 78:417--419, 1997.
 
-\bibitem{Akers2022}
-Chris Akers, Netta Engelhardt, Daniel Harlow, Geoff Penington, and Shreya
-  Vardhan.
-\newblock The black hole interior from non-isometric codes and complexity.
-\newblock {\em Journal of High Energy Physics}, 2024(06):155, 2024.
+\bibitem{Crispino2007}
+Lu{\'i}s C.~B. Crispino, Ednilton~S. Oliveira, Atsushi Higuchi, and George
+  E.~A. Matsas.
+\newblock Absorption cross section of electromagnetic waves for {S}chwarzschild
+  black holes.
+\newblock {\em Physical Review D}, 75:104012, 2007.
 
 \bibitem{Schwinger1961}
 Julian Schwinger.
@@ -290,6 +320,16 @@ R.~Jackiw.
 \newblock Lower dimensional gravity.
 \newblock {\em Nuclear Physics B}, 252:343--356, 1985.
 
+\bibitem{MassarParentani2000}
+Serge Massar and Renaud Parentani.
+\newblock How the change in horizon area drives black hole evaporation.
+\newblock {\em Nuclear Physics B}, 575:333--356, 2000.
+
+\bibitem{ParikhWilczek2000}
+Maulik~K. Parikh and Frank Wilczek.
+\newblock Hawking radiation as tunneling.
+\newblock {\em Physical Review Letters}, 85(24):5042--5045, 2000.
+
 \bibitem{BernardDoyon2012}
 Denis Bernard and Benjamin Doyon.
 \newblock Energy flow in non-equilibrium conformal field theory.
@@ -317,12 +357,6 @@ Thomas~G. Mertens.
 \newblock Towards black hole evaporation in {J}ackiw--{T}eitelboim gravity.
 \newblock {\em Journal of High Energy Physics}, 2019(07):097, 2019.
 
-\bibitem{AEMM2019}
-Ahmed Almheiri, Netta Engelhardt, Donald Marolf, and Henry Maxfield.
-\newblock The entropy of bulk quantum fields and the entanglement wedge of an
-  evaporating black hole.
-\newblock arXiv:1905.08762 [hep-th], 2019.
-
 \bibitem{MertensTuriaci2023}
 Thomas~G. Mertens and Gustavo~J. Turiaci.
 \newblock Solvable models of quantum black holes: a review on
@@ -333,6 +367,12 @@ Thomas~G. Mertens and Gustavo~J. Turiaci.
 J.~Sperling and W.~Vogel.
 \newblock Entanglement quasiprobabilities of squeezed light.
 \newblock {\em New Journal of Physics}, 14(5):055026, 2012.
+
+\bibitem{ArakiShiraishi1971}
+Huzihiro Araki and Masahiro Shiraishi.
+\newblock On quasifree states of the canonical commutation relations ({I}).
+\newblock {\em Publications of the Research Institute for Mathematical
+  Sciences}, 7(1):105--120, 1971.
 
 \bibitem{Polyakov1981}
 A.~M. Polyakov.
@@ -382,6 +422,20 @@ Ko~Sanders.
 C.~T.~Marco Ho, Daiqin Su, Robert~B. Mann, and Timothy~C. Ralph.
 \newblock Black hole field theory with a firewall in two spacetime dimensions.
 \newblock {\em Physical Review D}, 94:081502, 2016.
+
+\bibitem{Zambianco2026}
+Matheus~H. Zambianco and Eduardo Mart{\'i}n-Mart{\'i}nez.
+\newblock Nonlinear particle detectors across the {R}indler firewall, 2026.
+
+\bibitem{Boulware1975}
+David~G. Boulware.
+\newblock Quantum field theory in {S}chwarzschild and {R}indler spaces.
+\newblock {\em Physical Review D}, 11:1404--1423, 1975.
+
+\bibitem{Candelas1980}
+P.~Candelas.
+\newblock Vacuum polarization in {S}chwarzschild spacetime.
+\newblock {\em Physical Review D}, 21:2185--2202, 1980.
 
 \bibitem{GoldbergerRothstein2006}
 Walter~D. Goldberger and Ira~Z. Rothstein.

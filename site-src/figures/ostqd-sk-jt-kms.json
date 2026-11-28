@@ -1,4 +1,4 @@
 {
   "title": "Thermal relaxation and non-secular dynamics",
-  "description": "Original manuscript Figure 1, F1–F2. In a six-level mode at fixed temperature, purity can rise during cooling while relative entropy and the symmetric GNS divergence decrease. The two-level unprojected Bloch–Redfield comparison tests complete positivity; these are calculated examples."
+  "description": "Original Figure 1: cooling purity increase, Gibbs distance decay and specified Redfield positivity failure."
 }

@@ -445,13 +445,15 @@ theorem fermionic_hawking_ode (r Γ s : ℝ) (hΓ : 0 ≤ Γ) (i j : Fin 4) :
           0, 0, 0, 0;
           -((Γ : ℂ) / 2) * (Real.exp (-(Γ * s) / 2) : ℂ) * (Real.sin r : ℂ) * (Real.cos r : ℂ), 0, 0, 0] :
         Matrix (Fin 4) (Fin 4) ℂ) i j := by
+    have hsqrt : (Real.sqrt Γ : ℂ) ^ 2 = (Γ : ℂ) := by
+      rw [← Complex.ofReal_pow, Real.sq_sqrt hΓ]
     unfold gksl gkslOne fermNR fermRhoB
     fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Matrix.vecMul, dotProduct, Fin.sum_univ_four,
         -Complex.ofReal_sin, -Complex.ofReal_cos, -Complex.ofReal_exp] <;>
       ring_nf <;>
-      simp only [← Complex.ofReal_pow, Real.sq_sqrt hΓ] <;>
-      ring
+      simp [hsqrt]
+    ring
   rw [hgksl_val]
   have hexp : HasDerivAt (fun τ : ℝ => (Real.exp (-(Γ * τ) / 2) : ℂ))
       ((-(Γ / 2 : ℝ) * Real.exp (-(Γ * s) / 2) : ℝ) : ℂ) s := by
@@ -473,5 +475,161 @@ theorem fermionic_hawking_ode (r Γ s : ℝ) (hΓ : 0 ≤ Γ) (i j : Fin 4) :
      | exact hasDerivAt_const s _
      | (convert (hexp.mul_const (Real.sin r : ℂ)).mul_const (Real.cos r : ℂ) using 1;
         push_cast; ring))
+
+/-!
+### Theorem 2 Scope Counterexamples and Reduced-State / Positivity Audits
+-/
+
+/-- Counterexample Hamiltonians separating positive `γ_loc` (eigenbasis average) from
+ground-state excitation: `H_B = N_R + N_L`, `H_A = diag(0, 2, 2, 3) + |01⟩⟨10| + |10⟩⟨01|`. -/
+def fixedGroundHB : Matrix (Fin 4) (Fin 4) ℂ :=
+  Matrix.diagonal ![0, 1, 1, 2]
+
+def fixedGroundHA : Matrix (Fin 4) (Fin 4) ℂ :=
+  !![0, 0, 0, 0;
+     0, 2, 1, 0;
+     0, 1, 2, 0;
+     0, 0, 0, 3]
+
+def groundProj00 : Matrix (Fin 4) (Fin 4) ℂ :=
+  Matrix.diagonal ![1, 0, 0, 0]
+
+/-- **Theorem 2(b) vs. 2(f) Counterexample** (`γ_loc > 0` Alone Does Not Force Ground-State Heating):
+With `A_B = M_2(ℂ)_R ⊗ I_L`, `H_B = N_R + N_L`, `H_A = diag(0,2,2,3) + |01⟩⟨10| + |10⟩⟨01|`,
+and `L = N_R`:
+1. `[H_A, H_B] = 0`, `L` is `H_B`-BPS-immune, and `H_A` is positive semidefinite with `|00⟩`
+   as its `E = 0` ground state.
+2. Every traceless exterior-local `X ∈ A_B ∩ {H_B}'` satisfies `‖[X, H_A]‖_F² = 2 ‖X‖_F²`
+   (`γ_loc = 2 > 0`), and the eigenbasis-averaged initial variance rate is `1/2 > 0`.
+3. Yet the ground state `|00⟩⟨00|` is strictly fixed by the dissipator (`L(|00⟩⟨00|) = 0`),
+   with zero mean-energy drift and zero variance derivative. -/
+theorem positive_gamma_loc_fixed_ground_state_counterexample :
+    comm fixedGroundHA fixedGroundHB = 0 ∧
+    (gkslDual [fermNR] fixedGroundHB = 0 ∧
+      gkslDual [fermNR] (fixedGroundHB * fixedGroundHB) = 0) ∧
+    (∀ v : Fin 4 → ℂ, 0 ≤ (vecInner v (fixedGroundHA.mulVec v)).re) ∧
+    fixedGroundHA * groundProj00 = 0 ∧
+    (∀ X : Matrix (Fin 4) (Fin 4) ℂ,
+      isExteriorLocal X → X.trace = 0 → comm X fixedGroundHB = 0 →
+        frobNormSq (comm X fixedGroundHA) = 2 * frobNormSq X) ∧
+    ((carreDuChamp [fermNR] fixedGroundHA).trace).re / 4 = 1 / 2 ∧
+    gksl [fermNR] groundProj00 = 0 ∧
+    ((gkslDual [fermNR] fixedGroundHA * groundProj00).trace).re = 0 ∧
+    varianceDeriv [fermNR] fixedGroundHA groundProj00 = 0 := by
+  have hHB_h : fixedGroundHBᴴ = fixedGroundHB := by
+    ext i j; fin_cases i <;> fin_cases j <;> simp [fixedGroundHB]
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · ext i j; fin_cases i <;> fin_cases j <;>
+      simp [comm, fixedGroundHA, fixedGroundHB, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Matrix.diagonal_apply]
+    norm_num
+  · rw [bps_immunity_iff_comm _ hHB_h]
+    intro L hL; simp only [List.mem_singleton] at hL; subst hL
+    ext i j; fin_cases i <;> fin_cases j <;>
+      simp [comm, fermNR, fixedGroundHB]
+  · intro v
+    unfold vecInner Matrix.mulVec fixedGroundHA
+    simp only [dotProduct, Fin.sum_univ_four, Matrix.of_apply, Matrix.cons_val_zero,
+      Matrix.cons_val_one, Fin.isValue, Matrix.cons_val, zero_mul, add_zero, zero_add,
+      Complex.add_re, Complex.add_im, Complex.mul_re, Complex.mul_im, Complex.star_def,
+      Complex.conj_re, Complex.conj_im, Complex.zero_re, Complex.zero_im,
+      Complex.one_re, Complex.one_im, Complex.re_ofNat, Complex.im_ofNat]
+    nlinarith [sq_nonneg ((v 1).re + (v 2).re), sq_nonneg ((v 1).im + (v 2).im),
+      sq_nonneg (v 1).re, sq_nonneg (v 1).im, sq_nonneg (v 2).re, sq_nonneg (v 2).im,
+      sq_nonneg (v 3).re, sq_nonneg (v 3).im]
+  · ext i j; fin_cases i <;> fin_cases j <;>
+      simp [fixedGroundHA, groundProj00, Matrix.mul_apply, Fin.sum_univ_four]
+  · intro X hloc htr hcomm
+    rcases hloc with ⟨a, b, c, d, rfl⟩
+    have hb0 : b = 0 := by
+      have h := congrFun (congrFun hcomm 0) 2
+      simp [comm, fixedGroundHB, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Matrix.diagonal_apply] at h
+      exact h
+    have hc0 : c = 0 := by
+      have h := congrFun (congrFun hcomm 2) 0
+      simp [comm, fixedGroundHB, Matrix.mul_apply, Matrix.vecMul, dotProduct,
+        Matrix.diagonal_apply] at h
+      exact h
+    have hd_eq : d = -a := by
+      simp [Matrix.trace, Fin.sum_univ_four] at htr
+      have h2 : (2 : ℂ) * (a + d) = 0 := by linear_combination htr
+      have hsum : a + d = 0 := (mul_eq_zero.mp h2).resolve_left (by norm_num)
+      exact eq_neg_of_add_eq_zero_right hsum
+    subst hb0; subst hc0; subst hd_eq
+    unfold frobNormSq comm fixedGroundHA
+    simp [Fin.sum_univ_four, Complex.normSq_apply]
+    ring
+  · unfold carreDuChamp gkslDual gkslDualOne fermNR fixedGroundHA
+    simp [Matrix.trace, Matrix.mul_apply, Matrix.vecMul, dotProduct, Matrix.diagonal_apply,
+      Fin.sum_univ_four]
+    norm_num
+  · ext i j; fin_cases i <;> fin_cases j <;>
+      simp [gksl, gkslOne, fermNR, groundProj00]
+  · unfold gkslDual gkslDualOne fermNR fixedGroundHA groundProj00
+    simp [Matrix.trace, Matrix.mul_apply, Matrix.vecMul, dotProduct, Matrix.diagonal_apply,
+      Fin.sum_univ_four]
+  · unfold varianceDeriv gkslDual gkslDualOne fermNR fixedGroundHA groundProj00
+    simp [Matrix.trace, Matrix.mul_apply, Matrix.vecMul, dotProduct, Matrix.diagonal_apply,
+      Fin.sum_univ_four]
+
+/-- Interior-local observable `I_R ⊗ Y_L` in the `{|00⟩, |01⟩, |10⟩, |11⟩}` basis. -/
+def interiorLocalObs (Y : Matrix (Fin 2) (Fin 2) ℂ) : Matrix (Fin 4) (Fin 4) ℂ :=
+  !![Y 0 0, Y 0 1, 0, 0;
+     Y 1 0, Y 1 1, 0, 0;
+     0, 0, Y 0 0, Y 0 1;
+     0, 0, Y 1 0, Y 1 1]
+
+/-- **Theorem 2(f) Reduced-State Invariance**:
+Under exterior number dephasing `L_B = [√Γ • N_R]`:
+1. The exterior reduced state `Tr_L(ρ_B(s))` equals the thermal Hawking marginal `fermRhoR r`
+   identically for all `s`.
+2. For EVERY initial two-sided state `ρ` and EVERY interior-local observable `I_R ⊗ Y_L`,
+   the left-side expectation derivative vanishes identically (`Tr((I_R ⊗ Y_L) L_B(ρ)) = 0`).
+Thus only two-sided observables (such as `H_A`) detect the dephasing. -/
+theorem fermionic_hawking_reduced_states_invariant (r Γ s : ℝ)
+    (Y : Matrix (Fin 2) (Fin 2) ℂ) (ρ : Matrix (Fin 4) (Fin 4) ℂ) :
+    (!![fermRhoB r Γ s 0 0 + fermRhoB r Γ s 1 1, fermRhoB r Γ s 0 2 + fermRhoB r Γ s 1 3;
+        fermRhoB r Γ s 2 0 + fermRhoB r Γ s 3 1, fermRhoB r Γ s 2 2 + fermRhoB r Γ s 3 3] :
+      Matrix (Fin 2) (Fin 2) ℂ) = fermRhoR r ∧
+    (interiorLocalObs Y * gksl [(Real.sqrt Γ : ℂ) • fermNR] ρ).trace = 0 := by
+  constructor
+  · ext i j; fin_cases i <;> fin_cases j <;> simp [fermRhoB, fermRhoR]
+  · rw [gksl_dual_adj]
+    have hdual0 : gkslDual [(Real.sqrt Γ : ℂ) • fermNR] (interiorLocalObs Y) = 0 := by
+      ext i j; fin_cases i <;> fin_cases j <;>
+        simp [gkslDual, gkslDualOne, fermNR, interiorLocalObs, Matrix.mul_apply,
+          Matrix.vecMul, dotProduct, Matrix.diagonal_apply] <;>
+        ring
+    rw [hdual0, Matrix.zero_mul, Matrix.trace_zero]
+
+/-- **Theorem 2(f)(ii) Domain Boundary** (Analytical ODE Curve vs. Physical Density Matrix `s ≥ 0`):
+For `Γ > 0`, `sin r ≠ 0`, `cos r ≠ 0`, and `s < 0`, the even-parity `2×2` subdeterminant of
+`fermRhoB r Γ s` equals `sin²(r) cos²(r) (1 - exp(-Γ s)) < 0`, violating positivity. Hence
+`fermRhoB r Γ s` is a physical density-matrix trajectory specifically for `s ≥ 0`. -/
+theorem fermionic_hawking_neg_s_not_psd (r Γ s : ℝ)
+    (hΓ : 0 < Γ) (hsin : Real.sin r ≠ 0) (hcos : Real.cos r ≠ 0) (hs : s < 0) :
+    ((fermRhoB r Γ s 0 0 * fermRhoB r Γ s 3 3 -
+      fermRhoB r Γ s 0 3 * fermRhoB r Γ s 3 0).re) =
+        (Real.sin r) ^ 2 * (Real.cos r) ^ 2 * (1 - Real.exp (-(Γ * s))) ∧
+    ((fermRhoB r Γ s 0 0 * fermRhoB r Γ s 3 3 -
+      fermRhoB r Γ s 0 3 * fermRhoB r Γ s 3 0).re) < 0 := by
+  have hexp_sq : Real.exp (-(Γ * s) / 2) * Real.exp (-(Γ * s) / 2) = Real.exp (-(Γ * s)) := by
+    rw [← Real.exp_add]; congr 1; ring
+  have hdet : ((fermRhoB r Γ s 0 0 * fermRhoB r Γ s 3 3 -
+      fermRhoB r Γ s 0 3 * fermRhoB r Γ s 3 0).re) =
+        (Real.sin r) ^ 2 * (Real.cos r) ^ 2 * (1 - Real.exp (-(Γ * s))) := by
+    simp only [fermRhoB, Matrix.of_apply, Matrix.cons_val_zero, Fin.isValue, Matrix.cons_val]
+    norm_cast
+    calc _
+        = (Real.sin r) ^ 2 * (Real.cos r) ^ 2 *
+            (1 - Real.exp (-(Γ * s) / 2) * Real.exp (-(Γ * s) / 2)) := by ring
+      _ = (Real.sin r) ^ 2 * (Real.cos r) ^ 2 * (1 - Real.exp (-(Γ * s))) := by rw [hexp_sq]
+  refine ⟨hdet, ?_⟩
+  rw [hdet]
+  have hpos_sc : 0 < (Real.sin r) ^ 2 * (Real.cos r) ^ 2 := by positivity
+  have hpos_arg : 0 < -(Γ * s) := by nlinarith
+  have hgt1 : 1 < Real.exp (-(Γ * s)) := Real.one_lt_exp_iff.mpr hpos_arg
+  nlinarith
 
 end OSTQD

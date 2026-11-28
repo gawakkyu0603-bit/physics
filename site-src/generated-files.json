@@ -2,74 +2,99 @@
   "schema_version": 1,
   "files": [
     {
+      "path": "downloads/ostqd-layer2-type2.pdf",
+      "role": "document",
+      "sha256": "37e9211ec7d67ea465bf461c609a003769b8acb134a0acd79d6e77f3024ef293"
+    },
+    {
       "path": "downloads/ostqd-sk-jt.pdf",
       "role": "document",
-      "sha256": "8799bcb5c0e2e21ea75b426a4d16d11a5b5d041ea43aaa84364c5c8c069c051a"
+      "sha256": "cdc640d99df6a64483964943d2d3c604f50f72368f4031ed82165335225ae656"
     },
     {
       "path": "downloads/ostqd.pdf",
       "role": "document",
-      "sha256": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd"
+      "sha256": "65f6062b73d0eb76a2e66e5c5cc2285a5ec7e964129f68df415951d74fd594ab"
     },
     {
       "path": "en/index.html",
       "role": "page",
-      "sha256": "7f57e560dc40eb5da5a8c79d5d71b6e39b7862f89dfea9c2209aabecfc6f9be8"
+      "sha256": "a1e35a83c61db2a45c60a7a78da7592f12a20cac6ce8aa985dbf884631ab756a"
     },
     {
       "path": "en/quantum-gravity/index.html",
       "role": "page",
-      "sha256": "23e3be309d92d8133f4c92ba580e029c204856ffa2287055e2a1d434ad9d6b02"
+      "sha256": "61f6c826577983aaaff6357a80eb87d7c6a861f342b1a55548ffd47330771b7a"
+    },
+    {
+      "path": "en/quantum-gravity/ostqd-layer2-type2/expert.html",
+      "role": "page",
+      "sha256": "f70b892831069350aa62ddb5eca81008ac59030a61fbef652b590a8258918136"
+    },
+    {
+      "path": "en/quantum-gravity/ostqd-layer2-type2/general.html",
+      "role": "page",
+      "sha256": "910abe333c4e97a2a81a65fc16178d54deb126e5b574b8bc446e0d68b076e58d"
+    },
+    {
+      "path": "en/quantum-gravity/ostqd-layer2-type2/index.html",
+      "role": "page",
+      "sha256": "913a8407da5ade36509779641dd7e8f238c2f77751ab300dddadf3c5e859cc61"
+    },
+    {
+      "path": "en/quantum-gravity/ostqd-layer2-type2/student.html",
+      "role": "page",
+      "sha256": "392f5388c27820a4ee2c81b6889f52ca33dbd9b63374c65406e4a68b86440d42"
     },
     {
       "path": "en/quantum-gravity/ostqd-sk-jt/expert.html",
       "role": "page",
-      "sha256": "1d9cd5e071ae98e83819fa584deb81c7c91d0f77e1a546dfe9af511bc8ed5702"
+      "sha256": "988682f568da259f3032e89492cef6b1e0df73a61768843b5e965fbccc741365"
     },
     {
       "path": "en/quantum-gravity/ostqd-sk-jt/general.html",
       "role": "page",
-      "sha256": "d1bb668e8aa1e47fce1b867cc37e158688807f44def0ffb6cef4e8e4efc5be48"
+      "sha256": "88deac50b084d448f7c81ec9f4bccc1119e346fa404be9811cdb880e023d5c1c"
     },
     {
       "path": "en/quantum-gravity/ostqd-sk-jt/index.html",
       "role": "page",
-      "sha256": "a7880ab0e1f02744ece47e1a2b732b31fdb8b87303e666e53d87e8f1aee27f0a"
+      "sha256": "a856bb5d4980441d2c60cc5dfba795f99df5df82516c1a3885e591a74ded0762"
     },
     {
       "path": "en/quantum-gravity/ostqd-sk-jt/student.html",
       "role": "page",
-      "sha256": "b078ae3cf45165704d42ef98a8fbdd869d0b4c9d00b49a32ce0b58e72e0b555c"
+      "sha256": "9d772ed223840811d07e27fe39e703b99b85fffe04134d05dbcf326a721cf7d9"
     },
     {
       "path": "en/quantum-gravity/ostqd/expert.html",
       "role": "page",
-      "sha256": "3906a6c70b51a907af6c1caf27c295f0ec57bba9af43af3f5e6b1af568d504f8"
+      "sha256": "4903c9d65e91ee4c313d854acc9ff7eca050c0028928f359921c9accd34f905d"
     },
     {
       "path": "en/quantum-gravity/ostqd/general.html",
       "role": "page",
-      "sha256": "4cb5e0272f70929b24b9e372f35fcd5a7205eb301ca7e9836f922a8eaaa4c953"
+      "sha256": "6dc9fcd82deacbde3705420affcd652dca4df801bc0887fc2334f8c3be712321"
     },
     {
       "path": "en/quantum-gravity/ostqd/index.html",
       "role": "page",
-      "sha256": "25ec651ac5c809462982d28d16e23c16974784a9c6b2c229124c113efbeb1743"
+      "sha256": "4588a5863c7c2be98d8fdbe9d6be204a656584d00c48a128bde34b6ba86b5503"
     },
     {
       "path": "en/quantum-gravity/ostqd/student.html",
       "role": "page",
-      "sha256": "90b7264aab6446c63b605ff10212ec85b8406862273b29650c82f12cfac1f7b3"
+      "sha256": "6a327687f89131618dca7af5f92ee64e2b6137698b61b667e8bc6ef8feda9d70"
     },
     {
       "path": "index.html",
       "role": "page",
-      "sha256": "e19c7bb836ab9277e0d6aeb3b403742f31af6f7f42e34cd89d778d23de62fd50"
+      "sha256": "8f687a973c71d5664b727ea193d8838ecdb22eceb68f22cd887e910b509c1229"
     },
     {
       "path": "sitemap.xml",
       "role": "sitemap",
-      "sha256": "768221f48908507e4b3a93be311b3b643d1e37554dea7a1c5c356d6241b131b5"
+      "sha256": "ded59af6a66c585a0269d9831e2fdc74652afd67925fddf03e21580fe85afaa1"
     }
   ]
 }

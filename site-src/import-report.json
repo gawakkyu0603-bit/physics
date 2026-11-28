@@ -1,0 +1,143 @@
+[
+  {
+    "slug": "ostqd",
+    "archive": "paper1_ostqd.zip",
+    "archive_sha256": "aacd377717cf5ee5a8ec5196340eb0771ca4d7a7d468d45fda7426d83063368d",
+    "archive_entries": 27,
+    "published_files": 25,
+    "unchanged_originals": 25,
+    "excluded": [
+      "README.md",
+      "docs/THEORY_BLUEPRINT.md"
+    ],
+    "editorial_only": {},
+    "pdf_sha256": "65f6062b73d0eb76a2e66e5c5cc2285a5ec7e964129f68df415951d74fd594ab",
+    "pdf_bytes": 801214,
+    "files": {
+      "docs/numerical_verification.json": "50df130f8f388287ddea80d17740b0bcf9f3e7527b7e95b1a6be2c431e102475",
+      "lean4/lake-manifest.json": "04947403ff819aa464af2cef707015c1dae120cc40ff27517189099631a5fcda",
+      "lean4/lakefile.toml": "ecf7bf4085d40b41909b9caebaca23a00c947851b3cbd61cff44a3a66fd411ba",
+      "lean4/lean-toolchain": "582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a",
+      "lean4/OSTQD/AxiomCheck.lean": "311a8fcd736dd4ff9e88ad251372fdd73c1831f41ccf0081365b015eba1960ef",
+      "lean4/OSTQD/Basic.lean": "dcda8dfab9f756a52f758cc1f6ccd21989dcf96127f2b128fab821c3c8da80cb",
+      "lean4/OSTQD/Theorem1_BPS.lean": "dc5aac34d899dd906663bbb3a399816abad41a3d2199dae0482be7429de5594c",
+      "lean4/OSTQD/Theorem2_Horizon.lean": "43975fd0362695651436ef8c2ec90adef6290962c227546e2d83f7c1d3facfaf",
+      "lean4/OSTQD/Theorem3_CrossPerspective.lean": "9e51548310e9032e48c11d40bd1fa9ce466189e5ff5269b30425226c681ef0e5",
+      "lean4/OSTQD/Theorem4_DoubleUncertainty.lean": "5e6e974430410f6d7541a2f4dd613eeda77ec740c5f629a282e0de30c92939be",
+      "lean4/OSTQD/Theorem5_Bottleneck.lean": "d936ed881558fce07ab26be422a9316ab19f91b66b42edff4aa05e728c49c8ec",
+      "lean4/OSTQD.lean": "ce2fba67c6d9fcf5510ded911ba7af6f2e7cb53e0dc26464b37c2fddff8d183e",
+      "lean4/VERIFICATION_LOG.txt": "3bd5680d3b6aba239056817cf9d7ba8d2479f9d3d0b6c07535429a79f6d8dfa3",
+      "lean4/verify_lean.sh": "1857781787f0e3cec57eb35b49cedf09777bf8c1fb7bfdd55122af342a959782",
+      "paper/figures/fig1_horizon_heating.pdf": "f82d8aee5dcec9f2adc7f958d8f66ec903bb39d0fb24226f693e60baae38096e",
+      "paper/figures/fig2_joint_vs_separated.pdf": "b7e7b4c6880a79b1fcad7d13dba808f5ce83c30572775268287d0b0247883079",
+      "paper/figures/fig3_matrix_evaporation.pdf": "115141ad9a3046226239f977b16a62bf3615d614f77338e8d871abb78818364c",
+      "paper/main.bbl": "e58851c00020943aa37ac1151e0d16e6e6969793e02b7cc86cedd658b100ac06",
+      "paper/main.pdf": "65f6062b73d0eb76a2e66e5c5cc2285a5ec7e964129f68df415951d74fd594ab",
+      "paper/main.tex": "c7f3f9f350e0a2ca6db2f9f87fa4211b9d164d1b9abb61199d8978e5fb1f442b",
+      "paper/references.bib": "122bc8ab28b9b254b295dc29593c40204e529031f07ac6235600c96f40a7256e",
+      "PRIOR_ART.md": "2cf73af514f41ee804eccaafce15e86e627be2ffba541b9f0e40f1a173be6af6",
+      "scripts/requirements.txt": "b94e0f14d68e0be7e9a9beedb59752be0a37704567ccb834061ab7e9169d0b7f",
+      "scripts/verify_ostqd.py": "46bface6af9751afced71ee96d2caf7fce006ea0d0fa3f5d9bc6f0fb071e98e9",
+      "VERIFICATION.md": "6a897114c3121a2f8f15f51c82fa822892b56b616d8adb743e43c7bffe587a15"
+    }
+  },
+  {
+    "slug": "ostqd-sk-jt",
+    "archive": "paper2_sk_jt.zip",
+    "archive_sha256": "bccaf1fbbf8a6c27384297d0bb043fd9a98ddbe0eb6ea05126e1b454d5fe89c0",
+    "archive_entries": 31,
+    "published_files": 29,
+    "unchanged_originals": 29,
+    "excluded": [
+      "README.md",
+      "docs/THEORY_BLUEPRINT.md"
+    ],
+    "editorial_only": {},
+    "pdf_sha256": "cdc640d99df6a64483964943d2d3c604f50f72368f4031ed82165335225ae656",
+    "pdf_bytes": 970198,
+    "files": {
+      "CITATION.cff": "8b2d9dc335155fd908fad353b799e0c00ba184a8ca47c57af697e94ca45d4c53",
+      "PRIOR_ART.md": "1380c6f6669cd83e27090aea2f29ad37b2ac04b480544b89dd9855596e1e5873",
+      "VERIFICATION.md": "6e734924f9c174c4b42a2afc6195affd5a61282156aa4e42e98331662411047d",
+      "docs/numerical_verification.json": "6e80dca9b42e187e0467ea3f10a7351e1811a268861f1e4498806c598e77c09a",
+      "lean4/.gitignore": "637cfc01adb46fef4d5b55a34389eb58f203d51b72ca75df320107bb95fc86a3",
+      "lean4/OSTQD_SK.lean": "96c72317324eeb7681f3148f9a0a16310c5b5bf7752b21d8340eb777b1ca6927",
+      "lean4/OSTQD_SK/AxiomCheck.lean": "073bdb141a9e8f96b19c365cb89f2141560b4f963bea5912896e14f6fa7c8f88",
+      "lean4/OSTQD_SK/Basic.lean": "2d4502ebd61fdb1f89f5806100c91e776aeba96565eaf9669b5eebb07e13380e",
+      "lean4/OSTQD_SK/Theorem1_CovariantKMS.lean": "794a6b505d9173a8eb8fd94f9b913250d6ded1bf951b05ab7df3f7723df9758f",
+      "lean4/OSTQD_SK/Theorem2_WardAndFDT.lean": "93923a489c3dc8354768ab0f896864695ffde45636556ce8be5618ee7209c444",
+      "lean4/OSTQD_SK/Theorem3_HorizonHadamard.lean": "fb09746da9049ee517cba3587bd2f36f492b156b68ed7dd53c87a6d2f2fd58ed",
+      "lean4/OSTQD_SK/Theorem4_NonIsometricThroat.lean": "632ba1832d741c74c96c65d1a206f80e1032fae530a58d287208d0fc5d8cba47",
+      "lean4/README.md": "273ab7283c47a282b20841e2e6b0385c1d192f70eddd259e8f10bfa525449d2d",
+      "lean4/VERIFICATION_LOG.txt": "ca3ffab4d9405d156661db442c09fb0bfad493ebd39a15c5e0ced8ed1377c804",
+      "lean4/lake-manifest.json": "04947403ff819aa464af2cef707015c1dae120cc40ff27517189099631a5fcda",
+      "lean4/lakefile.toml": "bc1415a156061f34bd3cfd56a2688c9daa438d113bbd5ce485b7ac7f2f82015b",
+      "lean4/lean-toolchain": "582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a",
+      "lean4/verify_lean.sh": "be33b3a776de33d640e75db5a9cb31e2e6d00935fb67c5e6ff5fd6e25bffc5d9",
+      "paper/README.md": "8311bd033b0b22c24ba53a8737e65b2751f739aeaa027d5ff14c3d98a4f82837",
+      "paper/figures/fig1_covariant_kms_and_redfield.pdf": "5c3f835ab350a020af82d42e1572846705ba29198adb1898d2bbce8b17279a10",
+      "paper/figures/fig2_jt_sk_evaporation_fdt.pdf": "ccbf91c1231efb8152d677163de5d4660f82d4146c3c2a0c9acd848f1a7ef819",
+      "paper/figures/fig3_horizon_hadamard_udw.pdf": "198103bc19528533157599ade96f4c4f5c40106c69f4f1386b90f3d010c82780",
+      "paper/figures/fig4_greybody_throat_and_nonisometric.pdf": "c89bdbeadb776c240e855d8781fa06304fdb14e2835dbdbb806adc114e2e2260",
+      "paper/main.bbl": "214f288a003c7ea03e6624a2e50bbac2f48ef57bc75e2c7a17b85df43eec6152",
+      "paper/main.pdf": "cdc640d99df6a64483964943d2d3c604f50f72368f4031ed82165335225ae656",
+      "paper/main.tex": "3c32956bbf75c26577e4b7a324c43ecec3257324e56f77edc0e3df2947856eb3",
+      "paper/references.bib": "042451d4b99f8f01d604f980c8dc0654bee75d4106845548024bcd3e8d5f805c",
+      "scripts/requirements.txt": "06a930d964408a26c0053d5051aec33aa19cdf7ed2551f587186aeddb5cf71fe",
+      "scripts/verify_paper2_sk_jt.py": "e0f6de01e4d2f5c40b2b42189358e4e056dc829ffcbc5b08b8d268ed9acdb53b"
+    }
+  },
+  {
+    "slug": "ostqd-layer2-type2",
+    "archive": "paper3_layer2_type2.zip",
+    "archive_sha256": "eb6d0aa931b7994bee3c74c320b58ca868d674f38d8219dfb668515e14510731",
+    "archive_entries": 29,
+    "published_files": 27,
+    "unchanged_originals": 25,
+    "excluded": [
+      "README.md",
+      "docs/THEORY_BLUEPRINT.md"
+    ],
+    "editorial_only": {
+      "PRIOR_ART.md": {
+        "archive_sha256": "12b20cbeecf5edc186b3d1b322209f72e8d61bd3bc472c8532527154441ca1ab",
+        "published_sha256": "fc9832c33c3c50de3dd9b828dc725f680cc79a313b164ba2a988474bae077d7d"
+      },
+      "VERIFICATION.md": {
+        "archive_sha256": "2746a4ad4e08bc9fa2691379d0b4e3896627dc7110e9e0eac47486f192501de3",
+        "published_sha256": "5b497653bb906f825d94db6fbe32f14dad30c54fbbd5ff3c8b0ac3cfba93cf50"
+      }
+    },
+    "pdf_sha256": "37e9211ec7d67ea465bf461c609a003769b8acb134a0acd79d6e77f3024ef293",
+    "pdf_bytes": 881570,
+    "files": {
+      "PRIOR_ART.md": "fc9832c33c3c50de3dd9b828dc725f680cc79a313b164ba2a988474bae077d7d",
+      "VERIFICATION.md": "5b497653bb906f825d94db6fbe32f14dad30c54fbbd5ff3c8b0ac3cfba93cf50",
+      "docs/numerical_verification.json": "a0e3f98d3463de1e5cd91d35ee01c5b288680bd1e8ce5e07a9e73fd35cb9c81f",
+      "lean4/.gitignore": "fde850d24186b6e99c8c0debd641fb3ab85198b109eb66f71a1fea02bd6ea1b3",
+      "lean4/OSTQD_Layer2.lean": "b0d1c8bf9cec9ffc6451e7f2a93efa0b65aad592e6f6977aefadc837041c95c9",
+      "lean4/OSTQD_Layer2/AxiomCheck.lean": "e16c0f56021ee1d391b285e29c7bf1955b117f7e884d90277c82ba6a11c81747",
+      "lean4/OSTQD_Layer2/Basic.lean": "70d3ff5022ea4b738c84644d3c3969f500b4d07c8b00c0e885fb812db4dc9f85",
+      "lean4/OSTQD_Layer2/Proposition5_BranchCoupling.lean": "4aca14747b09ecd8bc287bfa9c8e3c7b9e3bb2cf56e12ecdafca484e2e1e17c9",
+      "lean4/OSTQD_Layer2/Theorem1_SteeringNoGo.lean": "13eba4143c6de0b737aa1350f8a1b891f7d21d707442e1844100337aa7b12a19",
+      "lean4/OSTQD_Layer2/Theorem2_BranchingModels.lean": "0bbee6017acd001ec4665565b57071dbdb76f6404fb113633b29e87f570a2a38",
+      "lean4/OSTQD_Layer2/Theorem3_ClockTypeII.lean": "44ce7bc57ec0f6698201094201ee703e0c1256c1e3ea205198b2d6ad2d98f242",
+      "lean4/OSTQD_Layer2/Theorem4_NonIsometricPullback.lean": "8d2ef103e370fcb82034d91d4f37f6130867252735454d0b2ed8c6d8ebf82c11",
+      "lean4/README.md": "6c2c8df31c24e7bb5240633f2aee9c7002d286d56ba8b3df540992795045316e",
+      "lean4/VERIFICATION_LOG.txt": "ec334a3cdd0adc97e26107298d754ab738817f2e2023b19fbc11a01c3be29ac5",
+      "lean4/lake-manifest.json": "9afe9e1d0a99ee5cb53ea4e2df1ef3a03ae46d641b91e87cf5947fe70893cc59",
+      "lean4/lakefile.toml": "d42a312074a70f615ae306e43b421354557818629eeb1b5a47150fa1ecb85004",
+      "lean4/lean-toolchain": "582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a",
+      "lean4/verify_lean.sh": "cd57c15bf9093285e78d0e10720e9d3aabda1a8c61eb224059ebb880a499c614",
+      "paper/figures/fig1_steering_and_lf_boundary.pdf": "035053a9cb03d136d17173ec48a406f079c3fb3e513cfe4ccc5b2e5f8c6ed627",
+      "paper/figures/fig2_type2_clock_entropy.pdf": "a9231cd98690f5cb953fef46f4bd98a76474396a27a085fd0a9bcf8242d2e8e8",
+      "paper/figures/fig3_dynamical_nonisometric_pullback.pdf": "a042523174a9355e3f165031783836469265a44b8da1579735a82876612f0a46",
+      "paper/figures/fig4_branch_coupling_gate.pdf": "28f4d4efb686a9d0d255712721f655c6160cc0738a3adb84a62ae96d0af2a3ea",
+      "paper/main.bbl": "07a9406fc9e8f224ce65b2b6ea328e77c637b60fb0173fb21c7810c9453c7a5a",
+      "paper/main.pdf": "37e9211ec7d67ea465bf461c609a003769b8acb134a0acd79d6e77f3024ef293",
+      "paper/main.tex": "bde57256eba52a9a937e930580f515fecf6c7b5eb1d61383029bada576e3f40a",
+      "paper/references.bib": "f5f6ac776c90bc8aa528cbb28366f283e7a14e24ea562e5ee6535eefa87f597b",
+      "scripts/verify_paper3_layer2_type2.py": "f83023d9219329b0aa06c776c28f87b2a0f62b6e134907873469a1a7e5cbb1a9"
+    }
+  }
+]

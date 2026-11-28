@@ -1,16 +1,17 @@
 {
   "checks": {
-    "html_pages": 11,
-    "article_pages": 6,
-    "local_links": 259,
-    "paper_source_links": 8,
+    "html_pages": 15,
+    "article_pages": 9,
+    "local_links": 386,
+    "paper_source_links": 12,
     "site_verification_files": {
       "google6aa3895dea8c1557.html": "5b9c46fad26d3c7397473062d68e456b36bbd1efdd8d5e654828c89d64926f05",
       "BingSiteAuth.xml": "0641e41018c7090d26c0c43efad945042319990fc8a45b6e0591aee0112ec82e"
     },
     "document_sha256": {
-      "downloads/ostqd.pdf": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd",
-      "downloads/ostqd-sk-jt.pdf": "8799bcb5c0e2e21ea75b426a4d16d11a5b5d041ea43aaa84364c5c8c069c051a"
+      "downloads/ostqd.pdf": "65f6062b73d0eb76a2e66e5c5cc2285a5ec7e964129f68df415951d74fd594ab",
+      "downloads/ostqd-sk-jt.pdf": "cdc640d99df6a64483964943d2d3c604f50f72368f4031ed82165335225ae656",
+      "downloads/ostqd-layer2-type2.pdf": "37e9211ec7d67ea465bf461c609a003769b8acb134a0acd79d6e77f3024ef293"
     },
     "document_identity": {
       "quantum-gravity/ostqd/v1/main": {
@@ -28,6 +29,14 @@
           "sha256",
           "source_bytes"
         ]
+      },
+      "quantum-gravity/ostqd-layer2-type2/v1/main": {
+        "path": "downloads/ostqd-layer2-type2.pdf",
+        "identity": "verified",
+        "methods": [
+          "sha256",
+          "source_bytes"
+        ]
       }
     },
     "configured_languages": [
@@ -35,11 +44,12 @@
     ],
     "selected_versions": {
       "quantum-gravity/ostqd": "1",
-      "quantum-gravity/ostqd-sk-jt": "1"
+      "quantum-gravity/ostqd-sk-jt": "1",
+      "quantum-gravity/ostqd-layer2-type2": "1"
     },
     "sitemap_filename": "sitemap.xml",
-    "hreflang_links": 13,
-    "sitemap_urls": 11
+    "hreflang_links": 17,
+    "sitemap_urls": 15
   },
   "error_count": 0,
   "errors": []

@@ -468,4 +468,153 @@ theorem bottleneck_entanglement_fidelity_min_bound {dC df : ℕ} (hdC : 0 < dC)
   le_min (entanglement_fidelity_le_one hdC Es Rs hE_tp hR_tp)
     (bottleneck_entanglement_fidelity_bound hdC Es Rs hE_tp hR_tp)
 
+/-- **Theorem 5(b')** (Exact Sharpness for `0 < dC ≤ df`, Isometric Embedding + Reset Decoder):
+Whenever `0 < dC ≤ df`, there exist explicit CPTP Kraus families `Es` (single isometry `V`) and
+`Rs` (`Vᴴ` plus complement reset onto `|0⟩_C`) attaining `F_e(R ∘ E) = 1 = min(1, df²/dC²)`. -/
+theorem bottleneck_bound_sharp_large_df {dC df : ℕ} (hdC : 0 < dC) (hle : dC ≤ df) :
+    ∃ (Es : List (Matrix (Fin df) (Fin dC) ℂ))
+      (Rs : List (Matrix (Fin dC) (Fin df) ℂ)),
+      (Es.map (fun E => Eᴴ * E)).sum = 1 ∧
+      (Rs.map (fun R => Rᴴ * R)).sum = 1 ∧
+      ((Rs.map (fun R => (Es.map (fun E => Complex.normSq (R * E).trace)).sum)).sum) /
+        ((dC : ℝ) ^ 2) = 1 := by
+  have hdC2 : (dC : ℝ) ^ 2 ≠ 0 := ne_of_gt (sq_pos_of_pos (Nat.cast_pos.mpr hdC))
+  let V : Matrix (Fin df) (Fin dC) ℂ :=
+    Matrix.of fun a i => if a.val = i.val then (1 : ℂ) else 0
+  let Hk : Fin df → Matrix (Fin dC) (Fin df) ℂ := fun k =>
+    Matrix.of fun i a => if dC ≤ k.val ∧ i.val = 0 ∧ a = k then (1 : ℂ) else 0
+  let Es : List (Matrix (Fin df) (Fin dC) ℂ) := [V]
+  let Rs : List (Matrix (Fin dC) (Fin df) ℂ) := Vᴴ :: (List.finRange df).map Hk
+  refine ⟨Es, Rs, ?_, ?_, ?_⟩
+  · -- Vᴴ * V = I_{dC}
+    ext i j
+    simp only [Es, List.map_cons, List.map_nil, List.sum_cons, List.sum_nil, add_zero,
+      Matrix.mul_apply]
+    let a0 : Fin df := ⟨i.val, Nat.lt_of_lt_of_le i.isLt hle⟩
+    rw [Finset.sum_eq_single a0]
+    · by_cases hij : i = j
+      · subst hij; simp [V, a0]
+      · have hne : i.val ≠ j.val := fun h => hij (Fin.ext h)
+        simp [V, a0, hij, hne]
+    · intro a _ ha
+      have hne : a.val ≠ i.val := fun h => ha (Fin.ext h)
+      simp [V, hne]
+    · intro h; exact (h (Finset.mem_univ a0)).elim
+  · -- V Vᴴ + ∑ Hkᴴ Hk = I_{df}
+    have hV : ∀ a b : Fin df,
+        ((Vᴴ)ᴴ * Vᴴ) a b = if a.val < dC ∧ a = b then (1 : ℂ) else 0 := by
+      intro a b
+      rw [Matrix.conjTranspose_conjTranspose, Matrix.mul_apply]
+      by_cases ha : a.val < dC
+      · let i0 : Fin dC := ⟨a.val, ha⟩
+        rw [Finset.sum_eq_single i0]
+        · by_cases hab : a = b
+          · subst hab; simp [V, i0, ha]
+          · have hne : b.val ≠ a.val := fun h => hab (Fin.ext h.symm)
+            simp [V, i0, ha, hab, hne]
+        · intro i _ hi
+          have hne : a.val ≠ i.val := fun h => hi (Fin.ext h.symm)
+          simp [V, hne]
+        · intro h; exact (h (Finset.mem_univ i0)).elim
+      · simp only [ha, false_and, ↓reduceIte]
+        apply Finset.sum_eq_zero; intro i _
+        have hne : a.val ≠ i.val := by omega
+        simp [V, hne]
+    have hH_entry : ∀ (k a b : Fin df),
+        ((Hk k)ᴴ * Hk k) a b = if dC ≤ k.val ∧ a = k ∧ b = k then (1 : ℂ) else 0 := by
+      intro k a b
+      rw [Matrix.mul_apply]
+      let i0 : Fin dC := ⟨0, hdC⟩
+      rw [Finset.sum_eq_single i0]
+      · by_cases hcond : dC ≤ k.val ∧ a = k ∧ b = k
+        · rcases hcond with ⟨hk, rfl, rfl⟩; simp [Hk, i0, hk]
+        · simp only [Hk, Matrix.conjTranspose_apply, Matrix.of_apply, i0, true_and]
+          by_cases h1 : dC ≤ k.val ∧ a = k
+          · have hb : b ≠ k := fun hb => hcond ⟨h1.1, h1.2, hb⟩
+            simp [h1, hb]
+          · simp [h1, hcond]
+      · intro i _ hi
+        have hne : i.val ≠ 0 := fun h => hi (Fin.ext h)
+        simp [Hk, hne]
+      · intro h; exact (h (Finset.mem_univ i0)).elim
+    have hsum_list : ∀ (l : List (Fin df)) (a b : Fin df),
+        ((l.map (fun k => (Hk k)ᴴ * Hk k)).sum) a b =
+        (l.map (fun k => ((Hk k)ᴴ * Hk k) a b)).sum := by
+      intro l a b; induction l with
+      | nil => simp
+      | cons k rest ih => simp [ih]
+    ext a b
+    simp only [Rs, List.map_cons, List.sum_cons, List.map_map, Matrix.add_apply,
+      Function.comp_def, hsum_list, hV, hH_entry]
+    have hfin' : ((List.finRange df).map
+        (fun k : Fin df => if dC ≤ k.val ∧ a = k ∧ b = k then (1 : ℂ) else 0)).sum =
+        ∑ k : Fin df, if dC ≤ k.val ∧ a = k ∧ b = k then (1 : ℂ) else 0 :=
+      (Fin.sum_univ_def _).symm
+    rw [hfin', Finset.sum_eq_single a]
+    · by_cases hab : a = b
+      · subst hab
+        by_cases ha : a.val < dC
+        · have hnot : ¬(dC ≤ a.val) := by omega
+          simp [ha, hnot]
+        · have hge : dC ≤ a.val := by omega
+          simp [ha, hge]
+      · simp [hab, Ne.symm hab]
+    · intro k _ hka; simp [Ne.symm hka]
+    · intro h; exact (h (Finset.mem_univ a)).elim
+  · -- Exact fidelity F_e = 1
+    simp only [Rs, Es, List.map_cons, List.map_nil, List.sum_cons, List.sum_nil, add_zero,
+      List.map_map, Function.comp_def]
+    have htrV : (Vᴴ * V).trace = (dC : ℂ) := by
+      rw [Matrix.trace]; simp_rw [Matrix.diag_apply]
+      have hentry : ∀ i : Fin dC, (Vᴴ * V) i i = 1 := by
+        intro i; rw [Matrix.mul_apply]
+        let a0 : Fin df := ⟨i.val, Nat.lt_of_lt_of_le i.isLt hle⟩
+        rw [Finset.sum_eq_single a0]
+        · simp [V, a0]
+        · intro a _ ha; have hne : a.val ≠ i.val := fun h => ha (Fin.ext h); simp [V, hne]
+        · intro h; exact (h (Finset.mem_univ a0)).elim
+      simp_rw [hentry]; simp
+    have htrH : ∀ k : Fin df, (Hk k * V).trace = 0 := by
+      intro k; rw [Matrix.trace]; simp_rw [Matrix.diag_apply]
+      apply Finset.sum_eq_zero; intro i _
+      rw [Matrix.mul_apply]; apply Finset.sum_eq_zero; intro a _
+      by_cases h1 : a.val = i.val
+      · by_cases h2 : dC ≤ k.val ∧ i.val = 0 ∧ a = k
+        · rcases h2 with ⟨hk, _, rfl⟩; omega
+        · simp [V, Hk, h1, h2]
+      · simp [V, h1]
+    have htail : ((List.finRange df).map (fun k => Complex.normSq (Hk k * V).trace)).sum = 0 := by
+      apply List.sum_eq_zero; intro x hx
+      rcases List.mem_map.mp hx with ⟨k, _, rfl⟩
+      rw [htrH k, map_zero]
+    rw [htail, add_zero, htrV]
+    simp [Complex.normSq_natCast, ← sq, div_self hdC2]
+
+/-- **Theorem 5 Resource-Assumption Witness** (Classical Side-Channel Beats Unassisted Bottleneck):
+For `d_C = 4, d_f = 2`, allowing a 1-bit classical flag alongside the 2D quantum channel realizes
+the 2-block pinching channel with Kraus operators `P_0 = diag(1,1,0,0)` and `P_1 = diag(0,0,1,1)`.
+This channel is CPTP (`P_0ᴴ P_0 + P_1ᴴ P_1 = I_4`) and achieves `F_e = 1/2 > 1/4 = d_f²/d_C²`,
+demonstrating that forbidding classical side communication / radiation access is essential for
+Theorem 5 (Farber–Gour 2026 unassisted single-shot compression). -/
+theorem classical_flag_beats_unassisted_bottleneck :
+    let P0 : Matrix (Fin 4) (Fin 4) ℂ := Matrix.diagonal ![1, 1, 0, 0]
+    let P1 : Matrix (Fin 4) (Fin 4) ℂ := Matrix.diagonal ![0, 0, 1, 1]
+    P0ᴴ * P0 + P1ᴴ * P1 = 1 ∧
+    (Complex.normSq P0.trace + Complex.normSq P1.trace) / ((4 : ℝ) ^ 2) = 1 / 2 ∧
+    ((2 : ℝ) ^ 2) / ((4 : ℝ) ^ 2) <
+      (Complex.normSq P0.trace + Complex.normSq P1.trace) / ((4 : ℝ) ^ 2) := by
+  dsimp only
+  have htp : (Matrix.diagonal ![1, 1, 0, 0] : Matrix (Fin 4) (Fin 4) ℂ)ᴴ *
+      Matrix.diagonal ![1, 1, 0, 0] +
+      (Matrix.diagonal ![0, 0, 1, 1] : Matrix (Fin 4) (Fin 4) ℂ)ᴴ *
+      Matrix.diagonal ![0, 0, 1, 1] = 1 := by
+    ext i j; fin_cases i <;> fin_cases j <;> simp
+  have hfe : (Complex.normSq (Matrix.diagonal ![1, 1, 0, 0] : Matrix (Fin 4) (Fin 4) ℂ).trace +
+      Complex.normSq (Matrix.diagonal ![0, 0, 1, 1] : Matrix (Fin 4) (Fin 4) ℂ).trace) /
+      ((4 : ℝ) ^ 2) = 1 / 2 := by
+    simp [Matrix.trace, Fin.sum_univ_four, Complex.normSq_apply]
+    norm_num
+  refine ⟨htp, hfe, ?_⟩
+  rw [hfe]; norm_num
+
 end OSTQD

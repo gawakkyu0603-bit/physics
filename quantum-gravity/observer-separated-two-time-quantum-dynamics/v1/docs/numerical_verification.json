@@ -1,7 +1,7 @@
 {
   "metadata": {
     "framework": "OSTQD",
-    "date": "2026-11-26",
+    "date": "2026-11-28",
     "seed": 20261126,
     "float_tolerance": 1e-12,
     "python_version": "3.14.7",
@@ -31,6 +31,24 @@
     "noncommuting_pde_example": {
       "L_adH_minus_adH_L_frob_norm": 2.8284271247461894,
       "exact_2_sqrt_2": 2.8284271247461903
+    },
+    "algebra_nonclosure_counterexample": {
+      "t_eval": 0.35,
+      "max_initial_subalgebra_diff": 0.0,
+      "Z_expectation_rho_plus_t": 0.644217687237691,
+      "Z_expectation_rho_minus_t": -0.644217687237691,
+      "exact_sin_2t": 0.644217687237691
+    },
+    "bps_sufficient_not_necessary_amplitude_damping": {
+      "omega": 1.3,
+      "max_commutation_error": 0.0,
+      "dual_H_plus_H_error": 0.0,
+      "dual_H_norm": 1.3
+    },
+    "nonhermitian_bps_degenerate_purity_increase": {
+      "comm_L_H_norm": 0.0,
+      "dual_H_norm": 0.0,
+      "purity_rate_initial": 0.25
     }
   },
   "theorem_2": {
@@ -41,6 +59,18 @@
     "max_fermionic_HB_conservation_error": 0.0,
     "max_bosonic_HA_HB_commutator": 6.741999687725246e-13,
     "max_bosonic_trunc_rel_error": 7.584130794465388e-09,
+    "bosonic_trunc_rel_error_T2p5_analytic": 0.006614346287496164,
+    "max_interior_reduced_invariance_error": 0.0,
+    "phase_noise_channel_equivalence_error": 8.439309349048882e-17,
+    "positive_gamma_loc_fixed_ground_state_counterexample": {
+      "gamma_loc": 2.0,
+      "eigenbasis_avg_var_rate": 0.5,
+      "ground_eigenvalue": 0.0,
+      "ground_state_dissipation_norm": 0.0,
+      "ground_state_mean_drift": 0.0,
+      "ground_state_var_drift": 0.0
+    },
+    "fermionic_neg_s_even_subdeterminant_s_m0p5": -0.121635238256274,
     "bilocal_vs_local_hawking_pi_over_6": {
       "comm_HA_HB_norm": 0.0,
       "bilocal_HB_jump_BPS_residual": 0.0,
@@ -75,42 +105,54 @@
         "gamma_loc": 0.0003631664618876134,
         "E_A_inf_over_2omega": 9.079161547190335e-05,
         "S_L_hawking": 9.079161547176362e-05,
-        "dE_A_ds_0": 9.079161547190335e-05
+        "dE_A_ds_0": 9.079161547190335e-05,
+        "dE_A_ds_0_analytic": 9.079161547190335e-05,
+        "dE_A_ds_0_direct_err": 0.0
       },
       "0.25": {
         "n_FD": 0.01798620996209156,
         "gamma_loc": 0.1413016497063289,
         "E_A_inf_over_2omega": 0.035325412426582235,
         "S_L_hawking": 0.03532541242658227,
-        "dE_A_ds_0": 0.035325412426582235
+        "dE_A_ds_0": 0.03532541242658223,
+        "dE_A_ds_0_analytic": 0.035325412426582235,
+        "dE_A_ds_0_direct_err": 6.938893903907228e-18
       },
       "0.5": {
         "n_FD": 0.11920292202211755,
         "gamma_loc": 0.839948683228052,
         "E_A_inf_over_2omega": 0.20998717080701304,
         "S_L_hawking": 0.20998717080701323,
-        "dE_A_ds_0": 0.209987170807013
+        "dE_A_ds_0": 0.209987170807013,
+        "dE_A_ds_0_analytic": 0.209987170807013,
+        "dE_A_ds_0_direct_err": 0.0
       },
       "1.0": {
         "n_FD": 0.2689414213699951,
         "gamma_loc": 1.5728954659318548,
         "E_A_inf_over_2omega": 0.3932238664829637,
         "S_L_hawking": 0.3932238664829638,
-        "dE_A_ds_0": 0.3932238664829637
+        "dE_A_ds_0": 0.3932238664829637,
+        "dE_A_ds_0_analytic": 0.3932238664829637,
+        "dE_A_ds_0_direct_err": 0.0
       },
       "2.0": {
         "n_FD": 0.3775406687981454,
         "gamma_loc": 1.8800296976127562,
         "E_A_inf_over_2omega": 0.4700074244031891,
         "S_L_hawking": 0.4700074244031889,
-        "dE_A_ds_0": 0.470007424403189
+        "dE_A_ds_0": 0.47000742440318904,
+        "dE_A_ds_0_analytic": 0.470007424403189,
+        "dE_A_ds_0_direct_err": 5.551115123125783e-17
       },
       "5.0": {
         "n_FD": 0.45016600268752216,
         "gamma_loc": 1.9801325816948794,
         "E_A_inf_over_2omega": 0.4950331454237199,
         "S_L_hawking": 0.4950331454237199,
-        "dE_A_ds_0": 0.4950331454237199
+        "dE_A_ds_0": 0.49503314542371984,
+        "dE_A_ds_0_analytic": 0.4950331454237199,
+        "dE_A_ds_0_direct_err": 5.551115123125783e-17
       }
     },
     "bosonic_samples": {
@@ -118,31 +160,36 @@
         "n_BE": 0.0012742554619121793,
         "rate_num": 0.002551758377788786,
         "rate_exact": 0.002551758377788785,
-        "rel_err": 3.3990747146679776e-16
+        "rel_err": 3.3990747146679776e-16,
+        "rel_err_analytic_formula": 1.0831239845727828e-48
       },
       "0.25": {
         "n_BE": 0.01865736036377405,
         "rate_num": 0.038010914919035556,
         "rate_exact": 0.038010914919035556,
-        "rel_err": 0.0
+        "rel_err": 0.0,
+        "rel_err_analytic_formula": 5.190624450199057e-29
       },
       "0.4": {
         "n_BE": 0.08942548983385201,
         "rate_num": 0.1948448161317528,
         "rate_exact": 0.19484481613175275,
-        "rel_err": 2.8489929746820445e-16
+        "rel_err": 2.8489929746820445e-16,
+        "rel_err_analytic_formula": 5.761817413091119e-18
       },
       "0.6": {
         "n_BE": 0.2328565180609862,
         "rate_num": 0.5741573521247921,
         "rate_exact": 0.5741573521289453,
-        "rel_err": 7.2334217703879025e-12
+        "rel_err": 7.2334217703879025e-12,
+        "rel_err_analytic_formula": 7.2335193724327825e-12
       },
       "0.8": {
         "n_BE": 0.4015511184930129,
         "rate_num": 1.1255888299753922,
         "rate_exact": 1.1255888385120052,
-        "rel_err": 7.584130794465388e-09
+        "rel_err": 7.584130794465388e-09,
+        "rel_err_analytic_formula": 7.584130938675191e-09
       }
     }
   },
@@ -155,10 +202,13 @@
       "valid_choi_saturation_FA": 0.7499999999999998,
       "valid_choi_saturation_FB": 0.7499999999999998,
       "valid_choi_marginal_error": 5.551115123125783e-17,
+      "asymmetric_choi_max_marginal_error": 2.3551386880256624e-16,
+      "asymmetric_choi_max_fidelity_error": 5.551115123125783e-16,
       "product_state_FA": 0.9999999999999997,
       "product_state_FB_actual_1_over_d2": 0.24999999999999992,
       "random_max_FA_plus_FB": 1.1098585126342204,
-      "random_max_kay_curved_violation": 0.0
+      "random_max_kay_curved_violation": 0.0,
+      "random_max_kay_lower_violation": 0.0
     },
     "d=3": {
       "P_A_P_B_P_A_error": 1.442222014787673e-16,
@@ -168,10 +218,13 @@
       "valid_choi_saturation_FA": 0.666666666666667,
       "valid_choi_saturation_FB": 0.666666666666667,
       "valid_choi_marginal_error": 1.3597399555105182e-16,
+      "asymmetric_choi_max_marginal_error": 2.2887833992611187e-16,
+      "asymmetric_choi_max_fidelity_error": 7.771561172376096e-16,
       "product_state_FA": 1.0000000000000007,
       "product_state_FB_actual_1_over_d2": 0.11111111111111117,
       "random_max_FA_plus_FB": 0.5704571195506579,
-      "random_max_kay_curved_violation": 0.0
+      "random_max_kay_curved_violation": 0.0,
+      "random_max_kay_lower_violation": 0.0
     },
     "d=4": {
       "P_A_P_B_P_A_error": 0.0,
@@ -181,10 +234,13 @@
       "valid_choi_saturation_FA": 0.625,
       "valid_choi_saturation_FB": 0.625,
       "valid_choi_marginal_error": 2.7755575615628914e-17,
+      "asymmetric_choi_max_marginal_error": 1.7554167342883506e-16,
+      "asymmetric_choi_max_fidelity_error": 3.3306690738754696e-16,
       "product_state_FA": 1.0,
       "product_state_FB_actual_1_over_d2": 0.0625,
       "random_max_FA_plus_FB": 0.2717576864708283,
-      "random_max_kay_curved_violation": 0.0
+      "random_max_kay_curved_violation": 0.0,
+      "random_max_kay_lower_violation": 0.0
     },
     "d=5": {
       "P_A_P_B_P_A_error": 1.939479807224432e-17,
@@ -194,20 +250,50 @@
       "valid_choi_saturation_FA": 0.5999999999999999,
       "valid_choi_saturation_FB": 0.5999999999999999,
       "valid_choi_marginal_error": 5.551115123125783e-17,
+      "asymmetric_choi_max_marginal_error": 8.777083671441753e-17,
+      "asymmetric_choi_max_fidelity_error": 3.3306690738754696e-16,
       "product_state_FA": 0.9999999999999998,
       "product_state_FB_actual_1_over_d2": 0.039999999999999994,
       "random_max_FA_plus_FB": 0.17974389713589853,
-      "random_max_kay_curved_violation": 0.0
+      "random_max_kay_curved_violation": 0.0,
+      "random_max_kay_lower_violation": 0.0
     },
     "kay_2009_reference_point_d2_FA09": {
       "d": 2,
       "FA": 0.9,
       "kay_curved_FB_max": 0.5598076211353316,
+      "kay_curved_FB_min": 0.04019237886466843,
       "linear_sum_FB_max": 0.6
     },
     "decoder_fidelity_check": {
       "V_sigma_z_Fe_without_decoder": 0.0,
       "V_sigma_z_Fe_with_inverse_decoder": 1.0
+    },
+    "causal_shared_record_instrument": {
+      "kraus_completeness_error": 0.0,
+      "single_trial_disagreement_prob": 0.0,
+      "classical_record_marginal_error": 1.6653345369377348e-16
+    },
+    "complete_region_achievability_audit": {
+      "dimensions": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "num_dx_pairs": 170,
+      "num_choi_points": 510,
+      "max_marginal_error": 3.554447978966673e-16,
+      "max_fidelity_error": 9.992007221626409e-16
+    },
+    "weak_measurement_vs_projective_readout": {
+      "gamma_s": 1.0,
+      "eta": 0.7950600976206501,
+      "nonselective_vs_phase_damping_err": 0.0,
+      "disagreement_prob_num": 0.18393972058572117,
+      "disagreement_prob_exact": 0.18393972058572117,
+      "plus_offdiag_finite_s": 0.3032653298563167,
+      "plus_offdiag_projective": 0.0
     }
   },
   "theorems_4_5_and_models": {
@@ -278,6 +364,23 @@
         "saturation_error": 0.0
       }
     },
+    "bottleneck_large_df_saturation": {
+      "dC=2,df=4": {
+        "Fe_isometric_saturation": 1.0,
+        "max_TP_err": 0.0
+      },
+      "dC=3,df=5": {
+        "Fe_isometric_saturation": 1.0,
+        "max_TP_err": 0.0
+      }
+    },
+    "classical_flag_dC4_df2_counterexample": {
+      "dC": 4,
+      "df": 2,
+      "TP_residual": 0.0,
+      "Fe_with_1bit_classical_flag": 0.5,
+      "unassisted_bottleneck_bound": 0.25
+    },
     "dC4_df2_fidelity_vs_prob_distinction": {
       "max_entanglement_fidelity": 0.25,
       "complete_erasure_entanglement_fidelity": 0.0625,
@@ -285,7 +388,7 @@
     },
     "petz_formula_vs_explicit_kraus_max_diff": 3.219646771412954e-15,
     "su2_ym_companion_galerkin": {
-      "note": "Independent companion 2-matrix SU(2) YM spectrum benchmark (decoupled from N=8 Page curve).",
+      "note": "Independent companion 2-matrix SU(2) YM fixed-cutoff Galerkin benchmark (decoupled from N=8 Page curve).",
       "g_YM": 0.8,
       "m_reg": 0.35,
       "fock_cutoff": 3,
@@ -298,6 +401,13 @@
         3.6062499999999993,
         3.606250000000002,
         4.2663699873277015
+      ],
+      "galerkin_cutoff4_singlet_dim": 10,
+      "galerkin_cutoff4_lowest4_energies": [
+        2.065260612488805,
+        3.5729259564832216,
+        3.572925956483222,
+        3.8452177993329024
       ],
       "naive_pretruncated_singlet_energies": [
         2.131571273259002,
@@ -428,7 +538,67 @@
         1.0,
         0.25
       ],
-      "max_F_sum": 1.250543087828467
+      "max_F_sum": 1.250543087828467,
+      "inter_window_coherence_s_contrast": {
+        "s=0.0": {
+          "Fe_inter_window": 0.9999999999999998,
+          "Fe_exact": 1.0
+        },
+        "s=0.25": {
+          "Fe_inter_window": 0.8032653298563166,
+          "Fe_exact": 0.8032653298563167
+        },
+        "s=0.5": {
+          "Fe_inter_window": 0.6839397205857211,
+          "Fe_exact": 0.6839397205857212
+        },
+        "s=1.0": {
+          "Fe_inter_window": 0.5676676416183062,
+          "Fe_exact": 0.5676676416183064
+        },
+        "s=3.0": {
+          "Fe_inter_window": 0.5012393760883331,
+          "Fe_exact": 0.5012393760883331
+        }
+      },
+      "dC4_two_qubit_diary_contrast": {
+        "F_rad_petz": [
+          0.0625,
+          0.06544614226145218,
+          0.07605296366436759,
+          0.11442148962478163,
+          0.27611938956428683,
+          0.7423812738190978,
+          0.939820206564121,
+          0.9860807946141659,
+          1.0000000000000027
+        ],
+        "F_rem_petz": [
+          1.0000000000000004,
+          0.988618003367959,
+          0.9460979862100302,
+          0.756418351717074,
+          0.28209688765371765,
+          0.12190343113533297,
+          0.07792947699628293,
+          0.06603647091651624,
+          0.06250000000000006
+        ],
+        "F_bottleneck_cap": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.25,
+          0.0625
+        ],
+        "k7_F_rem": 0.06603647091651624,
+        "k7_cap": 0.25,
+        "k8_F_rem": 0.06250000000000006
+      }
     },
     "double_uncertainty": {
       "S_L_initial_layer1": 0.2716447919143794,

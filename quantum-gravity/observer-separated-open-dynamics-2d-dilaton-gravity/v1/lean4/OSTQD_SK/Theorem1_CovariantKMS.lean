@@ -1,9 +1,11 @@
 import OSTQD_SK.Basic
+import Mathlib.Analysis.Calculus.Deriv.MeanValue
+import Mathlib.Analysis.Calculus.Deriv.Inv
 
 /-!
 # OSTQD_SK.Theorem1_CovariantKMS
 
-Theorem 1 of Paper 2 (Fixed-Temperature Background):
+Theorem 1 and Proposition 1 (Fixed- and Slowly Varying-Temperature Backgrounds):
   (a) Covariant `(t, s)` Two-Time Integrability for Eigenoperator Jumps (`[H, L_k] = -ω_k L_k`):
       `[L, ad_H] = 0` holds EXACTLY on a fixed-`T_H` background even for thermal
       energy-exchanging jumps (`ω_k ≠ 0`) that break subsystem BPS immunity
@@ -18,6 +20,9 @@ Theorem 1 of Paper 2 (Fixed-Temperature Background):
       (d.2) `-2 Re Tr(ρ_β A L†(A)) = ∑ (γ_↓ Tr(ρ_β [L, A]†[L, A]) + γ_↑ Tr(ρ_β [L†, A]†[L†, A])) ≥ 0`.
   (e) Non-Secular Two-Level `σ_x` Bloch–Redfield Complete-Positivity Obstruction:
       exact negative-curvature polynomial witness for the Kossakowski matrix whenever `γ_↓ ≠ γ_↑`.
+  (f) Dirichlet-kernel criterion for free-subsystem two-time autocorrelations under QRT.
+  (g) Uniform-contraction Gibbs tracking Gronwall–Duhamel envelope and exact two-level
+      adiabatic Gibbs population drift derivative (Proposition 1).
 -/
 
 open scoped Matrix BigOperators ComplexConjugate
@@ -654,5 +659,155 @@ theorem multitime_qrt_exterior_nogo {γ_down γ_up : ℝ} (hgd : 0 < γ_down) (h
     rw [gkslDualOne_eq_zero_of_comm hLA hLdA, gkslDualOne_eq_zero_of_comm hLdA hLddA]
     simp
   exact ⟨hLA, hLdA, hdual⟩
+
+/-- Exact Duhamel adiabatic tracking envelope
+`g(t) = M e^{-λ t} ε_0 + (M / λ)(1 - e^{-λ t}) D`. -/
+noncomputable def gibbsTrackingEnvelope (M lam ε0 D t : ℝ) : ℝ :=
+  M * Real.exp (-lam * t) * ε0 + (M / lam) * (1 - Real.exp (-lam * t)) * D
+
+/-- **Proposition 1 (Uniform-Contraction Gibbs Tracking Envelope & Two-Level Gibbs Drift)**:
+Given uniform-contraction constants `M > 0`, `lam > 0`, initial error bound `ε0 ≥ 0`, and
+adiabatic drift supremum `D ≥ 0`:
+  (1) `g(t) = M e^{-lam t} ε0 + (M / lam)(1 - e^{-lam t}) D` satisfies the exact ODE
+      `g'(t) = -lam g(t) + M D`, initial condition `g(0) = M ε0`, non-negativity `g(t) ≥ 0`,
+      and uniform ceiling `g(t) ≤ M ε0 + (M / lam) D` for all `t ≥ 0`.
+  (2) **Duhamel–Gronwall comparison**: any differentiable error curve `ε : ℝ → ℝ` satisfying
+      `ε 0 ≤ M ε0` and `ε'(τ) ≤ -lam ε(τ) + M D` for all `τ ≥ 0` obeys `ε(t) ≤ g(t)` for all `t ≥ 0`.
+  (3) **Two-level Gibbs population drift**: for `T(t) = T0 e^{-μ t}` (`T0 > 0`) and excited-level
+      Gibbs population `p_Gibbs(t) = (1 + exp(ω / T(t)))⁻¹`, the exact derivative equals
+      `-ω μ exp(ω / T(t)) / (T(t) (1 + exp(ω / T(t)))²)`, yielding trace-norm drift
+      `‖σ̇_t‖_1 = 2 |ṗ_Gibbs(t)|`. -/
+theorem uniform_contraction_gibbs_tracking_bound
+    (M lam ε0 D ω T0 μ t : ℝ) (hM : 0 < M) (hlam : 0 < lam)
+    (hε0 : 0 ≤ ε0) (hD : 0 ≤ D) (hT0 : 0 < T0) (ht : 0 ≤ t) :
+    HasDerivAt (fun τ => gibbsTrackingEnvelope M lam ε0 D τ)
+      (-lam * gibbsTrackingEnvelope M lam ε0 D t + M * D) t ∧
+    gibbsTrackingEnvelope M lam ε0 D 0 = M * ε0 ∧
+    0 ≤ gibbsTrackingEnvelope M lam ε0 D t ∧
+    gibbsTrackingEnvelope M lam ε0 D t ≤ M * ε0 + (M / lam) * D ∧
+    (∀ (ε ε' : ℝ → ℝ),
+      (∀ τ : ℝ, HasDerivAt ε (ε' τ) τ) →
+      ε 0 ≤ M * ε0 →
+      (∀ τ : ℝ, 0 ≤ τ → ε' τ ≤ -lam * ε τ + M * D) →
+      ε t ≤ gibbsTrackingEnvelope M lam ε0 D t) ∧
+    HasDerivAt (fun τ => (1 + Real.exp (ω / (T0 * Real.exp (-μ * τ))))⁻¹)
+      (-(ω * μ * Real.exp (ω / (T0 * Real.exp (-μ * t)))) /
+        ((T0 * Real.exp (-μ * t)) * (1 + Real.exp (ω / (T0 * Real.exp (-μ * t)))) ^ 2)) t := by
+  have hlamne : lam ≠ 0 := ne_of_gt hlam
+  have hg_deriv : ∀ τ : ℝ, HasDerivAt (fun s => gibbsTrackingEnvelope M lam ε0 D s)
+      (-lam * gibbsTrackingEnvelope M lam ε0 D τ + M * D) τ := by
+    intro τ
+    have hlin : HasDerivAt (fun s => -lam * s) (-lam) τ := by
+      simpa using (hasDerivAt_id τ).const_mul (-lam)
+    have hexp : HasDerivAt (fun s => Real.exp (-lam * s)) (Real.exp (-lam * τ) * (-lam)) τ := hlin.exp
+    have hterm1 : HasDerivAt (fun s => M * Real.exp (-lam * s) * ε0)
+        (M * (Real.exp (-lam * τ) * (-lam)) * ε0) τ := (hexp.const_mul M).mul_const ε0
+    have hsub : HasDerivAt (fun s => 1 - Real.exp (-lam * s))
+        (0 - Real.exp (-lam * τ) * (-lam)) τ := (hasDerivAt_const τ (1 : ℝ)).sub hexp
+    have hterm2 : HasDerivAt (fun s => (M / lam) * (1 - Real.exp (-lam * s)) * D)
+        ((M / lam) * (0 - Real.exp (-lam * τ) * (-lam)) * D) τ := (hsub.const_mul (M / lam)).mul_const D
+    have hsum := hterm1.add hterm2
+    unfold gibbsTrackingEnvelope
+    convert hsum using 1
+    field_simp [hlamne]
+    ring
+  have hg0 : gibbsTrackingEnvelope M lam ε0 D 0 = M * ε0 := by
+    unfold gibbsTrackingEnvelope
+    simp
+  have hexp_le : Real.exp (-lam * t) ≤ 1 := by
+    rw [Real.exp_le_one_iff]
+    nlinarith
+  have hexp_pos : 0 < Real.exp (-lam * t) := Real.exp_pos _
+  have hg_nonneg : 0 ≤ gibbsTrackingEnvelope M lam ε0 D t := by
+    unfold gibbsTrackingEnvelope
+    have h1 : 0 ≤ M * Real.exp (-lam * t) * ε0 := by positivity
+    have h2 : 0 ≤ (M / lam) * (1 - Real.exp (-lam * t)) * D := by
+      have hsub : 0 ≤ 1 - Real.exp (-lam * t) := sub_nonneg.mpr hexp_le
+      positivity
+    linarith
+  have hg_le : gibbsTrackingEnvelope M lam ε0 D t ≤ M * ε0 + (M / lam) * D := by
+    unfold gibbsTrackingEnvelope
+    have h1 : M * Real.exp (-lam * t) * ε0 ≤ M * ε0 := by
+      have : M * Real.exp (-lam * t) ≤ M * 1 :=
+        mul_le_mul_of_nonneg_left hexp_le (le_of_lt hM)
+      nlinarith
+    have h2 : (M / lam) * (1 - Real.exp (-lam * t)) * D ≤ (M / lam) * D := by
+      have hsub_le : 1 - Real.exp (-lam * t) ≤ 1 := by linarith
+      have hMlam : 0 ≤ M / lam := div_nonneg (le_of_lt hM) (le_of_lt hlam)
+      have : (M / lam) * (1 - Real.exp (-lam * t)) ≤ (M / lam) * 1 :=
+        mul_le_mul_of_nonneg_left hsub_le hMlam
+      nlinarith
+    linarith
+  have hgronwall : ∀ (ε ε' : ℝ → ℝ),
+      (∀ τ : ℝ, HasDerivAt ε (ε' τ) τ) →
+      ε 0 ≤ M * ε0 →
+      (∀ τ : ℝ, 0 ≤ τ → ε' τ ≤ -lam * ε τ + M * D) →
+      ε t ≤ gibbsTrackingEnvelope M lam ε0 D t := by
+    intro ε ε' hε_deriv hε_init hε_ineq
+    rcases eq_or_lt_of_le ht with rfl | ht_pos
+    · rw [hg0]; exact hε_init
+    · let h : ℝ → ℝ := fun τ => Real.exp (lam * τ) * (ε τ - gibbsTrackingEnvelope M lam ε0 D τ)
+      let h' : ℝ → ℝ := fun τ => Real.exp (lam * τ) * (ε' τ + lam * ε τ - M * D)
+      have hh_deriv : ∀ τ : ℝ, HasDerivAt h (h' τ) τ := by
+        intro τ
+        have hl : HasDerivAt (fun s => lam * s) lam τ := by
+          simpa using (hasDerivAt_id τ).const_mul lam
+        have he : HasDerivAt (fun s => Real.exp (lam * s)) (Real.exp (lam * τ) * lam) τ := hl.exp
+        have hd : HasDerivAt (fun s => ε s - gibbsTrackingEnvelope M lam ε0 D s)
+            (ε' τ - (-lam * gibbsTrackingEnvelope M lam ε0 D τ + M * D)) τ :=
+          (hε_deriv τ).sub (hg_deriv τ)
+        have hmul := he.mul hd
+        dsimp only [h, h']
+        convert hmul using 1
+        ring
+      have hcont : ContinuousOn h (Set.Icc 0 t) :=
+        (continuous_iff_continuousAt.mpr fun τ => (hh_deriv τ).continuousAt).continuousOn
+      obtain ⟨c, ⟨hc0, _⟩, hslope⟩ :=
+        exists_hasDerivAt_eq_slope h h' ht_pos hcont (fun τ _ => hh_deriv τ)
+      have hfac : ε' c + lam * ε c - M * D ≤ 0 := by
+        have := hε_ineq c (le_of_lt hc0)
+        linarith
+      have hderiv_nonpos : h' c ≤ 0 :=
+        mul_nonpos_of_nonneg_of_nonpos (le_of_lt (Real.exp_pos _)) hfac
+      have hsub_nonpos : h t - h 0 ≤ 0 := by
+        have hdiv : (h t - h 0) / (t - 0) ≤ 0 := by rw [← hslope]; exact hderiv_nonpos
+        have htsub : 0 < t - 0 := by linarith
+        exact (div_nonpos_iff.mp hdiv).elim (fun ⟨_, hle⟩ => by linarith) (fun ⟨hle, _⟩ => hle)
+      have h0_nonpos : h 0 ≤ 0 := by
+        dsimp only [h]
+        rw [mul_zero, Real.exp_zero, one_mul, hg0]
+        linarith
+      have ht_nonpos : Real.exp (lam * t) * (ε t - gibbsTrackingEnvelope M lam ε0 D t) ≤ 0 := by
+        change h t ≤ 0
+        linarith
+      have hdiff_nonpos : ε t - gibbsTrackingEnvelope M lam ε0 D t ≤ 0 :=
+        nonpos_of_mul_nonpos_right ht_nonpos (Real.exp_pos _)
+      linarith
+  have hgibbs_deriv : HasDerivAt (fun τ => (1 + Real.exp (ω / (T0 * Real.exp (-μ * τ))))⁻¹)
+      (-(ω * μ * Real.exp (ω / (T0 * Real.exp (-μ * t)))) /
+        ((T0 * Real.exp (-μ * t)) * (1 + Real.exp (ω / (T0 * Real.exp (-μ * t)))) ^ 2)) t := by
+    have hTpos : 0 < T0 * Real.exp (-μ * t) := mul_pos hT0 (Real.exp_pos _)
+    have hTne : T0 * Real.exp (-μ * t) ≠ 0 := ne_of_gt hTpos
+    have hden_pos : 0 < 1 + Real.exp (ω / (T0 * Real.exp (-μ * t))) := by
+      linarith [Real.exp_pos (ω / (T0 * Real.exp (-μ * t)))]
+    have hden_ne : 1 + Real.exp (ω / (T0 * Real.exp (-μ * t))) ≠ 0 := ne_of_gt hden_pos
+    have hlin : HasDerivAt (fun τ => -μ * τ) (-μ) t := by
+      simpa using (hasDerivAt_id t).const_mul (-μ)
+    have hT_d : HasDerivAt (fun τ => T0 * Real.exp (-μ * τ))
+        (T0 * (Real.exp (-μ * t) * (-μ))) t := hlin.exp.const_mul T0
+    have harg_d : HasDerivAt (fun τ => ω / (T0 * Real.exp (-μ * τ)))
+        ((0 * (T0 * Real.exp (-μ * t)) - ω * (T0 * (Real.exp (-μ * t) * (-μ)))) /
+          (T0 * Real.exp (-μ * t)) ^ 2) t :=
+      (hasDerivAt_const t ω).div hT_d hTne
+    have h1e_d : HasDerivAt (fun τ => 1 + Real.exp (ω / (T0 * Real.exp (-μ * τ))))
+        (Real.exp (ω / (T0 * Real.exp (-μ * t))) *
+          ((0 * (T0 * Real.exp (-μ * t)) - ω * (T0 * (Real.exp (-μ * t) * (-μ)))) /
+            (T0 * Real.exp (-μ * t)) ^ 2)) t :=
+      (harg_d.exp).const_add (1 : ℝ)
+    have hinv_d := h1e_d.inv hden_ne
+    convert hinv_d using 1
+    field_simp [hTne, hden_ne]
+    ring
+  exact ⟨hg_deriv t, hg0, hg_nonneg, hg_le, hgronwall, hgibbs_deriv⟩
 
 end OSTQD_SK

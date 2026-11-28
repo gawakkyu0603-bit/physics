@@ -1,0 +1,102 @@
+=== LEAN VERSION ===
+Lean (version 4.36.0, x86_64-unknown-linux-gnu, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)
+=== FORBIDDEN TOKEN SCAN ===
+ZERO FORBIDDEN TOKENS FOUND.
+=== LAKE BUILD ===
+⚠ [6370/6384] Replayed OSTQD_Layer2.Basic
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.Data.Matrix.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6371/6384] Ran OSTQD_Layer2.Basic:irArts
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.Data.Matrix.Mul` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OSTQD_Layer2/Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6374/6384] Replayed OSTQD_Layer2.Theorem3_ClockTypeII
+warning: OSTQD_Layer2/Theorem3_ClockTypeII.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6375/6384] Ran OSTQD_Layer2.Theorem3_ClockTypeII:irArts
+warning: OSTQD_Layer2/Theorem3_ClockTypeII.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [6380/6384] Built OSTQD_Layer2.Theorem2_BranchingModels (24s)
+✔ [6382/6384] Built OSTQD_Layer2 (1.6s)
+Build completed successfully (6384 jobs).
+=== AXIOM CHECK ===
+'OSTQD_Layer2.frobNormSq_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.trace_conjTranspose_mul_self_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.trace_mul_conjTranspose_self_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.nonSelectiveMap_trace_preserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.bornWeight_sum_eq_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.bornWeight_convex_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.partialTraceR_schmidt_eq_assemblage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.schmidt_nonselective_no_signaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.zero_steering_iff_trivial_effect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.steering_frobenius_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.product_state_zero_steering_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.classical_correlated_x_basis_zero_steering_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.rational_lf_observables_involutive_and_chsh' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.rational_lf_no_nonnegative_global_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.frauchiger_renner_contradiction_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.werner_mixed_state_zero_steering_iff_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.signed_global_section_negativity_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.signed_global_section_rational_witness_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.presheaf_barycenter_reproduces_layer1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.commuting_records_cpl_marginals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.nonaffine_quadratic_weight_fails_convexity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.equal_marginals_do_not_imply_record_agreement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.commuting_effects_kraus_flip_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.wigner_friend_record_preserving_vs_interference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.finite_dim_linear_functional_unique_povm_rep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.finite_dim_complete_positive_functional_povm_rep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.replacer_unraveling_weight_nonuniqueness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.sequential_record_agreement_iff_kraus_orthogonality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.two_path_diamond_record_subalgebra_agreement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.wigner_friend_premeasurement_kraus_orthogonality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.condExp_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.condExp_unital' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.condExp_trace_preserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.condExp_bimodule' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.condExp_idempotent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.covariant_effect_born_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.segal_entropy_scale_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.regularized_log_domination_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.pullback_povm_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.pullback_born_cyclic_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.kernel_vector_total_annihilation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.polar_singular_value_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.renormalized_tv_defect_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.sharp_polar_unnormalized_pure_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.sharp_polar_normalized_pure_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.sequential_evaporation_radiation_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.nonisometric_kernel_compatible_two_step_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.postselected_normalized_gisin_bias_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.gisin_nonlinear_map_trace_preserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.gisin_epr_signaling_bias' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.welch_gram_general_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.welch_rank_forced_branch_crosstalk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.oppenheim_cq_psd_tradeoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.two_clock_dressed_commutativity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.local_channel_spatial_semicausality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.swap_gate_ensemble_independent_yet_signaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.trine_frame_exceeds_unit_trace_and_povm_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.full_rank_duplicated_frame_exceeds_welch_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.exact_bipolar_clock_constraint_entangled_and_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OSTQD_Layer2.exact_bipolar_clock_cptp_channel_completion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OSTQD_Layer2.bipolar_clock_local_constraint_commuting_dephasing_invariance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

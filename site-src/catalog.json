@@ -23,7 +23,7 @@
       "subtitle": "Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds",
       "author": "Yohtaro Soga",
       "version": "1",
-      "date": "2026-11-26",
+      "date": "2026-11-28",
       "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1",
       "content_prefix": "ostqd-",
       "audiences": [
@@ -35,7 +35,7 @@
         "en"
       ],
       "summary": {
-        "en": "An observer-indexed quantum framework separates reversible clock-time evolution from auxiliary-time dephasing, with conditional results on energy conservation, local horizon incompatibility, quantum recovery, entropy, and information bottlenecks."
+        "en": "An observer-indexed finite-dimensional framework separates reversible clock evolution from non-selective auxiliary dissipation, with conditional energy-moment, local horizon, joint-channel, shared-record, purity and unassisted compression results."
       },
       "short_title": "OSTQD",
       "audience_descriptions": {
@@ -51,8 +51,8 @@
       },
       "scope": {
         "en": [
-          "All guides cover the two-time framework, the five conditional results, the two-window evaporation example, the independent matrix-spectrum benchmark, and open questions.",
-          "The mathematical statements concern specified finite-dimensional systems. No continuum gravitational dephasing, observed firewall, or experimentally measured departure from standard quantum mechanics is asserted."
+          "The guides cover global-state restriction versus autonomous algebra closure, energy moments and local horizon obstructions, the complete achievable joint recovery region and projective shared records, spectral pinching and protected windows, unassisted dimension bottlenecks and finite evaporation examples.",
+          "The finite-dimensional results do not derive a microscopic gravitational rate, a general observer instrument or an emergent spacetime."
         ]
       },
       "hero_figure": "ostqd-observer-domains",
@@ -62,8 +62,8 @@
           "label": "Paper",
           "path": "downloads/ostqd.pdf",
           "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/paper/main.pdf",
-          "sha256": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd",
-          "page_count": 24
+          "sha256": "65f6062b73d0eb76a2e66e5c5cc2285a5ec7e964129f68df415951d74fd594ab",
+          "page_count": 29
         }
       ],
       "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials.",
@@ -77,7 +77,7 @@
       "title": "Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity",
       "subtitle": "KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions",
       "author": "Yohtaro Soga",
-      "date": "2026-11-27",
+      "date": "2026-11-28",
       "version": "1",
       "series": "ostqd",
       "series_order": 2,
@@ -93,7 +93,7 @@
       ],
       "short_title": "OSTQD–SK/JT",
       "summary": {
-        "en": "The continuation of OSTQD extends its finite-dimensional framework to thermal open systems and conditional low-energy gravity models. It derives frozen-coefficient JT fluctuation cumulants and a smooth-band chiral-horizon obstruction, with separate checks of KMS covariance, greybody scattering and quantum-channel bottlenecks."
+        "en": "A thermal open-system continuation of OSTQD: KMS covariance and uniform-contraction tracking, frozen-coefficient JT cumulants and an exactly reversible energy jump model, and the constructive Mellin positive-type extension of a free chiral horizon defect."
       },
       "audience_descriptions": {
         "general": {
@@ -108,8 +108,8 @@
       },
       "scope": {
         "en": [
-          "The paper builds on the preceding finite-dimensional OSTQD study by relaxing strict subsystem energy conservation for reduced open systems. The guides cover SK normalization, KMS covariance and its time-dependent limits, Ward identities and JT fluctuation closures, bosonic and chiral-horizon diagnostics, per-port thermal locking, greybody scattering, and separated information benchmarks.",
-          "The focused analytical results are conditional: a specified free chiral-boson smooth-band defect and the frozen-coefficient JT cumulant closure. A positive global continuum state, a microscopic rate, observer-separated outcome instruments and a unified evaporation endpoint remain open."
+          "The guides cover SK normalization, KMS covariance and tracking, JT fluctuation closures and a non-explosive detailed-balance process, the sharp smooth-band contact threshold and non-normal quasifree state, per-port locking and separate scattering and information benchmarks.",
+          "The free-current Mellin construction is a positive-type state in the specified model, not a microscopic gravitational mechanism or a universal firewall. General observer instruments and a controlled dynamical endpoint remain open."
         ]
       },
       "hero_figure": "ostqd-sk-jt-overview",
@@ -119,8 +119,62 @@
           "label": "Paper",
           "path": "downloads/ostqd-sk-jt.pdf",
           "source_path": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1/paper/main.pdf",
-          "sha256": "8799bcb5c0e2e21ea75b426a4d16d11a5b5d041ea43aaa84364c5c8c069c051a",
-          "page_count": 34
+          "sha256": "cdc640d99df6a64483964943d2d3c604f50f72368f4031ed82165335225ae656",
+          "page_count": 42
+        }
+      ],
+      "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials."
+    },
+    {
+      "slug": "ostqd-layer2-type2",
+      "field": "quantum-gravity",
+      "archive_slug": "observer-separated-selective-instruments-type-ii",
+      "title": "Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras",
+      "author": "Yohtaro Soga",
+      "date": "2026-11-28",
+      "version": "1",
+      "series": "ostqd",
+      "series_order": 3,
+      "source_path": "quantum-gravity/observer-separated-selective-instruments-type-ii/materials",
+      "content_prefix": "ostqd-layer2-type2-",
+      "audiences": [
+        "general",
+        "student",
+        "expert"
+      ],
+      "languages": [
+        "en"
+      ],
+      "short_title": "OSTQD–Layer 2 / Type II",
+      "summary": {
+        "en": "The third OSTQD study develops selective instruments on causal observer contexts, conditional steering obstructions and Born-weighted branch records, a semifinite entropy split, sharp non-isometric pullback bounds and causal/linear controls on branch coupling."
+      },
+      "audience_descriptions": {
+        "general": {
+          "en": "Understand ensembles, individual records, correlations, entropy and information recovery."
+        },
+        "student": {
+          "en": "Work through quantum instruments, CHSH, trace entropy, polar decomposition and causal channels."
+        },
+        "expert": {
+          "en": "Examine the finite-dimensional and semifinite proofs, quantitative sharp bounds and open gravitational bridges."
+        }
+      },
+      "scope": {
+        "en": [
+          "The guides cover observer-poset instruments, conditional state change, Local Friendliness, signed global couplings, contextual Born records, semifinite entropy, sharp polar-isometric bounds, causal sequential emission and five distinct branch-coupling tests.",
+          "Finite clock and evaporation examples are not continuum gravitational constructions. The semifinite theorem is analytical; relativistic gluing, gravitational crossed-product instruments, a microscopic branch-transition rate and autonomous matrix evaporation remain open."
+        ]
+      },
+      "hero_figure": "ostqd-layer2-type2-overview",
+      "documents": [
+        {
+          "id": "main",
+          "label": "Paper",
+          "path": "downloads/ostqd-layer2-type2.pdf",
+          "source_path": "quantum-gravity/observer-separated-selective-instruments-type-ii/materials/paper/main.pdf",
+          "sha256": "37e9211ec7d67ea465bf461c609a003769b8acb134a0acd79d6e77f3024ef293",
+          "page_count": 31
         }
       ],
       "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials."

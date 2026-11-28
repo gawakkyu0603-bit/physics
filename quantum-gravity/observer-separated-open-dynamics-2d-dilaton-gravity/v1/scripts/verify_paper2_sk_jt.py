@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Self-contained numerical verification, falsification test suite (F1--F6),
-and figure generator for Paper 2:
+and figure generator for the study:
 "Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity:
 KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions"
 
@@ -30,8 +30,8 @@ import numpy as np
 import scipy
 from scipy.integrate import quad, solve_ivp
 from scipy.linalg import expm
-from scipy.optimize import minimize_scalar
-from scipy.special import erf, erfc, spherical_jn, spherical_yn, wrightomega
+from scipy.optimize import brentq, minimize_scalar
+from scipy.special import dawsn, erf, erfc, sici, spherical_jn, spherical_yn, wrightomega
 
 SEED = 20261127
 FLOAT_TOL = 1e-12
@@ -337,6 +337,23 @@ def run_f1_sk_positivity_and_redfield(rng: np.random.Generator) -> dict:
     assert abs(l2_p0_orig - 1.0) < 1e-15 and abs(l2_p0_rot - 0.36) < 1e-15
     assert l2_cond_coh_orig < 1e-15 and abs(l2_cond_coh_rot - 0.48) < 1e-14
 
+    # Major Point 5: Separate no-signaling (remote marginal invariance under any local CPTP/unitary map)
+    # from Layer-1 channel model-compatibility (sum_x I_{B,x} = Phi_B)
+    psi_ent = np.array([math.sqrt(0.8), 0.0, 0.0, math.sqrt(0.2)], dtype=np.complex128)
+    rho_ent = np.outer(psi_ent, psi_ent.conj())
+    X_loc = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=np.complex128)
+    U_loc_RL = np.kron(X_loc, I2)
+    rho_ent_after = U_loc_RL @ rho_ent @ U_loc_RL.conj().T
+    rho_L_before = np.einsum("aiaj->ij", rho_ent.reshape((2, 2, 2, 2)))
+    rho_L_after = np.einsum("aiaj->ij", rho_ent_after.reshape((2, 2, 2, 2)))
+    rho_R_before = np.einsum("iaja->ij", rho_ent.reshape((2, 2, 2, 2)))
+    rho_R_after = np.einsum("iaja->ij", rho_ent_after.reshape((2, 2, 2, 2)))
+    rho_R_deph = K0_g @ rho_R_before @ K0_g.conj().T + K1_g @ rho_R_before @ K1_g.conj().T
+    ns_remote_marginal_err = float(np.linalg.norm(rho_L_after - rho_L_before))
+    ns_local_channel_mismatch = float(np.linalg.norm(rho_R_after - rho_R_deph))
+    assert ns_remote_marginal_err < 1e-15
+    assert ns_local_channel_mismatch > 0.5
+
     return {
         "sk_tp_max_err": sk_tp_max_err,
         "sk_conj_max_err": sk_conj_max_err,
@@ -358,6 +375,8 @@ def run_f1_sk_positivity_and_redfield(rng: np.random.Generator) -> dict:
         "layer2_unraveling_p0_orig": l2_p0_orig,
         "layer2_unraveling_p0_rot": l2_p0_rot,
         "layer2_unraveling_cond_coh_rot": l2_cond_coh_rot,
+        "no_signaling_local_unitary_remote_marginal_err": ns_remote_marginal_err,
+        "no_signaling_local_unitary_vs_dephasing_mismatch": ns_local_channel_mismatch,
         "davies_min_choi_eig": min_choi_davies,
         "davies_max_tp_err": max_tp_err_davies,
         "redfield_s0p05_min_choi_eigs_by_T": {str(T): ev for T, ev in zip(temps, redfield_neg_eigs)},
@@ -628,7 +647,73 @@ def run_f2_covariant_kms_integrability(rng: np.random.Generator) -> dict:
     p_actual_qs = float(sol_qs.y[0, -1])
     p_gibbs_final_qs = 1.0 / (1.0 + math.exp(2.0))
     trace_dist_qs = abs(p_actual_qs - p_gibbs_final_qs)
+    trace_norm_qs = 2.0 * trace_dist_qs
     assert max_Tdot_over_T2_qs <= 2.1e-4 and trace_dist_qs > 0.14
+
+    # Major Point 4: Quantitative uniform-contraction Gibbs tracking bound (Proposition 1)
+    # ||rho_t - sigma_t||_1 <= M e^{-lambda t} ||rho_0 - sigma_0||_1 + (M/lambda)(1 - e^{-lambda t}) sup ||sigma_dot||_1
+    # For 2-level Davies on diagonal states, M = 1, lambda = min_v (g_down(v) + g_up(v)) = eta * (1 + 2 n_BE(1/T(t_f))),
+    # and ||sigma_dot(v)||_1 = 2 |p_dot_Gibbs(v)| = 2 mu e^{1/T(v)} / (T(v) (1 + e^{1/T(v)})^2).
+    t_grid_qs = np.linspace(0.0, t_f_qs, 401)
+    sup_sigmadot_1 = float(max(
+        2.0 * mu_qs * math.exp(1.0 / math.exp(-mu_qs * tv))
+        / (math.exp(-mu_qs * tv) * ((1.0 + math.exp(1.0 / math.exp(-mu_qs * tv))) ** 2))
+        for tv in t_grid_qs
+    ))
+    lam_qs_min = eta_qs * (1.0 + 2.0 / math.expm1(2.0))
+    qs_tracking_bound_slow = float((1.0 / lam_qs_min) * (1.0 - math.exp(-lam_qs_min * t_f_qs)) * sup_sigmadot_1)
+    assert trace_norm_qs <= qs_tracking_bound_slow + 1e-12
+
+    # Fast-relaxation positive control (same T(t), eta_fast = 0.1 => lambda_min = 0.1313 >> mu = 1e-4):
+    eta_fast = 0.1
+    lam_fast_min = eta_fast * (1.0 + 2.0 / math.expm1(2.0))
+
+    def fast_rates(t_q: float) -> tuple[float, float]:
+        T_q = math.exp(-mu_qs * t_q)
+        n_q = 1.0 / math.expm1(1.0 / T_q)
+        return eta_fast * (1.0 + n_q), eta_fast * n_q
+
+    sol_fast = solve_ivp(
+        lambda tv, yv: [fast_rates(tv)[1] * (1.0 - yv[0]) - fast_rates(tv)[0] * yv[0]],
+        (0.0, t_f_qs),
+        [p_gibbs_init_qs],
+        t_eval=t_grid_qs,
+        method="DOP853",
+        rtol=1e-12,
+        atol=1e-14,
+    )
+    p_gibbs_grid = np.array([1.0 / (1.0 + math.exp(1.0 / math.exp(-mu_qs * tv))) for tv in t_grid_qs])
+    fast_trace_norms = 2.0 * np.abs(sol_fast.y[0] - p_gibbs_grid)
+    fast_tracking_max_trace_norm = float(np.max(fast_trace_norms))
+    fast_tracking_bound = float((1.0 / lam_fast_min) * (1.0 - math.exp(-lam_fast_min * t_f_qs)) * sup_sigmadot_1)
+    assert fast_tracking_max_trace_norm <= fast_tracking_bound + 1e-14
+    assert fast_tracking_bound < 5e-4
+
+    # Exact peak of ||sigma_dot(t)||_1 = 2 mu z e^z / (1 + e^z)^2 (attained at z tanh(z/2) = 1),
+    # and explicit contrast between diagonal-subspace rate lambda_diag = inf r(t) vs full traceless
+    # Hermitian uniform contraction rate lambda_full = (1/2) inf r(t) (attained on X = sigma_x)
+    z_peak_sigmadot = float(brentq(lambda z: z * math.tanh(0.5 * z) - 1.0, 1.0, 2.0, xtol=1e-15, rtol=1e-15))
+    sup_sigmadot_exact = float(
+        2.0 * mu_qs * z_peak_sigmadot * math.exp(z_peak_sigmadot) / ((1.0 + math.exp(z_peak_sigmadot)) ** 2)
+    )
+    lam_fast_full = 0.5 * lam_fast_min
+    fast_tracking_bound_diag_exact = float(
+        (1.0 / lam_fast_min) * (1.0 - math.exp(-lam_fast_min * t_f_qs)) * sup_sigmadot_exact
+    )
+    fast_tracking_bound_full_exact = float(
+        (1.0 / lam_fast_full) * (1.0 - math.exp(-lam_fast_full * t_f_qs)) * sup_sigmadot_exact
+    )
+    assert abs(sup_sigmadot_exact - 4.47743205e-5) < 1e-11
+    assert fast_tracking_max_trace_norm <= fast_tracking_bound_diag_exact + 1e-14
+    assert fast_tracking_bound_diag_exact < fast_tracking_bound_full_exact
+    # Verify off-diagonal X = sigma_x contracts strictly at rate (1/2) r(t_f) under two-level Davies
+    gd_end, gu_end = fast_rates(t_f_qs)
+    L_fast_end_sup = gksl_superop([math.sqrt(gd_end) * L_dn2, math.sqrt(gu_end) * L_dn2.conj().T], 2)
+    X_sx = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=np.complex128)
+    X_sx_t1 = (expm(1.0 * L_fast_end_sup) @ X_sx.reshape(-1, order="F")).reshape((2, 2), order="F")
+    offdiag_ratio = float(np.sum(np.linalg.svd(X_sx_t1, compute_uv=False)) / np.sum(np.linalg.svd(X_sx, compute_uv=False)))
+    offdiag_rate_err = float(abs(offdiag_ratio - math.exp(-lam_fast_full)))
+    assert offdiag_rate_err < 1e-14
 
     # 5g. Free-subsystem Markovian QRT Dirichlet-kernel witness (Theorem 1(f)):
     #     On C^2 x C^2 with KMS thermal dissipator acting on factor 1, commuting observable I x sigma_z
@@ -717,6 +802,18 @@ def run_f2_covariant_kms_integrability(rng: np.random.Generator) -> dict:
         "quasistat_counterexample_p_actual": p_actual_qs,
         "quasistat_counterexample_p_gibbs": p_gibbs_final_qs,
         "quasistat_counterexample_trace_dist": trace_dist_qs,
+        "quasistat_counterexample_trace_norm": trace_norm_qs,
+        "quasistat_counterexample_sup_sigmadot_1": sup_sigmadot_1,
+        "quasistat_counterexample_tracking_bound_slow": qs_tracking_bound_slow,
+        "fast_relax_tracking_lambda_min": lam_fast_min,
+        "fast_relax_tracking_max_trace_norm": fast_tracking_max_trace_norm,
+        "fast_relax_tracking_analytic_bound": fast_tracking_bound,
+        "quasistat_sup_sigmadot_z_peak": z_peak_sigmadot,
+        "quasistat_sup_sigmadot_exact": sup_sigmadot_exact,
+        "fast_relax_tracking_lambda_full_hermitian": lam_fast_full,
+        "fast_relax_tracking_bound_diag_exact": fast_tracking_bound_diag_exact,
+        "fast_relax_tracking_bound_full_hermitian": fast_tracking_bound_full_exact,
+        "fast_relax_offdiag_sigmax_rate_err": offdiag_rate_err,
         "multitime_qrt_commuting_decay": qrt_comm_decay,
         "multitime_qrt_noncommuting_decay": qrt_act_decay,
         "multitime_qrt_dirichlet_identity_err": qrt_dirichlet_err,
@@ -965,6 +1062,159 @@ def run_f3_jt_sk_ward_and_fdt(rng: np.random.Generator) -> dict:
         hj_max_resid = max(hj_max_resid, abs(H_val))
     assert hj_max_resid < 1e-13
 
+    # 7. Major Point 2 checks:
+    # (a) Leading state-dependent evaporating K3 feedback vs frozen-coefficient K3 (at u=30 & r=5/7 sign flip)
+    A_C = 2.0 * (math.pi**2) * C
+    alpha_bd = math.pi * c / 12.0
+
+    def k2_k3_state_rhs(u_v, y_v):
+        T_v = T_0 * math.exp(-k_JT * u_v)
+        K2_v, K3_v = y_v[0], y_v[1]
+        dK2 = -2.0 * gamma_E * K2_v + 2.0 * alpha_bd * (T_v**3)
+        dK3 = -3.0 * gamma_E * K3_v + 3.0 * (3.0 * gamma_E * T_v) * K2_v - 6.0 * alpha_bd * (T_v**4)
+        return [dK2, dK3]
+
+    u_chk_s = 30.0
+    r_chk_s = math.exp(-k_JT * u_chk_s)
+    T_chk_s = T_0 * r_chk_s
+    sol_k3_state = solve_ivp(k2_k3_state_rhs, (0.0, u_chk_s), [0.0, 0.0], method="DOP853", rtol=1e-13, atol=1e-15)
+    K3_state_ode_u30 = float(sol_k3_state.y[1, -1])
+    K3_state_formula_u30 = float(6.0 * A_C * (T_chk_s**4) * (1.0 - r_chk_s) * (5.0 - 7.0 * r_chk_s))
+    K3_frozen_u30 = float(-12.0 * (math.pi**2) * C * (T_chk_s**4) * (1.0 - r_chk_s**2))
+    K3_state_ode_rel_err = float(abs(K3_state_ode_u30 - K3_state_formula_u30) / abs(K3_state_formula_u30))
+    assert K3_state_ode_rel_err < 1e-11
+    assert K3_frozen_u30 < -150.0 and K3_state_formula_u30 > 25.0
+
+    # (b) Finite-q detailed-balance obstruction for naive state-dependent BD rates vs
+    #     exact detailed balance for the constructive E >= 0 entropy-difference jump process
+    def S_bh_E(E_x: float) -> float:
+        return 2.0 * math.pi * math.sqrt(2.0 * C * E_x)
+
+    def beta_E_fn(E_x: float) -> float:
+        return math.pi * math.sqrt(2.0 * C / E_x)
+
+    naive_db_log_errs = []
+    exact_ediff_db_log_errs = []
+    for E_test in (0.5 * E_0, E_0, 2.0 * E_0):
+        for q_test in (0.2, 1.0, 5.0, 15.0):
+            target_log_ratio = (S_bh_E(E_test + q_test) - S_bh_E(E_test)) - beta_0 * q_test
+            naive_log_ratio = q_test * (beta_E_fn(E_test + q_test) - beta_0)
+            # Constructive rate: w_+(E,q) = alpha e^{-beta_0 q}, w_-(E+q,q) = alpha e^{S(E) - S(E+q)}
+            ediff_log_ratio = -beta_0 * q_test - (S_bh_E(E_test) - S_bh_E(E_test + q_test))
+            naive_db_log_errs.append(abs(naive_log_ratio - target_log_ratio))
+            exact_ediff_db_log_errs.append(abs(ediff_log_ratio - target_log_ratio))
+    naive_bd_finite_q_db_min_err = float(min(naive_db_log_errs))
+    naive_bd_finite_q_db_max_err = float(max(naive_db_log_errs))
+    exact_ediff_finite_q_db_max_err = float(max(exact_ediff_db_log_errs))
+    assert naive_bd_finite_q_db_min_err > 1e-5
+    assert exact_ediff_finite_q_db_max_err < 1e-13
+
+    # Large-C curvature check: S_BH(E_0 - q) - S_BH(E_0) + q beta(E_0) vs (1/2) S_BH''(E_0) q^2
+    q_small = 0.05
+    ediff_curv_exact = (S_bh_E(E_0 - q_small) - S_bh_E(E_0)) + q_small * beta_E_fn(E_0)
+    ediff_curv_quad = -0.5 * (beta_E_fn(E_0) / (2.0 * E_0)) * (q_small**2)
+    ediff_curv_rel_err = float(abs(ediff_curv_exact - ediff_curv_quad) / abs(ediff_curv_quad))
+    assert ediff_curv_rel_err < 5e-4
+    # Markovian coarse-graining separation ratio tau_bath * gamma_E = gamma_E / T_0 << 1
+    markov_timescale_ratio_T0 = float(gamma_E / T_0)
+    assert markov_timescale_ratio_T0 < 0.03
+
+    # (c) Independent generator-integral stationarity check int_0^inf pi(E) (L f)(E) dE = 0 for a test function
+    #     in the constructive E >= 0 jump process vs naive q > E-rejected emission,
+    #     together with exact partition function Z_C(beta) and fixed-n stationary cumulants kappa_n.
+    def Z_C_closed(A_val: float, beta_val: float) -> float:
+        s_ab = math.sqrt(A_val / beta_val)
+        return (1.0 / beta_val) + (math.sqrt(math.pi * A_val) / (beta_val ** 1.5)) * math.exp(A_val / beta_val) * float(erfc(-s_ab))
+
+    alpha_rev = 1.0
+    C_rev = 0.5
+    beta_rev = 1.2
+    gamma_f = 0.1
+    A_rev = 2.0 * (math.pi ** 2) * C_rev
+    Z_rev_closed = Z_C_closed(A_rev, beta_rev)
+    Z_rev_quad, _ = quad(lambda E: math.exp(2.0 * math.sqrt(A_rev * E) - beta_rev * E), 0.0, np.inf, epsabs=1e-13, epsrel=1e-13)
+    Z_rev_rel_err = float(abs(Z_rev_closed - Z_rev_quad) / Z_rev_closed)
+    assert Z_rev_rel_err < 1e-12
+
+    def pi_rev(E: float) -> float:
+        return math.exp(2.0 * math.sqrt(A_rev * E) - beta_rev * E) / Z_rev_closed
+
+    def gen_in_term(E: float) -> float:
+        # int_0^inf alpha e^{-beta q} (e^{-gamma_f(E+q)} - e^{-gamma_f E}) dq
+        return pi_rev(E) * alpha_rev * math.exp(-gamma_f * E) * (1.0 / (beta_rev + gamma_f) - 1.0 / beta_rev)
+
+    def gen_out_exact_term(E: float) -> float:
+        if E <= 0.0:
+            return 0.0
+        # Direct q-integral on (0, E): int_0^E alpha e^{2 sqrt(A(E-q)) - 2 sqrt(A E)} (e^{-gamma_f(E-q)} - e^{-gamma_f E}) dq
+        val_q, _ = quad(
+            lambda q: math.exp(2.0 * math.sqrt(A_rev * (E - q)) - 2.0 * math.sqrt(A_rev * E))
+            * (math.exp(-gamma_f * (E - q)) - math.exp(-gamma_f * E)),
+            0.0,
+            E,
+            epsabs=1e-14,
+            epsrel=1e-13,
+            limit=100,
+        )
+        return pi_rev(E) * alpha_rev * val_q
+
+    def gen_out_naive_term(E: float) -> float:
+        if E <= 0.0:
+            return 0.0
+        b_E = math.sqrt(A_rev / E)
+        val_q, _ = quad(
+            lambda q: math.exp(-q * b_E) * (math.exp(-gamma_f * (E - q)) - math.exp(-gamma_f * E)),
+            0.0,
+            E,
+            epsabs=1e-14,
+            epsrel=1e-13,
+            limit=100,
+        )
+        return pi_rev(E) * alpha_rev * val_q
+
+    gen_in_val, _ = quad(gen_in_term, 0.0, 200.0, points=[1.0, 10.0, 40.0], epsabs=1e-14, epsrel=1e-13, limit=200)
+    gen_out_exact_val, _ = quad(gen_out_exact_term, 0.0, 200.0, points=[1.0, 10.0, 40.0], epsabs=1e-14, epsrel=1e-13, limit=200)
+    gen_out_naive_val, _ = quad(gen_out_naive_term, 0.0, 200.0, points=[1.0, 10.0, 40.0], epsabs=1e-14, epsrel=1e-13, limit=200)
+    gen_exact_resid = float(gen_in_val + gen_out_exact_val)
+    gen_naive_resid = float(gen_in_val + gen_out_naive_val)
+    assert abs(gen_exact_resid) < 1e-13
+    assert abs(gen_naive_resid - 0.00632818) < 1e-6
+
+    # Verify exact fixed-n stationary cumulants kappa_n (n = 1..4) of pi(E) proportional to exp(2 sqrt(A_C E) - beta_0 E)
+    # at C = 12, beta_0 = 1.0 against the large-C asymptotic formula n! A T_0^{n+1} + (3/2)(n-1)! T_0^n
+    # using peak-shifted log-density to preserve full float64 precision.
+    log_Z_C12_asymp = A_C / beta_0 - 1.5 * math.log(beta_0) + math.log(2.0 * math.sqrt(math.pi * A_C))
+    # Exact log Z_C(beta_0) = A_C/beta_0 + log(e^{-A_C/beta_0}/beta_0 + sqrt(pi A_C)/beta_0^{3/2} erfc(-sqrt(A_C/beta_0)))
+    exact_Z_pref = math.exp(-A_C / beta_0) / beta_0 + (math.sqrt(math.pi * A_C) / (beta_0 ** 1.5)) * float(erfc(-math.sqrt(A_C / beta_0)))
+    log_Z_C12_exact = A_C / beta_0 + math.log(exact_Z_pref)
+    log_Z_C12_asymp_err = float(abs(log_Z_C12_exact - log_Z_C12_asymp))
+    assert log_Z_C12_asymp_err < 1e-13
+
+    def pi_C12(E: float) -> float:
+        return math.exp((2.0 * math.sqrt(A_C * E) - beta_0 * E) - log_Z_C12_exact)
+
+    E_lo_c12 = max(0.0, E_0 - 14.0 * math.sqrt(k2_can))
+    E_hi_c12 = E_0 + 18.0 * math.sqrt(k2_can)
+    # Smooth peak-localized integrand: composite 256-pt Gauss-Legendre avoids cancellation warnings
+    xi_c12, wi_c12 = np.polynomial.legendre.leggauss(256)
+    E_gl_c12 = 0.5 * (E_hi_c12 - E_lo_c12) * xi_c12 + 0.5 * (E_lo_c12 + E_hi_c12)
+    w_gl_c12 = 0.5 * (E_hi_c12 - E_lo_c12) * wi_c12
+    p_gl_c12 = np.exp((2.0 * np.sqrt(A_C * E_gl_c12) - beta_0 * E_gl_c12) - log_Z_C12_exact)
+    mu1_C12 = float(np.dot(w_gl_c12, E_gl_c12 * p_gl_c12))
+    dE_c12 = E_gl_c12 - mu1_C12
+    m2_C12 = float(np.dot(w_gl_c12, (dE_c12 ** 2) * p_gl_c12))
+    m3_C12 = float(np.dot(w_gl_c12, (dE_c12 ** 3) * p_gl_c12))
+    m4_C12 = float(np.dot(w_gl_c12, (dE_c12 ** 4) * p_gl_c12))
+    kappas_C12_num = [mu1_C12, m2_C12, m3_C12, m4_C12 - 3.0 * (m2_C12 ** 2)]
+    kappas_C12_asymp = [
+        math.factorial(n_k) * A_C * (T_0 ** (n_k + 1)) + 1.5 * math.factorial(n_k - 1) * (T_0 ** n_k)
+        for n_k in (1, 2, 3, 4)
+    ]
+    kappas_C12_max_rel_err = float(
+        max(abs(kn - ka) / abs(ka) for kn, ka in zip(kappas_C12_num, kappas_C12_asymp))
+    )
+    assert kappas_C12_max_rel_err < 1e-11
+
     return {
         "C": C,
         "c": c,
@@ -1023,6 +1273,22 @@ def run_f3_jt_sk_ward_and_fdt(rng: np.random.Generator) -> dict:
         "eq_fdt_tier2_gauss_K4_ratio": k4_gauss_eq / k4_can,
         "eq_fdt_tier3_km_K4_ratio": k4_km_eq / k4_can,
         "eq_fdt_hj_canonical_max_resid": hj_max_resid,
+        "evap_K3_frozen_at_u30": K3_frozen_u30,
+        "evap_K3_state_lead_at_u30": K3_state_formula_u30,
+        "evap_K3_state_lead_ode_rel_err": K3_state_ode_rel_err,
+        "naive_bd_finite_q_db_min_log_err": naive_bd_finite_q_db_min_err,
+        "naive_bd_finite_q_db_max_log_err": naive_bd_finite_q_db_max_err,
+        "exact_ediff_jump_finite_q_db_max_log_err": exact_ediff_finite_q_db_max_err,
+        "exact_ediff_jump_curv_rel_err_q0p05": ediff_curv_rel_err,
+        "markov_coarse_grain_ratio_gammaE_over_T0": markov_timescale_ratio_T0,
+        "ediff_Z_C0p5_beta1p2_closed": Z_rev_closed,
+        "ediff_Z_C0p5_beta1p2_quad_rel_err": Z_rev_rel_err,
+        "ediff_generator_integral_in": float(gen_in_val),
+        "ediff_generator_integral_out_exact": float(gen_out_exact_val),
+        "ediff_generator_integral_exact_resid": gen_exact_resid,
+        "ediff_generator_integral_naive_resid": gen_naive_resid,
+        "ediff_C12_logZ_asymp_err": log_Z_C12_asymp_err,
+        "ediff_C12_fixed_n_cumulants_max_rel_err": kappas_C12_max_rel_err,
         "_plot": {
             "u_grid": u_grid.tolist(),
             "T_exact": T_exact.tolist(),
@@ -1329,6 +1595,212 @@ def run_f4_horizon_hadamard_and_udw() -> dict:
     u1_c0_min = float(-opt_c0.fun)
     assert u1_c0_min > 0.001876
 
+    # Major Point 1: Constructive Mellin positive-type extension T_M = T_0 + c_* delta(x) delta(y),
+    # sharp contact threshold c_*, Dawson-integral cross-check, and scale-averaged Q_ell limit
+    # 1. Compute sharp c_* via spectral formula, direct wide-panel angular integral, and sech^2 IBP identity
+    c_star_spec = float(
+        np.dot(ww_a1, att_a1 / (np.sinh(math.pi * w_a1 / kappa) ** 2)) / (2.0 * kappa)
+    )
+    # Direct wide-panel angular integral on [-1600, 1600]: (1 / (4 pi kappa^2)) int K(z/kappa) log[u_z (1-u_z)] dz
+    z_ang_edges = np.linspace(-1600.0, 1600.0, 101)
+    z_ang_nodes = np.concatenate([0.5 * (b - a) * gl_p + 0.5 * (a + b) for a, b in zip(z_ang_edges[:-1], z_ang_edges[1:])])
+    z_ang_weights = np.concatenate([0.5 * (b - a) * gl_w for a, b in zip(z_ang_edges[:-1], z_ang_edges[1:])])
+    K_ang_wide = np.cos(np.outer(z_ang_nodes / kappa, w_a1)) @ (ww_a1 * f_a1)
+    log_u1mu_wide = -np.abs(z_ang_nodes) - 2.0 * np.log1p(np.exp(-np.abs(z_ang_nodes)))
+    c_star_ang = float(np.dot(z_ang_weights, K_ang_wide * log_u1mu_wide) / (4.0 * math.pi * (kappa**2)))
+    c_star_spec_vs_ang_err = float(abs(c_star_spec - c_star_ang))
+    # Twice-integrated-by-parts sech^2(z/2) angular check (machine precision on [-64, 64]):
+    K_inv2 = np.cos(np.outer(z_a1 / kappa, w_a1)) @ (ww_a1 * (f_a1 / (w_a1**2)))
+    c_star_sech2 = float(np.dot(zw_a1, (0.5 * sech2_a1) * K_inv2) / (4.0 * math.pi))
+    c_star_spec_vs_sech2_err = float(abs(c_star_spec - c_star_sech2))
+    assert c_star_spec_vs_ang_err < 5e-9
+    assert c_star_spec_vs_sech2_err < 1e-14
+    assert abs(c_star_spec - 0.074434671717) < 1e-9
+
+    # 2. Direct Mellin frequency-space evaluation of <T_M - W_Unruh, Q_a x conj(Q_a)>
+    #    using exponential change of variables u = exp(t) on t in [-32, 3.2] (machine precision)
+    t_mel, wt_mel = gl_nodes(320, -32.0, 3.2)
+    u_mel = np.exp(t_mel)
+    exp_half_u2 = np.exp(-0.5 * (u_mel**2))
+    k_mel = w_a1 / kappa
+    mel_kernel_w = (ww_a1 / (2.0 * math.pi * kappa)) * (k_mel / np.sinh(math.pi * k_mel)) * att_a1
+
+    def delta_FM_mellin(a_val: float) -> float:
+        # R_k(Q_a) = -(1/(i k)) int_0^inf u^{i k} (i a - u) exp(i a u - u^2/2) du
+        # L_k(Q_a) = conj(R_{-k}(Q_a)), so R_k * conj(L_k) = R_k * R_{-k}
+        base_f = wt_mel * u_mel * (1j * a_val - u_mel) * np.exp(1j * a_val * u_mel) * exp_half_u2
+        phase_pos = np.exp(1j * np.outer(k_mel, t_mel))
+        R_pos = -(phase_pos @ base_f) / (1j * k_mel)
+        R_neg = -(np.conj(phase_pos) @ base_f) / (-1j * k_mel)
+        return float(np.dot(mel_kernel_w, np.real(R_pos * R_neg)))
+
+    # 3. Independent Dawson-integral cross-check of Delta F_raw(a)
+    s_dw, sw_dw = gl_nodes(48, 0.0, 1.0)
+    def delta_F_raw_dawson(a_val: float) -> float:
+        # int_0^inf r exp(-b r^2) cos(a r) dr = [1 - 2 t D(t)] / (2 b), t = a / (2 sqrt(b))
+        b_mat = 0.5 - 0.25 * s_dw[:, None] * sech2_a1[None, :]
+        t_mat = a_val / (2.0 * np.sqrt(b_mat))
+        r_int = (1.0 - 2.0 * t_mat * dawsn(t_mat)) / (2.0 * b_mat)
+        z_int = (sw_dw @ r_int) * (0.25 * sech2_a1)
+        return float(np.dot(zw_a1, z_int * K_a1) / (2.0 * math.pi * (kappa**2)))
+
+    mellin_vs_raw_plus_cstar_max_err = 0.0
+    dawson_vs_raw_max_err = 0.0
+    F_M_by_a = {}
+    for a_chk in (1.5, u1_a_star, 3.0):
+        vac_chk = float(0.25 * (math.exp(-(a_chk**2)) - math.sqrt(math.pi) * a_chk * erfc(a_chk)))
+        dF_raw_chk = float(np.dot(rw_a1, h_a1 * np.cos(a_chk * r_a1)))
+        dF_dw_chk = delta_F_raw_dawson(a_chk)
+        dF_mel_chk = delta_FM_mellin(a_chk)
+        dawson_vs_raw_max_err = max(dawson_vs_raw_max_err, abs(dF_dw_chk - dF_raw_chk))
+        mellin_vs_raw_plus_cstar_max_err = max(
+            mellin_vs_raw_plus_cstar_max_err,
+            abs(dF_mel_chk - (dF_raw_chk + c_star_spec)),
+        )
+        F_M_by_a[f"{a_chk:.4f}"] = vac_chk + dF_mel_chk
+    F_M_at_a_star = F_M_by_a[f"{u1_a_star:.4f}"]
+    assert dawson_vs_raw_max_err < 1e-13
+    assert mellin_vs_raw_plus_cstar_max_err < 1e-13
+    assert F_M_at_a_star > 0.072
+
+    # 4. Scale-averaged Schwartz sequence Q_ell(x) = (1/ell) int_0^ell Q_0(e^v x) dv convergence check:
+    #    Split the positive-k integral at band edges (0, 0.5/kappa, 2.5/kappa, ..., k_max),
+    #    separate the exact origin density 1/4 analytically via Si(x) - (1 - cos x)/x, and use
+    #    QUADPACK oscillatory cosine integration for sinc^2(k ell / 2) = 2(1 - cos(k ell))/(k ell)^2,
+    #    cross-checking (k_max=150, n_u=144) vs (k_max=240, n_u=256).
+    def flat_top_bump_deriv(u_arr: np.ndarray) -> np.ndarray:
+        out = np.zeros_like(u_arr)
+        mask = (u_arr > 1.0) & (u_arr < 2.0)
+        x_m = u_arr[mask] - 1.0
+        e1 = np.exp(-1.0 / x_m)
+        e2 = np.exp(-1.0 / (1.0 - x_m))
+        # Q_0(u) = e2 / (e1 + e2) smoothly drops from 1 to 0 on [1, 2]
+        # d/dx [e2 / (e1 + e2)] = -e1 e2 (1/x^2 + 1/(1-x)^2) / (e1 + e2)^2
+        out[mask] = -(e1 * e2) * (1.0 / (x_m**2) + 1.0 / ((1.0 - x_m) ** 2)) / ((e1 + e2) ** 2)
+        return out
+
+    def compute_TM_Qell_suite(n_u_pts: int, k_max_val: float) -> dict[str, float]:
+        u_loc, wu_loc = gl_nodes(n_u_pts, 1.0, 2.0)
+        ln_u_loc = np.log(u_loc)
+        wdQ_loc = wu_loc * flat_top_bump_deriv(u_loc)
+        k_b1 = 0.5 / kappa
+        k_b2 = 2.5 / kappa
+        panels = [(k_b1, k_b2), (k_b2, 4.0), (4.0, 16.0), (16.0, 64.0), (64.0, k_max_val)]
+
+        def density_M_scalar(kv: float) -> float:
+            if kv <= 0.0:
+                return 0.25
+            # I(k) = int_1^2 e^{i k ln u} Q_0'(u) du, |R_k|^2 = |I(k)|^2 / k^2
+            I_k = np.dot(wdQ_loc, np.exp(1j * kv * ln_u_loc))
+            abs_I_sq = float(I_k.real * I_k.real + I_k.imag * I_k.imag)
+            # Overflow-free exact identity:
+            # (pi k / sinh(pi k)) * (2 cosh(pi k) - 2 b(k)) / (4 pi^2 k^2)
+            #   = (1 / (2 pi)) * [tanh(pi k / 2) / k + 2 (1 - b(k)) e^{-pi k} / (k (1 - e^{-2 pi k}))]
+            pk = math.pi * kv
+            if pk < 1e-5:
+                fac = 0.25 * (1.0 - (pk * pk) / 12.0)
+            else:
+                fac = (math.tanh(0.5 * pk) / (2.0 * math.pi * kv))
+                if k_b1 < kv < k_b2:
+                    att_k = -math.expm1(-0.5 * smooth_bump_gamma(kappa * kv) * s_test)
+                    fac += (att_k * math.exp(-pk)) / (math.pi * kv * (-math.expm1(-2.0 * pk)))
+            return fac * abs_I_sq
+
+        def rem_h0(kv: float) -> float:
+            # Exact cancellation-free evaluation of (density_M(k) - 1/4) / k^2 on [0, k_b1] (where b(k) = 1):
+            # I(k) = -1 + k^2 A(k) + i k B(k) => (|I(k)|^2 - 1)/k^2 = -2 A(k) + B(k)^2 + k^2 A(k)^2
+            y_pk = 0.5 * math.pi * kv
+            if y_pk < 0.05:
+                y2 = y_pk * y_pk
+                tanh_over_y = 1.0 - y2 / 3.0 + (2.0 / 15.0) * (y2**2) - (17.0 / 315.0) * (y2**3) + (62.0 / 2835.0) * (y2**4)
+                dfac_over_k2 = ((math.pi**2) / 16.0) * (
+                    -1.0 / 3.0 + (2.0 / 15.0) * y2 - (17.0 / 315.0) * (y2**2) + (62.0 / 2835.0) * (y2**3)
+                )
+            else:
+                tanh_over_y = math.tanh(y_pk) / y_pk
+                dfac_over_k2 = 0.25 * (tanh_over_y - 1.0) / (kv * kv)
+            fac0 = 0.25 * tanh_over_y
+            # sinc_val(x) = sin(x)/x using np.sinc(x / pi)
+            arg_half = 0.5 * kv * ln_u_loc
+            sinc_half = np.sinc(arg_half / math.pi)
+            sinc_full = np.sinc((kv * ln_u_loc) / math.pi)
+            A_k = float(np.dot(wdQ_loc, -0.5 * (ln_u_loc**2) * (sinc_half**2)))
+            B_k = float(np.dot(wdQ_loc, ln_u_loc * sinc_full))
+            dI2_over_k2 = -2.0 * A_k + (B_k * B_k) + (kv * kv) * (A_k * A_k)
+            return dfac_over_k2 + fac0 * dI2_over_k2
+
+        # Precompute non-oscillatory integrals independent of ell
+        I0_nonosc, _ = quad(rem_h0, 0.0, k_b1, epsabs=1e-13, epsrel=1e-13, limit=200)
+        panel_nonosc = sum(
+            quad(lambda kv: density_M_scalar(kv) / (kv * kv), a_p, b_p, epsabs=1e-13, epsrel=1e-13, limit=200)[0]
+            for a_p, b_p in panels
+        )
+
+        out_vals: dict[str, float] = {}
+        for ell_v in (1.0, 10.0, 100.0, 1000.0):
+            # Analytic contribution of constant origin density 1/4 on [0, k_b1]
+            x1 = k_b1 * ell_v
+            si_x1, _ = sici(x1)
+            const_part = (0.5 / ell_v) * (float(si_x1) - (1.0 - math.cos(x1)) / x1)
+            I0_cos, _ = quad(rem_h0, 0.0, k_b1, weight="cos", wvar=ell_v, epsabs=1e-13, epsrel=1e-13, limit=200)
+            panel_cos = sum(
+                quad(
+                    lambda kv: density_M_scalar(kv) / (kv * kv),
+                    a_p,
+                    b_p,
+                    weight="cos",
+                    wvar=ell_v,
+                    epsabs=1e-13,
+                    epsrel=1e-13,
+                    limit=200,
+                )[0]
+                for a_p, b_p in panels
+            )
+            out_vals[str(int(ell_v))] = float(
+                const_part + (2.0 / (ell_v * ell_v)) * ((I0_nonosc - I0_cos) + (panel_nonosc - panel_cos))
+            )
+        return out_vals
+
+    TM_Qell_vals_ref = compute_TM_Qell_suite(144, 150.0)
+    TM_Qell_vals = compute_TM_Qell_suite(256, 240.0)
+    TM_Qell_conv_max_diff = float(
+        max(abs(TM_Qell_vals[k] - TM_Qell_vals_ref[k]) for k in TM_Qell_vals)
+    )
+    assert TM_Qell_conv_max_diff < 1e-10
+    assert TM_Qell_vals["1000"] < TM_Qell_vals["100"] < TM_Qell_vals["10"] < TM_Qell_vals["1"]
+    assert abs(TM_Qell_vals["1"] - 0.42520870) < 1e-7
+    assert abs(TM_Qell_vals["10"] - 0.11243000) < 1e-7
+    assert abs(TM_Qell_vals["100"] - 0.00804573) < 1e-7
+    assert abs(TM_Qell_vals["1000"] - 0.000787335) < 1e-8
+
+    # High-gap approach of F_M(a) = F_0(a) + c_* to c_* from below (evaluated oscillation-free via Dawson):
+    F_M_high_gap = {}
+    for a_hg in (16.0, 48.0):
+        vac_hg = float(0.25 * (math.exp(-(a_hg**2)) - math.sqrt(math.pi) * a_hg * erfc(a_hg)))
+        F_M_high_gap[str(int(a_hg))] = float(vac_hg + delta_F_raw_dawson(a_hg) + c_star_spec)
+    assert F_M_at_a_star < F_M_high_gap["16"] < F_M_high_gap["48"] < c_star_spec
+
+    # Single-mode four-point distinction: Sperling-Vogel phase-averaged state vs centered quasi-free state
+    # with matching two-point covariance <b_R b_L> = b sqrt(n(n+1)) at T_H/omega = 0.65, Gamma s = 2
+    b_4pt = math.exp(-0.5 * Gamma * s_test)
+    sv_fourpt_NRNL = float((n_be**2) + n_be * (n_be + 1.0))
+    qf_fourpt_NRNL = float((n_be**2) + (b_4pt**2) * n_be * (n_be + 1.0))
+    fourpt_sv_minus_qf = float(sv_fourpt_NRNL - qf_fourpt_NRNL)
+    # Cross-check Sperling-Vogel <N_R N_L> directly against truncated Fock density matrix (N_cut = 32)
+    c_4pt = np.array([(x**n_i) / cosh_r for n_i in range(32)], dtype=np.float64)
+    c_4pt /= np.linalg.norm(c_4pt)
+    sv_fourpt_fock32 = float(sum((c_4pt[n_i] ** 2) * (n_i ** 2) for n_i in range(32)))
+    assert abs(sv_fourpt_fock32 - sv_fourpt_NRNL) < 1e-13
+    assert abs(sv_fourpt_NRNL - 0.42293033) < 1e-7
+    assert abs(qf_fourpt_NRNL - 0.12187693) < 1e-7
+    assert abs(fourpt_sv_minus_qf - (1.0 - b_4pt**2) * n_be * (n_be + 1.0)) < 1e-14
+
+    # Smooth-band response curves F_A(a), F_0(a), F_M(a) = F_0(a) + c_* for Fig. 3(c)
+    a_plot_grid = np.linspace(0.5, 4.5, 161)
+    F_A_plot = np.array([0.25 * (math.exp(-(av**2)) - math.sqrt(math.pi) * av * erfc(av)) for av in a_plot_grid])
+    F_0_plot = np.array([total_raw_a(float(av)) for av in a_plot_grid])
+    F_M_plot = F_0_plot + c_star_spec
+
     # Layer-2 L2-2 audit: single-shot Fock projection firewall floor across n = 0..10 & projector non-commutativity
     single_shot_energies = [omega * (cosh_2r * (2 * n_i + 1) - 1.0) for n_i in range(11)]
     l2_firewall_floor = 2.0 * omega * n_be
@@ -1387,6 +1859,19 @@ def run_f4_horizon_hadamard_and_udw() -> dict:
         "u1_contact_scale_invariance_max_diff": u1_scale_invariance_max_diff,
         "u1_contact_a_star": u1_a_star,
         "u1_contact_c0_min": u1_c0_min,
+        "mellin_c_star_spectral": c_star_spec,
+        "mellin_c_star_angular": c_star_ang,
+        "mellin_c_star_spec_vs_ang_err": c_star_spec_vs_ang_err,
+        "mellin_c_star_spec_vs_sech2_err": c_star_spec_vs_sech2_err,
+        "mellin_vs_raw_plus_cstar_max_err": mellin_vs_raw_plus_cstar_max_err,
+        "dawson_vs_raw_max_err": dawson_vs_raw_max_err,
+        "mellin_F_M_at_a_star": F_M_at_a_star,
+        "mellin_F_M_high_gap": F_M_high_gap,
+        "mellin_scale_avg_Qell_vals": TM_Qell_vals,
+        "mellin_scale_avg_Qell_conv_max_diff": TM_Qell_conv_max_diff,
+        "single_mode_fourpt_sv_NRNL": sv_fourpt_NRNL,
+        "single_mode_fourpt_qf_NRNL": qf_fourpt_NRNL,
+        "single_mode_fourpt_sv_minus_qf": fourpt_sv_minus_qf,
         "layer2_single_shot_firewall_floor": l2_firewall_floor,
         "layer2_single_shot_n0_energy": single_shot_energies[0],
         "layer2_single_shot_ensemble_match_err": l2_ensemble_match_err,
@@ -1403,6 +1888,13 @@ def run_f4_horizon_hadamard_and_udw() -> dict:
             "eps_uv_grid": eps_uv_grid.tolist(),
             "delta_F_udw": delta_F_udw_arr.tolist(),
             "F_udw_A": float(F_udw_A),
+            "a_plot_grid": a_plot_grid.tolist(),
+            "F_A_plot": F_A_plot.tolist(),
+            "F_0_plot": F_0_plot.tolist(),
+            "F_M_plot": F_M_plot.tolist(),
+            "c_star": c_star_spec,
+            "a_star": u1_a_star,
+            "F_0_a_star": float(-u1_c0_min),
         },
     }
 
@@ -1635,6 +2127,28 @@ def run_f5_greybody_and_kms_locking() -> dict:
     locked_powers = {str(lam): lam * base_power for lam in lambdas}
     assert locked_powers["0.0"] == 0.0 and locked_powers["1.0"] > 0.0
 
+    # Major Point 3: Distant bosonic output mode b_out = sqrt(T) b_H + sqrt(1-T) a_in
+    # vs isolated horizon-origin thermal port B_hor = sqrt(T) J_H at omega = 0.4, r_s = 1
+    w_port = 0.4
+    beta_4d = 1.0 / T_H_4d
+    n_H_port = 1.0 / math.expm1(beta_4d * w_port)
+    rho_H_port = 0.5 * w_port
+    DK_H_port = rho_H_port * (1.0 + 2.0 * n_H_port)
+    T_port_open = float(T_scalar_fixed_wt0p4)
+    # Full distant output mode at T = 0 retains vacuum noise omega/2 and spontaneous decay omega/2:
+    DK_out_T0 = 0.5 * w_port * (1.0 + 2.0 * 0.0 * n_H_port)
+    gamma_down_out_T0 = 0.5 * (DK_out_T0 + rho_H_port)
+    gamma_up_out_T0 = 0.5 * (DK_out_T0 - rho_H_port)
+    # Isolated horizon-origin port scales linearly with T, preserves KMS ratio e^{-beta omega}, and vanishes at T = 0:
+    DK_hor_open = T_port_open * DK_H_port
+    rho_hor_open = T_port_open * rho_H_port
+    gamma_down_hor_open = 0.5 * (DK_hor_open + rho_hor_open)
+    gamma_up_hor_open = 0.5 * (DK_hor_open - rho_hor_open)
+    hor_kms_ratio_err = float(abs(gamma_up_hor_open / gamma_down_hor_open - math.exp(-beta_4d * w_port)))
+    DK_hor_T0 = 0.0 * DK_H_port
+    assert abs(DK_out_T0 - 0.5 * w_port) < 1e-15 and gamma_down_out_T0 > 0.19 and gamma_up_out_T0 == 0.0
+    assert hor_kms_ratio_err < 1e-15 and DK_hor_T0 == 0.0
+
     return {
         "max_wronskian_abs_err_main_grid_45pts": max_wron_abs_err_all,
         "max_wronskian_abs_err_main_grid_T_gt_1e-6": max_wron_abs_err_gt1e6,
@@ -1654,6 +2168,10 @@ def run_f5_greybody_and_kms_locking() -> dict:
         "low_freq_wt0p04_graviton_sigma_over_A": float(graviton_low_ratio),
         "m9_fixed_wr_s_0p4_scalar_T": float(T_scalar_fixed_wt0p4),
         "kms_locked_scalar_power_by_lambda": locked_powers,
+        "distant_output_mode_DK_at_T0": float(DK_out_T0),
+        "distant_output_mode_gamma_down_at_T0": float(gamma_down_out_T0),
+        "horizon_origin_port_kms_ratio_err": hor_kms_ratio_err,
+        "horizon_origin_port_DK_at_T0": float(DK_hor_T0),
         "_plot": {
             "w_tilde": w_tilde_grid.tolist(),
             "A_hor_grid": A_hor_grid.tolist(),
@@ -1919,35 +2437,64 @@ def make_figures(res1: dict, res2: dict, res3: dict, res4: dict, res5: dict, res
     fig.savefig(FIG_DIR / "fig2_jt_sk_evaporation_fdt.pdf")
     plt.close(fig)
 
-    # Figure 3: Bosonic All-s Exact Law & Free Chiral Boson Point-Split Non-Hadamard / Raw-Cutoff UDW Defect
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.4, 3.8))
+    # Figure 3: Bosonic All-s Exact Law, Point-Split/Raw UDW Defect, and Smooth-Band F_0(a) vs Mellin F_M(a)
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(11.8, 3.65))
     p4 = res4["_plot"]
-    ax1.plot(p4["s_grid"], p4["E_exact_boson"], color="#0d47a1", lw=2.0,
-             label=r"Exact all-$s$: $4\omega n_{\mathrm{BE}}(1+n_{\mathrm{BE}})(1-e^{-\Gamma s/2})$")
-    ax1.plot(p4["s_grid"][::3], p4["E_cut24"][::3], "o", color="#ef6c00", ms=4.2,
-             label=r"Fock substitution ($N_{\mathrm{cut}}=24$)")
-    ax1.plot(p4["s_grid"][1::3], p4["E_cut32"][1::3], "x", color="#2e7d32", ms=4.8,
-             label=r"Fock substitution ($N_{\mathrm{cut}}=32$)")
+    ax1.plot(p4["s_grid"], p4["E_exact_boson"], color="#0d47a1", lw=1.9,
+             label=r"Exact: $4\omega n_{\mathrm{BE}}(1+n_{\mathrm{BE}})(1-e^{-\Gamma s/2})$")
+    ax1.plot(p4["s_grid"][::4], p4["E_cut24"][::4], "o", color="#ef6c00", ms=3.8,
+             label=r"Fock ($N_{\mathrm{cut}}=24$)")
+    ax1.plot(p4["s_grid"][2::4], p4["E_cut32"][2::4], "x", color="#2e7d32", ms=4.5,
+             label=r"Fock ($N_{\mathrm{cut}}=32$)")
     ax1.set_xlabel(r"Auxiliary parameter $s$")
-    ax1.set_ylabel(r"Mode Hamiltonian $\langle H_A(\omega)\rangle_{\rho_B(s)} / \omega$")
-    ax1.set_title(r"(a) Exact bosonic all-$s$ mode law ($T_H/\omega=0.65$)")
-    ax1.legend(loc="lower right", frameon=True)
+    ax1.set_ylabel(r"$\langle H_A(\omega)\rangle_{\rho_B(s)} / \omega$")
+    ax1.set_title(r"(a) Bosonic all-$s$ law ($T_H/\omega=0.65$)", fontsize=9.5)
+    ax1.legend(loc="lower right", frameon=True, fontsize=7.0)
 
-    ax2.loglog(p4["eps_vals"], p4["delta_W_const"], color="#c62828", marker="o", ms=3.8,
-               label=r"$\Delta W_J(-\epsilon,+\epsilon)$ (const. $\Gamma$, slope $-2$)")
-    ax2.loglog(p4["eps_vals"], p4["delta_W_band"], color="#6a1b9a", ls="--", marker="s", ms=3.4,
-               label=r"$\Delta W_J(-\epsilon,+\epsilon)$ (smooth bump, slope $-2$)")
+    ax2.loglog(p4["eps_vals"], p4["delta_W_const"], color="#c62828", marker="o", ms=3.4,
+               label=r"$\Delta W_J$ (const. $\Gamma$, slope $-2$)")
+    ax2.loglog(p4["eps_vals"], p4["delta_W_band"], color="#6a1b9a", ls="--", marker="s", ms=3.0,
+               label=r"$\Delta W_J$ (smooth bump, slope $-2$)")
     ax2_r = ax2.twinx()
-    ax2_r.semilogx(p4["eps_uv_grid"], p4["delta_F_udw"], color="#00695c", ls="-.", marker="^", ms=3.8,
-                   label=r"Raw-cutoff $\Delta \mathcal{F}_{\mathrm{raw}}$ (const. $\Gamma$)")
-    ax2_r.axhline(p4["F_udw_A"], color="#00695c", ls=":", lw=1.1, label=r"Unruh $S_{\mathrm{SK}}^{(A)}$ coeff. $\mathcal{F}^{(A)}$")
-    ax2.set_xlabel(r"Horizon point-splitting / UV cutoff $\epsilon$")
-    ax2.set_ylabel(r"Point-split defect $\Delta W_J(-\epsilon,+\epsilon)$", color="#c62828")
-    ax2_r.set_ylabel(r"Leading response coeff. $\Delta \mathcal{F}_{\mathrm{raw}}$", color="#00695c")
-    ax2.set_title(r"(b) Point-split defect ($\epsilon^{-2}$) & raw UDW ($\ln\epsilon^{-1}$)")
+    ax2_r.semilogx(p4["eps_uv_grid"], p4["delta_F_udw"], color="#00695c", ls="-.", marker="^", ms=3.4,
+                   label=r"Raw $\Delta \mathcal{F}_{\mathrm{raw}}$ (const. $\Gamma$)")
+    ax2_r.axhline(p4["F_udw_A"], color="#00695c", ls=":", lw=1.0, label=r"Unruh $\mathcal{F}^{(A)}$")
+    ax2.set_xlabel(r"Point-splitting / UV cutoff $\epsilon$")
+    ax2.set_ylabel(r"$\Delta W_J(-\epsilon,+\epsilon)$", color="#c62828")
+    ax2_r.set_ylabel(r"$\Delta \mathcal{F}_{\mathrm{raw}}$ (const. $\Gamma$)", color="#00695c")
+    ax2.set_title(r"(b) Point-split ($\epsilon^{-2}$) & raw UDW", fontsize=9.5)
     lines1, labels1 = ax2.get_legend_handles_labels()
     lines2, labels2 = ax2_r.get_legend_handles_labels()
-    ax2.legend(lines1 + lines2, labels1 + labels2, loc="lower left", fontsize=6.9, frameon=True)
+    ax2.legend(lines1 + lines2, labels1 + labels2, loc="lower left", fontsize=6.4, frameon=True)
+
+    a_g = np.array(p4["a_plot_grid"])
+    F_A_g = np.array(p4["F_A_plot"])
+    F_0_g = np.array(p4["F_0_plot"])
+    F_M_g = np.array(p4["F_M_plot"])
+    ax3.axhline(0.0, color="black", lw=0.85, ls=":")
+    ax3.axhline(p4["c_star"], color="#1b5e20", lw=1.0, ls=":", label=r"Sharp $c_* = 0.07443$")
+    ax3.plot(a_g, F_M_g, color="#1b5e20", lw=1.9, label=r"Mellin $F_M(a)=F_0(a)+c_*$")
+    ax3.plot(a_g, F_A_g, color="#0d47a1", ls="--", lw=1.4, label=r"Unruh $\mathcal{F}_A(a)$")
+    ax3.plot(a_g, F_0_g, color="#c62828", lw=1.8, label=r"Raw $F_0(a)$ (neg. $a\gtrsim 1.64$)")
+    ax3.fill_between(a_g, F_0_g, 0.0, where=(F_0_g < 0.0), color="#ef9a9a", alpha=0.55)
+    ax3.set_xlabel(r"Dimensionless gap $a = \Omega\sigma_\tau$")
+    ax3.set_ylabel(r"Total detector response")
+    ax3.set_ylim(-0.012, 0.172)
+    ax3.set_title(r"(c) Smooth-band $F_0(a)$ vs. $F_M(a)$", fontsize=9.5)
+    ax3.legend(loc="upper right", frameon=True, fontsize=6.6)
+    axins = ax3.inset_axes([0.35, 0.15, 0.61, 0.26])
+    axins.axhline(0.0, color="black", lw=0.75, ls=":")
+    axins.plot(a_g, F_A_g, color="#0d47a1", ls="--", lw=1.1)
+    axins.plot(a_g, F_0_g, color="#c62828", lw=1.4)
+    axins.fill_between(a_g, F_0_g, 0.0, where=(F_0_g < 0.0), color="#ef9a9a", alpha=0.55)
+    axins.plot([p4["a_star"]], [p4["F_0_a_star"]], "o", color="#880e4f", ms=3.5)
+    axins.annotate(r"$a_*=2.150$", xy=(p4["a_star"], p4["F_0_a_star"]),
+                   xytext=(2.62, -0.00235), fontsize=6.3, color="#880e4f",
+                   arrowprops=dict(arrowstyle="->", lw=0.7, color="#880e4f"))
+    axins.text(2.45, 0.0026, r"Zoom: $F_0(a)<0$", fontsize=6.5, fontweight="bold")
+    axins.set_xlim(1.3, 4.2)
+    axins.set_ylim(-0.0028, 0.0042)
+    axins.tick_params(labelsize=6.5)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "fig3_horizon_hadamard_udw.pdf")
     plt.close(fig)
@@ -1974,7 +2521,7 @@ def make_figures(res1: dict, res2: dict, res3: dict, res4: dict, res5: dict, res
     ax2.plot(p6["k_steps"], p6["F_rad"], color="#0d47a1", marker="o", ms=4.2, label=r"Radiation Petz $F_{\mathrm{rad}}(k)$")
     ax2.plot(p6["k_steps"], p6["F_rem"], color="#2e7d32", marker="s", ms=4.2, label=r"Remnant Petz $F_{\mathrm{rem}}(k)$")
     ax2.step(p6["k_steps"], p6["F_bound"], where="mid", color="#ef6c00", ls="--", lw=1.6,
-             label=r"Bottleneck cap $\min(1, d_{\mathrm{BH}}^2/d_C^2)$ [Paper 1 Thm. 5]")
+             label=r"Bottleneck cap $\min(1, d_{\mathrm{BH}}^2/d_C^2)$ [Soga 2026]")
     ax2.set_xlabel(r"Emitted radiation qubits $k$ ($d_{\mathrm{BH}} = 2^{8-k}$)")
     ax2.set_ylabel(r"Entanglement fidelity $F_e$")
     ax2.set_ylim(0.18, 1.07)

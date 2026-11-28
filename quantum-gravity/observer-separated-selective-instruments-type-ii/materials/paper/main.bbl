@@ -1,0 +1,394 @@
+\begin{thebibliography}{10}
+
+\bibitem{Soga2026OSTQD}
+Yohtaro Soga.
+\newblock Observer-separated two-time quantum dynamics: Local horizon
+  obstructions, cross-perspective consistency, and finite-dimensional
+  evaporation bounds.
+\newblock Preprint (provisional public PDF:
+  \url{https://gawakkyu0603-bit.github.io/physics/downloads/ostqd.pdf}), 2026.
+
+\bibitem{Soga2026OSTQDSK}
+Yohtaro Soga.
+\newblock Consistency audits of observer-separated open dynamics in 2d dilaton
+  gravity: {KMS} covariance, non-{G}aussian {JT} fluctuations, and
+  chiral-horizon obstructions.
+\newblock Preprint (provisional public PDF:
+  \url{https://gawakkyu0603-bit.github.io/physics/downloads/ostqd-sk-jt.pdf}),
+  2026.
+
+\bibitem{Oas2014}
+Gary Oas, J.~Acacio de~Barros, and Claudio Carvalhaes.
+\newblock Exploring non-signalling polytopes with negative probability.
+\newblock {\em Physica Scripta}, T163:014034, 2014.
+
+\bibitem{Kantorovich1948}
+L.~V. Kantorovich.
+\newblock Functional analysis and applied mathematics.
+\newblock {\em Uspekhi Matematicheskikh Nauk}, 3(6(28)):89--185, 1948.
+\newblock English translation by C.~D.~Benster, National Bureau of Standards
+  Report~1509 (1952).
+
+\bibitem{Gustafson1968}
+Karl Gustafson.
+\newblock The angle of an operator and positive operator products.
+\newblock {\em Bulletin of the American Mathematical Society}, 74(3):488--492,
+  1968.
+
+\bibitem{Hawking1975}
+S.~W. Hawking.
+\newblock Particle creation by black holes.
+\newblock {\em Communications in Mathematical Physics}, 43:199--220, 1975.
+
+\bibitem{Unruh1976}
+W.~G. Unruh.
+\newblock Notes on black-hole evaporation.
+\newblock {\em Physical Review D}, 14:870--892, 1976.
+
+\bibitem{Page1993}
+Don~N. Page.
+\newblock Information in black hole radiation.
+\newblock {\em Physical Review Letters}, 71:3743--3746, 1993.
+
+\bibitem{UnruhWald2017}
+W.~G. Unruh and Robert~M. Wald.
+\newblock Information loss.
+\newblock {\em Reports on Progress in Physics}, 80(9):092002, 2017.
+
+\bibitem{NomuraVarelaWeinberg2013}
+Yasunori Nomura, Jaime Varela, and Sean~J. Weinberg.
+\newblock Complementarity endures: no firewall for an infalling observer.
+\newblock {\em Journal of High Energy Physics}, 2013(03):059, 2013.
+
+\bibitem{Susskind1993}
+Leonard Susskind, L{\'a}rus Thorlacius, and John Uglum.
+\newblock The stretched horizon and black hole complementarity.
+\newblock {\em Physical Review D}, 48:3743--3761, 1993.
+
+\bibitem{AMPS2013}
+Ahmed Almheiri, Donald Marolf, Joseph Polchinski, and James Sully.
+\newblock Black holes: complementarity or firewalls?
+\newblock {\em Journal of High Energy Physics}, 2013(02):062, 2013.
+
+\bibitem{Penington2020}
+Geoffrey Penington.
+\newblock Entanglement wedge reconstruction and the information paradox.
+\newblock {\em Journal of High Energy Physics}, 2020(09):002, 2020.
+
+\bibitem{AlmheiriIslands2020}
+Ahmed Almheiri, Thomas Hartman, Juan Maldacena, Edgar Shaghoulian, and
+  Amirhossein Tajdini.
+\newblock Replica wormholes and the entropy of {H}awking radiation.
+\newblock {\em Journal of High Energy Physics}, 2020(05):013, 2020.
+
+\bibitem{PSSY2022}
+Geoff Penington, Stephen~H. Shenker, Douglas Stanford, and Zhenbin Yang.
+\newblock Replica wormholes and the black hole interior.
+\newblock {\em Journal of High Energy Physics}, 2022(03):205, 2022.
+
+\bibitem{ParisiWu1981}
+Giorgio Parisi and Yong-Shi Wu.
+\newblock Perturbation theory without gauge fixing.
+\newblock {\em Scientia Sinica}, 24(4):483--496, 1981.
+
+\bibitem{BPS1984}
+T.~Banks, L.~Susskind, and M.~E. Peskin.
+\newblock Difficulties for the evolution of pure states into mixed states.
+\newblock {\em Nuclear Physics B}, 244:125--134, 1984.
+
+\bibitem{Kay2009}
+Alastair Kay, Dagomir Kaszlikowski, and Ravishankar Ramanathan.
+\newblock Optimal cloning and singlet monogamy.
+\newblock {\em Physical Review Letters}, 103:050501, 2009.
+
+\bibitem{Schumacher1996}
+Benjamin Schumacher.
+\newblock Sending entanglement through noisy quantum channels.
+\newblock {\em Physical Review A}, 54:2614--2628, 1996.
+
+\bibitem{Petz1986}
+D{\'e}nes Petz.
+\newblock Sufficient subalgebras and the relative entropy of states of a von
+  {N}eumann algebra.
+\newblock {\em Communications in Mathematical Physics}, 105:123--131, 1986.
+
+\bibitem{Schwinger1961}
+Julian Schwinger.
+\newblock Brownian motion of a quantum oscillator.
+\newblock {\em Journal of Mathematical Physics}, 2:407--432, 1961.
+
+\bibitem{Keldysh1964}
+L.~V. Keldysh.
+\newblock Diagram technique for nonequilibrium processes.
+\newblock {\em Soviet Physics JETP}, 20:1018--1026, 1965.
+\newblock Russian original: Zh.\ Eksp.\ Teor.\ Fiz.\ 47, 1515 (1964).
+
+\bibitem{FeynmanVernon1963}
+R.~P. Feynman and F.~L. Vernon.
+\newblock The theory of a general quantum system interacting with a linear
+  dissipative system.
+\newblock {\em Annals of Physics}, 24:118--173, 1963.
+
+\bibitem{WisemanDiosi2001}
+H.~M. Wiseman and L.~Di{\'o}si.
+\newblock Complete parameterization, and invariance, of diffusive quantum
+  trajectories for {M}arkovian open systems.
+\newblock {\em Chemical Physics}, 268(1--3):91--104, 2001.
+
+\bibitem{WisemanJonesDoherty2007}
+H.~M. Wiseman, S.~J. Jones, and A.~C. Doherty.
+\newblock Steering, entanglement, nonlocality, and the
+  {E}instein--{P}odolsky--{R}osen paradox.
+\newblock {\em Physical Review Letters}, 98:140402, 2007.
+
+\bibitem{AdlamRovelli2022}
+Emily Adlam and Carlo Rovelli.
+\newblock Information is physical: cross-perspective links in relational
+  quantum mechanics.
+\newblock arXiv:2203.13342 [quant-ph], 2022.
+
+\bibitem{FrauchigerRenner2018}
+Daniela Frauchiger and Renato Renner.
+\newblock Quantum theory cannot consistently describe the use of itself.
+\newblock {\em Nature Communications}, 9:3711, 2018.
+
+\bibitem{Bong2020}
+Kok-Wei Bong, An{\'i}bal Utreras-Alarc{\'o}n, Farzad Ghafari, Yeong-Cherng
+  Liang, Nora Tischler, Eric~G. Cavalcanti, Geoff~J. Pryde, and Howard~M.
+  Wiseman.
+\newblock A strong no-go theorem on the {W}igner's friend paradox.
+\newblock {\em Nature Physics}, 16:1199--1205, 2020.
+
+\bibitem{OrmrodBarrett2022}
+Nick Ormrod and Jonathan Barrett.
+\newblock A no-go theorem for absolute observed events without inequalities or
+  modal logic.
+\newblock arXiv:2209.03940 [quant-ph], 2022.
+
+\bibitem{OrmrodVilasiniBarrett2023}
+Nick Ormrod, V.~Vilasini, and Jonathan Barrett.
+\newblock Which theories have a measurement problem?
+\newblock arXiv:2303.03353 [quant-ph], 2023.
+
+\bibitem{HausmannRenner2025}
+Ladina Hausmann and Renato Renner.
+\newblock The firewall paradox is {W}igner's friend paradox.
+\newblock arXiv:2504.03835 [quant-ph], 2025.
+
+\bibitem{Walleghem2025}
+Laurens Walleghem, David Schmid, Matthew~F. Pusey, and Renato Renner.
+\newblock Connecting extended {W}igner's friend arguments and noncontextuality.
+\newblock {\em Quantum}, 9:1819, 2025.
+
+\bibitem{Takesaki1973}
+Masamichi Takesaki.
+\newblock Duality for crossed products and the structure of von {N}eumann
+  algebras of type {III}.
+\newblock {\em Acta Mathematica}, 131:249--310, 1973.
+
+\bibitem{Witten2022}
+Edward Witten.
+\newblock Gravity and the crossed product.
+\newblock {\em Journal of High Energy Physics}, 2022(10):008, 2022.
+
+\bibitem{CLPW2023}
+Venkatesa Chandrasekaran, Roberto Longo, Geoff Penington, and Edward Witten.
+\newblock An algebra of observables for de {S}itter space.
+\newblock {\em Journal of High Energy Physics}, 2023(02):082, 2023.
+
+\bibitem{CPW2023}
+Venkatesa Chandrasekaran, Geoff Penington, and Edward Witten.
+\newblock Large {$N$} algebras and generalized entropy.
+\newblock {\em Journal of High Energy Physics}, 2023(04):009, 2023.
+
+\bibitem{JensenSorceSperanza2023}
+Kristan Jensen, Jonathan Sorce, and Antony~J. Speranza.
+\newblock Generalized entropy for general subregions in quantum gravity.
+\newblock {\em Journal of High Energy Physics}, 2023(12):020, 2023.
+
+\bibitem{DeVuyst2024}
+Julian De~Vuyst, Stefan Eccles, Philipp~A. H{\"o}hn, and Josh Kirklin.
+\newblock Gravitational entropy is observer-dependent.
+\newblock arXiv:2405.00114 [hep-th], 2024.
+
+\bibitem{DeVuyst2025}
+Julian De~Vuyst, Stefan Eccles, Philipp~A. H{\"o}hn, and Josh Kirklin.
+\newblock Crossed products and quantum reference frames: on the
+  observer-dependence of gravitational entropy.
+\newblock {\em Journal of High Energy Physics}, 2025(07):063, 2025.
+
+\bibitem{Akers2024}
+Chris Akers, Netta Engelhardt, Daniel Harlow, Geoff Penington, and Shreya
+  Vardhan.
+\newblock The black hole interior from non-isometric codes and complexity.
+\newblock {\em Journal of High Energy Physics}, 2024(06):155, 2024.
+
+\bibitem{Gisin1990}
+Nicolas Gisin.
+\newblock {W}einberg's nonlinear quantum mechanics and supraluminal
+  communications.
+\newblock {\em Physics Letters A}, 143(1--2):1--2, 1990.
+
+\bibitem{Polchinski1991}
+Joseph Polchinski.
+\newblock {W}einberg's nonlinear quantum mechanics and the
+  {E}instein--{P}odolsky--{R}osen paradox.
+\newblock {\em Physical Review Letters}, 66:397--400, 1991.
+
+\bibitem{Beckman2001}
+David Beckman, Daniel Gottesman, M.~A. Nielsen, and John Preskill.
+\newblock Causal and localizable quantum operations.
+\newblock {\em Physical Review A}, 64(5):052309, 2001.
+
+\bibitem{BFSS1997}
+T.~Banks, W.~Fischler, S.~H. Shenker, and L.~Susskind.
+\newblock {$M$} theory as a matrix model: a conjecture.
+\newblock {\em Physical Review D}, 55:5112--5128, 1997.
+
+\bibitem{IKKT1997}
+Nobuyuki Ishibashi, Hikaru Kawai, Yoshihisa Kitazawa, and Asato Tsuchiya.
+\newblock A large-{$N$} reduced model as superstring.
+\newblock {\em Nuclear Physics B}, 498:467--491, 1997.
+
+\bibitem{DaviesLewis1970}
+E.~B. Davies and J.~T. Lewis.
+\newblock An operational approach to quantum probability.
+\newblock {\em Communications in Mathematical Physics}, 17:239--260, 1970.
+
+\bibitem{Groenewold1971}
+H.~J. Groenewold.
+\newblock A problem of information gain by quantal measurements.
+\newblock {\em International Journal of Theoretical Physics}, 4:327--338, 1971.
+
+\bibitem{Holevo1973}
+A.~S. Holevo.
+\newblock Bounds for the quantity of information transmitted by a quantum
+  communication channel.
+\newblock {\em Problems of Information Transmission}, 9(3):177--183, 1973.
+\newblock Russian original: Problemy Peredachi Informatsii 9(3), 3--11 (1973).
+
+\bibitem{Ozawa1984}
+Masanao Ozawa.
+\newblock Quantum measuring processes of continuous observables.
+\newblock {\em Journal of Mathematical Physics}, 25:79--87, 1984.
+
+\bibitem{Ozawa1986}
+Masanao Ozawa.
+\newblock On information gain by quantum measurements of continuous
+  observables.
+\newblock {\em Journal of Mathematical Physics}, 27:759--763, 1986.
+
+\bibitem{HJW1993}
+Lane~P. Hughston, Richard Jozsa, and William~K. Wootters.
+\newblock A complete classification of quantum ensembles having a given density
+  matrix.
+\newblock {\em Physics Letters A}, 183(1):14--18, 1993.
+
+\bibitem{Fine1982}
+Arthur Fine.
+\newblock Hidden variables, joint probability, and the {B}ell inequalities.
+\newblock {\em Physical Review Letters}, 48:291--295, 1982.
+
+\bibitem{AbramskyBrandenburger2011}
+Samson Abramsky and Adam Brandenburger.
+\newblock The sheaf-theoretic structure of non-locality and contextuality.
+\newblock {\em New Journal of Physics}, 13:113036, 2011.
+
+\bibitem{Morris2022}
+Benjamin Morris, Lukas~J. Fiderer, Ben Lang, and Daniel Goldwater.
+\newblock Witnessing {B}ell violations through probabilistic negativity.
+\newblock {\em Physical Review A}, 105(3):032202, 2022.
+
+\bibitem{FewsterVerch2020}
+Christopher~J. Fewster and Rainer Verch.
+\newblock Quantum fields and local measurements.
+\newblock {\em Communications in Mathematical Physics}, 378:851--889, 2020.
+
+\bibitem{Chiribella2009}
+Giulio Chiribella, Giacomo~Mauro D'Ariano, and Paolo Perinotti.
+\newblock Theoretical framework for quantum networks.
+\newblock {\em Physical Review A}, 80(2):022339, 2009.
+
+\bibitem{Watrous2018}
+John Watrous.
+\newblock {\em The Theory of Quantum Information}.
+\newblock Cambridge University Press, 2018.
+
+\bibitem{Umegaki1954}
+Hisaharu Umegaki.
+\newblock Conditional expectation in an operator algebra, {I}.
+\newblock {\em Tohoku Mathematical Journal}, 6(2--3):177--181, 1954.
+
+\bibitem{Segal1960}
+I.~E. Segal.
+\newblock A note on the concept of entropy.
+\newblock {\em Journal of Mathematics and Mechanics}, 9:623--629, 1960.
+
+\bibitem{Araki1976}
+Huzihiro Araki.
+\newblock Relative entropy of states of von {N}eumann algebras.
+\newblock {\em Publications of the Research Institute for Mathematical
+  Sciences}, 11:809--833, 1976.
+
+\bibitem{Araki1977}
+Huzihiro Araki.
+\newblock Relative entropy for states of von {N}eumann algebras {II}.
+\newblock {\em Publications of the Research Institute for Mathematical
+  Sciences}, 13:173--192, 1977.
+
+\bibitem{HaradaKosaki2010}
+Tetsuo Harada and Hideki Kosaki.
+\newblock Trace {J}ensen inequality and related weak majorization in
+  semi-finite von {N}eumann algebras.
+\newblock {\em Journal of Operator Theory}, 63(1):129--150, 2010.
+
+\bibitem{PodsedkowskaWieczorek2017}
+Hanna Pods{\k{e}}dkowska and Rafa{\l} Wieczorek.
+\newblock {H}olevo-type bounds for general quantum system.
+\newblock {\em Reports on Mathematical Physics}, 80(3):349--360, 2017.
+
+\bibitem{LongoWitten2023}
+Roberto Longo and Edward Witten.
+\newblock A note on continuous entropy.
+\newblock {\em Pure and Applied Mathematics Quarterly}, 19(5):2501--2523, 2023.
+
+\bibitem{Welch1974}
+Lloyd~R. Welch.
+\newblock Lower bounds on the maximum cross correlation of signals.
+\newblock {\em IEEE Transactions on Information Theory}, 20(3):397--399, 1974.
+
+\bibitem{DeWolfeHigginbotham2023}
+Oliver DeWolfe and Kenneth Higginbotham.
+\newblock Non-isometric codes for the black hole interior from fundamental and
+  effective dynamics.
+\newblock {\em Journal of High Energy Physics}, 2023(09):068, 2023.
+
+\bibitem{Donadi2021}
+Sandro Donadi, Kristian Piscicchia, Catalina Curceanu, Lajos Di{\'o}si,
+  Matthias Laubenstein, and Angelo Bassi.
+\newblock Underground test of gravity-related wave function collapse.
+\newblock {\em Nature Physics}, 17:74--78, 2021.
+
+\bibitem{Oppenheim2023PRX}
+Jonathan Oppenheim.
+\newblock A postquantum theory of classical gravity?
+\newblock {\em Physical Review X}, 13:041040, 2023.
+
+\bibitem{Oppenheim2023NatComm}
+Jonathan Oppenheim, Carlo Sparaciari, Barbara {\v{S}}oda, and Zachary
+  Weller-Davies.
+\newblock Gravitationally induced decoherence vs space-time diffusion: testing
+  the quantum nature of gravity.
+\newblock {\em Nature Communications}, 14:7910, 2023.
+
+\bibitem{DSW2023}
+Daine~L. Danielson, Gautam Satishchandran, and Robert~M. Wald.
+\newblock Killing horizons decohere quantum superpositions.
+\newblock {\em Physical Review D}, 108:025007, 2023.
+
+\bibitem{Michel2026}
+Alexander Michel, Jaroslav Scheinpflug, and Xi~Yin.
+\newblock 99.9\ldots\% of the {$SU(2)$} {BFSS} ground state.
+\newblock arXiv:2611.09837 [hep-th], 2026.
+
+\end{thebibliography}

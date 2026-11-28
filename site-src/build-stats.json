@@ -1,34 +1,34 @@
 {
   "en/quantum-gravity/ostqd/general.html": {
-    "source_text_characters_including_tex": 7894,
-    "source_words_including_tex": 1163,
+    "source_text_characters_including_tex": 9598,
+    "source_words_including_tex": 1401,
     "math_expressions": 0,
     "display_equations": 0,
-    "figures": 1,
+    "figures": 4,
     "tables": 1,
     "h2_sections": 11
   },
   "en/quantum-gravity/ostqd/student.html": {
-    "source_text_characters_including_tex": 7651,
-    "source_words_including_tex": 1163,
-    "math_expressions": 0,
-    "display_equations": 11,
-    "figures": 1,
+    "source_text_characters_including_tex": 9216,
+    "source_words_including_tex": 1367,
+    "math_expressions": 1,
+    "display_equations": 12,
+    "figures": 4,
     "tables": 1,
     "h2_sections": 10
   },
   "en/quantum-gravity/ostqd/expert.html": {
-    "source_text_characters_including_tex": 10486,
-    "source_words_including_tex": 1411,
-    "math_expressions": 0,
-    "display_equations": 6,
-    "figures": 1,
+    "source_text_characters_including_tex": 11412,
+    "source_words_including_tex": 1519,
+    "math_expressions": 1,
+    "display_equations": 7,
+    "figures": 4,
     "tables": 1,
     "h2_sections": 10
   },
   "en/quantum-gravity/ostqd-sk-jt/general.html": {
-    "source_text_characters_including_tex": 11540,
-    "source_words_including_tex": 1672,
+    "source_text_characters_including_tex": 11586,
+    "source_words_including_tex": 1653,
     "math_expressions": 0,
     "display_equations": 0,
     "figures": 5,
@@ -36,21 +36,48 @@
     "h2_sections": 9
   },
   "en/quantum-gravity/ostqd-sk-jt/student.html": {
-    "source_text_characters_including_tex": 12712,
-    "source_words_including_tex": 1661,
-    "math_expressions": 9,
-    "display_equations": 9,
+    "source_text_characters_including_tex": 13361,
+    "source_words_including_tex": 1732,
+    "math_expressions": 11,
+    "display_equations": 11,
     "figures": 5,
     "tables": 2,
     "h2_sections": 10
   },
   "en/quantum-gravity/ostqd-sk-jt/expert.html": {
-    "source_text_characters_including_tex": 18053,
-    "source_words_including_tex": 2220,
-    "math_expressions": 12,
-    "display_equations": 12,
+    "source_text_characters_including_tex": 17385,
+    "source_words_including_tex": 2110,
+    "math_expressions": 14,
+    "display_equations": 14,
     "figures": 5,
     "tables": 2,
     "h2_sections": 11
+  },
+  "en/quantum-gravity/ostqd-layer2-type2/general.html": {
+    "source_text_characters_including_tex": 7227,
+    "source_words_including_tex": 992,
+    "math_expressions": 0,
+    "display_equations": 0,
+    "figures": 5,
+    "tables": 0,
+    "h2_sections": 8
+  },
+  "en/quantum-gravity/ostqd-layer2-type2/student.html": {
+    "source_text_characters_including_tex": 7140,
+    "source_words_including_tex": 930,
+    "math_expressions": 8,
+    "display_equations": 8,
+    "figures": 5,
+    "tables": 0,
+    "h2_sections": 9
+  },
+  "en/quantum-gravity/ostqd-layer2-type2/expert.html": {
+    "source_text_characters_including_tex": 9682,
+    "source_words_including_tex": 1235,
+    "math_expressions": 8,
+    "display_equations": 8,
+    "figures": 5,
+    "tables": 0,
+    "h2_sections": 10
   }
 }

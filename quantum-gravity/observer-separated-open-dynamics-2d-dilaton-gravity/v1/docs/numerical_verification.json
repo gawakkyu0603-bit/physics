@@ -6,7 +6,7 @@
     "scipy": "1.17.1",
     "matplotlib": "3.10.8",
     "platform": "Windows-10-10.0.19045-SP0",
-    "scientific_numeric_fields_f1_to_f6": 258
+    "scientific_numeric_fields_f1_to_f6": 309
   },
   "F1_sk_positivity_and_redfield": {
     "sk_tp_max_err": 0.0,
@@ -29,6 +29,8 @@
     "layer2_unraveling_p0_orig": 1.0,
     "layer2_unraveling_p0_rot": 0.36,
     "layer2_unraveling_cond_coh_rot": 0.48,
+    "no_signaling_local_unitary_remote_marginal_err": 0.0,
+    "no_signaling_local_unitary_vs_dephasing_mismatch": 0.848528137423857,
     "davies_min_choi_eig": 1.8809028481670038e-06,
     "davies_max_tp_err": 4.965068306494546e-16,
     "redfield_s0p05_min_choi_eigs_by_T": {
@@ -90,6 +92,18 @@
     "quasistat_counterexample_p_actual": 0.2689335802032313,
     "quasistat_counterexample_p_gibbs": 0.11920292202211755,
     "quasistat_counterexample_trace_dist": 0.14973065818111378,
+    "quasistat_counterexample_trace_norm": 0.29946131636222756,
+    "quasistat_counterexample_sup_sigmadot_1": 4.477429781013909e-05,
+    "quasistat_counterexample_tracking_bound_slow": 0.31033766034266047,
+    "fast_relax_tracking_lambda_min": 0.13130352854993313,
+    "fast_relax_tracking_max_trace_norm": 0.00031984257780778846,
+    "fast_relax_tracking_analytic_bound": 0.0003409984354922493,
+    "quasistat_sup_sigmadot_z_peak": 1.5434046384182083,
+    "quasistat_sup_sigmadot_exact": 4.4774320469430285e-05,
+    "fast_relax_tracking_lambda_full_hermitian": 0.06565176427496656,
+    "fast_relax_tracking_bound_diag_exact": 0.00034099860806408684,
+    "fast_relax_tracking_bound_full_hermitian": 0.0006819972161281737,
+    "fast_relax_offdiag_sigmax_rate_err": 0.0,
     "multitime_qrt_commuting_decay": -0.0,
     "multitime_qrt_noncommuting_decay": 1.25,
     "multitime_qrt_dirichlet_identity_err": 0.0,
@@ -153,7 +167,23 @@
     "eq_fdt_tier2_gauss_K3_ratio": 1.0,
     "eq_fdt_tier2_gauss_K4_ratio": 1.4999999999999998,
     "eq_fdt_tier3_km_K4_ratio": 1.0,
-    "eq_fdt_hj_canonical_max_resid": 0.0
+    "eq_fdt_hj_canonical_max_resid": 0.0,
+    "evap_K3_frozen_at_u30": -158.79991212847324,
+    "evap_K3_state_lead_at_u30": 28.29173411855015,
+    "evap_K3_state_lead_ode_rel_err": 3.5160793816873256e-15,
+    "naive_bd_finite_q_db_min_log_err": 1.4919721152695242e-05,
+    "naive_bd_finite_q_db_max_log_err": 0.5956360910872895,
+    "exact_ediff_jump_finite_q_db_max_log_err": 0.0,
+    "exact_ediff_jump_curv_rel_err_q0p05": 0.00010558457647108017,
+    "markov_coarse_grain_ratio_gammaE_over_T0": 0.026525823848649224,
+    "ediff_Z_C0p5_beta1p2_closed": 31616.404109395717,
+    "ediff_Z_C0p5_beta1p2_quad_rel_err": 6.903970725773809e-16,
+    "ediff_generator_integral_in": -0.030197370932138527,
+    "ediff_generator_integral_out_exact": 0.030197370932140415,
+    "ediff_generator_integral_exact_resid": 1.887379141862766e-15,
+    "ediff_generator_integral_naive_resid": 0.006328180307366434,
+    "ediff_C12_logZ_asymp_err": 0.0,
+    "ediff_C12_fixed_n_cumulants_max_rel_err": 8.424246444084213e-13
   },
   "F4_horizon_hadamard_and_udw": {
     "T_H": 0.65,
@@ -185,6 +215,27 @@
     "u1_contact_scale_invariance_max_diff": 0.0,
     "u1_contact_a_star": 2.150101038700172,
     "u1_contact_c0_min": 0.001979491041518924,
+    "mellin_c_star_spectral": 0.07443467171702539,
+    "mellin_c_star_angular": 0.07443467266704612,
+    "mellin_c_star_spec_vs_ang_err": 9.500207287516105e-10,
+    "mellin_c_star_spec_vs_sech2_err": 1.2628786905111156e-15,
+    "mellin_vs_raw_plus_cstar_max_err": 4.704570066849101e-15,
+    "dawson_vs_raw_max_err": 2.949029909160572e-17,
+    "mellin_F_M_at_a_star": 0.07245518067550362,
+    "mellin_F_M_high_gap": {
+      "16": 0.07440816538162395,
+      "48": 0.07443175169235838
+    },
+    "mellin_scale_avg_Qell_vals": {
+      "1": 0.4252086957935637,
+      "10": 0.11243000229838046,
+      "100": 0.00804573297575282,
+      "1000": 0.0007873350202832135
+    },
+    "mellin_scale_avg_Qell_conv_max_diff": 2.6645352591003757e-15,
+    "single_mode_fourpt_sv_NRNL": 0.4229303303903311,
+    "single_mode_fourpt_qf_NRNL": 0.12187692554461332,
+    "single_mode_fourpt_sv_minus_qf": 0.3010534048457178,
     "layer2_single_shot_firewall_floor": 0.546833635675059,
     "layer2_single_shot_n0_energy": 0.5468336356750592,
     "layer2_single_shot_ensemble_match_err": 0.0,
@@ -224,7 +275,11 @@
       "0.5": 0.0001352137182628027,
       "0.1": 2.704274365256054e-05,
       "0.0": 0.0
-    }
+    },
+    "distant_output_mode_DK_at_T0": 0.2,
+    "distant_output_mode_gamma_down_at_T0": 0.2,
+    "horizon_origin_port_kms_ratio_err": 1.1275702593849246e-17,
+    "horizon_origin_port_DK_at_T0": 0.0
   },
   "F6_nonisometric_and_page_curve": {
     "model1_jt_S_BH_0": 493.7410112522892,
