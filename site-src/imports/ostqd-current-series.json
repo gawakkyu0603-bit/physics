@@ -1,0 +1,328 @@
+{
+  "schema": 1,
+  "papers": [
+    {
+      "archive": "paper1_ostqd.zip",
+      "archive_sha256": "aacd377717cf5ee5a8ec5196340eb0771ca4d7a7d468d45fda7426d83063368d",
+      "archive_count": 27,
+      "source_prefix": "",
+      "destination": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1",
+      "paper": {
+        "slug": "ostqd",
+        "field": "quantum-gravity",
+        "archive_slug": "observer-separated-two-time-quantum-dynamics",
+        "title": "Observer-Separated Two-Time Quantum Dynamics",
+        "subtitle": "Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds",
+        "author": "Yohtaro Soga",
+        "version": "1",
+        "date": "2026-11-28",
+        "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1",
+        "content_prefix": "ostqd-",
+        "audiences": [
+          "general",
+          "student",
+          "expert"
+        ],
+        "languages": [
+          "en"
+        ],
+        "summary": {
+          "en": "An observer-indexed finite-dimensional framework separates reversible clock evolution from non-selective auxiliary dissipation, with conditional energy-moment, local horizon, joint-channel, shared-record, purity and unassisted compression results."
+        },
+        "short_title": "OSTQD",
+        "audience_descriptions": {
+          "general": {
+            "en": "Explore horizons, observer records, two kinds of quantum evolution, and information recovery through examples."
+          },
+          "student": {
+            "en": "Work through matrix generators, energy variance, a Hawking pair, channel fidelity, pinching, and evaporation models."
+          },
+          "expert": {
+            "en": "Read the assumptions, conditional theorem statements, mathematical constructions, and the limits of the finite models."
+          }
+        },
+        "scope": {
+          "en": [
+            "The guides cover global-state restriction versus autonomous algebra closure, energy moments and local horizon obstructions, the complete achievable joint recovery region and projective shared records, spectral pinching and protected windows, unassisted dimension bottlenecks and finite evaporation examples.",
+            "The finite-dimensional results do not derive a microscopic gravitational rate, a general observer instrument or an emergent spacetime."
+          ]
+        },
+        "hero_figure": "ostqd-observer-domains",
+        "documents": [
+          {
+            "id": "main",
+            "label": "Paper",
+            "path": "downloads/ostqd.pdf",
+            "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/paper/main.pdf",
+            "sha256": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd",
+            "page_count": 24
+          }
+        ],
+        "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials.",
+        "series": "ostqd",
+        "series_order": 1
+      },
+      "document": {
+        "id": "main",
+        "label": "Paper",
+        "path": "downloads/ostqd.pdf",
+        "source_path": "quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/paper/main.pdf",
+        "sha256": "65f6062b73d0eb76a2e66e5c5cc2285a5ec7e964129f68df415951d74fd594ab",
+        "page_count": 29
+      },
+      "old_pdf_sha256": "26ee2e2ebc72320136ae9251e5481557bb56fa3c5db8cc256d4e4ea6457809bd",
+      "preserve": [
+        "reading-guides/observer-domains.svg"
+      ],
+      "figures": [
+        {
+          "id": "ostqd-hawking-pair",
+          "source": "paper/figures/fig1_horizon_heating.pdf",
+          "title": "Local dephasing and two-sided energy",
+          "description": "Original Figure 1: thermal excitation rates and fermionic saturation; both one-sided reduced states remain unchanged."
+        },
+        {
+          "id": "ostqd-joint-band",
+          "source": "paper/figures/fig2_joint_vs_separated.pdf",
+          "title": "Achievable recovery region and dimension bottleneck",
+          "description": "Original Figure 2: joint and separate recoveries, sharp unassisted bound, and classical flag control."
+        },
+        {
+          "id": "ostqd-evaporation",
+          "source": "paper/figures/fig3_matrix_evaporation.pdf",
+          "title": "Protected-window evaporation",
+          "description": "Original Figure 3: finite eight-qubit entropy and recovery calculations, not observations."
+        }
+      ],
+      "pages": 29,
+      "refs": 56,
+      "lean": 50,
+      "numeric": 451,
+      "seed": "20261126",
+      "script": "scripts/verify_ostqd.py",
+      "requirements": "scripts/requirements.txt",
+      "overview": "Five conditional finite-dimensional results: autonomous algebra closure versus restriction; energy-moment immunity and local horizon obstructions; complete achievable joint recovery band and shared-record readout; spectral pinching and protected windows; unassisted compression with side-channel controls.",
+      "exclude": [
+        "README.md",
+        "docs/THEORY_BLUEPRINT.md"
+      ],
+      "overview_readme": "# Observer-Separated Two-Time Quantum Dynamics\n\n**Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds**\n\nYohtaro Soga · November 28, 2026\n\nFive conditional finite-dimensional results: autonomous algebra closure versus restriction; energy-moment immunity and local horizon obstructions; complete achievable joint recovery band and shared-record readout; spectral pinching and protected windows; unassisted compression with side-channel controls.\n\n[PDF](v1/paper/main.pdf) · [Research materials and reproduction](v1/README.md) · [Prior literature](v1/PRIOR_ART.md) · [Verification scope](v1/VERIFICATION.md)\n\n## English reading guides\n\n[General readers](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/general.html) · [STEM students and graduates](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/student.html) · [Specialists](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/expert.html)\n\n## OSTQD research series\n\n- Paper 1: Observer-Separated Two-Time Quantum Dynamics (this study)\n- Paper 2: [Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity](../observer-separated-open-dynamics-2d-dilaton-gravity/README.md)\n- Paper 3: [Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras](../observer-separated-selective-instruments-type-ii/README.md)\n",
+      "readme": "# Research materials\n\n**Observer-Separated Two-Time Quantum Dynamics: Local Horizon Obstructions, Cross-Perspective Consistency, and Finite-Dimensional Evaporation Bounds**\n\nYohtaro Soga · November 28, 2026\n\n[Research overview](../README.md) · [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html)\n\n| Resource | Contents |\n| --- | --- |\n| [Manuscript (PDF)](paper/main.pdf) | 29 pages; 56 cited references. |\n| [LaTeX source](paper/main.tex) · [Bibliography](paper/references.bib) | Original source and 3 vector PDF figures. |\n| [Lean sources](lean4/) · [Kernel and axiom log](lean4/VERIFICATION_LOG.txt) | 50 audited public declarations in the supplied build. |\n| [Numerical code](scripts/verify_ostqd.py) · [Recorded data](docs/numerical_verification.json) | 451 scientific numeric fields, seed 20261126. |\n| [Prior literature](PRIOR_ART.md) · [Verification scope](VERIFICATION.md) · [Checksums](SHA256SUMS) | Attribution, analytical boundaries and current file identities. |\n\n## Reproduction\n\nRun on a working copy because Python regenerates the data and figures.\n\n```sh\npython -m pip install -r scripts/requirements.txt\nOPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/verify_ostqd.py\n```\n\nWith elan and the supplied Lean/Mathlib configuration, run `bash verify_lean.sh` from `lean4/`. Compile from `paper/` using `pdflatex main.tex`, `bibtex main`, and two further `pdflatex main.tex` runs. See the verification scope for the exact mathematical hypotheses and analytical boundaries. Cite the manuscript and stable PDF URL (https://gawakkyu0603-bit.github.io/physics/downloads/ostqd.pdf). No new blanket license is assigned.\n"
+    },
+    {
+      "archive": "paper2_sk_jt.zip",
+      "archive_sha256": "bccaf1fbbf8a6c27384297d0bb043fd9a98ddbe0eb6ea05126e1b454d5fe89c0",
+      "archive_count": 31,
+      "source_prefix": "",
+      "destination": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1",
+      "paper": {
+        "slug": "ostqd-sk-jt",
+        "field": "quantum-gravity",
+        "archive_slug": "observer-separated-open-dynamics-2d-dilaton-gravity",
+        "title": "Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity",
+        "subtitle": "KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions",
+        "author": "Yohtaro Soga",
+        "date": "2026-11-28",
+        "version": "1",
+        "series": "ostqd",
+        "series_order": 2,
+        "source_path": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1",
+        "content_prefix": "ostqd-sk-jt-",
+        "audiences": [
+          "general",
+          "student",
+          "expert"
+        ],
+        "languages": [
+          "en"
+        ],
+        "short_title": "OSTQD–SK/JT",
+        "summary": {
+          "en": "A thermal open-system continuation of OSTQD: KMS covariance and uniform-contraction tracking, frozen-coefficient JT cumulants and an exactly reversible energy jump model, and the constructive Mellin positive-type extension of a free chiral horizon defect."
+        },
+        "audience_descriptions": {
+          "general": {
+            "en": "Follow the physical questions behind thermal baths, fluctuating black holes, horizon correlations, and information recovery."
+          },
+          "student": {
+            "en": "Work through thermal channel equations, energy cumulants, point-split correlations, and controlled model comparisons."
+          },
+          "expert": {
+            "en": "Examine the hypotheses, proof strategies, analytic obstructions, quantitative controls, and formalization boundaries."
+          }
+        },
+        "scope": {
+          "en": [
+            "The guides cover SK normalization, KMS covariance and tracking, JT fluctuation closures and a non-explosive detailed-balance process, the sharp smooth-band contact threshold and non-normal quasifree state, per-port locking and separate scattering and information benchmarks.",
+            "The free-current Mellin construction is a positive-type state in the specified model, not a microscopic gravitational mechanism or a universal firewall. General observer instruments and a controlled dynamical endpoint remain open."
+          ]
+        },
+        "hero_figure": "ostqd-sk-jt-overview",
+        "documents": [
+          {
+            "id": "main",
+            "label": "Paper",
+            "path": "downloads/ostqd-sk-jt.pdf",
+            "source_path": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1/paper/main.pdf",
+            "sha256": "8799bcb5c0e2e21ea75b426a4d16d11a5b5d041ea43aaa84364c5c8c069c051a",
+            "page_count": 34
+          }
+        ],
+        "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials."
+      },
+      "document": {
+        "id": "main",
+        "label": "Paper",
+        "path": "downloads/ostqd-sk-jt.pdf",
+        "source_path": "quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1/paper/main.pdf",
+        "sha256": "cdc640d99df6a64483964943d2d3c604f50f72368f4031ed82165335225ae656",
+        "page_count": 42
+      },
+      "old_pdf_sha256": "8799bcb5c0e2e21ea75b426a4d16d11a5b5d041ea43aaa84364c5c8c069c051a",
+      "preserve": [],
+      "figures": [
+        {
+          "id": "ostqd-sk-jt-kms",
+          "source": "paper/figures/fig1_covariant_kms_and_redfield.pdf",
+          "title": "Thermal relaxation and non-secular dynamics",
+          "description": "Original Figure 1: cooling purity increase, Gibbs distance decay and specified Redfield positivity failure."
+        },
+        {
+          "id": "ostqd-sk-jt-evaporation",
+          "source": "paper/figures/fig2_jt_sk_evaporation_fdt.pdf",
+          "title": "JT evaporation and linearized variance",
+          "description": "Original Figure 2: validity indicators and exact-step Gaussian variance; late extrapolations are outside semiclassical control."
+        },
+        {
+          "id": "ostqd-sk-jt-horizon",
+          "source": "paper/figures/fig3_horizon_hadamard_udw.pdf",
+          "title": "Horizon defect and constructive contact extension",
+          "description": "Original Figure 3: raw response becomes negative; the constructive positive-type Mellin response approaches the sharp contact floor 0.07443467."
+        },
+        {
+          "id": "ostqd-sk-jt-greybody",
+          "source": "paper/figures/fig4_greybody_throat_and_nonisometric.pdf",
+          "title": "Static absorption and a separate recovery model",
+          "description": "Original Figure 4: static fixed-frequency absorption and a finite isometric recovery model are distinct calculations."
+        }
+      ],
+      "pages": 42,
+      "refs": 94,
+      "lean": 40,
+      "numeric": 309,
+      "seed": "20261127",
+      "script": "scripts/verify_paper2_sk_jt.py",
+      "requirements": "scripts/requirements.txt",
+      "overview": "Thermal eigenoperators and tracking, frozen JT cumulants and exact reversible entropy-difference jumps, and the constructive Mellin positive-type chiral extension with a sharp contact threshold. Microscopic gravity and a unified endpoint remain open.",
+      "exclude": [
+        "README.md",
+        "docs/THEORY_BLUEPRINT.md"
+      ],
+      "overview_readme": "# Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity\n\n**KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions**\n\nYohtaro Soga · November 28, 2026\n\nThermal eigenoperators and tracking, frozen JT cumulants and exact reversible entropy-difference jumps, and the constructive Mellin positive-type chiral extension with a sharp contact threshold. Microscopic gravity and a unified endpoint remain open.\n\n[PDF](v1/paper/main.pdf) · [Research materials and reproduction](v1/README.md) · [Prior literature](v1/PRIOR_ART.md) · [Verification scope](v1/VERIFICATION.md)\n\n## English reading guides\n\n[General readers](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-sk-jt/general.html) · [STEM students and graduates](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-sk-jt/student.html) · [Specialists](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-sk-jt/expert.html)\n\n## OSTQD research series\n\n- Paper 1: [Observer-Separated Two-Time Quantum Dynamics](../observer-separated-two-time-quantum-dynamics/README.md)\n- Paper 2: Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity (this study)\n- Paper 3: [Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras](../observer-separated-selective-instruments-type-ii/README.md)\n",
+      "readme": "# Research materials\n\n**Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity: KMS Covariance, Non-Gaussian JT Fluctuations, and Chiral-Horizon Obstructions**\n\nYohtaro Soga · November 28, 2026\n\n[Research overview](../README.md) · [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-sk-jt/index.html)\n\n| Resource | Contents |\n| --- | --- |\n| [Manuscript (PDF)](paper/main.pdf) | 42 pages; 94 cited references. |\n| [LaTeX source](paper/main.tex) · [Bibliography](paper/references.bib) | Original source and 4 vector PDF figures. |\n| [Lean sources](lean4/) · [Kernel and axiom log](lean4/VERIFICATION_LOG.txt) | 40 audited public declarations in the supplied build. |\n| [Numerical code](scripts/verify_paper2_sk_jt.py) · [Recorded data](docs/numerical_verification.json) | 309 scientific numeric fields, seed 20261127. |\n| [Prior literature](PRIOR_ART.md) · [Verification scope](VERIFICATION.md) · [Checksums](SHA256SUMS) | Attribution, analytical boundaries and current file identities. |\n\n## Reproduction\n\nRun on a working copy because Python regenerates the data and figures.\n\n```sh\npython -m pip install -r scripts/requirements.txt\nOPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/verify_paper2_sk_jt.py\n```\n\nWith elan and the supplied Lean/Mathlib configuration, run `bash verify_lean.sh` from `lean4/`. Compile from `paper/` using `pdflatex main.tex`, `bibtex main`, and two further `pdflatex main.tex` runs. See the verification scope for the exact mathematical hypotheses and analytical boundaries. Cite the manuscript and stable PDF URL (https://gawakkyu0603-bit.github.io/physics/downloads/ostqd-sk-jt.pdf). No new blanket license is assigned.\n"
+    },
+    {
+      "archive": "paper3_layer2_type2.zip",
+      "archive_sha256": "eb6d0aa931b7994bee3c74c320b58ca868d674f38d8219dfb668515e14510731",
+      "archive_count": 29,
+      "source_prefix": "paper3_layer2_type2/",
+      "destination": "quantum-gravity/observer-separated-selective-instruments-type-ii/materials",
+      "paper": {
+        "slug": "ostqd-layer2-type2",
+        "field": "quantum-gravity",
+        "archive_slug": "observer-separated-selective-instruments-type-ii",
+        "title": "Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras",
+        "author": "Yohtaro Soga",
+        "date": "2026-11-28",
+        "version": "1",
+        "series": "ostqd",
+        "series_order": 3,
+        "source_path": "quantum-gravity/observer-separated-selective-instruments-type-ii/materials",
+        "content_prefix": "ostqd-layer2-type2-",
+        "audiences": [
+          "general",
+          "student",
+          "expert"
+        ],
+        "languages": [
+          "en"
+        ],
+        "short_title": "OSTQD–Layer 2 / Type II",
+        "summary": {
+          "en": "The third OSTQD study develops selective instruments on causal observer contexts, conditional steering obstructions and Born-weighted branch records, a semifinite entropy split, sharp non-isometric pullback bounds and causal/linear controls on branch coupling."
+        },
+        "audience_descriptions": {
+          "general": {
+            "en": "Understand ensembles, individual records, correlations, entropy and information recovery."
+          },
+          "student": {
+            "en": "Work through quantum instruments, CHSH, trace entropy, polar decomposition and causal channels."
+          },
+          "expert": {
+            "en": "Examine the finite-dimensional and semifinite proofs, quantitative sharp bounds and open gravitational bridges."
+          }
+        },
+        "scope": {
+          "en": [
+            "The guides cover observer-poset instruments, conditional state change, Local Friendliness, signed global couplings, contextual Born records, semifinite entropy, sharp polar-isometric bounds, causal sequential emission and five distinct branch-coupling tests.",
+            "Finite clock and evaporation examples are not continuum gravitational constructions. The semifinite theorem is analytical; relativistic gluing, gravitational crossed-product instruments, a microscopic branch-transition rate and autonomous matrix evaporation remain open."
+          ]
+        },
+        "hero_figure": "ostqd-layer2-type2-overview",
+        "documents": [],
+        "downloads_intro": "Read the original manuscript or explore its source files and reproduction materials."
+      },
+      "document": {
+        "id": "main",
+        "label": "Paper",
+        "path": "downloads/ostqd-layer2-type2.pdf",
+        "source_path": "quantum-gravity/observer-separated-selective-instruments-type-ii/materials/paper/main.pdf",
+        "sha256": "37e9211ec7d67ea465bf461c609a003769b8acb134a0acd79d6e77f3024ef293",
+        "page_count": 31
+      },
+      "preserve": [],
+      "figures": [
+        {
+          "id": "ostqd-layer2-type2-steering",
+          "source": "paper/figures/fig1_steering_and_lf_boundary.pdf",
+          "title": "Conditional state change and global-section negativity",
+          "description": "Original Figure 1: Schmidt-floor witness and signed CHSH negativity, with controls."
+        },
+        {
+          "id": "ostqd-layer2-type2-entropy",
+          "source": "paper/figures/fig2_type2_clock_entropy.pdf",
+          "title": "Finite clock entropy and information gain",
+          "description": "Original Figure 2: entropy splitting in the finite Z8 toy and Ozawa negative-gain control."
+        },
+        {
+          "id": "ostqd-layer2-type2-pullback",
+          "source": "paper/figures/fig3_dynamical_nonisometric_pullback.pdf",
+          "title": "Sequential emission and sharp polar bounds",
+          "description": "Original Figure 3: strictly causal sequential circuit, separate postselected dictionary benchmarks and saturation witnesses."
+        },
+        {
+          "id": "ostqd-layer2-type2-coupling",
+          "source": "paper/figures/fig4_branch_coupling_gate.pdf",
+          "title": "Kinematic overlap and causal tests",
+          "description": "Original Figure 4: Welch lower bound is not a transition rate; nonlinear ensemble dependence and SWAP test distinct signaling conditions."
+        }
+      ],
+      "pages": 31,
+      "refs": 71,
+      "lean": 61,
+      "numeric": 329,
+      "seed": "20261128",
+      "script": "scripts/verify_paper3_layer2_type2.py",
+      "requirements": null,
+      "overview": "Conditional steering obstructions and contextual Born records; a general semifinite entropy split and conditional gravity identity; uniformly sharp polar pullback bounds; causal sequential emission and five distinct branch-coupling checks.",
+      "exclude": [
+        "README.md",
+        "docs/THEORY_BLUEPRINT.md"
+      ],
+      "overview_readme": "# Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras\n\nYohtaro Soga · November 28, 2026\n\nConditional steering obstructions and contextual Born records; a general semifinite entropy split and conditional gravity identity; uniformly sharp polar pullback bounds; causal sequential emission and five distinct branch-coupling checks.\n\n[PDF](materials/paper/main.pdf) · [Research materials and reproduction](materials/README.md) · [Prior literature](materials/PRIOR_ART.md) · [Verification scope](materials/VERIFICATION.md)\n\n## English reading guides\n\n[General readers](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-layer2-type2/general.html) · [STEM students and graduates](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-layer2-type2/student.html) · [Specialists](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-layer2-type2/expert.html)\n\n## OSTQD research series\n\n- Paper 1: [Observer-Separated Two-Time Quantum Dynamics](../observer-separated-two-time-quantum-dynamics/README.md)\n- Paper 2: [Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity](../observer-separated-open-dynamics-2d-dilaton-gravity/README.md)\n- Paper 3: Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras (this study)\n",
+      "readme": "# Research materials\n\n**Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras**\n\nYohtaro Soga · November 28, 2026\n\n[Research overview](../README.md) · [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-layer2-type2/index.html)\n\n| Resource | Contents |\n| --- | --- |\n| [Manuscript (PDF)](paper/main.pdf) | 31 pages; 71 cited references. |\n| [LaTeX source](paper/main.tex) · [Bibliography](paper/references.bib) | Original source and 4 vector PDF figures. |\n| [Lean sources](lean4/) · [Kernel and axiom log](lean4/VERIFICATION_LOG.txt) | 61 audited public declarations in the supplied build. |\n| [Numerical code](scripts/verify_paper3_layer2_type2.py) · [Recorded data](docs/numerical_verification.json) | 329 scientific numeric fields, seed 20261128. |\n| [Prior literature](PRIOR_ART.md) · [Verification scope](VERIFICATION.md) · [Checksums](SHA256SUMS) | Attribution, analytical boundaries and current file identities. |\n\n## Reproduction\n\nRun on a working copy because Python regenerates the data and figures.\n\n```sh\npython -m pip install numpy scipy matplotlib\nOPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/verify_paper3_layer2_type2.py\n```\n\nWith elan and the supplied Lean/Mathlib configuration, run `bash verify_lean.sh` from `lean4/`. Compile from `paper/` using `pdflatex main.tex`, `bibtex main`, and two further `pdflatex main.tex` runs. See the verification scope for the exact mathematical hypotheses and analytical boundaries. Cite the manuscript and stable PDF URL (https://gawakkyu0603-bit.github.io/physics/downloads/ostqd-layer2-type2.pdf). No new blanket license is assigned.\n"
+    }
+  ],
+  "root_readme": "# Physics research\n\nResearch papers, mathematical constructions, numerical calculations, and supporting materials. Browse the [English reading site](https://gawakkyu0603-bit.github.io/physics/en/index.html).\n\n## OSTQD research series\n\n| Research | Scope | Materials |\n| --- | --- | --- |\n| **Paper 1.** [Observer-Separated Two-Time Quantum Dynamics](quantum-gravity/observer-separated-two-time-quantum-dynamics/README.md) | Five conditional finite-dimensional results: autonomous algebra closure versus restriction; energy-moment immunity and local horizon obstructions; complete achievable joint recovery band and shared-record readout; spectral pinching and protected windows; unassisted compression with side-channel controls. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html) · [PDF](quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/paper/main.pdf) · [Research materials](quantum-gravity/observer-separated-two-time-quantum-dynamics/v1/README.md) |\n| **Paper 2.** [Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity](quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/README.md) | Thermal eigenoperators and tracking, frozen JT cumulants and exact reversible entropy-difference jumps, and the constructive Mellin positive-type chiral extension with a sharp contact threshold. Microscopic gravity and a unified endpoint remain open. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-sk-jt/index.html) · [PDF](quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1/paper/main.pdf) · [Research materials](quantum-gravity/observer-separated-open-dynamics-2d-dilaton-gravity/v1/README.md) |\n| **Paper 3.** [Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras](quantum-gravity/observer-separated-selective-instruments-type-ii/README.md) | Conditional steering obstructions and contextual Born records; a general semifinite entropy split and conditional gravity identity; uniformly sharp polar pullback bounds; causal sequential emission and five distinct branch-coupling checks. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-layer2-type2/index.html) · [PDF](quantum-gravity/observer-separated-selective-instruments-type-ii/materials/paper/main.pdf) · [Research materials](quantum-gravity/observer-separated-selective-instruments-type-ii/materials/README.md) |\n\nThe manuscripts specify the assumptions and limits of their results. Citation and reproduction materials are linked from each entry.\n",
+  "field_readme": "# Quantum gravity\n\nResearch on quantum theory, gravitation, spacetime, and quantum information. Browse the [English reading site](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/index.html).\n\n## OSTQD research series\n\n| Research | Scope | Materials |\n| --- | --- | --- |\n| **Paper 1.** [Observer-Separated Two-Time Quantum Dynamics](observer-separated-two-time-quantum-dynamics/README.md) | Five conditional finite-dimensional results: autonomous algebra closure versus restriction; energy-moment immunity and local horizon obstructions; complete achievable joint recovery band and shared-record readout; spectral pinching and protected windows; unassisted compression with side-channel controls. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd/index.html) · [PDF](observer-separated-two-time-quantum-dynamics/v1/paper/main.pdf) · [Research materials](observer-separated-two-time-quantum-dynamics/v1/README.md) |\n| **Paper 2.** [Consistency Audits of Observer-Separated Open Dynamics in 2D Dilaton Gravity](observer-separated-open-dynamics-2d-dilaton-gravity/README.md) | Thermal eigenoperators and tracking, frozen JT cumulants and exact reversible entropy-difference jumps, and the constructive Mellin positive-type chiral extension with a sharp contact threshold. Microscopic gravity and a unified endpoint remain open. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-sk-jt/index.html) · [PDF](observer-separated-open-dynamics-2d-dilaton-gravity/v1/paper/main.pdf) · [Research materials](observer-separated-open-dynamics-2d-dilaton-gravity/v1/README.md) |\n| **Paper 3.** [Observer-Separated Selective Instruments, Born-Weighted Branching, and Non-Isometric Pullback Defects in Type II Gravitational Algebras](observer-separated-selective-instruments-type-ii/README.md) | Conditional steering obstructions and contextual Born records; a general semifinite entropy split and conditional gravity identity; uniformly sharp polar pullback bounds; causal sequential emission and five distinct branch-coupling checks. | [Reading guides](https://gawakkyu0603-bit.github.io/physics/en/quantum-gravity/ostqd-layer2-type2/index.html) · [PDF](observer-separated-selective-instruments-type-ii/materials/paper/main.pdf) · [Research materials](observer-separated-selective-instruments-type-ii/materials/README.md) |\n\nThe manuscripts specify the assumptions and limits of their results. [Physics research index](../README.md).\n"
+}

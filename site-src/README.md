@@ -139,3 +139,7 @@ Each named SVG is stored in `site-src/figures/<id>.svg` with a JSON sidecar cont
 ## Related papers and approved archives
 
 An optional `series` slug and positive integer `series_order` identify distinct works in a scientific reading sequence, not revisions. The selected manuscripts retain catalogue group placement and are sorted within each series; the landing pages and reading guides link other members. Duplicate active sequence positions are rejected. An approved archive manifest may activate a new catalogue entry only after its ZIP and per-file identities match. An optional `web_figures` list converts original PDF figures with `pdftocairo` into accessible SVGs with unique IDs, retaining original PDF bytes. See [ADDING_PAPERS.md](../ADDING_PAPERS.md) for the workflow.
+
+## Stable current research collection
+
+The current-series manifest pins the three archives. The batch importer replaces existing source directories in place, registers stable PDF paths and converts source figures. Legacy `v1` path names are retained for existing links; the new work uses `materials/`. Publication checks cover sequence, all current source trees, document identity and public presentation. The ordinary generic generator and Git workflow remain available.

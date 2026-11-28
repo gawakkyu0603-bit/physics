@@ -35,3 +35,7 @@ Each paper retains its own contribution statements, rights, and third-party noti
 For adding papers, building the site, and publishing updates, use [ADDING_PAPERS.md](../ADDING_PAPERS.md). The [site source reference](../site-src/README.md) describes the catalog and generator.
 
 The public templates do not display internal version numbers or review-related metadata by default. Version identifiers remain available where needed for precise source paths and citation. The canonical site map is `sitemap.xml`.
+
+## Current-manuscript publication
+
+The OSTQD series presents only the current manuscript of each study. Replace contents in stable source directories, retain existing PDF and reading-page URLs, and remove superseded source files from the current tree. Existing source-path names are retained for link compatibility, not displayed as version labels. Ordinary Git history is not rewritten. The scientific reading order is independent of manuscript updates.

@@ -39,14 +39,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for manifest in site-src/imports/*.json; do
-            python3 tools/import_public_bundle.py "$manifest"
-          done
+          python3 tools/import_current_series.py site-src/imports/ostqd-current-series.json
       - name: Test publication behavior and generate site
         run: |
           python3 -m unittest discover -s tests -p 'test_site_publication.py'
           python3 tools/build_site.py
           python3 tools/verify_site.py
+          python3 tools/check_current_series.py
       - name: Commit checked site and imported originals
         id: commit
         run: |
