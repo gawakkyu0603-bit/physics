@@ -2,7 +2,7 @@
 
 [Research index](../README.md) · [Publication policy](../docs/PUBLICATION_SCOPE.md) · [Adding and publishing papers](../ADDING_PAPERS.md)
 
-The reading site is a general physics research index with a dedicated landing page and three English guides for each paper. The catalog selects the latest registered version of each paper. Research sources and older versions remain in the repository; generated Pages files represent the current selection.
+The reading site is a general physics research index with a dedicated landing page and three English guides for each paper. The catalog selects the latest registered version of each paper. The repository retains current research sources only, and Pages serves that selection at stable URLs.
 
 ## Files and responsibilities
 
@@ -26,13 +26,13 @@ The reading site is a general physics research index with a dedicated landing pa
 
 The top-level catalog identifies `owner`, `repository`, `public_base_url`, `languages`, `fields`, `papers`, and `sitemap_filename`. The public base URL ends in `/`. The current language is `["en"]`; the current sitemap filename is `sitemap.xml`.
 
-A field has a unique `slug` and English `name` and `summary`. A manuscript entry requires a registered `field`, a site `slug`, its `title`, and a `version`. The same field and slug identify successive versions of one paper. The archive directory can have a longer name and is specified by the source paths.
+A field has a unique `slug` and English `name` and `summary`. A manuscript entry requires a registered `field`, a site `slug`, its `title`, and a `version`. The same field and slug identify one paper; keep its entry and paths fixed when replacing the current manuscript. The archive directory can have a longer name and is specified by the source paths.
 
 | Paper metadata | Behavior |
 | --- | --- |
 | `version`, optional `version_order` | Select the latest manuscript per field and slug. Numeric dotted versions use numeric comparison. If a series uses nonnumeric labels, supply a distinct integer order for every entry. Equal ranks are rejected. |
 | `author`, `date`, `subtitle`, `summary.en`, `short_title` | Paper-specific display text. Omitted values do not copy another paper's metadata. |
-| `content_prefix` | Prefix of this manuscript's three source-fragment filenames. Use a distinct prefix for each paper and manuscript version. |
+| `content_prefix` | Prefix of this manuscript's three source-fragment filenames. Use a distinct prefix for each paper, retaining it when updating that paper. |
 | `languages`, `audiences` | English and the three reading levels: `general`, `student`, `expert`. |
 | `source_path` | Optional original-source directory, relative to the repository root. Required only when an article uses `{{SOURCE_ROOT}}`. |
 | `source_ref`, `release` | Source links use `source_ref`, otherwise the optional release tag, otherwise `main`. A release link appears only when configured. |
@@ -85,7 +85,7 @@ The builder records managed paths in `generated-files.json`:
 
 The hash strings above illustrate the record layout; real records contain 64 hexadecimal characters. Subsequent builds remove obsolete managed files only when their current bytes match the prior record. A modified obsolete file stops the build before any public output or prior manifest is replaced; resolve the conflict explicitly. Unknown files and Google or Bing ownership files are preserved. Register only paths intended to be managed by this generator; never point a document output at a source or ownership file.
 
-On the first build without a previous output manifest, unknown historical files are not automatically discovered or erased. Review any extra pages reported by verification. Keep the resulting manifest in Git so later version changes can clean their old generated outputs safely. Fixed research tags, version directories, and Release assets are outside this cleanup.
+On the first build without a previous output manifest, unknown historical files are not automatically discovered or erased. Review any extra pages reported by verification. Keep the resulting manifest in Git so later version changes can clean their old generated outputs safely. Original research source directories and any separately fixed citation assets are outside generated-output cleanup; approved manuscript replacement explicitly removes superseded source files.
 
 ## Page organization
 
@@ -142,4 +142,4 @@ An optional `series` slug and positive integer `series_order` identify distinct 
 
 ## Stable current research collection
 
-The current-series manifest pins the three archives. The batch importer replaces existing source directories in place, registers stable PDF paths and converts source figures. Legacy `v1` path names are retained for existing links; the new work uses `materials/`. Publication checks cover sequence, all current source trees, document identity and public presentation. The ordinary generic generator and Git workflow remain available.
+The current-series manifest pins the three archives. The batch importer replaces existing source directories in place, registers stable PDF paths and converts source figures. Legacy `v1` path names are retained for existing links; the new work uses `materials/`. Publication checks cover sequence, all current source trees, document identity and public presentation. The generic import dispatcher supports ordinary single-paper manifests as well as explicitly approved batches. Batch-specific identity checks run only for that batch.

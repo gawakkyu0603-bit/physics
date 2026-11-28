@@ -10,11 +10,11 @@ This repository publishes physics research papers, their sources and supporting 
 | [Physics reading site](https://gawakkyu0603-bit.github.io/physics/en/index.html) | A general research index leading to individual paper pages. |
 | Each paper's reading page | The latest published manuscript's introduction, available downloads, and three English reading guides. |
 
-GitHub Pages serves the `docs/` directory on `main`. The [catalog](../site-src/catalog.json) identifies the published papers and their resources. The site displays only the latest published version of each paper; earlier materials may remain on GitHub for reproducible citations. Paper-specific figures and explanations belong on that paper's pages.
+GitHub Pages serves the `docs/` directory on `main`. The [catalog](../site-src/catalog.json) identifies the published papers and their resources. Both the repository and site present only the current manuscript of each paper; superseded materials are not retained as separate public archives. Paper-specific figures and explanations belong on that paper's pages.
 
 ## Public descriptions and resources
 
-Repository and field READMEs are research indexes. A paper README explains its question, scope, available materials, and reading options. A version directory provides the corresponding source files, practical reproduction instructions, citation details, and rights notices.
+Repository and field READMEs are research indexes. A paper README explains its question, scope, available materials, and reading options. A stable materials directory provides the corresponding source files, practical reproduction instructions, citation details, and rights notices.
 
 Public descriptions focus on the research and its use. Internal review correspondence, issue-resolution checklists, and revision chronology are not part of the public presentation. State scientific assumptions, limitations, and the actual status of the work where they help readers interpret it.
 
@@ -28,13 +28,13 @@ Public documentation is maintained in English. Original research files retain th
 
 ## Sources, citation, and rights
 
-Keep original research and published distributions identifiable. Use a version directory, release tag, or exact commit when citing a particular distribution. Fixed tags and Release assets identify their original contents; later website maintenance does not revise those distributions unless the author explicitly withdraws the work.
+Keep original research and published distributions identifiable. Use the stable PDF URL and manuscript date, or an exact Git commit if an immutable citation is necessary. Fixed tags and Release assets identify their original contents; later website maintenance does not revise those distributions unless the author explicitly withdraws the work.
 
 Each paper retains its own contribution statements, rights, and third-party notices in its research materials. Inclusion in this repository does not create a blanket license or imply journal acceptance.
 
 For adding papers, building the site, and publishing updates, use [ADDING_PAPERS.md](../ADDING_PAPERS.md). The [site source reference](../site-src/README.md) describes the catalog and generator.
 
-The public templates do not display internal version numbers or review-related metadata by default. Version identifiers remain available where needed for precise source paths and citation. The canonical site map is `sitemap.xml`.
+The public templates do not display internal version numbers or review-related metadata by default. Legacy source path names are preserved only to avoid broken links. The canonical site map is `sitemap.xml`.
 
 ## Current-manuscript publication
 

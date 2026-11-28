@@ -39,13 +39,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 tools/import_current_series.py site-src/imports/ostqd-current-series.json
+          python3 tools/import_approved_uploads.py
       - name: Test publication behavior and generate site
         run: |
           python3 -m unittest discover -s tests -p 'test_site_publication.py'
           python3 tools/build_site.py
           python3 tools/verify_site.py
-          python3 tools/check_current_series.py
+          if [[ -f /tmp/ostqd-current-series-imported ]]; then
+            python3 tools/check_current_series.py
+          fi
       - name: Commit checked site and imported originals
         id: commit
         run: |

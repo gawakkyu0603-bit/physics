@@ -2,11 +2,11 @@
 
 [Research index](README.md) · [Publication policy](docs/PUBLICATION_SCOPE.md) · [Catalog and generator reference](site-src/README.md)
 
-This guide explains how to add research to this repository and publish its latest manuscript and three English reading guides. GitHub stores identifiable research versions; GitHub Pages presents only the latest registered version of each paper. Public descriptions focus on the research, available materials, and practical use.
+This guide explains how to add research to this repository and publish its latest manuscript and three English reading guides. GitHub and GitHub Pages present the current manuscript of each paper at stable paths. Public descriptions focus on the research, available materials, and practical use.
 
 ## 1. Prepare the research materials
 
-Organize supplied manuscripts, sources, data, and code as `field/paper/version/paper/`. For example:
+Organize supplied manuscripts, sources, data, and code under a stable `field/paper/materials/` directory, with the manuscript under `paper/`. Preserve any existing source paths already linked publicly. For example:
 
 | Location | Contents |
 | --- | --- |
@@ -17,7 +17,7 @@ Organize supplied manuscripts, sources, data, and code as `field/paper/version/p
 
 These names describe a fictional example. Do not copy another paper's scientific statements, file counts, authorship, or publication status.
 
-Keep supplied research files identifiable and preserve fixed tags and published assets unless the author withdraws a work. Use a new directory for a new manuscript version. Public READMEs should describe the current research and resources; they do not need reviewer correspondence, resolved-comment checklists, or a chronology of earlier revisions. Retain scientific assumptions and limitations that readers need to interpret the work. Do not infer peer review, a DOI, or a license from publication on GitHub.
+Keep supplied research files identifiable and preserve fixed tags and published assets unless the author withdraws a work. Replace the current contents of the stable paper directory when the author supplies an updated manuscript; do not create superseded-version directories. Public READMEs should describe the current research and resources; they do not need reviewer correspondence, resolved-comment checklists, or a chronology of earlier revisions. Retain scientific assumptions and limitations that readers need to interpret the work. Do not infer peer review, a DOI, or a license from publication on GitHub.
 
 Maintain public documentation in English. Build and publishing commands belong in this guide, rather than the root README. Each paper retains its own contribution statements, citation metadata, rights notices, and third-party terms.
 
@@ -74,15 +74,15 @@ Optional metadata includes `subtitle`, `date`, `short_title`, `page_counts` for 
 
 A `release` tag is optional. Source links use an explicit `source_ref` when provided, otherwise the release tag if configured, otherwise `main`. Use an existing immutable tag or exact commit for archival citations. Do not configure a Release link before that Release exists.
 
-## 3. Keep only the latest manuscript on Pages
+## 3. Replace current manuscripts without changing URLs
 
-The catalog may retain several entries for a paper, identified by the same `field` and `slug`. Use distinct version directories, source fragments, and download paths for each entry. Update the current-paper README and research-index links when introducing a new manuscript. The shared catalog loader selects one latest entry before generating pages, downloads, or the sitemap.
+Keep one active catalogue entry per paper, identified by `field` and `slug`. Preserve its `source_path`, content prefix, PDF download path and HTML routes when replacing the original files. Update its document SHA-256, page count, scientific summary, guides and current reproduction instructions; remove superseded source files. The required internal `version` field can remain `1` for a current-only manuscript.
 
-Numeric dotted versions are compared numerically: `10` is later than `2`, and `2.10` is later than `2.9`. Equivalent ranks such as `4` and `4.0` are ambiguous and are rejected. If a series uses nonnumeric labels, give every entry in that series a distinct integer `version_order`; a larger order is newer. Do not use a guessed lexicographic order for names such as `draft-final`.
+The catalogue loader still supports numerical or explicitly ordered revisions for compatibility with other collections. That capability is not a requirement to retain old manuscripts in this repository. For research continuations use distinct slugs and `series_order`, not revision numbers.
 
 Pages URLs stay stable, for example `en/stellar-physics/star-modes/index.html`, and display the selected latest manuscript. Root and field pages provide compact research indexes. Paper-specific figures, download descriptions, and the three reading-level cards belong on the paper's landing page.
 
-[site-src/generated-files.json](site-src/generated-files.json) records the generated pages, registered downloads, and sitemap, with their hashes. On a later build, an obsolete recorded output is removed only when its bytes still match that record. If an obsolete output has been changed outside the build, generation stops before publishing any replacement files and preserves the old output manifest. Untracked files and ownership-verification files remain outside this cleanup. Resolve reported stale-file conflicts before publishing; do not erase the output manifest to bypass them. Earlier research directories, fixed tags, and Release assets may remain on GitHub unless the author withdraws a work.
+[site-src/generated-files.json](site-src/generated-files.json) records the generated pages, registered downloads, and sitemap, with their hashes. On a later build, an obsolete recorded output is removed only when its bytes still match that record. If an obsolete output has been changed outside the build, generation stops before publishing any replacement files and preserves the old output manifest. Untracked files and ownership-verification files remain outside this cleanup. Resolve reported stale-file conflicts before publishing; do not erase the output manifest to bypass them. Do not retain superseded research directories as public archives. Ordinary Git commit history is preserved; fixed citation assets, if explicitly requested, are managed separately.
 
 ## 4. Write three complete English introductions
 
@@ -92,7 +92,7 @@ With `content_prefix: "star-modes-v1-"`, provide:
 - `site-src/content/star-modes-v1-student-en.html`
 - `site-src/content/star-modes-v1-expert-en.html`
 
-Give different papers and versions distinct prefixes. Every introduction begins with a TL;DR and explains the complete paper and any supplement, including definitions, assumptions, results, proposed tests, negative results, and open questions. Adjust the teaching depth for the reader while preserving the meaning and scope of the research.
+Give distinct papers different content prefixes; keep an existing paper's prefix when replacing its manuscript. Every introduction begins with a TL;DR and explains the complete paper and any supplement, including definitions, assumptions, results, proposed tests, negative results, and open questions. Adjust the teaching depth for the reader while preserving the meaning and scope of the research.
 
 | Audience | Treatment |
 | --- | --- |
@@ -100,7 +100,7 @@ Give different papers and versions distinct prefixes. Every introduction begins 
 | STEM students and graduates | Background, intermediate mathematical steps, worked examples, units, and connections to familiar physics. |
 | Specialists | Definitions, conditions, derivations, quantitative comparisons, and links to the exact manuscript and source material. |
 
-Use sufficient detail to bridge the reader's background to the paper's arguments. Do not impose an arbitrary word limit or substitute a topic list for an explanation. Prepare a source-to-guide map under the version's `reading-guides/COVERAGE.md` and link it from [the coverage index](site-src/COVERAGE.md). Map each substantive main-paper and supplement topic to stable section IDs in all three guides. Keep this as a current content map rather than a review-response history.
+Use sufficient detail to bridge the reader's background to the paper's arguments. Do not impose an arbitrary word limit or substitute a topic list for an explanation. Prepare a source-to-guide map under the current paper's `reading-guides/COVERAGE.md` or directly in the shared coverage index and link it from [the coverage index](site-src/COVERAGE.md). Map each substantive main-paper and supplement topic to stable section IDs in all three guides. Keep this as a current content map rather than a review-response history.
 
 An article fragment contains one `article`:
 
@@ -164,7 +164,7 @@ Google and Bing ownership-verification files inside `docs/` are maintained separ
 
 Review the actual diff before committing. Include the intended research files, catalog and article sources, updated public documentation, generated `docs/` files, build records, and output manifest. Avoid committing temporary execution environments or review correspondence as public explanatory documents. Use a branch and pull request when appropriate to the repository's workflow, and publish the agreed changes to `main`.
 
-If a version directory has a `PUBLICATION_MANIFEST.json`, update its size and SHA-256 records to match that directory's current public files, excluding the manifest itself. Preserve independent source hashes and fixed manifests inside existing Release assets. Do not rebuild a fixed distribution merely because website descriptions changed.
+If a current materials directory has a `PUBLICATION_MANIFEST.json`, update its size and SHA-256 records to match that directory's current public files, excluding the manifest itself. Preserve independent source hashes and fixed manifests inside existing Release assets. Do not rebuild a fixed distribution merely because website descriptions changed.
 
 A GitHub Release is optional. When one is appropriate, tag the intended publication commit with a paper-specific name, prepare only the assets that actually exist, and describe their current contents and use. A paper without a supplement does not need a supplement asset. For example:
 
@@ -195,4 +195,4 @@ Use a research index organized by field, with a concise result/scope/materials e
 
 ### Importing an approved research collection
 
-For the current OSTQD series use `site-src/imports/ostqd-current-series.json` and `tools/import_current_series.py`. The manifest pins each approved ZIP by SHA-256. The importer validates all archives before replacing any paper, derives per-file hashes, retains originals except explicitly identified editorial headings, registers current PDFs at stable paths, regenerates original figures as accessible SVGs, and removes the staging ZIPs. The workflow commits only after the full import, site build and checks succeed. Do not keep superseded versions as separate public directories. Preserve existing source and Pages URLs and use `series_order` for scientific order. Internal catalogue fields are not public version badges. For future studies prepare a new approved specification and corresponding checks; the ordinary Git workflow remains available. No search notifications are sent automatically.
+For the current OSTQD series use `site-src/imports/ostqd-current-series.json` and `tools/import_current_series.py`. The manifest pins each approved ZIP by SHA-256. The importer validates all archives before replacing any paper, derives per-file hashes, retains originals except explicitly identified editorial headings, registers current PDFs at stable paths, regenerates original figures as accessible SVGs, and removes the staging ZIPs. The workflow commits only after the full import, site build and checks succeed. Do not keep superseded versions as separate public directories. Preserve existing source and Pages URLs and use `series_order` for scientific order. Internal catalogue fields are not public version badges. For future studies prepare a new approved single-paper or batch specification. The generic import dispatcher supports both; the current three-paper batch checks run when that approved batch is imported. No search notifications are sent automatically.
